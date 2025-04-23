@@ -1,5 +1,11 @@
 {
   "projects": {
     "default": "myportfolio-b8372"
+  },
+  "targets": {},
+  "etags": {
+    "myportfolio-b8372": {
+      "extensionInstances": {}
+    }
   }
 }
