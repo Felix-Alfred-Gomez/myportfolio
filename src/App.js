@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import EmailVerification from "./components/EmailVerification";
+import PublicPortfolio from "./components/PublicPortfolio"; // Import the PublicPortfolio component
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -26,6 +27,7 @@ function App() {
           path="/dashboard"
           element={isAuthenticated ? <Dashboard /> : <Home onLoginSuccess={handleLoginSuccess} />}
         />
+        <Route path="/:username" element={<PublicPortfolio />} /> {/* Dynamic route for user portfolios */}
       </Routes>
     </Router>
   );
