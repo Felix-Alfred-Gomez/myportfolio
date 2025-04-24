@@ -1,10 +1,10 @@
 // filepath: h:\CODE\myportfolio\src\App.js
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./components/Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
-import EmailVerification from "./components/EmailVerification"; // Import the new component
+import EmailVerification from "./components/EmailVerification";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -18,13 +18,13 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login onLoginSuccess={handleLoginSuccess} />}
+          element={<Home isAuthenticated={isAuthenticated} onLoginSuccess={handleLoginSuccess} />}
         />
         <Route path="/register" element={<Register />} />
-        <Route path="/verify-email" element={<EmailVerification />} /> {/* New route */}
+        <Route path="/verify-email" element={<EmailVerification />} />
         <Route
           path="/dashboard"
-          element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />}
+          element={isAuthenticated ? <Dashboard /> : <Home onLoginSuccess={handleLoginSuccess} />}
         />
       </Routes>
     </Router>
