@@ -1,3 +1,11 @@
+/* Reset body and html margins */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 .home-container {
   text-align: center;
   height: 100vh;
@@ -9,13 +17,14 @@
 }
 
 .home-banner {
-  width: 100%;
+  width: 100vw; /* Ensure the banner spans the full viewport width */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
   background-color: #6163fb;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Include padding in the width calculation */
 }
 
 .home-buttons {
