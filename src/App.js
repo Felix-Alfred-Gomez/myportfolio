@@ -14,18 +14,38 @@ function App() {
     setIsAuthenticated(true);
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false); // Update the authentication state
+    console.log("User logged out");
+  };
+
   return (
     <Router>
       <Routes>
         <Route
           path="/"
-          element={<Home isAuthenticated={isAuthenticated} onLoginSuccess={handleLoginSuccess} />}
+          element={
+            <Home
+              isAuthenticated={isAuthenticated}
+              onLoginSuccess={handleLoginSuccess}
+              onLogout={handleLogout} // Pass the handleLogout function
+            />
+          }
         />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-email" element={<EmailVerification />} />
         <Route
           path="/dashboard"
-          element={isAuthenticated ? <Dashboard /> : <Home onLoginSuccess={handleLoginSuccess} />}
+          element={
+            isAuthenticated ? (
+              <Dashboard />
+            ) : (
+              <Home
+                onLoginSuccess={handleLoginSuccess}
+                onLogout={handleLogout} // Pass the handleLogout function
+              />
+            )
+          }
         />
         <Route path="/:username" element={<PublicPortfolio />} /> {/* Dynamic route for user portfolios */}
       </Routes>

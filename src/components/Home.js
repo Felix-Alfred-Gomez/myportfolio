@@ -3,12 +3,16 @@ import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 import "./Home.css";
 
-function Home({ isAuthenticated, onLoginSuccess }) {
+function Home({ isAuthenticated, onLoginSuccess, onLogout }) {
   const [showLogin, setShowLogin] = useState(false);
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
     setShowLogin(true);
+  };
+
+  const handleLogoutClick = () => {
+    onLogout(); // Trigger the logout function
   };
 
   const handleCloseLogin = (e) => {
@@ -20,6 +24,7 @@ function Home({ isAuthenticated, onLoginSuccess }) {
   const handleLoginSuccess = () => {
     onLoginSuccess();
     setShowLogin(false); // Close the login modal after successful login
+    navigate("/dashboard"); // Redirect to the dashboard after login
   };
 
   const handleDashboardClick = () => {
@@ -38,9 +43,15 @@ function Home({ isAuthenticated, onLoginSuccess }) {
           <button className="home-dashboard-button" onClick={handleDashboardClick}>
             Dashboard
           </button>
-          <button className="home-login-button" onClick={handleLoginClick}>
-            {isAuthenticated ? "Connecté" : "Se Connecter"}
-          </button>
+          {isAuthenticated ? (
+            <button className="home-logout-button" onClick={handleLogoutClick}>
+              Se Déconnecter
+            </button>
+          ) : (
+            <button className="home-login-button" onClick={handleLoginClick}>
+              Se Connecter
+            </button>
+          )}
         </div>
       </div>
       {showLogin && (

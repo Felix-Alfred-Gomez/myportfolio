@@ -66,6 +66,23 @@ body, html {
   color: white;
 }
 
+.home-logout-button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  background-color: white;
+  border: none;
+  color: #6163fb;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.home-logout-button:hover {
+  background-color: #21a1f1;
+  color: white;
+}
+
 .login-modal {
   position: fixed;
   top: 0;
