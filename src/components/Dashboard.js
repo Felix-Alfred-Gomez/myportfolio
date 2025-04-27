@@ -1,7 +1,7 @@
 // filepath: h:\CODE\myportfolio\src\components\Dashboard\Dashboard.js
 import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, get, set } from "firebase/database";
+import { getDatabase, ref, get } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
@@ -26,15 +26,11 @@ function Dashboard() {
     fetchUsername();
   }, [auth, database]);
 
-  const handlePublishPortfolio = async () => {
+  const handleCreatePortfolio = () => {
     if (username) {
-      // Save the portfolio data in a public node
-      await set(ref(database, `publicPortfolios/${username}`), {
-        username: username,
-        title: `Portfolio de ${username}`,
-      });
-      alert("Votre portfolio a été publié !");
-      navigate(`/${username}`); // Redirect to the public portfolio page
+      navigate(`/portfolio-template/${username}`); // Redirect to the portfolio template page
+    } else {
+      alert("Veuillez vous connecter pour créer un portfolio.");
     }
   };
 
@@ -42,7 +38,7 @@ function Dashboard() {
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <h1>Bienvenue {username}!</h1>
-        <button onClick={handlePublishPortfolio}>Publier PortFolio</button>
+        <button onClick={handleCreatePortfolio}>Créer PortFolio</button>
       </div>
     </div>
   );

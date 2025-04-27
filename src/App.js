@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import EmailVerification from "./components/EmailVerification";
 import PublicPortfolio from "./components/PublicPortfolio"; // Import the PublicPortfolio component
+import PortfolioTemplate from "./components/PortfolioTemplate";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,6 +49,7 @@ function App() {
           }
         />
         <Route path="/:username" element={<PublicPortfolio />} /> {/* Dynamic route for user portfolios */}
+        <Route path="/portfolio-template/:username" element={<PortfolioTemplate />} />
       </Routes>
     </Router>
   );
