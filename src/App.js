@@ -48,8 +48,8 @@ function App() {
             )
           }
         />
-        <Route path="/:username" element={<PublicPortfolio />} /> {/* Dynamic route for user portfolios */}
         <Route path="/portfolio-template/:username" element={<PortfolioTemplate />} />
+        <Route path="/:username" element={<PublicPortfolio />} /> {/* Use PublicPortfolio here */}
       </Routes>
     </Router>
   );

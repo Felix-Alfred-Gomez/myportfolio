@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
+import { getFirestore, doc, setDoc } from "firebase/firestore"; // Import Firestore
 
-function PortfolioContent({ username, skills, isPublished, handleSkillChange }) {
+export function PortfolioContent({ username, skills, isPublished, handleSkillChange }) {
+
   return (
     <div>
       {/* First Section: User Name */}
@@ -43,6 +45,8 @@ function PortfolioTemplate() {
   const navigate = useNavigate(); // Initialize the navigate function
   const [skills, setSkills] = useState(["Compétence 1", "Compétence 2", "Compétence 3"]);
   const [isPublished] = useState(false); // State to toggle between editable and published view
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [portfolioUrl, setPortfolioUrl] = useState(""); // State to store the portfolio URL
 
   const handleSkillChange = (index, newSkill) => {
     const updatedSkills = [...skills];
@@ -50,31 +54,26 @@ function PortfolioTemplate() {
     setSkills(updatedSkills);
   };
 
-  const handlePublish = () => {
-    // Open a new tab and render the non-editable version of the portfolio
-    const newTab = window.open();
-    const newTabRoot = newTab.document.createElement("div");
-    newTab.document.body.appendChild(newTabRoot);
+  const handlePublish = async () => {
+    const db = getFirestore(); // Initialize Firestore
 
-    // Render the PortfolioContent component in the new tab
-    newTab.document.title = `Portfolio de ${username}`;
-    newTab.document.body.style.margin = "0";
-    newTab.document.body.style.fontFamily = "Arial, sans-serif";
+    try {
+      // Save portfolio data to Firestore
+      const url = `http://localhost:3000/${username}`;
+      await setDoc(doc(db, "publicPortfolios", username), {
+        username,
+        skills,
+        publishedAt: new Date().toISOString(),
+      });
 
-    const renderPortfolio = (
-      <PortfolioContent username={username} skills={skills} isPublished={true} handleSkillChange={() => {}} />
-    );
+      console.log("Portfolio published:", { username, skills });
 
-    // Use ReactDOM.createRoot for React 18 and later
-    import("react-dom/client").then((ReactDOM) => {
-      const root = ReactDOM.createRoot(newTabRoot);
-      root.render(renderPortfolio); // Correctly pass the JSX element
-    });
-
-    // Simulate saving the portfolio to the database
-    console.log("Portfolio published:", { username, skills });
-
-    // TODO: Add backend API call to save the portfolio and make it publicly accessible
+      // Set the portfolio URL and show the modal
+      setPortfolioUrl(url);
+      setShowModal(true);
+    } catch (error) {
+      console.error("Error publishing portfolio:", error);
+    }
   };
 
   return (
@@ -128,13 +127,72 @@ function PortfolioTemplate() {
         )}
       </header>
 
-      {/* Render Portfolio Content */}
-      <PortfolioContent
-        username={username}
-        skills={skills}
-        isPublished={isPublished}
-        handleSkillChange={handleSkillChange}
-      />
+      {/* Render Portfolio Content Only for Editing */}
+      {!isPublished && (
+        <PortfolioContent
+          username={username}
+          skills={skills}
+          isPublished={isPublished}
+          handleSkillChange={handleSkillChange}
+        />
+      )}
+
+      {/* Modal for Portfolio URL */}
+      {showModal && (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "white",
+            padding: "20px",
+            borderRadius: "10px",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+            zIndex: "1001",
+            textAlign: "center",
+          }}
+        >
+          <h2>Votre portfolio a été publié !</h2>
+          <p>
+            Visitez-le à :{" "}
+            <a href={portfolioUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#6163fb" }}>
+              {portfolioUrl}
+            </a>
+          </p>
+          <button
+            onClick={() => setShowModal(false)}
+            style={{
+              marginTop: "10px",
+              padding: "10px 20px",
+              backgroundColor: "#6163fb",
+              color: "white",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+          >
+            Fermer
+          </button>
+        </div>
+      )}
+
+      {/* Modal Background */}
+      {showModal && (
+        <div
+          onClick={() => setShowModal(false)}
+          style={{
+            position: "fixed",
+            top: "0",
+            left: "0",
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: "1000",
+          }}
+        ></div>
+      )}
     </div>
   );
 }
