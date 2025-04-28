@@ -24,7 +24,6 @@ function Home({ isAuthenticated, onLoginSuccess, onLogout }) {
   const handleLoginSuccess = () => {
     onLoginSuccess();
     setShowLogin(false); // Close the login modal after successful login
-    navigate("/dashboard"); // Redirect to the dashboard after login
   };
 
   const handleDashboardClick = () => {
