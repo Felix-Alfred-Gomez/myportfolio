@@ -58,8 +58,11 @@ function PortfolioTemplate() {
     const db = getFirestore(); // Initialize Firestore
 
     try {
+      // Dynamically set the base URL
+      const baseUrl = window.location.origin;
+      const url = `${baseUrl}/${username}`;
+      
       // Save portfolio data to Firestore
-      const url = `http://localhost:3000/${username}`;
       await setDoc(doc(db, "publicPortfolios", username), {
         username,
         skills,
