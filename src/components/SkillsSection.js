@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SkillsSection({ id, data, setData, isPublished }) {
+export default function SkillsSection({ data, setData, isPublished }) {
   const handleSkillChange = (index, newSkill) => {
     const updatedSkills = [...data.skills];
     updatedSkills[index] = newSkill;
@@ -9,7 +9,7 @@ export default function SkillsSection({ id, data, setData, isPublished }) {
 
   return (
     <section
-      id={id}
+      id='skills'
       style={{
         height: "100vh",
         backgroundColor: "#4b4b9f",

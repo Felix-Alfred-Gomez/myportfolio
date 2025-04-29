@@ -1,26 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { PushPortfolioData } from "../hooks/HandlePortfolioData";
 
-export default function TopBanner({ username, isPublished, skills}) {
+export default function TopBanner({ data, username, isPublished }) {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [portfolioUrl, setPortfolioUrl] = useState("");
 
   const handlePublish = async () => {
-    const db = getFirestore();
-
     try {
       const baseUrl = window.location.origin;
       const url = `${baseUrl}/${username}`;
 
-      await setDoc(doc(db, "publicPortfolios", username), {
-        username,
-        skills,
-        publishedAt: new Date().toISOString(),
-      });
-
-      console.log("Portfolio published:", { username, skills });
+      await PushPortfolioData(username, data);
 
       setPortfolioUrl(url);
       setShowModal(true);
