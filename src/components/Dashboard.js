@@ -34,6 +34,14 @@ function Dashboard() {
     }
   };
 
+  const handleViewPortfolio = () => {
+    if (username) {
+      navigate(`/${username}`); // Redirect to the user's portfolio page
+    } else {
+      alert("Veuillez vous connecter pour voir votre portfolio.");
+    }
+  };
+
   return (
     <div>
       {/* Banner Section */}
@@ -86,9 +94,26 @@ function Dashboard() {
             cursor: "pointer",
             fontWeight: "bold",
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Added shadow for better design
+            marginRight: "10px", // Add space between the two buttons
           }}
         >
-          Créer Portfolio
+          Créer mon Portfolio
+        </button>
+        <button
+          onClick={handleViewPortfolio}
+          style={{
+            marginTop: "20px", // Add spacing between the buttons
+            padding: "10px 20px",
+            backgroundColor: "#4CAF50", // Updated color to match the website theme
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontWeight: "bold",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Added shadow for better design
+          }}
+        >
+          Voir mon Portfolio
         </button>
       </div>
     </div>
