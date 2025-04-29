@@ -3,56 +3,9 @@ import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import { getFirestore, doc, setDoc } from "firebase/firestore"; // Import Firestore
 
 export function PortfolioContent({ username, skills, isPublished, handleSkillChange }) {
-
-  return (
-    <div>
-      {/* First Section: User Name */}
-      <section style={{ backgroundColor: "grey", color: "white", padding: "50px 0", textAlign: "center" }}>
-        <h1>{username ? `Bienvenue sur le portfolio de ${username}` : "Bienvenue sur le portfolio"}</h1>
-      </section>
-
-      {/* Second Section: Compétences */}
-      <section style={{ backgroundColor: "blue", color: "white", padding: "50px 20px" }}>
-        <h2 style={{ textAlign: "center" }}>Compétences</h2>
-        <ul style={{ listStyleType: "none", padding: 0, textAlign: "center" }}>
-          {skills.map((skill, index) => (
-            <li key={index}>
-              {isPublished ? (
-                <span style={{ display: "block", padding: "5px", color: "white" }}>{skill}</span>
-              ) : (
-                <input
-                  type="text"
-                  value={skill}
-                  onChange={(e) => handleSkillChange(index, e.target.value)}
-                  style={{
-                    textAlign: "center",
-                    padding: "5px",
-                    borderRadius: "5px",
-                    border: "1px solid #ccc",
-                  }}
-                />
-              )}
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
-  );
-}
-
-function PortfolioTemplate() {
-  const { username } = useParams(); // Get the username from the URL
   const navigate = useNavigate(); // Initialize the navigate function
-  const [skills, setSkills] = useState(["Compétence 1", "Compétence 2", "Compétence 3"]);
-  const [isPublished] = useState(false); // State to toggle between editable and published view
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
   const [portfolioUrl, setPortfolioUrl] = useState(""); // State to store the portfolio URL
-
-  const handleSkillChange = (index, newSkill) => {
-    const updatedSkills = [...skills];
-    updatedSkills[index] = newSkill;
-    setSkills(updatedSkills);
-  };
 
   const handlePublish = async () => {
     const db = getFirestore(); // Initialize Firestore
@@ -80,25 +33,29 @@ function PortfolioTemplate() {
   };
 
   return (
-    <div>
-      {/* Top Banner */}
-      <header
+    <div style={{ scrollBehavior: "smooth" }}>
+      {/* Top Navigation Banner */}
+      <nav
         style={{
+          position: "fixed", 
+          top: 0,            
+          left: 0,
+          right: 0,
+          height: "60px",
+          backgroundColor: "#1e1e2f",
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "center",
           alignItems: "center",
-          padding: "10px 20px",
-          backgroundColor: "#333",
-          color: "white",
-          position: "sticky",
-          top: "0",
-          zIndex: "1000",
+          zIndex: 1000,
+          padding: "0 20px",
         }}
       >
-        {/* Dashboard Button */}
-        <button
+        {/* Dashboard Button as Overlay */}
+        {!isPublished && (<button
           onClick={() => navigate("/dashboard")} // Navigate to the dashboard route
           style={{
+            position: "absolute", // Makes the button positioned relative to its nearest positioned ancestor (in this case, the <nav> element).
+            left: "20px",         // Positions the button 20px from the left edge of the <nav>.
             padding: "10px 20px",
             backgroundColor: "#6163fb",
             color: "white",
@@ -109,13 +66,14 @@ function PortfolioTemplate() {
           }}
         >
           Dashboard
-        </button>
+        </button>)}
 
         {/* Publier Portfolio Button */}
-        {!isPublished && (
-          <button
+        {!isPublished && (<button
             onClick={handlePublish}
             style={{
+              position: "absolute", // Makes the button positioned relative to its nearest positioned ancestor (in this case, the <nav> element).
+              right: "20px",         // Positions the button 20px from the left edge of the <nav>.
               padding: "10px 20px",
               backgroundColor: "#6163fb",
               color: "white",
@@ -128,20 +86,86 @@ function PortfolioTemplate() {
             Publier Portfolio
           </button>
         )}
-      </header>
 
-      {/* Render Portfolio Content Only for Editing */}
-      {!isPublished && (
-        <PortfolioContent
-          username={username}
-          skills={skills}
-          isPublished={isPublished}
-          handleSkillChange={handleSkillChange}
-        />
-      )}
+        {/* Centered Links */}
+        <div style={{ display: "flex", gap: "30px", alignItems: "center" }}>
+          <a href="#home" style={{ color: "white", textDecoration: "none", fontWeight: "bold" }}>
+            Accueil
+          </a>
+          <a href="#skills" style={{ color: "white", textDecoration: "none", fontWeight: "bold" }}>
+            Compétences
+          </a>
+        </div>
+      </nav>
 
-      {/* Modal for Portfolio URL */}
-      {showModal && (
+      {/* Section 1: Accueil */}
+      <section
+        id="home"
+        style={{
+          height: "100vh",
+          backgroundColor: "#2b2b3d",
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          paddingTop: "60px",
+          textAlign: "center",
+        }}
+      >
+        <h1 style={{ fontSize: "2.5rem", marginBottom: "10px" }}>
+          {username ? `Bienvenue sur le portfolio de ${username}` : "Bienvenue sur le portfolio"}
+        </h1>
+        <p style={{ fontSize: "1.2rem", color: "#ccc" }}>
+          Faites défiler pour découvrir les compétences.
+        </p>
+      </section>
+
+      {/* Section 2: Compétences */}
+      <section
+        id="skills"
+        style={{
+          height: "100vh",
+          backgroundColor: "#4b4b9f",
+          color: "white",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "20px",
+          boxSizing: "border-box",
+        }}
+      >
+        <h2 style={{ fontSize: "2rem", marginBottom: "30px" }}>Compétences</h2>
+        <ul style={{ listStyleType: "none", padding: 0, width: "100%", maxWidth: "600px" }}>
+          {skills.map((skill, index) => (
+            <li key={index} style={{ marginBottom: "15px", textAlign: "center" }}>
+              {isPublished ? (
+                <span style={{ display: "block", padding: "10px", backgroundColor: "#6163fb", borderRadius: "8px" }}>
+                  {skill}
+                </span>
+              ) : (
+                <input
+                  type="text"
+                  value={skill}
+                  onChange={(e) => handleSkillChange(index, e.target.value)}
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    borderRadius: "8px",
+                    border: "1px solid #ccc",
+                    textAlign: "center",
+                    fontSize: "1rem",
+                  }}
+                />
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    
+          {/* Modal for Portfolio URL */}
+          {showModal && (
         <div
           style={{
             position: "fixed",
@@ -195,6 +219,32 @@ function PortfolioTemplate() {
             zIndex: "1000",
           }}
         ></div>
+      )}
+    </div>
+  );
+}
+
+function PortfolioTemplate() {
+  const { username } = useParams(); // Get the username from the URL
+  const [skills, setSkills] = useState(["Compétence 1", "Compétence 2", "Compétence 3"]);
+  const [isPublished] = useState(false); // State to toggle between editable and published view
+
+  const handleSkillChange = (index, newSkill) => {
+    const updatedSkills = [...skills];
+    updatedSkills[index] = newSkill;
+    setSkills(updatedSkills);
+  };
+
+  return (
+    <div>
+      {/* Render Portfolio Content Only for Editing */}
+      {!isPublished && (
+        <PortfolioContent
+          username={username}
+          skills={skills}
+          isPublished={isPublished}
+          handleSkillChange={handleSkillChange}
+        />
       )}
     </div>
   );
