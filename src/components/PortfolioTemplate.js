@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react"; // Import useRef
 import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
-import { getFirestore, doc, setDoc } from "firebase/firestore"; // Import Firestore
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore"; // Import Firestore
 
 export function PortfolioContent({ username, skills, isPublished, handleSkillChange }) {
   const navigate = useNavigate(); // Initialize the navigate function
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
   const [portfolioUrl, setPortfolioUrl] = useState(""); // State to store the portfolio URL
 
+  const skillsSectionRef = useRef(null); // Create a ref for the "Compétences" section
+
   const handlePublish = async () => {
     const db = getFirestore(); // Initialize Firestore
 
     try {
-      // Dynamically set the base URL
       const baseUrl = window.location.origin;
       const url = `${baseUrl}/${username}`;
       
-      // Save portfolio data to Firestore
       await setDoc(doc(db, "publicPortfolios", username), {
         username,
         skills,
@@ -24,11 +24,16 @@ export function PortfolioContent({ username, skills, isPublished, handleSkillCha
 
       console.log("Portfolio published:", { username, skills });
 
-      // Set the portfolio URL and show the modal
       setPortfolioUrl(url);
       setShowModal(true);
     } catch (error) {
       console.error("Error publishing portfolio:", error);
+    }
+  };
+
+  const scrollToSkills = () => {
+    if (skillsSectionRef.current) {
+      skillsSectionRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -92,7 +97,14 @@ export function PortfolioContent({ username, skills, isPublished, handleSkillCha
           <a href="#home" style={{ color: "white", textDecoration: "none", fontWeight: "bold" }}>
             Accueil
           </a>
-          <a href="#skills" style={{ color: "white", textDecoration: "none", fontWeight: "bold" }}>
+          <a
+            href="#skills"
+            onClick={(e) => {
+              e.preventDefault(); // Prevent default anchor behavior
+              scrollToSkills(); // Trigger smooth scroll
+            }}
+            style={{ color: "white", textDecoration: "none", fontWeight: "bold" }}
+          >
             Compétences
           </a>
         </div>
@@ -124,6 +136,7 @@ export function PortfolioContent({ username, skills, isPublished, handleSkillCha
       {/* Section 2: Compétences */}
       <section
         id="skills"
+        ref={skillsSectionRef} // Attach the ref to the "Compétences" section
         style={{
           height: "100vh",
           backgroundColor: "#4b4b9f",
@@ -164,8 +177,8 @@ export function PortfolioContent({ username, skills, isPublished, handleSkillCha
         </ul>
       </section>
     
-          {/* Modal for Portfolio URL */}
-          {showModal && (
+      {/* Modal for Portfolio URL */}
+      {showModal && (
         <div
           style={{
             position: "fixed",
@@ -228,6 +241,26 @@ function PortfolioTemplate() {
   const { username } = useParams(); // Get the username from the URL
   const [skills, setSkills] = useState(["Compétence 1", "Compétence 2", "Compétence 3"]);
   const [isPublished] = useState(false); // State to toggle between editable and published view
+
+  // Try to get the portfolio data first before using default values
+  useEffect(() => {
+    const fetchPortfolio = async () => {
+      const db = getFirestore();
+      const docRef = doc(db, "publicPortfolios", username);
+      try {
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setSkills(data.skills || ["Compétence 1", "Compétence 2", "Compétence 3"]);
+        }
+      } catch (error) {
+        console.error("Error fetching portfolio:", error);
+      }
+    };
+
+    fetchPortfolio();
+  }, [username]);
 
   const handleSkillChange = (index, newSkill) => {
     const updatedSkills = [...skills];
