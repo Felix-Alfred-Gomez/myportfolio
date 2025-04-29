@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function SkillsSection({ id, skills, isPublished, onSkillChange }) {
+export default function SkillsSection({ id, data, setData, isPublished }) {
+  const handleSkillChange = (index, newSkill) => {
+    const updatedSkills = [...data.skills];
+    updatedSkills[index] = newSkill;
+    setData({ ...data, skills: updatedSkills });
+  };
+
   return (
     <section
       id={id}
@@ -18,17 +24,24 @@ export default function SkillsSection({ id, skills, isPublished, onSkillChange }
     >
       <h2 style={{ fontSize: "2rem", marginBottom: "30px" }}>Compétences</h2>
       <ul style={{ listStyleType: "none", padding: 0, width: "100%", maxWidth: "600px" }}>
-        {skills.map((skill, index) => (
+        {data.skills.map((skill, index) => (
           <li key={index} style={{ marginBottom: "15px", textAlign: "center" }}>
             {isPublished ? (
-              <span style={{ display: "block", padding: "10px", backgroundColor: "#6163fb", borderRadius: "8px" }}>
+              <span
+                style={{
+                  display: "block",
+                  padding: "10px",
+                  backgroundColor: "#6163fb",
+                  borderRadius: "8px",
+                }}
+              >
                 {skill}
               </span>
             ) : (
               <input
                 type="text"
                 value={skill}
-                onChange={(e) => onSkillChange(index, e.target.value)}
+                onChange={(e) => handleSkillChange(index, e.target.value)}
                 style={{
                   width: "100%",
                   padding: "10px",
