@@ -2,12 +2,36 @@ import React, { useState, useRef, useEffect } from "react"; // Import useRef
 import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore"; // Import Firestore
 
-export function PortfolioContent({ username, skills, isPublished, handleSkillChange }) {
+export function PortfolioContent({ isPublished }) {
+  const { username } = useParams(); // Get the username from the URL
   const navigate = useNavigate(); // Initialize the navigate function
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
   const [portfolioUrl, setPortfolioUrl] = useState(""); // State to store the portfolio URL
-
   const skillsSectionRef = useRef(null); // Create a ref for the "Compétences" section
+  const [skills, setSkills] = useState(["Compétence 1", "Compétence 2", "Compétence 3"]);
+
+  // Try to get the portfolio data first before using default values
+  useEffect(() => {
+    const fetchPortfolio = async () => {
+      const db = getFirestore();
+      const docRef = doc(db, "publicPortfolios", username);
+      try {
+        const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+          const data = docSnap.data();
+          setSkills(data.skills || ["Compétence 1", "Compétence 2", "Compétence 3"]);
+        }
+      } catch (error) {
+        console.error("Error fetching portfolio:", error);
+      }
+    };
+      fetchPortfolio();
+  }, [username]);
+    const handleSkillChange = (index, newSkill) => {
+    const updatedSkills = [...skills];
+    updatedSkills[index] = newSkill;
+    setSkills(updatedSkills);
+  };
 
   const handlePublish = async () => {
     const db = getFirestore(); // Initialize Firestore
@@ -236,51 +260,3 @@ export function PortfolioContent({ username, skills, isPublished, handleSkillCha
     </div>
   );
 }
-
-function PortfolioTemplate() {
-  const { username } = useParams(); // Get the username from the URL
-  const [skills, setSkills] = useState(["Compétence 1", "Compétence 2", "Compétence 3"]);
-  const [isPublished] = useState(false); // State to toggle between editable and published view
-
-  // Try to get the portfolio data first before using default values
-  useEffect(() => {
-    const fetchPortfolio = async () => {
-      const db = getFirestore();
-      const docRef = doc(db, "publicPortfolios", username);
-      try {
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          setSkills(data.skills || ["Compétence 1", "Compétence 2", "Compétence 3"]);
-        }
-      } catch (error) {
-        console.error("Error fetching portfolio:", error);
-      }
-    };
-
-    fetchPortfolio();
-  }, [username]);
-
-  const handleSkillChange = (index, newSkill) => {
-    const updatedSkills = [...skills];
-    updatedSkills[index] = newSkill;
-    setSkills(updatedSkills);
-  };
-
-  return (
-    <div>
-      {/* Render Portfolio Content Only for Editing */}
-      {!isPublished && (
-        <PortfolioContent
-          username={username}
-          skills={skills}
-          isPublished={isPublished}
-          handleSkillChange={handleSkillChange}
-        />
-      )}
-    </div>
-  );
-}
-
-export default PortfolioTemplate;

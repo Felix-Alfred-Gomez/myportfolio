@@ -28,7 +28,7 @@ function Dashboard() {
 
   const handleCreatePortfolio = () => {
     if (username) {
-      navigate(`/portfolio-template/${username}`); // Redirect to the portfolio template page
+      navigate(`/portfolio-edition/${username}`); // Redirect to the portfolio template page
     } else {
       alert("Veuillez vous connecter pour créer un portfolio.");
     }
@@ -97,7 +97,7 @@ function Dashboard() {
             marginRight: "10px", // Add space between the two buttons
           }}
         >
-          Créer mon Portfolio
+          Editer mon Portfolio
         </button>
         <button
           onClick={handleViewPortfolio}
