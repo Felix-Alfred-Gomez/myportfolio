@@ -6,7 +6,7 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import EmailVerification from "./components/EmailVerification";
 import PublicPortfolio from "./components/PublicPortfolio"; // Import the PublicPortfolio component
-import PortfolioTemplate from "./components/PortfolioTemplate";
+import PortfolioEdition from "./components/PortfolioEdition";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,7 +48,7 @@ function App() {
             )
           }
         />
-        <Route path="/portfolio-template/:username" element={<PortfolioTemplate />} />
+        <Route path="/portfolio-edition/:username" element={<PortfolioEdition />} />
         <Route path="/:username" element={<PublicPortfolio />} /> {/* Use PublicPortfolio here */}
       </Routes>
     </Router>
