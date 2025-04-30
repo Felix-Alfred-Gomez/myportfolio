@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
+// Default portfolio data structure
+const defaultPortfolioData = {
+  skills: ["Compétence 1", "Compétence 2", "Compétence 3"],
+  projects: ["Projet 1", "Projet 2", "Projet 3"], // Example: Add other fields like projects
+  name: "Votre Nom", // Example: Add a bio field
+};
+
 /**
  * Fetches portfolio data from Firestore.
  * @param {string} username - The username of the portfolio owner.
  * @returns {[object, function]} - The portfolio data and a function to update it.
  */
 export function GetPortfolioData(username) {
-  const [data, setData] = useState({
-    skills: ["Compétence 1", "Compétence 2", "Compétence 3"],
-  });
+  const [data, setData] = useState(defaultPortfolioData);
 
   useEffect(() => {
     const fetchPortfolio = async () => {
@@ -20,13 +25,17 @@ export function GetPortfolioData(username) {
         if (docSnap.exists()) {
           const portfolioData = docSnap.data();
           setData({
-            skills: portfolioData.skills || ["Compétence 1", "Compétence 2", "Compétence 3"],
+            ...defaultPortfolioData, // Ensure all default fields are included
+            ...portfolioData,
           });
+        } else {
+          console.warn("No portfolio found for username:", username);
         }
       } catch (error) {
         console.error("Error fetching portfolio:", error);
       }
     };
+
     if (username) {
       fetchPortfolio();
     }
@@ -43,15 +52,14 @@ export function GetPortfolioData(username) {
  */
 export async function PushPortfolioData(username, data) {
   const db = getFirestore();
-  const { skills } = data;
 
   try {
     await setDoc(doc(db, "publicPortfolios", username), {
-      username,
-      skills,
-      publishedAt: new Date().toISOString(),
+      ...data, // Spread the data object to include all its fields
+      username, // Add the username explicitly
+      publishedAt: new Date().toISOString(), // Add the timestamp
     });
-    console.log("Portfolio data pushed successfully:", { username, skills });
+    console.log("Portfolio data pushed successfully:", { username, ...data });
   } catch (error) {
     console.error("Error pushing portfolio data:", error);
     throw error;

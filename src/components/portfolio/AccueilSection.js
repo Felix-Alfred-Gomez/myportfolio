@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { usePortfolioPicture } from "../../hooks/HandlePortfolioPicture";
 
-export default function AccueilSection({ username }) {
-  const [profilePic, setProfilePic] = useState(null);
+export default function AccueilSection({ username, isPublished, data, setData }) {
+  const { profilePic, handleImageUpload } = usePortfolioPicture(username);
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setProfilePic(imageUrl);
-    }
+  const handleNameChange = (e) => {
+    setData({ ...data, name: e.target.value });
   };
 
   return (
@@ -24,8 +21,8 @@ export default function AccueilSection({ username }) {
         flexDirection: "column",
         paddingTop: "60px",
         textAlign: "center",
-      }}
-    >
+      }}>
+
       <div
         style={{
           position: "relative",
@@ -35,19 +32,17 @@ export default function AccueilSection({ username }) {
           overflow: "hidden",
           border: "2px solid #ccc",
           marginBottom: "20px",
-          cursor: "pointer",
-        }}
-      >
+        }}>
         <input
           type="file"
           accept="image/*"
           onChange={handleImageUpload}
+          disabled={isPublished} // Disable input if isPublished is true
           style={{
             position: "absolute",
             width: "100%",
             height: "100%",
             opacity: 0,
-            cursor: "pointer",
           }}
         />
         {profilePic ? (
@@ -72,9 +67,42 @@ export default function AccueilSection({ username }) {
           </div>
         )}
       </div>
-      <h1 style={{ fontSize: "2.5rem", marginBottom: "10px" }}>
-        {username ? `Bienvenue sur le portfolio de ${username}` : "Bienvenue sur le portfolio"}
-      </h1>
+
+      <div
+        style={{
+          fontSize: "2.5rem",
+          marginBottom: "0px",
+          textAlign: "center",
+          backgroundColor: "transparent",
+          border: "none",
+          // borderBottom: "2px solid #ccc", // Apply underline here
+          color: "white",
+          outline: "none",
+          fontWeight: "bold",
+          // width: "100%", // Ensure consistent width
+        }}
+      >
+        {isPublished ? (
+          <span style={{ margin: 0 }}>{data.name}</span> // Use <span> for consistent rendering
+        ) : (
+          <input
+            type="text"
+            value={data.name}
+            onChange={handleNameChange}
+            style={{
+              fontSize: "inherit",
+              backgroundColor: "transparent",
+              border: "none",
+              color: "inherit",
+              outline: "none",
+              textAlign: "center",
+              fontWeight: "bold",
+              // width: "100%", // Ensure it spans the container
+            }}
+          />
+        )}
+
+      </div>
       <p style={{ fontSize: "1.2rem", color: "#ccc" }}>
         Faites défiler pour découvrir les compétences.
       </p>
