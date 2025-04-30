@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./LoginButton.css"; // Import the CSS file
 
 function LoginButton({ isAuthenticated, onLoginClick, onLogoutClick }) {
   const navigate = useNavigate();

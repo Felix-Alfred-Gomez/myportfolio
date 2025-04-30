@@ -1,0 +1,32 @@
+/* General button styles */
+button {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Login button styles */
+.home-login-button {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.home-login-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Logout button styles */
+.home-logout-button {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.home-logout-button:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
