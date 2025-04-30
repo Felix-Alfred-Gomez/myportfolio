@@ -1,0 +1,50 @@
+/* General section styling */
+#skills {
+  height: 100vh;
+  background-color: #4b4b9f;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Heading styling */
+#skills h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+/* Skills list styling */
+#skills ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Individual skill item styling */
+#skills li {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Published skill styling */
+#skills li span {
+  display: block;
+  padding: 10px;
+  background-color: #6163fb;
+  border-radius: 8px;
+}
+
+/* Editable skill input styling */
+#skills li input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 1rem;
+}
