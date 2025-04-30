@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { GetPortfolioData } from "../hooks/HandlePortfolioData";
+import { GetPortfolioData } from "../../hooks/HandlePortfolioData";
 import SkillsSection from "./SkillsSection";
 import AccueilSection from "./AccueilSection";
-import TopBanner from "./TopBanner"; // Import the new TopBanner component
+import TopBanner from "./AccueilTopBanner"; // Import the new TopBanner component
 
 export function PortfolioContent({ isPublished }) {
   const { username } = useParams();
@@ -18,7 +18,12 @@ export function PortfolioContent({ isPublished }) {
         isPublished={isPublished}/>
 
       {/* Section 1: Accueil */}
-      <AccueilSection username={username} />
+      <AccueilSection 
+      username={username}
+      isPublished={isPublished}
+      data={data}
+      setData={setData}
+      />
 
       {/* Section 2: Compétences */}
       <SkillsSection

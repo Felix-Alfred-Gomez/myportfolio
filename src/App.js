@@ -5,8 +5,8 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import EmailVerification from "./components/EmailVerification";
-import PublicPortfolio from "./components/PublicPortfolio"; // Import the PublicPortfolio component
-import PortfolioEdition from "./components/PortfolioEdition";
+import PublicPortfolio from "./components/portfolio/PublicPortfolio"; // Import the PublicPortfolio component
+import PortfolioEdition from "./components/portfolio/PortfolioEdition";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
