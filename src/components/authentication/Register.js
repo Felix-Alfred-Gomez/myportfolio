@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database"; // Import Firebase Realtime Database
-import { app } from "../firebaseConfig";
+import { app } from "../../firebaseConfig";
 
 function Register() {
   const [username, setUsername] = useState(""); // State for the username
