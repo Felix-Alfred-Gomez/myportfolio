@@ -1,10 +1,10 @@
 // filepath: h:\CODE\myportfolio\src\App.js
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
-import EmailVerification from "./components/EmailVerification";
+import Home from "./components/home/Home";
+import Register from "./components/authentication/Register";
+import Dashboard from "./components/dashboard/Dashboard";
+import EmailVerification from "./components/authentication/EmailVerification";
 import PublicPortfolio from "./components/portfolio/PublicPortfolio"; // Import the PublicPortfolio component
 import PortfolioEdition from "./components/portfolio/PortfolioEdition";
 

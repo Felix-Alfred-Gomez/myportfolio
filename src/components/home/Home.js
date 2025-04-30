@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Login from "./Login";
-import LoginButton from "./LoginButton"; // Import the LoginButton component
+import Login from "../authentication/Login";
+import LoginButton from "../authentication/LoginButton"; // Import the LoginButton component
 import "./Home.css";
 
 function Home({ isAuthenticated, onLoginSuccess, onLogout }) {

@@ -1,0 +1,52 @@
+/* Banner Section */
+.dashboard-banner {
+  background-color: #4caf50;
+  color: white;
+  padding: 50px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+}
+
+/* Retour Button */
+.dashboard-banner .retour-button {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  padding: 10px 20px;
+  background-color: white;
+  color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Main Content */
+.dashboard-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboard-content h1 {
+  margin-bottom: 20px;
+}
+
+.dashboard-content .action-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-content .action-button:not(:last-child) {
+  margin-right: 10px;
+}
