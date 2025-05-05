@@ -57,7 +57,7 @@ function Dashboard() {
 
       {/* Main Content */}
       <div className="subtitle">
-        <h1>Bienvenue {username}!</h1>
+        <h2>Dashboard de {username}!</h2>
       </div>
       
         <div className="buttons-group">

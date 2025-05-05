@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PushPortfolioData } from "../../hooks/HandlePortfolioData";
 import "./AccueilTopBanner.css"; // Import du fichier CSS
+import "../../styles/common.css"; // Import the common CSS file
 
 export default function TopBanner({ data, username, isPublished }) {
   const navigate = useNavigate();
@@ -26,26 +27,30 @@ export default function TopBanner({ data, username, isPublished }) {
     <>
       <nav>
         {!isPublished && (
-          <button onClick={() => navigate("/dashboard")}>
+          <button 
+          className="button2"
+          onClick={() => navigate("/dashboard")}>
             Dashboard
           </button>
+
         )}
 
         {!isPublished && (
-          <button onClick={handlePublish}>
+          <button 
+          className="button2"
+          onClick={handlePublish}>
             Publier Portfolio
           </button>
         )}
 
         <div>
           <a href="#home">Accueil</a>
-          <a
-            href="#skills"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("skills").scrollIntoView({ behavior: "smooth" });
-            }}
-          >
+          <a 
+          href="#skills"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById("skills").scrollIntoView({ behavior: "smooth" });
+          }}>
             Compétences
           </a>
         </div>
