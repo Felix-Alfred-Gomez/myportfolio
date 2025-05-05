@@ -1,35 +1,27 @@
 // filepath: h:\CODE\myportfolio\src\components\Dashboard\Dashboard.js
 import React, { useEffect, useState } from "react";
-import { getAuth } from "firebase/auth";
-import { getDatabase, ref, get } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css"; // Import the CSS file
 import "../../styles/common.css"; // Import the common CSS file
+import { FetchUsername } from "../../hooks/HandlePortfolioData";
 
 function Dashboard() {
   const [username, setUsername] = useState("");
-  const auth = getAuth();
-  const database = getDatabase();
   const navigate = useNavigate();
 
-    // State to track hover status
-    const [isHovered, setIsHovered] = useState(false);
+  // State to track hover status
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    const fetchUsername = async () => {
-      const user = auth.currentUser;
-      if (user) {
-        const userRef = ref(database, `users/${user.uid}`);
-        const snapshot = await get(userRef);
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          setUsername(data.username);
-        }
+    const fetchAndSetUsername = async () => {
+      const username = await FetchUsername();
+      if (username) {
+        setUsername(username);
       }
     };
 
-    fetchUsername();
-  }, [auth, database]);
+    fetchAndSetUsername();
+  }, []);
 
   const handleCreatePortfolio = () => {
     if (username) {
