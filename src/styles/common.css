@@ -4,7 +4,7 @@
     justify-content: space-between; /* Distribute child elements with space between them */
     align-items: center; /* Align child elements vertically at the center */
     padding: 20px 40px; /* Add 20px padding on top and bottom, 40px on left and right */
-    background-color: #4b4b9f; /* Set the background color of the banner */
+    background-color: #225ba5; /* Set the background color of the banner */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
@@ -17,6 +17,16 @@
     margin: 0; /* Remove default margins */
     padding: 10px 0; /* Add padding for spacing */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle text shadow */
+}
+
+.subtitle {
+  font-size: 1.5rem; /* Taille de police légèrement plus petite que le titre */
+  font-weight: normal; /* Poids de police normal */
+  color: #000000; /* Couleur légèrement plus claire que le titre */
+  text-align: center; /* Centrer le texte */
+  margin: 10px 0; /* Ajouter un espace au-dessus et en dessous */
+  padding: 5px 0; /* Ajouter un léger espacement interne */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Ajouter une ombre subtile */
 }
 
 .container {
@@ -34,7 +44,21 @@
     padding: 10px 20px;
     background-color: white;
     border: none;
-    color: #4b4b9f;
+    color: #225ba5;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    gap: 10px;
+    display: flex;
+  }
+
+  .button2 {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #225ba5;
+    border: none;
+    color: #ffffff;
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
@@ -44,8 +68,8 @@
   }
 
   .button.hovered {
-    background-color: #62baca; /* Example: Change background color */
-    color: white; /* Example: Change text color */
+    background-color: #7c7c7c; /* Example: Change background color */
+    color: #ffffff; /* Example: Change text color */
     transform: scale(1.05); /* Example: Slightly enlarge the button */
     transition: all 0.3s ease; /* Smooth transition */
   }

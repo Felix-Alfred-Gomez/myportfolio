@@ -57,7 +57,7 @@ function Home() {
       {showLogin && (
         <div className="login-modal" onClick={(e) => e.target.classList.contains("login-modal") && toggleLoginModal(false)}>
           <div className="login-modal-content no-background">
-            <Login onLoginSuccess={() => { handleAuthChange(true); toggleLoginModal(false); }} />
+            <Login onLoginSuccess={() => { handleAuthChange(true); toggleLoginModal(false); navigate("/dashboard"); }} />
           </div>
         </div>
       )}
