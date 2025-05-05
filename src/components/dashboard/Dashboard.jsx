@@ -4,12 +4,16 @@ import { getAuth } from "firebase/auth";
 import { getDatabase, ref, get } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css"; // Import the CSS file
+import "../../styles/common.css"; // Import the common CSS file
 
 function Dashboard() {
   const [username, setUsername] = useState("");
   const auth = getAuth();
   const database = getDatabase();
   const navigate = useNavigate();
+
+    // State to track hover status
+    const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const fetchUsername = async () => {
@@ -44,34 +48,40 @@ function Dashboard() {
   };
 
   return (
-    <div>
-      {/* Banner Section */}
-      <div className="dashboard-banner">
+    <div className="container">
+      <div className="top-banner">
+
+      <h1 className="title" >MyPortfolio</h1>
+
         <button
-          onClick={() => navigate("/")}
-          className="retour-button"
-        >
-          Retour
-        </button>
-        Bienvenue sur votre tableau de bord
+            className={`button ${isHovered ? "hovered" : ""}`}
+            onClick={() => navigate("/")}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}>
+            Retour
+          </button>
+
       </div>
 
       {/* Main Content */}
-      <div className="dashboard-content">
+      <div className="subtitle">
         <h1>Bienvenue {username}!</h1>
-        <button
-          onClick={handleCreatePortfolio}
-          className="action-button"
-        >
-          Editer mon Portfolio
-        </button>
-        <button
-          onClick={handleViewPortfolio}
-          className="action-button"
-        >
-          Voir mon Portfolio
-        </button>
       </div>
+      
+        <div className="buttons-group">
+        <button
+            className="button2"
+            onClick={handleCreatePortfolio}>
+            Editer mon Portfolio
+          </button>
+
+          <button
+            className="button2"
+            onClick={handleViewPortfolio}>
+            Voir mon Portfolio
+          </button>
+        </div>
+
     </div>
   );
 }
