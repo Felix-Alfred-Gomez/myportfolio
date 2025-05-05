@@ -4,7 +4,7 @@
     justify-content: space-between; /* Distribute child elements with space between them */
     align-items: center; /* Align child elements vertically at the center */
     padding: 20px 40px; /* Add 20px padding on top and bottom, 40px on left and right */
-    background-color: #6163fb; /* Set the background color of the banner */
+    background-color: #4b4b9f; /* Set the background color of the banner */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
@@ -34,13 +34,20 @@
     padding: 10px 20px;
     background-color: white;
     border: none;
-    color: #6163fb;
+    color: #4b4b9f;
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease, color 0.3s ease;
     gap: 10px;
     display: flex;
+  }
+
+  .button.hovered {
+    background-color: #62baca; /* Example: Change background color */
+    color: white; /* Example: Change text color */
+    transform: scale(1.05); /* Example: Slightly enlarge the button */
+    transition: all 0.3s ease; /* Smooth transition */
   }
 
   .buttons-group {
