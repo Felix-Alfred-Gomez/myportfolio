@@ -26,21 +26,23 @@ export default function TopBanner({ data, username, isPublished }) {
   return (
     <>
       <nav>
-        {!isPublished && (
+      {!isPublished && (
           <button 
-          className="button2"
-          onClick={() => navigate("/dashboard")}>
-            Dashboard
+          className="button"
+          style={{ backgroundColor: "#b81e1e", color: "white" }}
+          onClick={handlePublish}>
+            Sauvegarder et Publier
           </button>
-
         )}
 
         {!isPublished && (
           <button 
-          className="button2"
-          onClick={handlePublish}>
-            Publier Portfolio
+          className="button"
+          style={{ backgroundColor: "grey", color: "white" }}
+          onClick={() => navigate("/dashboard")}>
+            Retour
           </button>
+
         )}
 
         <div>
