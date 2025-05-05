@@ -1,0 +1,49 @@
+.top-banner {
+    width: 100vw; /* Set the width of the banner to span the entire viewport width */
+    display: flex; /* Use flexbox layout for the banner */
+    justify-content: space-between; /* Distribute child elements with space between them */
+    align-items: center; /* Align child elements vertically at the center */
+    padding: 20px 40px; /* Add 20px padding on top and bottom, 40px on left and right */
+    background-color: #6163fb; /* Set the background color of the banner */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.title {
+    font-size: 2.5rem; /* Set the font size */
+    font-weight: bold; /* Make the text bold */
+    color: #ffffff; /* Set the text color to white */
+    text-align: center; /* Center the text */
+    margin: 0; /* Remove default margins */
+    padding: 10px 0; /* Add padding for spacing */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle text shadow */
+}
+
+.container {
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ffffff;
+  }
+
+  .button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: white;
+    border: none;
+    color: #6163fb;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    gap: 10px;
+    display: flex;
+  }
+
+  .buttons-group {
+    display: flex;
+    gap: 10px; /* Adds spacing between the buttons */
+  }

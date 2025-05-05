@@ -1,55 +1,26 @@
 // filepath: h:\CODE\myportfolio\src\App.js
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import Register from "./components/authentication/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import EmailVerification from "./components/authentication/EmailVerification";
-import PublicPortfolio from "./components/portfolio/PublicPortfolio"; // Import the PublicPortfolio component
+import PublicPortfolio from "./components/portfolio/PublicPortfolio";
 import PortfolioEdition from "./components/portfolio/PortfolioEdition";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const handleLoginSuccess = () => {
-    setIsAuthenticated(true);
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false); // Update the authentication state
-    console.log("User logged out");
-  };
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              isAuthenticated={isAuthenticated}
-              onLoginSuccess={handleLoginSuccess}
-              onLogout={handleLogout} // Pass the handleLogout function
-            />
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-email" element={<EmailVerification />} />
-        <Route
-          path="/dashboard"
-          element={
-            isAuthenticated ? (
-              <Dashboard />
-            ) : (
-              <Home
-                onLoginSuccess={handleLoginSuccess}
-                onLogout={handleLogout} // Pass the handleLogout function
-              />
-            )
-          }
-        />
-        <Route path="/portfolio-edition/:username" element={<PortfolioEdition />} />
-        <Route path="/:username" element={<PublicPortfolio />} /> {/* Use PublicPortfolio here */}
+        <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Home />}/>
+        <Route path="/portfolio-edition/:username" element={isAuthenticated ? <PortfolioEdition /> : <Home />}/>
+        <Route path="/:username" element={<PublicPortfolio />} />
       </Routes>
     </Router>
   );
