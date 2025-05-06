@@ -19,13 +19,12 @@
 }
 
 .container .nav-site .connect_button {
-  background-color: #225ba5; /* Button background */
-  color: #ffffff; /* Text color */
-  font-size: 1rem; /* Font size */
+  background-color: #225ba500; /* Button background */
   cursor: pointer; /* Pointer cursor */
   z-index: 1; /* Ensure it's above other elements */
   max-width: fit-content; /* Fit content */
   margin-left: auto;
+  object-fit: contain; /* Ensure the image maintains its aspect ratio */
 }
 
 .container .nav-site .title {
