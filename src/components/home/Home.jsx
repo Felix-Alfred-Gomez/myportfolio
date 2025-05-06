@@ -4,6 +4,7 @@ import Login from "../authentication/Login";
 import LoginButton from "../common/LoginButton"; // Import the LoginButton component
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
+import homeBackground from "../../assets/home_background_v5.jpg";
 
 function Home() {
   // Import variables
@@ -30,9 +31,13 @@ function Home() {
         />
       </nav>
 
-      <div className="subtitle">
-        <h2>Créer votre portfolio</h2>
-      </div>
+      {/* Fullscreen hero section with overlay */}
+      <section className="hero-section">
+        <img src={homeBackground} alt="Background" className="hero-background" />
+        <div className="hero-overlay">
+          <h2>Créer votre portfolio</h2>
+        </div>
+      </section>
 
       {showLogin && (
         <div

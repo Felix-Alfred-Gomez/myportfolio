@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
 .container {
   height: 100vh;
   display: flex;
@@ -11,11 +13,11 @@
   left: 0;
   right: 0;
   height: 100px;
-  background-color: #fcfcfc;
+  background-color: #f3f3f3;
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  border-bottom: 2px solid #e0e0e0; /* Adds a subtle bottom line */
+  padding: 0px 20px;
+  border-bottom: 1px solid #e0e0e0; /* Adds a subtle bottom line */
 }
 
 .container .nav-site .connect_button {
@@ -124,8 +126,55 @@
   transform: scale(1.1); /* Slightly enlarge the image on hover */
 }
 
+.background-section {
+  background-image: url("../assets/home_background_65.jpg");
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  color: white; /* Adjust text color for better visibility */
+  background-repeat: no-repeat;
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
+
+.hero-section .hero-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: auto; /* Améliorer le rendu des images */
+}
+
+.hero-section .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* Horizontal center */
+  align-items: center; /* Vertical center */
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.hero-section .hero-overlay h2 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  font-family: 'Dancing Script', cursive;
+}
+
 /* Responsive styles for smartphones */
-@media screen and (max-width: 475px) {
+@media screen and (max-width: 500px) {
+
+  .hero-section .hero-overlay h2 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
 
   .connect_button_image {
     width: 40px; /* Increased width of the image */
