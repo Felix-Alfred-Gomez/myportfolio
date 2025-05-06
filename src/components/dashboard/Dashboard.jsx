@@ -1,16 +1,26 @@
 // filepath: h:\CODE\myportfolio\src\components\Dashboard\Dashboard.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/dashboard.css"; // Import the CSS file
 import "../../styles/common.css"; // Import the common CSS file
 import { FetchUsername } from "../../hooks/HandlePortfolioData";
+import LoginButton from "../common/LoginButton"; // Import the LoginButton component
+import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 
 function Dashboard() {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
-  // State to track hover status
-  const [isHovered, setIsHovered] = useState(false);
+  const { setIsAuthenticated } = useContext(AuthContext);
+  const [ setShowLogin] = useState(false);
+  // Function to modify the showLogin state and display/hide the login modal
+  const toggleLoginModal = (state) => setShowLogin(state);
+
+    // Fonction to modify the authentication state
+    const handleAuthChange = (status) => {
+      setIsAuthenticated(status);
+      if (!status) console.log("User logged out");
+    };
 
   useEffect(() => {
     const fetchAndSetUsername = async () => {
@@ -41,39 +51,31 @@ function Dashboard() {
 
   return (
     <div className="container">
-      <div className="top-banner">
+      <nav className="nav-site">
+        <h1 className="title">MyPortfolio</h1>
+        <LoginButton 
+          onLoginClick={() => toggleLoginModal(true)} 
+          onLogoutClick={() => handleAuthChange(false)} 
+        />
+      </nav>
 
-      <h1 className="title" >MyPortfolio</h1>
-
-        <button
-            className={`button ${isHovered ? "hovered" : ""}`}
-            onClick={() => navigate("/")}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}>
-            Retour
-          </button>
-
-      </div>
-
-      {/* Main Content */}
       <div className="subtitle">
         <h2>Dashboard de {username}!</h2>
       </div>
       
-        <div className="buttons-group">
+      <div className="buttons-group">
         <button
-            className="button2"
-            onClick={handleCreatePortfolio}>
-            Editer mon Portfolio
-          </button>
+          className="button2"
+          onClick={handleCreatePortfolio}>
+          Editer mon Portfolio
+        </button>
 
-          <button
-            className="button2"
-            onClick={handleViewPortfolio}>
-            Voir mon Portfolio
-          </button>
-        </div>
-
+        <button
+          className="button2"
+          onClick={handleViewPortfolio}>
+          Voir mon Portfolio
+        </button>
+      </div>
     </div>
   );
 }
