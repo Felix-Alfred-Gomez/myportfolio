@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../authentication/Login";
 import LoginButton from "../common/LoginButton"; // Import the LoginButton component
-import "../../styles/Home.css";
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 
@@ -36,9 +35,17 @@ function Home() {
       </div>
 
       {showLogin && (
-        <div className="login-modal" onClick={(e) => e.target.classList.contains("login-modal") && toggleLoginModal(false)}>
-          <div className="login-modal-content no-background">
-            <Login onLoginSuccess={() => { handleAuthChange(true); toggleLoginModal(false); navigate("/dashboard"); }} />
+        <div
+          className="login-container"
+          onClick={(e) => 
+          e.target.classList.contains("login-container") && toggleLoginModal(false)}>
+          <div className="login-box" onClick={(e) => e.stopPropagation()}>
+            <Login
+              onLoginSuccess={() => {
+                handleAuthChange(true);
+                toggleLoginModal(false);
+                navigate("/dashboard");
+              }}/>
           </div>
         </div>
       )}
