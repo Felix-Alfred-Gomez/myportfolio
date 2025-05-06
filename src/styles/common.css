@@ -1,5 +1,6 @@
 .container {
   height: 100vh;
+  display: flex;
   flex-direction: column;
   background-color: #ffffff;
 }
@@ -10,7 +11,7 @@
   left: 0;
   right: 0;
   height: 100px;
-  background-color: #ffffff;
+  background-color: #fcfcfc;
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -64,13 +65,6 @@
 
 /* Responsive styles for smartphones */
 @media screen and (max-width: 475px) {
-  .container {
-    padding: 10px; /* Add padding for smaller screens */
-  }
-
-  .container .nav-site {
-    padding: 0 10px; /* Adjust padding */
-  }
 
   .container .nav-site .title {
     font-size: 1.5rem; /* Reduce font size for the title */
