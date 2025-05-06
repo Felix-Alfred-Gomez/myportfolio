@@ -82,9 +82,56 @@
   align-items: center;
 }
 
+.popup_menu {
+  position: absolute;
+  top: 90px;
+  right: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 15px;
+}
+
+.popup_menu_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure it appears above other elements */
+}
+
+.logout_text {
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.connect_button_image {
+  width: 60px; /* Increased width of the image */
+  height: 60px; /* Increased height of the image */
+  object-fit: contain; /* Ensure the image maintains its aspect ratio */
+  border-radius: 100%; /* Make the image circular */
+  transition: transform 0.3s ease; /* Add a hover effect */
+}
+
+.connect_button_image:hover {
+  transform: scale(1.1); /* Slightly enlarge the image on hover */
+}
+
 /* Responsive styles for smartphones */
 @media screen and (max-width: 475px) {
 
+  .connect_button_image {
+    width: 40px; /* Increased width of the image */
+    height: 40px; /* Increased height of the image */
+  }
+  
   .container .nav-site .title {
     font-size: 1.5rem; /* Reduce font size for the title */
   }
