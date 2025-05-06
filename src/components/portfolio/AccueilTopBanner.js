@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PushPortfolioData } from "../../hooks/HandlePortfolioData";
-import "./AccueilTopBanner.css"; // Import du fichier CSS
+import "../../styles/AccueilTopBanner.css"; // Import du fichier CSS
 import "../../styles/common.css"; // Import the common CSS file
 
 export default function TopBanner({ data, username, isPublished }) {
