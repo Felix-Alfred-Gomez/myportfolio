@@ -5,6 +5,7 @@ import LoginButton from "../common/LoginButton"; // Import the LoginButton compo
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import homeBackground from "../../assets/home_background_v5.jpg";
+import logo from '../../assets/logo_v1.png';
 
 function Home() {
   // Import variables
@@ -24,6 +25,7 @@ function Home() {
   return (
     <div className="container">
       <nav className="nav-site">
+      <img src={logo} alt="Logo" className="logo" />
         <h1 className="title">MyPortfolio</h1>
         <LoginButton 
           onLoginClick={() => toggleLoginModal(true)} 

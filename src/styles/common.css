@@ -33,6 +33,14 @@
     font-size: 2.5rem; /* Set the font size */
     font-weight: bold; /* Make the text bold */
     color: #000000; /* Set the text color to white */
+    padding: 0 20px; /* Add padding around the text */
+    font-family: 'Dancing Script', cursive;
+}
+
+.container .nav-site .logo {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
 }
 
 .container .subtitle {
@@ -170,6 +178,10 @@
 
 /* Responsive styles for smartphones */
 @media screen and (max-width: 500px) {
+
+  .container .nav-site .logo {
+    width: 50px;
+  }
 
   .hero-section .hero-overlay h2 {
     font-size: 2rem;

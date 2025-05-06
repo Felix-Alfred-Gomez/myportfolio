@@ -6,6 +6,7 @@ import "../../styles/common.css"; // Import the common CSS file
 import { FetchUsername } from "../../hooks/HandlePortfolioData";
 import LoginButton from "../common/LoginButton"; // Import the LoginButton component
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
+import logo from '../../assets/logo_v1.png';
 
 function Dashboard() {
   const [username, setUsername] = useState("");
@@ -52,6 +53,7 @@ function Dashboard() {
   return (
     <div className="container">
       <nav className="nav-site">
+        <img src={logo} alt="Logo" className="logo" />
         <h1 className="title">MyPortfolio</h1>
         <LoginButton 
           onLoginClick={() => toggleLoginModal(true)} 
