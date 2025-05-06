@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 .container {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
 }
 
 /* Navigation bar styles */
 .container .nav-site {
-  top: 0;
-  left: 0;
-  right: 0;
   height: 100px;
   background-color: #f3f3f3;
   display: flex;
@@ -145,9 +145,10 @@
 
 .hero-section {
   position: relative;
-  width: 100%;
+  width: 100%; /* Instead of 100vw */
   height: 100vh; /* Full viewport height */
   overflow: hidden;
+  background-color: #225ba5;
 }
 
 .hero-section .hero-background {
@@ -156,6 +157,7 @@
   object-fit: cover;
   image-rendering: auto; /* Améliorer le rendu des images */
 }
+
 
 .hero-section .hero-overlay {
   position: absolute;
