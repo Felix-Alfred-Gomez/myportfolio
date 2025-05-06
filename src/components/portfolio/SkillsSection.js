@@ -1,5 +1,5 @@
 import React from "react";
-import "./SkillsSection.css";
+import "../../styles/SkillsSection.css";
 
 export default function SkillsSection({ data, setData, isPublished }) {
   const handleSkillChange = (index, newSkill) => {

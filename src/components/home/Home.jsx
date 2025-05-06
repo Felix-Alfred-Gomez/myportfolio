@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../authentication/Login";
 import LoginButton from "./LoginButton"; // Import the LoginButton component
-import "./Home.css";
+import "../../styles/Home.css";
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 

@@ -1,7 +1,7 @@
 // filepath: h:\CODE\myportfolio\src\components\Dashboard\Dashboard.js
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./dashboard.css"; // Import the CSS file
+import "../../styles/dashboard.css"; // Import the CSS file
 import "../../styles/common.css"; // Import the common CSS file
 import { FetchUsername } from "../../hooks/HandlePortfolioData";
 
