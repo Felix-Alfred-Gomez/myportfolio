@@ -4,7 +4,7 @@ import Login from "../authentication/Login";
 import LoginButton from "../common/LoginButton"; // Import the LoginButton component
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
-import homeBackground from "../../assets/home_background_v5.jpg";
+import homeBackground from "../../assets/hero_home.png";
 import logo from '../../assets/logo_v1.png';
 
 function Home() {
