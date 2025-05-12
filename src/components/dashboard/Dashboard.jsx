@@ -7,6 +7,7 @@ import { FetchUsername } from "../../hooks/HandlePortfolioData";
 import LoginButton from "../common/LoginButton"; // Import the LoginButton component
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import LogoButton from "../common/LogoButton"; // Import the LogoButton component
+import dashboardBackground from "../../assets/dashboard_v4.png";
 
 function Dashboard() {
   const [username, setUsername] = useState("");
@@ -60,23 +61,27 @@ function Dashboard() {
         />
       </nav>
 
-      <div className="subtitle">
-        <h2>Dashboard de {username}!</h2>
-      </div>
-      
-      <div className="buttons-group">
-        <button
-          className="button2"
-          onClick={handleCreatePortfolio}>
-          Editer mon Portfolio
-        </button>
+      {/* Fullscreen hero section with overlay */}
+      <section className="hero-section">
+        <img src={dashboardBackground} alt="Background" className="hero-background" />
+        <div className="hero-overlay-dashboard">
+          <h2>Dashboard</h2>
 
-        <button
-          className="button2"
-          onClick={handleViewPortfolio}>
-          Voir mon Portfolio
-        </button>
-      </div>
+          <div className="buttons-group">
+            <button
+              className="button"
+              onClick={handleCreatePortfolio}>
+              Editer mon Portfolio
+            </button>
+
+            <button
+              className="button"
+              onClick={handleViewPortfolio}>
+              Voir mon Portfolio
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
