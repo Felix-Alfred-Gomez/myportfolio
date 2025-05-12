@@ -46,7 +46,7 @@ function Home() {
       <section className="hero-section">
         <img src={homeBackground} alt="Background" className="hero-background" />
         <div className="hero-overlay">
-          <h2>Créer votre portfolio</h2>
+          <h2>Créer votre Portfolio</h2>
 
           <button
             className="button-pulse"

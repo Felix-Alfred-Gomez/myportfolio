@@ -41,9 +41,11 @@ function LoginButton({ onLoginClick, onLogoutClick }) {
           }
         >
           <div className="popup_menu" onClick={(e) => e.stopPropagation()}>
-            <p className="logout_text" onClick={handleLogout}>
-              Se déconnecter
-            </p>
+            <ul className="logout_menu">
+              <li className="logout_menu_item" onClick={handleLogout}>
+                Se déconnecter
+              </li>
+            </ul>
           </div>
         </div>
       )}
