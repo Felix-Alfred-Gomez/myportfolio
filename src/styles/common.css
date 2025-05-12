@@ -205,6 +205,11 @@
 /* Responsive styles for smartphones */
 @media screen and (max-width: 500px) {
 
+  .button-pulse {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+}
+
   .container .nav-site .logo {
     width: 50px;
   }
