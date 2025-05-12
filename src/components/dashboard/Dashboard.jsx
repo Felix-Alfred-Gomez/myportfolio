@@ -7,7 +7,7 @@ import { FetchUsername } from "../../hooks/HandlePortfolioData";
 import LoginButton from "../common/LoginButton"; // Import the LoginButton component
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import LogoButton from "../common/LogoButton"; // Import the LogoButton component
-import dashboardBackground from "../../assets/dashboard_v4.png";
+import dashboardBackground from "../../assets/dashboard.png";
 
 function Dashboard() {
   const [username, setUsername] = useState("");
