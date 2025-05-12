@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -164,18 +176,6 @@
   transform: scale(1.1); /* Slightly enlarge the image on hover */
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 .button-pulse {
   background-color: #000000; /* Noir */
   color: #ffffff; /* Blanc */
@@ -227,7 +227,7 @@
 
 .hero-section .hero-overlay-dashboard {
   position: absolute;
-  top: 0;
+  top: 50px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -291,6 +291,11 @@
 
   .container .buttons-group {
   gap: 25px; /* Adds spacing between the buttons */
+}
+
+  .popup_menu {
+  top: 75px;
+  right: 10px;
 }
 
   .container .buttons-group .button {
