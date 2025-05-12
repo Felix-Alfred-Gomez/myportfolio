@@ -16,7 +16,7 @@ function LogoButton() {
       style={{ cursor: "pointer" }} // Add a pointer cursor for better UX
     >
       <img src={logo} alt="Logo" className="logo" />
-      <h1 className="title">{"MonPortfolio"}</h1>
+      <h1 className="title">{"MyPortfolio"}</h1>
     </div>
   );
 }
