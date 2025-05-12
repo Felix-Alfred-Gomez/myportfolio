@@ -9,7 +9,7 @@ import logo from '../../assets/logo.png';
 
 function Home() {
   // Import variables
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [showLogin, setShowLogin] = useState(false);
   const navigate = useNavigate();
 
@@ -21,6 +21,15 @@ function Home() {
 
   // Function to modify the showLogin state and display/hide the login modal
   const toggleLoginModal = (state) => setShowLogin(state);
+
+  const navigatetodashbboard = () => {
+    if (isAuthenticated) {
+      navigate(`/dashboard`);
+    } else {
+        toggleLoginModal(true); // Show the login modal;
+        if (isAuthenticated) {navigate(`/dashboard`);}
+    }
+  };
 
   return (
     <div className="container">
@@ -38,6 +47,13 @@ function Home() {
         <img src={homeBackground} alt="Background" className="hero-background" />
         <div className="hero-overlay">
           <h2>Créer votre portfolio</h2>
+
+          <button
+            className="button-pulse"
+            onClick={navigatetodashbboard}>
+            Commencer
+          </button>
+
         </div>
       </section>
 
