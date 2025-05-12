@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../authentication/Login";
 import LoginButton from "../common/LoginButton"; // Import the LoginButton component
+import LogoButton from "../common/LogoButton"; // Import the LogoButton component
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import homeBackground from "../../assets/hero_home.png";
-import logo from '../../assets/logo.png';
 
 function Home() {
   // Import variables
@@ -34,8 +34,8 @@ function Home() {
   return (
     <div className="container">
       <nav className="nav-site">
-      <img src={logo} alt="Logo" className="logo" />
-        <h1 className="title">MyPortfolio</h1>
+        <LogoButton />
+
         <LoginButton 
           onLoginClick={() => toggleLoginModal(true)} 
           onLogoutClick={() => handleAuthChange(false)} 

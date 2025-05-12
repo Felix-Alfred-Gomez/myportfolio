@@ -43,6 +43,13 @@
   object-fit: contain;
 }
 
+.logo-button {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  cursor: pointer; /* Ensure the pointer cursor is applied */
+}
+
 .container .subtitle {
   font-size: 1.5rem; /* Taille de police légèrement plus petite que le titre */
   font-weight: normal; /* Poids de police normal */
