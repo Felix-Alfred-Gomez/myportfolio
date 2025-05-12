@@ -5,7 +5,7 @@ import LoginButton from "../common/LoginButton"; // Import the LoginButton compo
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import homeBackground from "../../assets/hero_home.png";
-import logo from '../../assets/logo_v1.png';
+import logo from '../../assets/logo.png';
 
 function Home() {
   // Import variables

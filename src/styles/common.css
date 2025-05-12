@@ -134,21 +134,12 @@
   transform: scale(1.1); /* Slightly enlarge the image on hover */
 }
 
-.background-section {
-  background-image: url("../assets/home_background_65.jpg");
-  height: 100vh; /* Full viewport height */
-  display: flex;
-  justify-content: center;
-  color: white; /* Adjust text color for better visibility */
-  background-repeat: no-repeat;
-}
-
 .hero-section {
   position: relative;
   width: 100%; /* Instead of 100vw */
   height: 100vh; /* Full viewport height */
   overflow: hidden;
-  background-color: #225ba5;
+  background-color: #ffffff;
 }
 
 .hero-section .hero-background {
