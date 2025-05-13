@@ -31,46 +31,44 @@ export function PortfolioContent({ isPublished }) {
     <div style={{ scrollBehavior: "smooth" }}>
 
         {!isPublished && (
-          <button 
-          className="button-template1"
-          style={{ backgroundColor: "#b81e1e", color: "white" }}
-          onClick={handlePublish}>
-            Publier
-          </button>
+          <>
+            <button 
+              className="button-template1 publish"
+              onClick={handlePublish}>
+              Publier
+            </button>
+
+            <button 
+              className="button-template1 return"
+              onClick={() => navigate("/dashboard")}>
+              Retour
+            </button>
+          </>
         )}
 
-        {!isPublished && (
-          <button 
-          className="button-template1"
-          style={{ backgroundColor: "grey", color: "white" }}
-          onClick={() => navigate("/dashboard")}>
-            Retour
-          </button>
-
-        )}
 
         {/* Modal for Portfolio URL */}
         {showModal && (
-          <div className="modal">
-            <h2>Votre portfolio a été publié !</h2>
-            <p>
-              Visitez-le à :{" "}
-              <a href={portfolioUrl} target="_blank" rel="noopener noreferrer">
-                {portfolioUrl}
-              </a>
-            </p>
-            <button onClick={() => setShowModal(false)}>Fermer</button>
-          </div>
+          <>  
+            <div className="modal">
+              <h2>Votre portfolio a été publié !</h2>
+              <p>
+                Visitez-le à :{" "}
+                <a href={portfolioUrl} target="_blank" rel="noopener noreferrer">
+                  {portfolioUrl}
+                </a>
+              </p>
+              <button onClick={() => setShowModal(false)}>Fermer</button>
+            </div>
+
+            <div
+             className="modal-overlay"
+             onClick={() => setShowModal(false)}>
+
+            </div>
+          </>
         )}
 
-        {showModal && (
-         <div
-           className="modal-overlay"
-           onClick={() => setShowModal(false)}>
-
-           </div>
-        )}
-      
       <nav className="nav-template1">
         <a 
           className="portfolio-anchor"
