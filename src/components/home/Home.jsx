@@ -38,8 +38,7 @@ function Home() {
 
         <LoginButton 
           onLoginClick={() => toggleLoginModal(true)} 
-          onLogoutClick={() => handleAuthChange(false)} 
-        />
+          onLogoutClick={() => handleAuthChange(false)} />
       </nav>
 
       {/* Fullscreen hero section with overlay */}
