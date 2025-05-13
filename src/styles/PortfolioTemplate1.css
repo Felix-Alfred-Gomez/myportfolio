@@ -30,6 +30,16 @@
   height: 50px;
 }
 
+.button-template1.publish{
+  background-color: #b81e1e;
+  color: "white"
+}
+
+.button-template1.return{
+  background-color: #9e9e9e;
+  color: "white"
+}
+
 .button-template1:first-of-type {
   left: 20px;
   bottom: 20px;
