@@ -5,16 +5,17 @@
   left: 0;
   right: 0;
   height: 100px;
-  background-color: #1e1e2f;
+  background-color: #0f0f0f;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   padding: 0 20px;
+  gap: 30px;
 }
 
 /* Button styles */
-nav button {
+.button-template1 {
   position: absolute;
   padding: 10px 20px;
   background-color: #6163fb;
@@ -24,28 +25,27 @@ nav button {
   cursor: pointer;
   font-weight: bold;
   font-size: 15px;
+  z-index: 1;
+  width: 100px;
+  height: 50px;
 }
 
-nav button:first-of-type {
+.button-template1:first-of-type {
   left: 20px;
+  bottom: 20px;
 }
 
-nav button:last-of-type {
-  right: 20px;
+.button-template1:last-of-type {
+  left: 20px;
+  bottom: 90px;
 }
 
 /* Navigation links */
-nav a {
+.portfolio-anchor {
   color: white;
   text-decoration: none;
   font-weight: bold;
   font-size: 25px;
-}
-
-nav div {
-  display: flex;
-  gap: 30px;
-  align-items: center;
 }
 
 /* Modal styles */

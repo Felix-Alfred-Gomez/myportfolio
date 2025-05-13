@@ -1,5 +1,5 @@
 import React from "react";
-import { PortfolioContent } from "./PortfolioTemplate"; // Import only PortfolioContent
+import { PortfolioContent } from "./PortfolioTemplate1"; // Import only PortfolioContent
 
 function PublicPortfolio() {
 
