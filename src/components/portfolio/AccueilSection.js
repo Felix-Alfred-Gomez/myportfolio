@@ -1,4 +1,3 @@
-import React from "react";
 import { usePortfolioPicture } from "../../hooks/HandlePortfolioPicture";
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
