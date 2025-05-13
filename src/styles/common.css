@@ -39,6 +39,8 @@
   max-width: fit-content; /* Fit content */
   margin-left: auto;
   object-fit: contain; /* Ensure the image maintains its aspect ratio */
+  right: 20px;
+  border: none;
 }
 
 .container .nav-site .title {

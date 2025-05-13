@@ -12,11 +12,13 @@ function LogoButton() {
   return (
     <div
       className="logo-button"
-      onClick={navigatehome} // Attach the navigatehome function
-      style={{ cursor: "pointer" }} // Add a pointer cursor for better UX
-    >
+      onClick={navigatehome} 
+      style={{ cursor: "pointer" }}>
+
       <img src={logo} alt="Logo" className="logo" />
+      
       <h1 className="title">{"MyPortfolio"}</h1>
+
     </div>
   );
 }
