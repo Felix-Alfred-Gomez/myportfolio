@@ -37,6 +37,7 @@
 .login-error {
     color: #e74c3c;
     margin-top: 0.5rem;
+    font-size: 1rem;
 }
 
 .login-footer {
@@ -48,10 +49,11 @@
 .login-link {
     color: #2575fc;
     text-decoration: none;
+    font-size: 1rem;
 }
 
 /* Responsive styles for smartphones */
-@media screen and (max-width: 475px) {
+@media screen and ((max-width: 499px) or (max-height: 499px)) {
     .login-card {
         padding: 1rem;
         max-width: 90%;
@@ -70,4 +72,12 @@
     .login-footer {
         font-size: 0.8rem;
     }
+
+    .login-link {
+    font-size: 0.8rem;
+    }
+
+    .login-error {
+    font-size: 0.8rem;
+}
 }

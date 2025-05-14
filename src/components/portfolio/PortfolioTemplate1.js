@@ -26,7 +26,8 @@ export function PortfolioContent({ isPublished }) {
   };
 
   return (
-    <div>
+    <div
+    className="container-template1">
       {!isPublished && (
         <>
           <button className="button-template1 publish" onClick={handlePublish}>
@@ -99,11 +100,11 @@ export function PortfolioContent({ isPublished }) {
         setData={setData}
       />
 
-      <SkillsSection
+      {/* <SkillsSection
         data={data}
         setData={setData}
         isPublished={isPublished}
-      />
+      /> */}
     </div>
   );
 }

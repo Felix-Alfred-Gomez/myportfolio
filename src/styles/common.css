@@ -253,7 +253,7 @@
 }
 
 /* Responsive styles for smartphones */
-@media screen and (max-width: 499px) {
+@media screen and ((max-width: 499px) or (max-height: 499px)) {
 
   .logout_menu_item {
   font-size: 0.75rem; /* Set the font size */
