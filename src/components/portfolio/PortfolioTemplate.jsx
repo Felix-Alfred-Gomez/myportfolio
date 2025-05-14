@@ -7,7 +7,7 @@ import BurgerIcon from "./BurgerIcon";
 import SideMenu from "./SideMenu";
 import PublishModal from "./PublishModal";
 import MainNav from "./MainNav";
-import "../../styles/PortfolioTemplate1.css";
+import "../../styles/PortfolioTemplate.css";
 
 export function PortfolioContent({ isPublished }) {
   const { username } = useParams();

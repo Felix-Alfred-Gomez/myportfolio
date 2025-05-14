@@ -1,4 +1,4 @@
-import { PortfolioContent } from "./PortfolioTemplate1"; // Import only PortfolioContent
+import { PortfolioContent } from "./PortfolioTemplate"; // Import only PortfolioContent
 
 function PortfolioEdition() {
 
