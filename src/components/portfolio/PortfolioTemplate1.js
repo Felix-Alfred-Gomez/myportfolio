@@ -100,11 +100,11 @@ export function PortfolioContent({ isPublished }) {
         setData={setData}
       />
 
-      {/* <SkillsSection
+      <SkillsSection
         data={data}
         setData={setData}
         isPublished={isPublished}
-      /> */}
+      />
     </div>
   );
 }
