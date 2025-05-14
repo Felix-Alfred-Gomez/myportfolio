@@ -39,16 +39,19 @@ export default function AccueilSection({ username, isPublished, data, setData })
           value={data.name}
           onChange={(e) => {
             handleNameChange(e);
-            e.target.style.height = "auto"; // Reset height
-            e.target.style.height = `${e.target.scrollHeight}px`; // Grow to fit
           }}
           className="accueil-name-input"
+          rows={1}
+          onInput={e => {
+            e.target.style.height = 'auto';
+            e.target.style.height = e.target.scrollHeight + 'px';
+          }}
         />
         )}
       </div>
-      {/* <p className="accueil-desc">
+      <p className="accueil-desc">
         Faites défiler pour découvrir les compétences.
-      </p> */}
+      </p>
     </section>
   );
 }
