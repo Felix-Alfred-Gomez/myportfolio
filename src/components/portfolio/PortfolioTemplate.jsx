@@ -7,6 +7,7 @@ import BurgerIcon from "./BurgerIcon";
 import SideMenu from "./SideMenu";
 import PublishModal from "./PublishModal";
 import MainNav from "./MainNav";
+import DesignOptionsModal from "./DesignOptionsModal";
 import "../../styles/PortfolioTemplate.css";
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 
@@ -17,6 +18,7 @@ export function PortfolioContent({ isPublished }) {
   const [showModal, setShowModal] = useState(false);
   const [portfolioUrl, setPortfolioUrl] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showDesignModal, setShowDesignModal] = useState(false);
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
@@ -40,7 +42,10 @@ export function PortfolioContent({ isPublished }) {
             Publier
           </button>
 
-          <button className="button-template-option-wheel" title="Options">
+          <button
+            className="button-template-option-wheel"
+            title="Options"
+            onClick={() => setShowDesignModal(true)}>
             <Cog6ToothIcon className="option-wheel-icon" />
           </button>
 
@@ -49,6 +54,12 @@ export function PortfolioContent({ isPublished }) {
           </button>
         </>
       )}
+
+      {/* Design Options Modal */}
+      <DesignOptionsModal
+        show={showDesignModal}
+        onClose={() => setShowDesignModal(false)}
+      />
 
       {/* Burger Icon */}
       <BurgerIcon
