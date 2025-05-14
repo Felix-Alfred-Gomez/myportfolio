@@ -32,13 +32,13 @@ export function PortfolioContent({ isPublished }) {
   };
 
   return (
-    <div className="container-template1">
+    <div className="container-template">
       {!isPublished && (
         <>
-          <button className="button-template1 publish" onClick={handlePublish}>
+          <button className="button-template publish" onClick={handlePublish}>
             Publier
           </button>
-          <button className="button-template1 return" onClick={() => navigate("/dashboard")}>
+          <button className="button-template return" onClick={() => navigate("/dashboard")}>
             Retour
           </button>
         </>
