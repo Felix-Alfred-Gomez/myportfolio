@@ -8,6 +8,7 @@ import SideMenu from "./SideMenu";
 import PublishModal from "./PublishModal";
 import MainNav from "./MainNav";
 import "../../styles/PortfolioTemplate.css";
+import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 
 export function PortfolioContent({ isPublished }) {
   const { username } = useParams();
@@ -38,6 +39,11 @@ export function PortfolioContent({ isPublished }) {
           <button className="button-template publish" onClick={handlePublish}>
             Publier
           </button>
+
+          <button className="button-template-option-wheel" title="Options">
+            <Cog6ToothIcon className="option-wheel-icon" />
+          </button>
+
           <button className="button-template return" onClick={() => navigate("/dashboard")}>
             Retour
           </button>
