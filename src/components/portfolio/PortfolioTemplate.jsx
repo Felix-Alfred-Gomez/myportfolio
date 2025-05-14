@@ -65,7 +65,7 @@ export function PortfolioContent({ isPublished }) {
         burgerRef={burgerRef}
       />
 
-      {/* Modal */}
+      {/* PublishModal */}
       <PublishModal
         show={showModal}
         url={portfolioUrl}
