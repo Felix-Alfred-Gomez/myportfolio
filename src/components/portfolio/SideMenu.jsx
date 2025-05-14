@@ -1,13 +1,16 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 
-export default function SideMenu({ menuOpen, setMenuOpen }) {
-  const menuRef = useRef(null);
-
+export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef }) {
   useEffect(() => {
     if (!menuOpen) return;
 
     function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        burgerRef.current &&
+        !burgerRef.current.contains(event.target)
+      ) {
         setMenuOpen(false);
       }
     }
@@ -23,7 +26,7 @@ export default function SideMenu({ menuOpen, setMenuOpen }) {
       document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("resize", handleResize);
     };
-  }, [menuOpen, setMenuOpen]);
+  }, [menuOpen, setMenuOpen, menuRef, burgerRef]);
 
   return (
     <div ref={menuRef} className={`side-menu ${menuOpen ? "open" : ""}`}>

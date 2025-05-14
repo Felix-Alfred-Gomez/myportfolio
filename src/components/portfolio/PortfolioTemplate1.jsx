@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { GetPortfolioData, PushPortfolioData } from "../../hooks/HandlePortfolioData";
 import SkillsSection from "./SkillsSection";
@@ -16,6 +16,8 @@ export function PortfolioContent({ isPublished }) {
   const [showModal, setShowModal] = useState(false);
   const [portfolioUrl, setPortfolioUrl] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const burgerRef = useRef(null);
 
   const handlePublish = async () => {
     try {
@@ -43,10 +45,19 @@ export function PortfolioContent({ isPublished }) {
       )}
 
       {/* Burger Icon */}
-      <BurgerIcon onClick={() => setMenuOpen(!menuOpen)} isOpen={menuOpen} />
+      <BurgerIcon
+        ref={burgerRef}
+        onClick={() => setMenuOpen(!menuOpen)}
+        isOpen={menuOpen}
+      />
 
       {/* Side menu */}
-      <SideMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <SideMenu
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+        menuRef={menuRef}
+        burgerRef={burgerRef}
+      />
 
       {/* Modal */}
       <PublishModal
