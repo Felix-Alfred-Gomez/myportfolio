@@ -22,13 +22,12 @@ export default function AccueilSection({ username, isPublished, data, setData })
           <img
             src={profilePic}
             alt="Profile"
-            className="accueil-profile-img"
-          />
-        ) : (
+            className="accueil-profile-img"/>
+          ) : (
           <div className="accueil-profile-placeholder">
             Upload
           </div>
-        )}
+          )}
       </div>
 
       <div className="accueil-name-container">
@@ -42,10 +41,6 @@ export default function AccueilSection({ username, isPublished, data, setData })
           }}
           className="accueil-name-input"
           rows={1}
-          onInput={e => {
-            e.target.style.height = 'auto';
-            e.target.style.height = e.target.scrollHeight + 'px';
-          }}
         />
         )}
       </div>
