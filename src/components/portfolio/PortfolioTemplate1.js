@@ -27,7 +27,8 @@ export function PortfolioContent({ isPublished }) {
 
   return (
     <div
-    className="container-template1">
+      className="container-template1">
+      
       {!isPublished && (
         <>
           <button className="button-template1 publish" onClick={handlePublish}>
