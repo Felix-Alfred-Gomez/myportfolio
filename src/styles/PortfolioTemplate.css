@@ -1,4 +1,4 @@
-.container-template1 {
+.container-template {
   display: flex;
   flex-direction: column;
   font-family: 'Segoe UI', Arial, sans-serif;
@@ -6,7 +6,7 @@
 }
 
 /* Navigation bar styles */
-.nav-template1 {
+.nav-template {
   position: fixed;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@
 }
 
 /* Button styles */
-.button-template1 {
+.button-template {
   position: fixed;
   padding: 10px 20px;
   background-color: #6163fb;
@@ -37,22 +37,22 @@
   height: 50px;
 }
 
-.button-template1.publish{
+.button-template.publish{
   background-color: #b81e1e;
   color: "white"
 }
 
-.button-template1.return{
+.button-template.return{
   background-color: #9e9e9e;
   color: "white"
 }
 
-.button-template1:first-of-type {
+.button-template:first-of-type {
   left: 20px;
   bottom: 20px;
 }
 
-.button-template1:last-of-type {
+.button-template:last-of-type {
   left: 20px;
   bottom: 90px;
 }
@@ -251,7 +251,7 @@
 
 /* Responsive behavior */
 @media (max-width: 600px)  or (max-height: 600px){
-  .nav-template1 {
+  .nav-template {
     display: none;
   }
 
@@ -275,18 +275,18 @@
 }
 
 /* Button styles */
-.button-template1 {
+.button-template {
   font-size: 10px;
   width: 75px;
   height: 40px;
 }
 
-.button-template1:first-of-type {
+.button-template:first-of-type {
   left: 20px;
   bottom: 20px;
 }
 
-.button-template1:last-of-type {
+.button-template:last-of-type {
   left: 20px;
   bottom: 75px;
 }
@@ -295,7 +295,7 @@
 
 /* Responsive behavior */
 @media (max-height: 400px){
-  .nav-template1 {
+  .nav-template {
     display: none;
   }
 
