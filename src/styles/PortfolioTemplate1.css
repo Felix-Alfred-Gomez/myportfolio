@@ -244,7 +244,7 @@
   padding: 0;
 }
 
-.accueil-desc {
+.accueil-BIO {
   font-size: 1.2rem;
   color: #ccc;
 }
@@ -258,4 +258,64 @@
   .burger-icon {
     display: flex;
   }
+
+  .accueil-profile-pic-wrapper {
+  width: 150px;
+  min-width: 150px;   /* Optional: set a min size */
+  min-height: 150px;
+}
+
+/* For both published and editing views */
+.accueil-name-container {
+  font-size: 2rem;
+}
+
+.accueil-BIO {
+  font-size: 1rem;
+}
+
+/* Button styles */
+.button-template1 {
+  font-size: 10px;
+  width: 75px;
+  height: 40px;
+}
+
+.button-template1:first-of-type {
+  left: 20px;
+  bottom: 20px;
+}
+
+.button-template1:last-of-type {
+  left: 20px;
+  bottom: 75px;
+}
+
+}
+
+/* Responsive behavior */
+@media (max-height: 400px){
+  .nav-template1 {
+    display: none;
+  }
+
+  .burger-icon {
+    display: flex;
+  }
+
+  .accueil-profile-pic-wrapper {
+  width: 100px;
+  min-width: 100px;   /* Optional: set a min size */
+  min-height: 100px;
+}
+
+/* For both published and editing views */
+.accueil-name-container {
+  font-size: 1.2rem;
+}
+
+.accueil-BIO {
+  font-size: 0.7rem;
+}
+
 }

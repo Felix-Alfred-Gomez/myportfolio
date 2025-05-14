@@ -44,7 +44,7 @@ export default function AccueilSection({ username, isPublished, data, setData })
         />
         )}
       </div>
-      <p className="accueil-desc">
+      <p className="accueil-BIO">
         Faites défiler pour découvrir les compétences.
       </p>
     </section>
