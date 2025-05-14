@@ -1,4 +1,5 @@
 import { usePortfolioPicture } from "../../hooks/HandlePortfolioPicture";
+import "../../styles/PortfolioTemplate1.css";
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
   const { profilePic, handleImageUpload } = usePortfolioPicture(username);
@@ -8,103 +9,46 @@ export default function AccueilSection({ username, isPublished, data, setData })
   };
 
   return (
-    <section
-      id="home"
-      style={{
-        height: "100vh",
-        backgroundColor: "#2b2b3d",
-        color: "white",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        paddingTop: "60px",
-        textAlign: "center",
-      }}>
-
-      <div
-        style={{
-          position: "relative",
-          width: "120px",
-          height: "120px",
-          borderRadius: "50%",
-          overflow: "hidden",
-          border: "2px solid #ccc",
-          marginBottom: "20px",
-        }}>
+    <section id="home" className="accueil-section">
+      <div className="accueil-profile-pic-wrapper">
         <input
           type="file"
           accept="image/*"
           onChange={handleImageUpload}
-          disabled={isPublished} // Disable input if isPublished is true
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            opacity: 0,
-          }}
+          disabled={isPublished}
+          className="accueil-profile-input"
         />
         {profilePic ? (
           <img
             src={profilePic}
             alt="Profile"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            className="accueil-profile-img"
           />
         ) : (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              color: "#ccc",
-              fontSize: "0.9rem",
-            }}
-          >
+          <div className="accueil-profile-placeholder">
             Upload
           </div>
         )}
       </div>
 
-      <div
-        style={{
-          fontSize: "2.5rem",
-          marginBottom: "0px",
-          textAlign: "center",
-          backgroundColor: "transparent",
-          border: "none",
-          // borderBottom: "2px solid #ccc", // Apply underline here
-          color: "white",
-          outline: "none",
-          fontWeight: "bold",
-          // width: "100%", // Ensure consistent width
-        }}
-      >
+      <div className="accueil-name-container">
         {isPublished ? (
-          <span style={{ margin: 0 }}>{data.name}</span> // Use <span> for consistent rendering
+          <span className="accueil-name-text">{data.name}</span>
         ) : (
-          <input
-            type="text"
-            value={data.name}
-            onChange={handleNameChange}
-            style={{
-              fontSize: "inherit",
-              backgroundColor: "transparent",
-              border: "none",
-              color: "inherit",
-              outline: "none",
-              textAlign: "center",
-              fontWeight: "bold",
-              // width: "100%", // Ensure it spans the container
-            }}
-          />
+        <textarea
+          value={data.name}
+          onChange={(e) => {
+            handleNameChange(e);
+            e.target.style.height = "auto"; // Reset height
+            e.target.style.height = `${e.target.scrollHeight}px`; // Grow to fit
+          }}
+          className="accueil-name-input"
+        />
         )}
-
       </div>
-      <p style={{ fontSize: "1.2rem", color: "#ccc" }}>
+      {/* <p className="accueil-desc">
         Faites défiler pour découvrir les compétences.
-      </p>
+      </p> */}
     </section>
   );
 }
