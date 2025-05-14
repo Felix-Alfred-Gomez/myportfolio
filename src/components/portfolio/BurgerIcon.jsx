@@ -9,7 +9,6 @@ const BurgerIcon = forwardRef(function BurgerIcon({ onClick, isOpen }, ref) {
       aria-label="Ouvrir le menu"
       tabIndex={0}
       role="button"
-      onKeyPress={e => (e.key === "Enter" || e.key === " ") && onClick()}
     >
       <div />
       <div />
