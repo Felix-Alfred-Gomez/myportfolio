@@ -1,5 +1,5 @@
 import { usePortfolioPicture } from "../../hooks/HandlePortfolioPicture";
-import "../../styles/PortfolioTemplate1.css";
+import "../../styles/PortfolioTemplate.css";
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
   const { profilePic, handleImageUpload } = usePortfolioPicture(username);
