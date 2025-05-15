@@ -1,7 +1,6 @@
-import React from "react";
-import { usePortfolioPicture } from "../../hooks/HandlePortfolioProfile";
-import { usePortfolioAccueilBackground } from "../../hooks/HandlePortfolioAccueilBackground"; // Import the hook
-import "../../styles/PortfolioTemplate.css";
+import { usePortfolioPicture } from "../../../hooks/HandlePortfolioProfile";
+import { usePortfolioAccueilBackground } from "../../../hooks/HandlePortfolioAccueilBackground"; // Import the hook
+import "../../../styles/PortfolioTemplate.css";
 import UpdateBackground from "./UpdateBackground";
 import UpdateProfile from "./UpdateProfile";
 import UpdateName from "./UpdateName";
@@ -13,9 +12,6 @@ export default function AccueilSection({ username, isPublished, data, setData })
   const handleNameChange = (e) => {
     setData({ ...data, name: e.target.value });
   };
-
-  // Ref for hidden file input
-  const bgInputRef = React.useRef();
 
   return (
     <section
