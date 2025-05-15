@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { GetPortfolioData, PushPortfolioData } from "../../hooks/HandlePortfolioData";
 import SkillsSection from "./SkillsSection";
-import AccueilSection from "./AccueilSection";
+import AccueilSection from "./AccueilSection/AccueilSection";
 import BurgerIcon from "./BurgerIcon";
 import SideMenu from "./SideMenu";
 import PublishModal from "./PublishModal";
