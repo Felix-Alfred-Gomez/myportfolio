@@ -1,49 +1,45 @@
-import { usePortfolioPicture } from "../../hooks/HandlePortfolioPicture";
+import React from "react";
+import { usePortfolioPicture } from "../../hooks/HandlePortfolioProfile";
+import { usePortfolioAccueilBackground } from "../../hooks/HandlePortfolioAccueilBackground"; // Import the hook
 import "../../styles/PortfolioTemplate.css";
+import UpdateBackground from "./UpdateBackground";
+import UpdateProfile from "./UpdateProfile";
+import UpdateName from "./UpdateName";
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
-  const { profilePic, handleImageUpload } = usePortfolioPicture(username);
+  const { profilePic, handleProfileUpload } = usePortfolioPicture(username);
+  const { backgroundUrl, handleBackgroundUpload } = usePortfolioAccueilBackground(username); // Use the hook
 
   const handleNameChange = (e) => {
     setData({ ...data, name: e.target.value });
   };
 
-  return (
-    <section id="home" className="accueil-section">
-      <div className="accueil-profile-pic-wrapper">
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          disabled={isPublished}
-          className="accueil-profile-input"
-        />
-        {profilePic ? (
-          <img
-            src={profilePic}
-            alt="Profile"
-            className="accueil-profile-img"/>
-          ) : (
-          <div className="accueil-profile-placeholder">
-            Upload
-          </div>
-          )}
-      </div>
+  // Ref for hidden file input
+  const bgInputRef = React.useRef();
 
-      <div className="accueil-name-container">
-        {isPublished ? (
-          <span className="accueil-name-text">{data.name}</span>
-        ) : (
-        <textarea
-          value={data.name}
-          onChange={(e) => {
-            handleNameChange(e);
-          }}
-          className="accueil-name-input"
-          rows={1}
-        />
-        )}
-      </div>
+  return (
+    <section
+      id="home"
+      className="accueil-section"
+      style={backgroundUrl ? { backgroundImage: `url(${backgroundUrl})`,
+      backgroundSize: "cover", backgroundPosition: "center" } : {}}>
+      
+      {/* Upload icon in top right */}
+      {!isPublished && (
+        <UpdateBackground onUpload={handleBackgroundUpload} disabled={isPublished} />
+      )}
+
+      <UpdateProfile
+        profilePic={profilePic}
+        onUpload={handleProfileUpload}
+        disabled={isPublished}
+      />
+
+      <UpdateName
+        isPublished={isPublished}
+        name={data.name}
+        onChange={handleNameChange}
+      />
       <p className="accueil-BIO">
         Faites défiler pour découvrir les compétences.
       </p>

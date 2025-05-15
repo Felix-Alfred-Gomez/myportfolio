@@ -193,7 +193,7 @@
 /* Accueil Section Styles */
 .accueil-section {
   height: 100vh;
-  background-color: #2b2b3d;
+  background-color: #000000;
   color: white;
   display: flex;
   justify-content: center;
@@ -278,6 +278,36 @@
   color: #ccc;
 }
 
+.accueil-upload-icon {
+  position: absolute;
+  top: 125px;
+  right: 25px;
+  z-index: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #6b6dfb 60%, #4547a3 100%);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.accueil-upload-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #fff;
+  border-radius: 50%;
+  display: block;
+  background: none;
+  padding: 0;
+}
+
+.accueil-upload-icon:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
 /* Responsive behavior */
 @media (max-width: 600px)  or (max-height: 600px){
   .nav-template {
@@ -330,6 +360,19 @@
 .option-wheel-icon {
   width: 30px;
   height: 30px;
+}
+
+.accueil-upload-icon {
+  top: 75px;
+  right: 12.5px;
+  width: 40px;
+  height: 40px;
+}
+
+.accueil-upload-icon svg {
+  width: 22.4px;
+  height: 22.4px;
+  color: #fff;
 }
 
 }
