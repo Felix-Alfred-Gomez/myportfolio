@@ -8,7 +8,7 @@ export function usePortfolioPicture(username) {
     const fetchProfilePic = async () => {
       if (username) {
         const storage = getStorage();
-        const imageRef = ref(storage, `profilePictures/${username}`);
+        const imageRef = ref(storage, `${username}/Profile`);
         try {
           const url = await getDownloadURL(imageRef);
           setProfilePic(url);
@@ -21,11 +21,11 @@ export function usePortfolioPicture(username) {
     fetchProfilePic();
   }, [username]);
 
-  const handleImageUpload = async (event) => {
+  const handleProfileUpload = async (event) => {
     const file = event.target.files[0];
     if (file && username) {
       const storage = getStorage();
-      const imageRef = ref(storage, `profilePictures/${username}`);
+      const imageRef = ref(storage, `${username}/Profile`);
       try {
         await uploadBytes(imageRef, file);
         const url = await getDownloadURL(imageRef);
@@ -37,5 +37,5 @@ export function usePortfolioPicture(username) {
     }
   };
 
-  return { profilePic, handleImageUpload };
+  return { profilePic, handleProfileUpload };
 }
