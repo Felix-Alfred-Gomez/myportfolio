@@ -252,6 +252,58 @@
   font-family: 'Dancing Script', cursive;
 }
 
+/* Modal styles */
+.modal-template {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  text-align: center;
+  font-size: 1rem;
+
+  width: 90vw;
+  max-width: 250px;
+  min-width: 200px;
+  box-sizing: border-box;
+}
+
+.modal-template h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.modal-template a {
+  color: #2575fc;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.modal-template a:hover {
+  text-decoration: underline;
+}
+
+.modal-template button {
+  font-size: 1rem;
+  margin-top: 10px;
+  padding: 10px 10px;
+  background-color: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 10px; /* Ajoute de l'espace à droite de chaque bouton */
+}
+
+.modal-template button:last-child {
+  margin-right: 0; /* Pas d'espace après le dernier bouton */
+}
+
 /* Responsive styles for smartphones */
 @media screen and ((max-width: 499px) or (max-height: 499px)) {
 
@@ -308,6 +360,24 @@
   .container .buttons-group .button {
     font-size: 1rem;
   }
+
+    /* Modal styles */
+  .modal-template {
+    font-size: 0.8rem;
+  }
+
+  .modal-template h2 {
+    font-size: 1rem;
+  }
+
+  .modal-template a {
+    font-size: 0.8rem;
+  }
+
+  .modal-template button {
+    font-size: 0.8rem;
+  }
+
 }
 
 /* Responsive styles for smartphones */

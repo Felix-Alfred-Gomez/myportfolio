@@ -1,53 +1,44 @@
-import { React, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext"; // Import the context
-import "../../styles/common.css"; // Import the common CSS file
-import logoConnection from "../../assets/connection_logo.png"; // Import the image
+import { AuthContext } from "../../context/AuthContext";
+import "../../styles/common.css";
+import logoConnection from "../../assets/connection_logo.png";
 
 function LoginButton({ onLoginClick, onLogoutClick }) {
   const navigate = useNavigate();
   const { isAuthenticated } = useContext(AuthContext);
-  const [showPopup, setShowPopup] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleLogout = () => {
-    onLogoutClick(); // Trigger the logout function
-    navigate("/"); // Redirect to the home page
+    onLogoutClick();
+    setShowModal(false);
+    navigate("/");
   };
 
   const handleLogin = () => {
-    onLoginClick(); // Trigger the login function
-    navigate("/dashboard"); // Redirect to the dashboard
-  };
-
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
+    onLoginClick();
+    navigate("/dashboard");
   };
 
   return isAuthenticated ? (
     <>
-      <button className="connect_button" onClick={togglePopup}>
+      <button className="connect_button" onClick={() => setShowModal(true)}>
         <img
           src={logoConnection}
           alt="Logout"
           className="connect_button_image"
         />
       </button>
-      {showPopup && (
-        <div
-          className="popup_menu_container"
-          onClick={(e) =>
-            e.target.classList.contains("popup_menu_container") &&
-            setShowPopup(false)
-          }
-        >
-          <div className="popup_menu" onClick={(e) => e.stopPropagation()}>
-            <ul className="logout_menu">
-              <li className="logout_menu_item" onClick={handleLogout}>
-                Se déconnecter
-              </li>
-            </ul>
+      {showModal && (
+        <>
+          <div className="modal-template">
+            <h2>Déconnexion</h2>
+            <p>Voulez-vous vous déconnecter ?</p>
+            <button onClick={handleLogout}>Se déconnecter</button>
+            <button onClick={() => setShowModal(false)}>Annuler</button>
           </div>
-        </div>
+          <div className="modal-overlay" onClick={() => setShowModal(false)} />
+        </>
       )}
     </>
   ) : (
