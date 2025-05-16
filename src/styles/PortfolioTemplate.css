@@ -25,7 +25,6 @@
 .button-template {
   position: fixed;
   padding: 10px 20px;
-  background-color: #6163fb;
   color: white;
   border: none;
   border-radius: 5px;
@@ -283,7 +282,7 @@
   overflow: hidden;
 }
 
-.accueil-upload-icon {
+.accueil-upload-background {
   position: absolute;
   top: 125px;
   right: 25px;
@@ -295,11 +294,11 @@
   justify-content: center;
   justify-content: center;
   border-radius: 50%;
-  background: linear-gradient(145deg, #6b6dfb 60%, #4547a3 100%);
+  background: #6b6dfb;
   transition: box-shadow 0.2s, transform 0.2s;
 }
 
-.accueil-upload-icon svg {
+.accueil-upload-background svg {
   width: 28px;
   height: 28px;
   color: #fff;
@@ -309,7 +308,7 @@
   padding: 0;
 }
 
-.accueil-upload-icon:hover {
+.accueil-upload-background:hover {
   transform: translateY(-2px) scale(1.05);
 }
 
@@ -373,14 +372,14 @@
   height: 30px;
 }
 
-.accueil-upload-icon {
+.accueil-upload-background {
   top: 75px;
   right: 12.5px;
   width: 40px;
   height: 40px;
 }
 
-.accueil-upload-icon svg {
+.accueil-upload-background svg {
   width: 22.4px;
   height: 22.4px;
   color: #fff;

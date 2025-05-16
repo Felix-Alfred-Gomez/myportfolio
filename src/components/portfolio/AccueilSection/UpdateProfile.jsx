@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function UpdateProfile({ profilePic, onUpload, disabled }) {
   return (
     <div className="accueil-profile-pic-wrapper">

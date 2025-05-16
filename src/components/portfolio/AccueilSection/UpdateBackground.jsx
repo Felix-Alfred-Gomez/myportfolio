@@ -6,11 +6,10 @@ export default function UpdateBackground({ onUpload, disabled }) {
 
   return (
     <div
-      className="accueil-upload-icon"
+      className="accueil-upload-background"
       onClick={() => !disabled && bgInputRef.current && bgInputRef.current.click()}
       style={{ cursor: disabled ? "default" : "pointer" }}
-      title="Changer l'image de fond"
-    >
+      title="Changer l'image de fond">
       <ArrowUpTrayIcon />
       <input
         type="file"
