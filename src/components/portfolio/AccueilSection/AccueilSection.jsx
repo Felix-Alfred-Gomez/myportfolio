@@ -2,7 +2,7 @@ import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import "../../../styles/PortfolioTemplate.css";
 import UpdateBackground from "./UpdateBackground";
 import UpdateProfile from "./UpdateProfile";
-import UpdateName from "./UpdateName";
+import UpdateText from "./UpdateText";
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
   const { imageUrl: profilePic, handleImageUpload: handleProfileUpload } = usePortfolioImage(username, "Profile");
@@ -10,6 +10,10 @@ export default function AccueilSection({ username, isPublished, data, setData })
 
   const handleNameChange = (e) => {
     setData({ ...data, name: e.target.value });
+  };
+
+  const handleBIOChange = (e) => {
+    setData({ ...data, BIO: e.target.value });
   };
 
   return (
@@ -29,17 +33,24 @@ export default function AccueilSection({ username, isPublished, data, setData })
       <UpdateProfile
         profilePic={profilePic}
         onUpload={handleProfileUpload}
-        disabled={isPublished}
-      />
-
-      <UpdateName
+        disabled={isPublished}/>
+      
+      <UpdateText
         isPublished={isPublished}
-        name={data.name}
+        value={data.name}
         onChange={handleNameChange}
-      />
-      <p className="accueil-BIO">
-        Faites défiler pour découvrir les compétences.
-      </p>
+        containerClass="accueil-name-container"
+        textClass="accueil-name-text"
+        inputClass="accueil-name-input"/>
+      
+      <UpdateText
+        isPublished={isPublished}
+        value={data.BIO}
+        onChange={handleBIOChange}
+        containerClass="accueil-BIO-container"
+        textClass="accueil-BIO-text"
+        inputClass="accueil-BIO-input"/>
+
     </section>
   );
 }

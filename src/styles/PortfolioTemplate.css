@@ -240,42 +240,74 @@
   justify-content: center;
 }
 
-/* For both published and editing views */
+/* Fixed-width container */
 .accueil-name-container {
-  font-size: 2.5rem;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  font-size: 2rem;
   text-align: center;
   color: white;
   font-weight: bold;
-  word-break: break-word;
-  white-space: pre-wrap;
 }
 
-/* When in published (span) mode */
+/* Published (span) mode */
 .accueil-name-text {
-  display: inline-block;
+  display: block;
   width: 100%;
-  word-break: break-word;
-  white-space: pre-wrap;
+  white-space: pre-wrap;   /* Preserve line breaks */
+  word-break: break-word;  /* Wrap long words */
+  font-weight: inherit;
 }
 
+/* Edit mode */
 .accueil-name-input {
+  font-weight: inherit;
   font-size: inherit;
   font-family: inherit;
-  font-weight: bold;
   text-align: center;
   background-color: transparent;
   border: none;
   color: white;
   resize: none;
   width: 100%;
-  word-break: break-word;
-  white-space: pre-wrap;
-  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.accueil-BIO {
-  font-size: 1.2rem;
-  color: #ccc;
+/* Fixed-width container */
+.accueil-BIO-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  font-weight: normal;
+}
+
+/* Published (span) mode */
+.accueil-BIO-text {
+  display: block;
+  width: 100%;
+  white-space: pre-wrap;   /* Preserve line breaks */
+  word-break: break-word;  /* Wrap long words */
+  font-weight: inherit;
+}
+
+/* Edit mode */
+.accueil-BIO-input {
+  font-weight: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  color: white;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .accueil-upload-icon {
@@ -377,7 +409,7 @@
 
 }
 
-/* Responsive behavior */
+/* Responsive behavior for horizontal smarphone screens */
 @media (max-height: 400px){
   .nav-template {
     display: none;
