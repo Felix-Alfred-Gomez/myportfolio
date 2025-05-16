@@ -6,6 +6,7 @@ import LogoButton from "../common/LogoButton"; // Import the LogoButton componen
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import homeBackground from "../../assets/hero_home.png";
+import { getAuth, signOut } from "firebase/auth";
 
 function Home() {
   // Import variables
@@ -14,9 +15,13 @@ function Home() {
   const navigate = useNavigate();
 
   // Fonction to modify the authentication state
-  const handleAuthChange = (status) => {
+  const handleAuthChange = async (status) => {
+    if (!status) {
+      const auth = getAuth();
+      await signOut(auth);
+      console.log("User logged out");
+    }
     setIsAuthenticated(status);
-    if (!status) console.log("User logged out");
   };
 
   // Function to modify the showLogin state and display/hide the login modal
