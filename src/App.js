@@ -8,6 +8,7 @@ import EmailVerification from "./components/authentication/EmailVerification";
 import PublicPortfolio from "./components/portfolio/PublicPortfolio";
 import PortfolioEdition from "./components/portfolio/PortfolioEdition";
 import { AuthContext } from "./context/AuthContext";
+import ForgotPassword from "./components/authentication/ForgotPassword";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-email" element={<EmailVerification />} />
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Home />}/>
         <Route path="/portfolio-edition/:username" element={isAuthenticated ? <PortfolioEdition /> : <Home />}/>
