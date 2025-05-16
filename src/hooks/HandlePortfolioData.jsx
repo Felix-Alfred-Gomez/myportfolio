@@ -7,7 +7,8 @@ import { getDatabase, ref, get } from "firebase/database";
 const defaultPortfolioData = {
   skills: ["Compétence 1", "Compétence 2", "Compétence 3"],
   projects: ["Projet 1", "Projet 2", "Projet 3"], // Example: Add other fields like projects
-  name: "Votre Nom", // Example: Add a bio field
+  name: "Votre Nom",
+  BIO: "Votre statut",
 };
 
 /**
