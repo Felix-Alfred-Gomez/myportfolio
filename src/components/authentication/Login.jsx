@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, reload } from "firebase/auth";
 import { app } from "../../firebaseConfig";
@@ -42,17 +42,24 @@ function Login({ onLoginSuccess }) {
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Mot de passe"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="login-input"
         />
-        <button type="submit" className="login-button">Login</button>
+        <button type="submit" className="login-button">Se connecter</button>
       </form>
       {error && <p className="login-error">{error}</p>}
       <p className="login-footer">
-        Don't have an account? <Link to="/register" className="login-link">Register here</Link>
+        Pas de compte? <Link to="/register" className="login-link">Inscrivez-vous</Link>
       </p>
+
+      <div className="forgot-password-container">
+        <Link to="/forgot-password" className="forgot-password-link">
+          Mot de passe oublié ?
+        </Link>
+      </div>
+
     </div>
   );
 }

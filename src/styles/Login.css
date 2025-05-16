@@ -6,7 +6,6 @@
     text-align: center;
     width: 100%;
     max-width: 400px;
-    margin: 0 auto;
 }
 
 .login-form {
@@ -33,7 +32,6 @@
     transition: background 0.3s ease;
 }
 
-
 .login-error {
     color: #e74c3c;
     margin-top: 0.5rem;
@@ -42,7 +40,7 @@
 
 .login-footer {
     margin-top: 1rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #555;
 }
 
@@ -50,6 +48,26 @@
     color: #2575fc;
     text-decoration: none;
     font-size: 1rem;
+}
+
+.login-link:hover {
+    color: #113366;
+}
+
+.forgot-password-container {
+    text-align: center;
+}
+
+.forgot-password-link {
+    font-size: 1rem;
+    color: #2575fc;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-decoration: none; /* Add this line */
+}
+
+.forgot-password-link:hover {
+    color: #113366;
 }
 
 /* Responsive styles for smartphones */
@@ -74,10 +92,14 @@
     }
 
     .login-link {
-    font-size: 0.8rem;
+        font-size: 0.8rem;
     }
 
     .login-error {
+        font-size: 0.8rem;
+    }
+
+    .forgot-password-link {
     font-size: 0.8rem;
-}
+    }
 }
