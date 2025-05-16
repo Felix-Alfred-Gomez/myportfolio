@@ -240,54 +240,27 @@
   justify-content: center;
 }
 
-/* Fixed-width container */
+/* Shared fixed-width container */
+.accueil-text-container {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+/* Name container bold, BIO normal */
 .accueil-name-container {
-  width: 100%;
-  max-width: 450px;
-  margin: 0 auto;
-  font-size: 2rem;
-  text-align: center;
-  color: white;
   font-weight: bold;
+  font-size: 2.5rem;
 }
-
-/* Published (span) mode */
-.accueil-name-text {
-  display: block;
-  width: 100%;
-  white-space: pre-wrap;   /* Preserve line breaks */
-  word-break: break-word;  /* Wrap long words */
-  font-weight: inherit;
-}
-
-/* Edit mode */
-.accueil-name-input {
-  font-weight: inherit;
-  font-size: inherit;
-  font-family: inherit;
-  text-align: center;
-  background-color: transparent;
-  border: none;
-  color: white;
-  resize: none;
-  width: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-/* Fixed-width container */
 .accueil-BIO-container {
-  width: 100%;
-  max-width: 450px;
-  margin: 0 auto;
-  font-size: 2rem;
-  text-align: center;
-  color: white;
   font-weight: normal;
+  font-size: 2rem;
 }
 
-/* Published (span) mode */
-.accueil-BIO-text {
+/* Published (span) mode for both */
+.accueil-text {
   display: block;
   width: 100%;
   white-space: pre-wrap;   /* Preserve line breaks */
@@ -295,8 +268,8 @@
   font-weight: inherit;
 }
 
-/* Edit mode */
-.accueil-BIO-input {
+/* Edit mode for both */
+.accueil-text-input {
   font-weight: inherit;
   font-size: inherit;
   font-family: inherit;
@@ -356,13 +329,19 @@
   min-height: 150px;
 }
 
-/* For both published and editing views */
+/* Name container bold, BIO normal */
 .accueil-name-container {
+  font-weight: bold;
   font-size: 2rem;
 }
+.accueil-BIO-container {
+  font-weight: normal;
+  font-size: 1.5rem;
+}
 
-.accueil-BIO {
-  font-size: 1rem;
+/* Shared fixed-width container */
+.accueil-text-container {
+  max-width: 350px;
 }
 
 /* Button styles */
@@ -425,13 +404,14 @@
   min-height: 100px;
 }
 
-/* For both published and editing views */
+/* Name container bold, BIO normal */
 .accueil-name-container {
-  font-size: 1.2rem;
+  font-weight: bold;
+  font-size: 1.7rem;
 }
-
-.accueil-BIO {
-  font-size: 0.7rem;
+.accueil-BIO-container {
+  font-weight: normal;
+  font-size: 1.1rem;
 }
 
 }

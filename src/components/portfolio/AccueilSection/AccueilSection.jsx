@@ -39,17 +39,17 @@ export default function AccueilSection({ username, isPublished, data, setData })
         isPublished={isPublished}
         value={data.name}
         onChange={handleNameChange}
-        containerClass="accueil-name-container"
-        textClass="accueil-name-text"
-        inputClass="accueil-name-input"/>
+        containerClass="accueil-text-container accueil-name-container"
+        textClass="accueil-text"
+        inputClass="accueil-text-input"/>
       
       <UpdateText
         isPublished={isPublished}
         value={data.BIO}
         onChange={handleBIOChange}
-        containerClass="accueil-BIO-container"
-        textClass="accueil-BIO-text"
-        inputClass="accueil-BIO-input"/>
+        containerClass="accueil-text-container accueil-BIO-container"
+        textClass="accueil-text"
+        inputClass="accueil-text-input"/>
 
     </section>
   );
