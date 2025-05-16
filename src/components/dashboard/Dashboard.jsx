@@ -7,6 +7,7 @@ import LoginButton from "../common/LoginButton"; // Import the LoginButton compo
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import LogoButton from "../common/LogoButton"; // Import the LogoButton component
 import dashboardBackground from "../../assets/dashboard.png";
+import { getAuth, signOut } from "firebase/auth";
 
 function Dashboard() {
   const [username, setUsername] = useState("");
@@ -17,11 +18,15 @@ function Dashboard() {
   // Function to modify the showLogin state and display/hide the login modal
   const toggleLoginModal = (state) => setShowLogin(state);
 
-    // Fonction to modify the authentication state
-    const handleAuthChange = (status) => {
-      setIsAuthenticated(status);
-      if (!status) console.log("User logged out");
-    };
+  // Fonction to modify the authentication state
+  const handleAuthChange = async (status) => {
+    if (!status) {
+      const auth = getAuth();
+      await signOut(auth);
+      console.log("User logged out");
+    }
+    setIsAuthenticated(status);
+  };
 
   useEffect(() => {
     const fetchAndSetUsername = async () => {
