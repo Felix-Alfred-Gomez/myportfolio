@@ -1,13 +1,12 @@
-import { usePortfolioPicture } from "../../../hooks/HandlePortfolioProfile";
-import { usePortfolioAccueilBackground } from "../../../hooks/HandlePortfolioAccueilBackground"; // Import the hook
+import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import "../../../styles/PortfolioTemplate.css";
 import UpdateBackground from "./UpdateBackground";
 import UpdateProfile from "./UpdateProfile";
 import UpdateName from "./UpdateName";
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
-  const { profilePic, handleProfileUpload } = usePortfolioPicture(username);
-  const { backgroundUrl, handleBackgroundUpload } = usePortfolioAccueilBackground(username); // Use the hook
+  const { imageUrl: profilePic, handleImageUpload: handleProfileUpload } = usePortfolioImage(username, "Profile");
+  const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "AccueilBackground");
 
   const handleNameChange = (e) => {
     setData({ ...data, name: e.target.value });
@@ -22,7 +21,9 @@ export default function AccueilSection({ username, isPublished, data, setData })
       
       {/* Upload icon in top right */}
       {!isPublished && (
-        <UpdateBackground onUpload={handleBackgroundUpload} disabled={isPublished} />
+        <UpdateBackground 
+          onUpload={handleBackgroundUpload} 
+          disabled={isPublished} />
       )}
 
       <UpdateProfile
