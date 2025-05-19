@@ -2,7 +2,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
-import Register from "./components/authentication/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import EmailVerification from "./components/authentication/EmailVerification";
 import PublicPortfolio from "./components/portfolio/PublicPortfolio";
@@ -17,7 +16,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-email" element={<EmailVerification />} />
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Home />}/>

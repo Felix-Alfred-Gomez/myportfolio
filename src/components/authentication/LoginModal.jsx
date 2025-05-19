@@ -4,7 +4,7 @@ import { getAuth, signInWithEmailAndPassword, reload } from "firebase/auth";
 import { app } from "../../firebaseConfig";
 import "../../styles/Login.css"; // Import the dedicated CSS file
 
-function Login({ onLoginSuccess }) {
+function LoginModal({ onLoginSuccess, onRegisterClick }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -51,7 +51,15 @@ function Login({ onLoginSuccess }) {
       </form>
       {error && <p className="login-error">{error}</p>}
       <p className="login-footer">
-        Pas de compte? <Link to="/register" className="login-link">Inscrivez-vous</Link>
+        Pas de compte?{" "}
+        <button
+          type="button"
+          className="login-link"
+          style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+          onClick={onRegisterClick}
+        >
+          Inscrivez-vous
+        </button>
       </p>
 
       <div className="forgot-password-container">
@@ -64,4 +72,4 @@ function Login({ onLoginSuccess }) {
   );
 }
 
-export default Login;
+export default LoginModal;
