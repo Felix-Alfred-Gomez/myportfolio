@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
 import { app } from "../../firebaseConfig";
-import "../../styles/Login.css"; // Use the same CSS as Login
+import "../../styles/common.css"; // Use the same CSS as Login
 
 function RegisterModal({ onRegisterSuccess, onClose }) {
   const [username, setUsername] = useState("");
@@ -52,43 +52,37 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
   };
 
   return (
-    <div className="login-card">
-      <form onSubmit={handleRegister} className="login-form">
-        <input
-          type="text"
-          placeholder="Nom d'utilisateur"
-          value={username}
-          onChange={handleUsernameChange}
-          className="login-input"
-        />
-        {usernameError && <p className="login-error">{usernameError}</p>}
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="login-input"
-        />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="login-input"
-        />
-        <button type="submit" className="login-button">S'inscrire</button>
-        {/* {onClose && (
-          <button
-            type="button"
-            onClick={onClose}
-            className="login-button"
-            style={{ background: "#e0e0e0", color: "#333", marginLeft: "10px" }}
-          >
-            Annuler
-          </button>
-        )} */}
-      </form>
-      {error && <p className="login-error">{error}</p>}
+    <div className="modal-template">
+
+    <h2> Inscription </h2>
+
+    <form onSubmit={handleRegister}
+      className="modal-login-format">
+      <input
+        type="text"
+        placeholder="Nom d'utilisateur"
+        value={username}
+        onChange={handleUsernameChange}
+        className="modal-input-box"
+      />
+      {usernameError && <p className="login-error">{usernameError}</p>}
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="modal-input-box"
+      />
+      <input
+        type="password"
+        placeholder="Mot de passe"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="modal-input-box"
+      />
+      <button type="submit" >S'inscrire</button>
+    </form>
+      {error && <p className="modal-error">{error}</p>}
     </div>
   );
 }

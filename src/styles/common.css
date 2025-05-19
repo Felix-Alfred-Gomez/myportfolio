@@ -259,7 +259,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 20px;
+  padding: 25px;
+  padding-top: 5px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 5;
@@ -271,6 +272,36 @@
   min-width: 150px;
   box-sizing: border-box;
   word-break: break-word; /* Ensure long words break to the next line */
+}
+
+.modal-login-format {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-footer {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+.modal-header {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+.modal-input-box {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.modal-error {
+    color: #e74c3c;
+    border: none;
 }
 
 .modal-template h2 {

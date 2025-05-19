@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, reload } from "firebase/auth";
 import { app } from "../../firebaseConfig";
-import "../../styles/Login.css"; // Import the dedicated CSS file
+import "../../styles/common.css"; // Import the dedicated CSS file
 
 function LoginModal({ onLoginSuccess, onRegisterClick }) {
   const [email, setEmail] = useState("");
@@ -31,42 +31,57 @@ function LoginModal({ onLoginSuccess, onRegisterClick }) {
   };
 
   return (
-    <div className="login-card">
-      <form onSubmit={handleLogin} className="login-form">
+    <div className="modal-template">
+
+      <h2> Connexion </h2>
+
+      <div className="modal-header">
+        Pas de compte?{" "}
+        <button
+          type="button"
+          className="a"
+          style={{
+            cursor: "pointer",
+            background: "none",
+            border: "none",
+            padding: 0,
+            color: "#2575fc",
+            fontWeight: "normal",}}
+          onClick={onRegisterClick}
+        >
+          Inscrivez-vous ici
+        </button>
+      </div>
+
+      <form 
+        onSubmit={handleLogin}className="modal-login-format">
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="login-input"
+          className="modal-input-box"
         />
         <input
           type="password"
           placeholder="Mot de passe"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="login-input"
+          className="modal-input-box"
         />
-        <button type="submit" className="login-button">Se connecter</button>
-      </form>
-      {error && <p className="login-error">{error}</p>}
-      <p className="login-footer">
-        Pas de compte?{" "}
-        <button
-          type="button"
-          className="login-link"
-          style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
-          onClick={onRegisterClick}
-        >
-          Inscrivez-vous
-        </button>
-      </p>
 
-      <div className="forgot-password-container">
-        <Link to="/forgot-password" className="forgot-password-link">
-          Mot de passe oublié ?
-        </Link>
+        <button type="submit">Se connecter</button>
+      </form>
+
+      <div className="modal-footer">
+        <div className="forgot-password-container">
+          <Link to="/forgot-password" className="forgot-password-link">
+            Mot de passe oublié ?
+          </Link>
+        </div>
       </div>
+      
+      {error && <p className="modal-input modal-error">{error}</p>}
 
     </div>
   );
