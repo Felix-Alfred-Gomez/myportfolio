@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, get, query, orderByChild, equalTo } from "firebase/database";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css"; // Use the same CSS as Login
 
@@ -9,23 +9,43 @@ function RegisterModal({ onRegisterSuccess }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [usernameError, setUsernameError] = useState("");
+  const debounceTimeout = useRef(null);
 
   const handleUsernameChange = (e) => {
     const value = e.target.value;
     const regex = /^[a-zA-Z0-9-_]+$/;
-    if (!regex.test(value)) {
-      setUsernameError("Le nom d'utilisateur ne peut contenir que des lettres, des chiffres, des tirets et des underscores.");
-    } else {
-      setUsernameError("");
-    }
     setUsername(value);
+    setError("");
+    if (!regex.test(value)) {
+      setError("Le nom d'utilisateur ne peut contenir que des lettres, des chiffres, des tirets et des underscores.");
+      return;
+    }
+    if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+    if (value.length > 0) {
+      debounceTimeout.current = setTimeout(async () => {
+        const available = await checkUsernameAvailable(value);
+        if (!available) {
+          setError("Ce nom d'utilisateur est déjà pris.");
+        } else {
+          setError("");
+        }
+      }, 500);
+    }
+  };
+
+  // Check if username is available in Realtime Database
+  const checkUsernameAvailable = async (username) => {
+    const database = getDatabase(app);
+    const usersRef = ref(database, "users");
+    const q = query(usersRef, orderByChild("username"), equalTo(username));
+    const snapshot = await get(q);
+    return !snapshot.exists(); // true if available
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (usernameError) {
-      alert("Please fix the username error before submitting.");
+    if (error) {
+      // Just return, error will be shown in the UI
       return;
     }
     const auth = getAuth(app);
@@ -61,7 +81,6 @@ function RegisterModal({ onRegisterSuccess }) {
         onChange={handleUsernameChange}
         className="modal-input-box"
       />
-      {usernameError && <p className="login-error">{usernameError}</p>}
       <input
         type="email"
         placeholder="Email"
