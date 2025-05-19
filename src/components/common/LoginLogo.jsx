@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "../../styles/common.css";
 import logoConnection from "../../assets/connection_logo.png";
 
-function LoginButton({ onLoginClick, onLogoutClick }) {
+function LoginLogo({ onLoginClick, onLogoutClick }) {
   const navigate = useNavigate();
   const { isAuthenticated } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
@@ -52,4 +52,4 @@ function LoginButton({ onLoginClick, onLogoutClick }) {
   );
 }
 
-export default LoginButton;
+export default LoginLogo;

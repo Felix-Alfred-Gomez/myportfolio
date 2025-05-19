@@ -3,9 +3,9 @@ import React, { useEffect, useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/common.css"; // Import the common CSS file
 import { FetchUsername } from "../../hooks/HandlePortfolioData";
-import LoginButton from "../common/LoginButton"; // Import the LoginButton component
+import LoginButton from "../common/LoginLogo"; // Import the LoginButton component
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
-import LogoButton from "../common/LogoButton"; // Import the LogoButton component
+import LogoButton from "../common/WebsiteLogo"; // Import the LogoButton component
 import dashboardBackground from "../../assets/dashboard.png";
 import { getAuth, signOut } from "firebase/auth";
 

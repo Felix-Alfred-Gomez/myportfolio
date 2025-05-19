@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Login from "../authentication/Login";
-import LoginButton from "../common/LoginButton"; // Import the LoginButton component
-import LogoButton from "../common/LogoButton"; // Import the LogoButton component
+import LoginModal from "../authentication/LoginModal";
+import Register from "../authentication/RegisterModal"; // Add this import
+import LoginLogo from "../common/LoginLogo"; // Import the LoginButton component
+import WebsiteLogo from "../common/WebsiteLogo"; // Import the LogoButton component
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import homeBackground from "../../assets/hero_home.png";
@@ -12,6 +13,7 @@ function Home() {
   // Import variables
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false); // Add this state
   const navigate = useNavigate();
 
   // Fonction to modify the authentication state
@@ -24,14 +26,11 @@ function Home() {
     setIsAuthenticated(status);
   };
 
-  // Function to modify the showLogin state and display/hide the login modal
-  const toggleLoginModal = (state) => setShowLogin(state);
-
   const navigatetodashbboard = () => {
     if (isAuthenticated) {
       navigate(`/dashboard`);
     } else {
-        toggleLoginModal(true); // Show the login modal;
+        setShowLogin(true); // Show the login modal;
         if (isAuthenticated) {navigate(`/dashboard`);}
     }
   };
@@ -39,10 +38,9 @@ function Home() {
   return (
     <div className="container">
       <nav className="nav-site">
-        <LogoButton />
-
-        <LoginButton 
-          onLoginClick={() => toggleLoginModal(true)} 
+        <WebsiteLogo />
+        <LoginLogo 
+          onLoginClick={() => setShowLogin(true)} 
           onLogoutClick={() => handleAuthChange(false)} />
       </nav>
 
@@ -51,13 +49,11 @@ function Home() {
         <img src={homeBackground} alt="Background" className="hero-background" />
         <div className="hero-overlay">
           <h2>Créer votre Portfolio</h2>
-
           <button
             className="button-pulse"
             onClick={navigatetodashbboard}>
             Commencer
           </button>
-
         </div>
       </section>
 
@@ -65,14 +61,36 @@ function Home() {
         <div
           className="login-container"
           onClick={(e) => 
-          e.target.classList.contains("login-container") && toggleLoginModal(false)}>
+            e.target.classList.contains("login-container") && setShowLogin(false)}>
           <div className="login-box" onClick={(e) => e.stopPropagation()}>
-            <Login
+            <LoginModal
               onLoginSuccess={() => {
                 handleAuthChange(true);
-                toggleLoginModal(false);
+                setShowLogin(false);
                 navigate("/dashboard");
-              }}/>
+              }}
+              onRegisterClick={() => {
+                setShowLogin(false);
+                setShowRegister(true);
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {showRegister && (
+        <div
+          className="login-container"
+          onClick={(e) =>
+            e.target.classList.contains("login-container") && setShowRegister(false)}>
+          <div className="login-box" onClick={(e) => e.stopPropagation()}>
+            <Register
+              onRegisterSuccess={() => {
+                setShowRegister(false);
+                setShowLogin(true); // Optionally open login after registration
+              }}
+              onClose={() => setShowRegister(false)}
+            />
           </div>
         </div>
       )}

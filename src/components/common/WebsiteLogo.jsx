@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../../styles/common.css"; // Import the common CSS file
 import logo from '../../assets/logo.png';
 
-function LogoButton() {
+function WebsiteLogo() {
   const navigate = useNavigate(); // Use the navigate hook
 
   const navigatehome = () => {
@@ -23,4 +23,4 @@ function LogoButton() {
   );
 }
 
-export default LogoButton;
+export default WebsiteLogo;
