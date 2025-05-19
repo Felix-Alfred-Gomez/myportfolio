@@ -410,6 +410,18 @@
     font-size: 0.8rem;
   }
 
+  .modal-footer {
+    font-size: 0.8rem;
+  }
+
+  .modal-header {
+    font-size: 0.8rem;
+  }
+
+  .modal-input-box {
+    font-size: 0.8rem;
+}
+
 }
 
 /* Responsive styles for smartphones */
