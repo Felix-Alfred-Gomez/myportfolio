@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { useState } from "react";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css"; // Use the same CSS as Login
 
-function RegisterModal({ onRegisterSuccess, onClose }) {
+function RegisterModal({ onRegisterSuccess }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [usernameError, setUsernameError] = useState("");
-  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
     const value = e.target.value;
@@ -42,19 +40,17 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
       });
 
       await sendEmailVerification(user);
-      alert("Registration successful! A verification email has been sent to your email address.");
+      // alert("Registration successful! A verification email has been sent to your email address.");
 
-      if (onRegisterSuccess) onRegisterSuccess();
-      navigate("/verify-email");
-    } catch (err) {
-      setError(err.message);
-    }
+      if (onRegisterSuccess) onRegisterSuccess();} 
+      
+      catch (err) {setError(err.message);}
   };
 
   return (
-    <div className="modal-template">
+  <div className="modal-template">
 
-    <h2> Inscription </h2>
+    <h2 style={{ marginBottom: "1.5rem" }}> Inscription </h2>
 
     <form onSubmit={handleRegister}
       className="modal-login-format">
@@ -83,7 +79,13 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
       <button type="submit" >S'inscrire</button>
     </form>
       {error && <p className="modal-error">{error}</p>}
+    
+    <div className="modal-footer">
+      Note : Le nom d'utilisateur définira l'URL publique de votre portfolio. 
+      Il pourra être changé plus tard dans les paramètres de votre compte.
     </div>
+    
+  </div>
   );
 }
 

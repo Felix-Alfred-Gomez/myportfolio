@@ -27,7 +27,6 @@ function LoginModal({ onLoginSuccess,
         onLoginSuccess(); // Notify parent component of successful login
       } else {
         setError("Please verify your email before logging in.");
-        navigate("/verify-email");
       }
     } catch (err) {
       setError(err.message);

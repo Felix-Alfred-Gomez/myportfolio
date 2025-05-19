@@ -9,6 +9,7 @@ import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import homeBackground from "../../assets/hero_home.png";
 import { getAuth, signOut } from "firebase/auth";
 import ForgotPasswordModal from "../authentication/ForgotPasswordModal"; // Add this import
+import EmailVerification from "../authentication/EmailVerificationModal"; // Import the EmailVerification modal
 
 function Home() {
   // Import variables
@@ -16,6 +17,7 @@ function Home() {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false); // Add this state
   const [showForgotModal, setShowForgotModal] = useState(false);
+  const [showEmailVerification, setShowEmailVerification] = useState(false); // Add state for email verification modal
   const navigate = useNavigate();
 
   // Fonction to modify the authentication state
@@ -93,9 +95,8 @@ function Home() {
             <Register
               onRegisterSuccess={() => {
                 setShowRegister(false);
-                setShowLogin(true); // Optionally open login after registration
+                setShowEmailVerification(true); // Show email verification modal after registration
               }}
-              onClose={() => setShowRegister(false)}
             />
           </div>
         </div>
@@ -107,9 +108,18 @@ function Home() {
           onClick={(e) =>
             e.target.classList.contains("login-container") && setShowForgotModal(false)}>
           <div className="login-box" onClick={(e) => e.stopPropagation()}>
-            <ForgotPasswordModal
-              onClose={() => setShowForgotModal(false)}
-            />
+            <ForgotPasswordModal/>
+          </div>
+        </div>
+      )}
+
+      {showEmailVerification && (
+        <div
+          className="login-container"
+          onClick={(e) =>
+            e.target.classList.contains("login-container") && setShowEmailVerification(false)}>
+          <div className="login-box" onClick={(e) => e.stopPropagation()}>
+            <EmailVerification onClose={() => setShowEmailVerification(false)} />
           </div>
         </div>
       )}
