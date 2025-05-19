@@ -3,7 +3,7 @@ import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css";
 
-function ForgotPasswordModal({ onClose }) {
+function ForgotPasswordModal() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
