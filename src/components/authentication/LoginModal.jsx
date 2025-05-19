@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, reload } from "firebase/auth";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css"; // Import the dedicated CSS file
 
-function LoginModal({ onLoginSuccess, onRegisterClick }) {
+function LoginModal({ onLoginSuccess,
+  onRegisterClick,
+  onForgotPasswordClick }) 
+
+  {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -75,14 +79,25 @@ function LoginModal({ onLoginSuccess, onRegisterClick }) {
 
       <div className="modal-footer">
         <div className="forgot-password-container">
-          <Link to="/forgot-password" className="forgot-password-link">
+          <button
+            type="button"
+            className="forgot-password-link"
+            style={{
+              background: "none",
+              border: "none",
+              color: "#2575fc",
+              cursor: "pointer",
+              padding: 0,
+              fontWeight: "normal",
+            }}
+            onClick={onForgotPasswordClick}
+          >
             Mot de passe oublié ?
-          </Link>
+          </button>
         </div>
       </div>
       
       {error && <p className="modal-input modal-error">{error}</p>}
-
     </div>
   );
 }

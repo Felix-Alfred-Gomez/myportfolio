@@ -8,12 +8,14 @@ import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import homeBackground from "../../assets/hero_home.png";
 import { getAuth, signOut } from "firebase/auth";
+import ForgotPasswordModal from "../authentication/ForgotPasswordModal"; // Add this import
 
 function Home() {
   // Import variables
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false); // Add this state
+  const [showForgotModal, setShowForgotModal] = useState(false);
   const navigate = useNavigate();
 
   // Fonction to modify the authentication state
@@ -73,6 +75,10 @@ function Home() {
                 setShowLogin(false);
                 setShowRegister(true);
               }}
+              onForgotPasswordClick={() => {
+                setShowLogin(false);
+                setShowForgotModal(true); // Show forgot password modal
+              }}
             />
           </div>
         </div>
@@ -90,6 +96,19 @@ function Home() {
                 setShowLogin(true); // Optionally open login after registration
               }}
               onClose={() => setShowRegister(false)}
+            />
+          </div>
+        </div>
+      )}
+
+      {showForgotModal && (
+        <div
+          className="login-container"
+          onClick={(e) =>
+            e.target.classList.contains("login-container") && setShowForgotModal(false)}>
+          <div className="login-box" onClick={(e) => e.stopPropagation()}>
+            <ForgotPasswordModal
+              onClose={() => setShowForgotModal(false)}
             />
           </div>
         </div>
