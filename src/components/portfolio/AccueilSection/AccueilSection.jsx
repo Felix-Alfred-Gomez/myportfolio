@@ -1,6 +1,6 @@
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import "../../../styles/PortfolioTemplate.css";
-import UpdateBackground from "./UpdateBackground";
+import UpdateBackground from "../../common/UpdateBackground";
 import UpdateProfile from "./UpdateProfile";
 import UpdateText from "./UpdateText";
 
