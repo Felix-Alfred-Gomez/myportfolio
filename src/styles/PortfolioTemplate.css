@@ -153,6 +153,7 @@
 
 /* Accueil Section Styles */
 .accueil-section {
+  position: relative;
   height: 100vh;
   background-color: #000000;
   color: white;
@@ -244,7 +245,7 @@
   overflow: hidden;
 }
 
-.accueil-upload-background {
+.upload-background-button {
   position: absolute;
   top: 125px;
   right: 25px;
@@ -254,13 +255,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  justify-content: center;
   border-radius: 50%;
-  background: #6b6dfb;
+  background: #000000;
   transition: box-shadow 0.2s, transform 0.2s;
 }
 
-.accueil-upload-background svg {
+.upload-background-button svg {
   width: 28px;
   height: 28px;
   color: #fff;
@@ -270,8 +270,8 @@
   padding: 0;
 }
 
-.accueil-upload-background:hover {
-  transform: translateY(-2px) scale(1.05);
+.upload-background-button:hover {
+  transform: translateX(-50%) translateY(-2px) scale(1.05);
 }
 
 /* Responsive behavior */
@@ -334,14 +334,14 @@
   height: 30px;
 }
 
-.accueil-upload-background {
+.upload-background-button {
   top: 75px;
   right: 12.5px;
   width: 40px;
   height: 40px;
 }
 
-.accueil-upload-background svg {
+.upload-background-button svg {
   width: 22.4px;
   height: 22.4px;
   color: #fff;

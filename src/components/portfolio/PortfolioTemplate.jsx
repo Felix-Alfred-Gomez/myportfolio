@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { GetPortfolioData, PushPortfolioData } from "../../hooks/HandlePortfolioData";
-import SkillsSection from "./SkillsSection";
+import SkillsSection from "./SkillsSection/SkillsSection";
 import AccueilSection from "./AccueilSection/AccueilSection";
 import BurgerIcon from "./BurgerIcon";
 import SideMenu from "./SideMenu";
@@ -94,6 +94,7 @@ export function PortfolioContent({ isPublished }) {
       />
 
       <SkillsSection
+        username={username}
         data={data}
         setData={setData}
         isPublished={isPublished}

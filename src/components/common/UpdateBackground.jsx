@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/solid";
 
 export default function UpdateBackground({ onUpload, disabled }) {
@@ -16,9 +16,9 @@ export default function UpdateBackground({ onUpload, disabled }) {
   };
 
   return (
-    <div className="accueil-upload-background-wrapper">
+    <div>
       <div
-        className="accueil-upload-background"
+        className="upload-background-button"
         onClick={() => !disabled && bgInputRef.current && bgInputRef.current.click()}
         style={{ cursor: disabled ? "default" : "pointer" }}
         title="Changer l'image de fond">
