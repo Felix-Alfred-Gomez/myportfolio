@@ -1,5 +1,4 @@
-import React from "react";
-import DesignOptionsModal from "./DesignOptionsModal";
+import NavOptionsModal from "./NavOptionsModal";
 import BurgerIcon from "./BurgerIcon";
 import SideMenu from "./SideMenu";
 import MainNav from "./MainNav";
@@ -23,7 +22,7 @@ export default function PortfolioNavWrapper({
       </button>
 
       {/* Design Options Modal */}
-      <DesignOptionsModal
+      <NavOptionsModal
         show={showDesignModal}
         onClose={() => setShowDesignModal(false)}
       />
