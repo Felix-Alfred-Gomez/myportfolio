@@ -3,11 +3,7 @@ import { getAuth, signInWithEmailAndPassword, reload } from "firebase/auth";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css"; // Import the dedicated CSS file
 
-function LoginModal({ onLoginSuccess,
-  onRegisterClick,
-  onForgotPasswordClick }) 
-
-  {
+function LoginModal({ onLoginSuccess, onRegisterClick, onForgotPasswordClick, onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -33,6 +29,23 @@ function LoginModal({ onLoginSuccess,
 
   return (
     <div className="modal-template">
+      <button
+        type="button"
+        aria-label="Fermer"
+        onClick={onClose}
+        style={{
+          position: 'absolute',
+          top: 10,
+          right: 10,
+          background: 'none',
+          border: 'none',
+          fontSize: '1.5rem',
+          cursor: 'pointer',
+          color: '#888',
+        }}
+      >
+        ×
+      </button>
 
       <h2> Connexion </h2>
 
