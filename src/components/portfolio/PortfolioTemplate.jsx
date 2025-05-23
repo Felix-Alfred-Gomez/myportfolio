@@ -15,6 +15,8 @@ export function PortfolioContent({ isPublished }) {
   const [portfolioUrl, setPortfolioUrl] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [showDesignModal, setShowDesignModal] = useState(false);
+  const [navBarColor, setNavBarColor] = useState("#ffffff");
+  const [navLinkColor, setNavLinkColor] = useState("#000000");
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
@@ -52,6 +54,10 @@ export function PortfolioContent({ isPublished }) {
         setMenuOpen={setMenuOpen}
         menuRef={menuRef}
         burgerRef={burgerRef}
+        navBarColor={navBarColor}
+        setNavBarColor={setNavBarColor}
+        navLinkColor={navLinkColor}
+        setNavLinkColor={setNavLinkColor}
       />
 
       {/* PublishModal */}
