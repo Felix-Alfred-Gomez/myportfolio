@@ -1,9 +1,10 @@
-export default function MainNav({ navBarColor, navLinkColor }) {
+import hexToRgba from "../../common/hexToRgba";
+
+export default function MainNav({ navBarColor, navLinkColor, navBarAlpha }) {
   return (
     <nav
       className="nav-template"
-      style={navBarColor ? { backgroundColor: navBarColor } : {}}
-    >
+      style={navBarColor ? { backgroundColor: hexToRgba(navBarColor, navBarAlpha) } : {}}>
       <a
         className="portfolio-anchor"
         href="#home"
