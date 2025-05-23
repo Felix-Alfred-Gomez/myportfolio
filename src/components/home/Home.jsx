@@ -62,10 +62,7 @@ function Home() {
       </section>
 
       {showLogin && (
-        <div
-          className="login-container"
-          onClick={(e) => 
-            e.target.classList.contains("login-container") && setShowLogin(false)}>
+        <div className="login-container">
           <div className="login-box" onClick={(e) => e.stopPropagation()}>
             <LoginModal
               onLoginSuccess={() => {
@@ -79,36 +76,32 @@ function Home() {
               }}
               onForgotPasswordClick={() => {
                 setShowLogin(false);
-                setShowForgotModal(true); // Show forgot password modal
+                setShowForgotModal(true);
               }}
+              onClose={() => setShowLogin(false)}
             />
           </div>
         </div>
       )}
 
       {showRegister && (
-        <div
-          className="login-container"
-          onClick={(e) =>
-            e.target.classList.contains("login-container") && setShowRegister(false)}>
+        <div className="login-container">
           <div className="login-box" onClick={(e) => e.stopPropagation()}>
             <Register
               onRegisterSuccess={() => {
                 setShowRegister(false);
-                setShowEmailVerification(true); // Show email verification modal after registration
+                setShowEmailVerification(true);
               }}
+              onClose={() => setShowRegister(false)}
             />
           </div>
         </div>
       )}
 
       {showForgotModal && (
-        <div
-          className="login-container"
-          onClick={(e) =>
-            e.target.classList.contains("login-container") && setShowForgotModal(false)}>
+        <div className="login-container">
           <div className="login-box" onClick={(e) => e.stopPropagation()}>
-            <ForgotPasswordModal/>
+            <ForgotPasswordModal onClose={() => setShowForgotModal(false)} />
           </div>
         </div>
       )}

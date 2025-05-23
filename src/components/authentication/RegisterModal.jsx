@@ -4,7 +4,7 @@ import { getDatabase, ref, set, get, query, orderByChild, equalTo } from "fireba
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css"; // Use the same CSS as Login
 
-function RegisterModal({ onRegisterSuccess }) {
+function RegisterModal({ onRegisterSuccess, onClose }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -69,6 +69,24 @@ function RegisterModal({ onRegisterSuccess }) {
 
   return (
   <div className="modal-template">
+
+    <button
+      type="button"
+      aria-label="Fermer"
+      onClick={onClose}
+      style={{
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        background: 'none',
+        border: 'none',
+        fontSize: '1.5rem',
+        cursor: 'pointer',
+        color: '#888',
+      }}
+    >
+      ×
+    </button>
 
     <h2 style={{ marginBottom: "1.5rem" }}> Inscription </h2>
 

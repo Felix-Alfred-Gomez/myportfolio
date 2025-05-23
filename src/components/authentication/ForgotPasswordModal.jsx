@@ -3,7 +3,7 @@ import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css";
 
-function ForgotPasswordModal() {
+function ForgotPasswordModal({ onClose }) {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -23,19 +23,36 @@ function ForgotPasswordModal() {
 
   return (
     <div className="modal-template">
-        <h2 style={{ marginBottom: "1.5rem" }}>Mot de passe oublié</h2>
-        <form onSubmit={handleReset} className="modal-login-format">
-            <input
-                type="email"
-                placeholder="Votre email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="modal-input-box"
-            />
-            <button type="submit">Réinitialiser le mot de passe</button>
-        </form>
-        {message && <p>{message}</p>}
-        {error && <p className="modal-error">{error}</p>}
+      <button
+        type="button"
+        aria-label="Fermer"
+        onClick={onClose}
+        style={{
+          position: 'absolute',
+          top: 10,
+          right: 10,
+          background: 'none',
+          border: 'none',
+          fontSize: '1.5rem',
+          cursor: 'pointer',
+          color: '#888',
+        }}
+      >
+        ×
+      </button>
+      <h2 style={{ marginBottom: "1.5rem" }}>Mot de passe oublié</h2>
+      <form onSubmit={handleReset} className="modal-login-format">
+        <input
+          type="email"
+          placeholder="Votre email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="modal-input-box"
+        />
+        <button type="submit">Réinitialiser le mot de passe</button>
+      </form>
+      {message && <p>{message}</p>}
+      {error && <p className="modal-error">{error}</p>}
     </div>
   );
 }
