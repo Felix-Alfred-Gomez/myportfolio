@@ -200,6 +200,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1rem;
 }
 
 /* Shared fixed-width container */
@@ -256,14 +257,14 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: #000000;
+  background: #ffffff;
   transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .upload-background-button svg {
   width: 28px;
   height: 28px;
-  color: #fff;
+  color: #000000;
   border-radius: 50%;
   display: block;
   background: none;
@@ -271,7 +272,7 @@
 }
 
 .upload-background-button:hover {
-  transform: translateX(-50%) translateY(-2px) scale(1.05);
+  transform: translateY(-5px) scale(1.05);
 }
 
 /* Responsive behavior */
@@ -345,6 +346,10 @@
   width: 22.4px;
   height: 22.4px;
   color: #fff;
+}
+
+.accueil-profile-img, .accueil-profile-placeholder {
+  font-size: 0.8rem;
 }
 
 }
