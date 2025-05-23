@@ -15,27 +15,18 @@ export function PortfolioContent({ isPublished }) {
   const [portfolioUrl, setPortfolioUrl] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [showDesignModal, setShowDesignModal] = useState(false);
-  const [navBarColor, setNavBarColor] = useState("#ffffff");
-  const [navLinkColor, setNavLinkColor] = useState("#000000");
-  const [navBarAlpha, setNavBarAlpha] = useState(0.5);
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
-
-  // Group navigation props
-  const navProps = {
-    navBarColor,
-    setNavBarColor,
-    navLinkColor,
-    setNavLinkColor,
-    navBarAlpha,
-    setNavBarAlpha,
-  };
 
   const handlePublish = async () => {
     try {
       const baseUrl = window.location.origin;
       const url = `${baseUrl}/${username}`;
-      await PushPortfolioData(username, data);
+      // Update data before publishing
+      const dataToPush = {
+        ...data
+      };
+      await PushPortfolioData(username, dataToPush);
       setPortfolioUrl(url);
       setShowModal(true);
     } catch (error) {
@@ -65,7 +56,8 @@ export function PortfolioContent({ isPublished }) {
         setMenuOpen={setMenuOpen}
         menuRef={menuRef}
         burgerRef={burgerRef}
-        navProps={navProps}
+        navProps={data.navProps}
+        setData={setData}
         isPublished={isPublished}
       />
 

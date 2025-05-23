@@ -9,6 +9,11 @@ const defaultPortfolioData = {
   projects: ["Projet 1", "Projet 2", "Projet 3"], // Example: Add other fields like projects
   name: "Votre Nom",
   BIO: "Votre statut",
+  navProps: {
+    navBarColor: "#ffffff",
+    navLinkColor: "#000000",
+    navBarAlpha: 0.5,
+  },
 };
 
 /**
