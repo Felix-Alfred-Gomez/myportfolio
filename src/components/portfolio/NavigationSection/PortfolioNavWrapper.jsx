@@ -43,6 +43,7 @@ export default function PortfolioNavWrapper({
         ref={burgerRef}
         onClick={() => setMenuOpen(!menuOpen)}
         isOpen={menuOpen}
+        navBarColor={navBarColor}
       />
 
       {/* Side menu */}
