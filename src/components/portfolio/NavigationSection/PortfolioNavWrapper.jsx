@@ -13,23 +13,24 @@ export default function PortfolioNavWrapper({
   burgerRef,
   navProps,
   setData,
-  isPublished
+  isPublished,
+  data
 }) 
 
   {
   // Updater functions for navProps
-  const setNavBarColor = (barcolor) => setData(prev => ({
-    ...prev,
-    navProps: { ...prev.navProps, navBarColor: barcolor }
-  }));
-  const setNavLinkColor = (linkcolor) => setData(prev => ({
-    ...prev,
-    navProps: { ...prev.navProps, navLinkColor: linkcolor }
-  }));
-  const setNavBarAlpha = (alpha) => setData(prev => ({
-    ...prev,
-    navProps: { ...prev.navProps, navBarAlpha: alpha }
-  }));
+  const setNavBarColor = (barcolor) => setData({
+    ...data,
+    navProps: { ...data.navProps, navBarColor: barcolor }
+  });
+  const setNavLinkColor = (linkcolor) => setData({
+    ...data,
+    navProps: { ...data.navProps, navLinkColor: linkcolor }
+  });
+  const setNavBarAlpha = (alpha) => setData({
+    ...data,
+    navProps: { ...data.navProps, navBarAlpha: alpha }
+  });
 
   const navPropsWithSetters = {
     ...navProps,
