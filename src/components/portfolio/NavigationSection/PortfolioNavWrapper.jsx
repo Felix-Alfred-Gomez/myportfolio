@@ -12,17 +12,31 @@ export default function PortfolioNavWrapper({
   menuRef,
   burgerRef,
   navProps,
+  setData,
   isPublished
-}) {
-  // Destructure navProps for easier usage
-  const {
-    navBarColor,
+}) 
+
+  {
+  // Updater functions for navProps
+  const setNavBarColor = (barcolor) => setData(prev => ({
+    ...prev,
+    navProps: { ...prev.navProps, navBarColor: barcolor }
+  }));
+  const setNavLinkColor = (linkcolor) => setData(prev => ({
+    ...prev,
+    navProps: { ...prev.navProps, navLinkColor: linkcolor }
+  }));
+  const setNavBarAlpha = (alpha) => setData(prev => ({
+    ...prev,
+    navProps: { ...prev.navProps, navBarAlpha: alpha }
+  }));
+
+  const navPropsWithSetters = {
+    ...navProps,
     setNavBarColor,
-    navLinkColor,
     setNavLinkColor,
-    navBarAlpha,
     setNavBarAlpha
-  } = navProps;
+  };
 
   return (
     <>
@@ -39,7 +53,7 @@ export default function PortfolioNavWrapper({
       <NavOptionsModal
         show={showDesignModal}
         onClose={() => setShowDesignModal(false)}
-        navProps={navProps}
+        navPropsWithSetters={navPropsWithSetters}
       />
 
       {/* Burger Icon */}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SketchPicker } from "react-color";
 
-export default function DesignOptionsModal({ show, onClose, navProps }) {
+export default function DesignOptionsModal({ show, onClose, navPropsWithSetters }) {
   const {
     navBarColor,
     setNavBarColor,
@@ -9,7 +9,7 @@ export default function DesignOptionsModal({ show, onClose, navProps }) {
     setNavLinkColor,
     navBarAlpha,
     setNavBarAlpha
-  } = navProps;
+  } = navPropsWithSetters;
   const [showNavBarColorPicker, setShowNavBarColorPicker] = useState(false);
   const [showNavLinkColorPicker, setShowNavLinkColorPicker] = useState(false);
 
