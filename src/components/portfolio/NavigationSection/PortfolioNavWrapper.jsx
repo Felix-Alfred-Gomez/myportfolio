@@ -10,7 +10,11 @@ export default function PortfolioNavWrapper({
   menuOpen,
   setMenuOpen,
   menuRef,
-  burgerRef
+  burgerRef,
+  navBarColor,
+  setNavBarColor,
+  navLinkColor,
+  setNavLinkColor
 }) {
   return (
     <>
@@ -25,6 +29,10 @@ export default function PortfolioNavWrapper({
       <NavOptionsModal
         show={showDesignModal}
         onClose={() => setShowDesignModal(false)}
+        navBarColor={navBarColor}
+        setNavBarColor={setNavBarColor}
+        navLinkColor={navLinkColor}
+        setNavLinkColor={setNavLinkColor}
       />
 
       {/* Burger Icon */}
@@ -40,10 +48,12 @@ export default function PortfolioNavWrapper({
         setMenuOpen={setMenuOpen}
         menuRef={menuRef}
         burgerRef={burgerRef}
+        navBarColor={navBarColor}
+        navLinkColor={navLinkColor}
       />
 
       {/* Main Navigation */}
-      <MainNav />
+      <MainNav navBarColor={navBarColor} navLinkColor={navLinkColor} />
     </>
   );
 }

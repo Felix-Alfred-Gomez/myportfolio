@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef }) {
+export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, navBarColor, navLinkColor }) {
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -29,8 +29,18 @@ export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef }) 
   }, [menuOpen, setMenuOpen, menuRef, burgerRef]);
 
   return (
-    <div ref={menuRef} className={`side-menu ${menuOpen ? "open" : ""}`}>
-      <a href="#home" onClick={() => setMenuOpen(false)}>Accueil</a>
+    <div
+      ref={menuRef}
+      className={`side-menu ${menuOpen ? "open" : ""}`}
+      style={navBarColor ? { backgroundColor: navBarColor } : {}}
+    >
+      <a
+        href="#home"
+        onClick={() => setMenuOpen(false)}
+        style={navLinkColor ? { color: navLinkColor } : {}}
+      >
+        Accueil
+      </a>
       <a
         href="#skills"
         onClick={e => {
@@ -38,6 +48,7 @@ export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef }) 
           document.getElementById("skills").scrollIntoView({ behavior: "smooth" });
           setMenuOpen(false);
         }}
+        style={navLinkColor ? { color: navLinkColor } : {}}
       >
         Compétences
       </a>
