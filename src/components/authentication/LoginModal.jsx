@@ -2,6 +2,7 @@ import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword, reload } from "firebase/auth";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css"; // Import the dedicated CSS file
+import { X } from "lucide-react";
 
 function LoginModal({ onLoginSuccess, onRegisterClick, onForgotPasswordClick, onClose }) {
   const [email, setEmail] = useState("");
@@ -33,18 +34,8 @@ function LoginModal({ onLoginSuccess, onRegisterClick, onForgotPasswordClick, on
         type="button"
         aria-label="Fermer"
         onClick={onClose}
-        style={{
-          position: 'absolute',
-          top: 10,
-          right: 10,
-          background: 'none',
-          border: 'none',
-          fontSize: '1.5rem',
-          cursor: 'pointer',
-          color: '#888',
-        }}
-      >
-        ×
+        className="modal-close-button">
+        <X size={20} color="white" />
       </button>
 
       <h2> Connexion </h2>

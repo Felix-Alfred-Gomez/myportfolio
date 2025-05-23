@@ -2,6 +2,7 @@ import { useState } from "react";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css";
+import { X } from "lucide-react";
 
 function ForgotPasswordModal({ onClose }) {
   const [email, setEmail] = useState("");
@@ -23,23 +24,15 @@ function ForgotPasswordModal({ onClose }) {
 
   return (
     <div className="modal-template">
+      
       <button
         type="button"
         aria-label="Fermer"
         onClick={onClose}
-        style={{
-          position: 'absolute',
-          top: 10,
-          right: 10,
-          background: 'none',
-          border: 'none',
-          fontSize: '1.5rem',
-          cursor: 'pointer',
-          color: '#888',
-        }}
-      >
-        ×
+        className="modal-close-button">
+        <X size={20} color="white" />
       </button>
+
       <h2 style={{ marginBottom: "1.5rem" }}>Mot de passe oublié</h2>
       <form onSubmit={handleReset} className="modal-login-format">
         <input

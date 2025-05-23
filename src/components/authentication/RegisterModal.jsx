@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from "f
 import { getDatabase, ref, set, get, query, orderByChild, equalTo } from "firebase/database";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css"; // Use the same CSS as Login
+import { X } from "lucide-react";
 
 function RegisterModal({ onRegisterSuccess, onClose }) {
   const [username, setUsername] = useState("");
@@ -74,18 +75,8 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
       type="button"
       aria-label="Fermer"
       onClick={onClose}
-      style={{
-        position: 'absolute',
-        top: 10,
-        right: 10,
-        background: 'none',
-        border: 'none',
-        fontSize: '1.5rem',
-        cursor: 'pointer',
-        color: '#888',
-      }}
-    >
-      ×
+      className="modal-close-button">
+      <X size={20} color="white" />
     </button>
 
     <h2 style={{ marginBottom: "1.5rem" }}> Inscription </h2>
