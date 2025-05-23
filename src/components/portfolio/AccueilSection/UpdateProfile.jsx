@@ -27,7 +27,7 @@ export default function UpdateProfile({ profilePic, onUpload, disabled }) {
         />
       ) : (
         <div className="accueil-profile-placeholder">
-          Upload
+          Charger une image
         </div>
       )}
     </div>
