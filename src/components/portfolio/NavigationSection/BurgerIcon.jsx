@@ -14,24 +14,7 @@ const BurgerIcon = forwardRef(function BurgerIcon({ onClick, isOpen, navBarColor
     circleColor = hexToRgba(navBarColor, navBarAlpha);
   }
 
-  const circleStyle = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    width: 50,
-    height: 50,
-    borderRadius: "50%",
-    border: `2px solid ${circleColor}`,
-    boxSizing: "border-box",
-    background: circleColor,
-  };
-  const barStyle = {
-    backgroundColor: navLinkColor,
-    width: 25,
-    height: 4,
-    borderRadius: 3,
-  };
+  // Use CSS classes for layout, set only color/border inline
   return (
     <div
       ref={ref}
@@ -41,10 +24,13 @@ const BurgerIcon = forwardRef(function BurgerIcon({ onClick, isOpen, navBarColor
       tabIndex={0}
       role="button"
     >
-      <div style={circleStyle}>
-        <div style={barStyle} />
-        <div style={{ ...barStyle, margin: "8px 0" }} />
-        <div style={barStyle} />
+      <div
+        className="burger-circle"
+        style={{ border: `2px solid ${circleColor}`, background: circleColor }}
+      >
+        <div className="burger-bar" style={{ backgroundColor: navLinkColor }} />
+        <div className="burger-bar" style={{ backgroundColor: navLinkColor, margin: "8px 0" }} />
+        <div className="burger-bar" style={{ backgroundColor: navLinkColor }} />
       </div>
     </div>
   );
