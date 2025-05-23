@@ -1,6 +1,12 @@
 import React, { forwardRef } from "react";
 
 const BurgerIcon = forwardRef(function BurgerIcon({ onClick, isOpen, navBarColor }, ref) {
+  const barStyle = {
+    backgroundColor: navBarColor,
+    width: 40,
+    height: 6,
+    borderRadius: 3,
+  };
   return (
     <div
       ref={ref}
@@ -10,9 +16,9 @@ const BurgerIcon = forwardRef(function BurgerIcon({ onClick, isOpen, navBarColor
       tabIndex={0}
       role="button"
     >
-      <div style={{ backgroundColor: navBarColor }} />
-      <div style={{ backgroundColor: navBarColor }} />
-      <div style={{ backgroundColor: navBarColor }} />
+      <div style={barStyle} />
+      <div style={barStyle} />
+      <div style={barStyle} />
     </div>
   );
 });
