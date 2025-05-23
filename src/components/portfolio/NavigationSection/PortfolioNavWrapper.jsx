@@ -3,6 +3,7 @@ import BurgerIcon from "./BurgerIcon";
 import SideMenu from "./SideMenu";
 import MainNav from "./MainNav";
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
+import { useState } from "react";
 
 export default function PortfolioNavWrapper({
   showDesignModal,
@@ -17,6 +18,21 @@ export default function PortfolioNavWrapper({
   setNavLinkColor,
   isPublished // <-- Add this prop
 }) {
+  // Add navBarAlpha state
+  const [navBarAlpha, setNavBarAlpha] = useState(1);
+
+  // Helper to get RGBA color for navBar
+  function getNavBarRgba() {
+    if (!navBarColor) return undefined;
+    // Convert hex to rgba
+    const hex = navBarColor.replace('#', '');
+    if (hex.length !== 6) return navBarColor;
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    return `rgba(${r},${g},${b},${navBarAlpha})`;
+  }
+
   return (
     <>
       {!isPublished && (
@@ -36,6 +52,8 @@ export default function PortfolioNavWrapper({
         setNavBarColor={setNavBarColor}
         navLinkColor={navLinkColor}
         setNavLinkColor={setNavLinkColor}
+        navBarAlpha={navBarAlpha}
+        setNavBarAlpha={setNavBarAlpha}
       />
 
       {/* Burger Icon */}
@@ -44,6 +62,8 @@ export default function PortfolioNavWrapper({
         onClick={() => setMenuOpen(!menuOpen)}
         isOpen={menuOpen}
         navBarColor={navBarColor}
+        navBarAlpha={navBarAlpha}
+        navLinkColor={navLinkColor}
       />
 
       {/* Side menu */}
@@ -57,7 +77,7 @@ export default function PortfolioNavWrapper({
       />
 
       {/* Main Navigation */}
-      <MainNav navBarColor={navBarColor} navLinkColor={navLinkColor} />
+      <MainNav navBarColor={getNavBarRgba()} navLinkColor={navLinkColor} />
     </>
   );
 }
