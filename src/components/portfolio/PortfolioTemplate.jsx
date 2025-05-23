@@ -17,6 +17,7 @@ export function PortfolioContent({ isPublished }) {
   const [showDesignModal, setShowDesignModal] = useState(false);
   const [navBarColor, setNavBarColor] = useState("#ffffff");
   const [navLinkColor, setNavLinkColor] = useState("#000000");
+  const [navBarAlpha, setNavBarAlpha] = useState(0.5);
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
@@ -58,7 +59,9 @@ export function PortfolioContent({ isPublished }) {
         setNavBarColor={setNavBarColor}
         navLinkColor={navLinkColor}
         setNavLinkColor={setNavLinkColor}
-        isPublished={isPublished} // Pass isPublished prop
+        isPublished={isPublished}
+        navBarAlpha={navBarAlpha}
+        setNavBarAlpha={setNavBarAlpha}
       />
 
       {/* PublishModal */}
