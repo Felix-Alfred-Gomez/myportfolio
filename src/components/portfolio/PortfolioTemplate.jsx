@@ -21,6 +21,16 @@ export function PortfolioContent({ isPublished }) {
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
+  // Group navigation props
+  const navProps = {
+    navBarColor,
+    setNavBarColor,
+    navLinkColor,
+    setNavLinkColor,
+    navBarAlpha,
+    setNavBarAlpha,
+  };
+
   const handlePublish = async () => {
     try {
       const baseUrl = window.location.origin;
@@ -55,13 +65,8 @@ export function PortfolioContent({ isPublished }) {
         setMenuOpen={setMenuOpen}
         menuRef={menuRef}
         burgerRef={burgerRef}
-        navBarColor={navBarColor}
-        setNavBarColor={setNavBarColor}
-        navLinkColor={navLinkColor}
-        setNavLinkColor={setNavLinkColor}
+        navProps={navProps}
         isPublished={isPublished}
-        navBarAlpha={navBarAlpha}
-        setNavBarAlpha={setNavBarAlpha}
       />
 
       {/* PublishModal */}

@@ -1,7 +1,8 @@
 import { forwardRef } from "react";
 import hexToRgba from "../../common/hexToRgba";
 
-const BurgerIcon = forwardRef(function BurgerIcon({ onClick, isOpen, navBarColor, navLinkColor, navBarAlpha }, ref) {
+const BurgerIcon = forwardRef(function BurgerIcon({ onClick, isOpen, navProps }, ref) {
+  const { navBarColor, navLinkColor, navBarAlpha } = navProps;
   let circleColor = navBarColor;
   if (navBarColor && navBarColor[0] === "#" && typeof navBarAlpha !== "undefined") {
     circleColor = hexToRgba(navBarColor, navBarAlpha);

@@ -1,7 +1,15 @@
 import { useState } from "react";
 import { SketchPicker } from "react-color";
 
-export default function DesignOptionsModal({ show, onClose, navBarColor, setNavBarColor, navLinkColor, setNavLinkColor, navBarAlpha = 1, setNavBarAlpha }) {
+export default function DesignOptionsModal({ show, onClose, navProps }) {
+  const {
+    navBarColor,
+    setNavBarColor,
+    navLinkColor,
+    setNavLinkColor,
+    navBarAlpha,
+    setNavBarAlpha
+  } = navProps;
   const [showNavBarColorPicker, setShowNavBarColorPicker] = useState(false);
   const [showNavLinkColorPicker, setShowNavLinkColorPicker] = useState(false);
 
@@ -11,9 +19,7 @@ export default function DesignOptionsModal({ show, onClose, navBarColor, setNavB
     <>
       <div className="modal-template" style={{ maxWidth: 300 }}>
         <h2>Barre de navigation</h2>
-        <div 
-          style={{ 
-            margin: '10px 0' }}>
+        <div style={{ margin: '10px 0' }}>
           {/* 1) Couleur du texte */}
           <label style={{ display: 'block', marginBottom: 10 }}>
             Couleur du texte :
@@ -32,47 +38,44 @@ export default function DesignOptionsModal({ show, onClose, navBarColor, setNavB
                 onClick={() => setShowNavLinkColorPicker(true)}
               />
               {showNavLinkColorPicker && (
-                <div 
-                  style={{ 
-                    position: "fixed", 
-                    left: "50%", 
-                    top: "50%", 
-                    transform: "translate(-50%, -50%)", 
-                    zIndex: 4, 
-                    background: "#fff", 
-                    borderRadius: 10, 
-                    padding: 20, 
-                    display: "flex", 
-                    flexDirection: "column", 
-                    alignItems: "center", 
-                    boxShadow: "0 4px 24px rgba(0,0,0,0.18)", 
-                    filter: "none" }}>
-                  <div 
-                    style={{ 
-                      boxShadow: 'none', 
-                      filter: 'none' }}>
+                <div
+                  style={{
+                    position: "fixed",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 4,
+                    background: "#fff",
+                    borderRadius: 10,
+                    padding: 20,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
+                    filter: "none"
+                  }}>
+                  <div
+                    style={{
+                      boxShadow: 'none',
+                      filter: 'none'
+                    }}>
                     <SketchPicker
                       color={navLinkColor}
                       onChange={color => setNavLinkColor(color.hex)}
-                      styles={{ 
-                        default: { picker: { boxShadow: 'none' } } }}
+                      styles={{
+                        default: { picker: { boxShadow: 'none' } }
+                      }}
                     />
                   </div>
-                  <button 
-                  style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPicker(false)}>Fermer</button>
+                  <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPicker(false)}>Fermer</button>
                 </div>
               )}
             </div>
           </label>
           {/* 2) Couleur de la barre de navigation */}
-          <label 
-            style={{ 
-              display: 'block',
-              marginBottom: 10 }}>
+          <label style={{ display: 'block', marginBottom: 10 }}>
             Couleur de fond :
-            <div 
-             style={{ display: "inline-block",
-              marginLeft: 10 }}>
+            <div style={{ display: "inline-block", marginLeft: 10 }}>
               <div
                 style={{
                   width: 36,
@@ -87,25 +90,27 @@ export default function DesignOptionsModal({ show, onClose, navBarColor, setNavB
                 onClick={() => setShowNavBarColorPicker(true)}
               />
               {showNavBarColorPicker && (
-                <div 
-                  style={{ 
+                <div
+                  style={{
                     position: "fixed",
                     left: "50%",
                     top: "50%",
-                    transform: "translate(-50%, -50%)", 
-                    zIndex: 4, 
-                    background: "#fff", 
-                    borderRadius: 10, 
-                    padding: 20, 
-                    display: "flex", 
-                    flexDirection: "column", 
-                    alignItems: "center", 
-                    boxShadow: "0 4px 24px rgba(0,0,0,0.18)", 
-                    filter: "none" }}>
-                  <div 
-                    style={{ 
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 4,
+                    background: "#fff",
+                    borderRadius: 10,
+                    padding: 20,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
+                    filter: "none"
+                  }}>
+                  <div
+                    style={{
                       boxShadow: "none",
-                      filter: 'none' }}>
+                      filter: 'none'
+                    }}>
                     <SketchPicker
                       color={navBarColor}
                       onChange={color => setNavBarColor(color.hex)}
@@ -113,9 +118,7 @@ export default function DesignOptionsModal({ show, onClose, navBarColor, setNavB
                       disableAlpha={true}
                     />
                   </div>
-                  <button 
-                    style={{ marginTop: 16 }} 
-                    onClick={() => setShowNavBarColorPicker(false)}>Fermer</button>
+                  <button style={{ marginTop: 16 }} onClick={() => setShowNavBarColorPicker(false)}>Fermer</button>
                 </div>
               )}
             </div>

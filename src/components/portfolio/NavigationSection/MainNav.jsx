@@ -1,6 +1,7 @@
 import hexToRgba from "../../common/hexToRgba";
 
-export default function MainNav({ navBarColor, navLinkColor, navBarAlpha }) {
+export default function MainNav({ navProps }) {
+  const { navBarColor, navLinkColor, navBarAlpha } = navProps;
   return (
     <nav
       className="nav-template"

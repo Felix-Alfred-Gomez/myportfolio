@@ -11,14 +11,19 @@ export default function PortfolioNavWrapper({
   setMenuOpen,
   menuRef,
   burgerRef,
-  navBarColor,
-  setNavBarColor,
-  navLinkColor,
-  setNavLinkColor,
-  isPublished,
-  navBarAlpha,
-  setNavBarAlpha
+  navProps,
+  isPublished
 }) {
+  // Destructure navProps for easier usage
+  const {
+    navBarColor,
+    setNavBarColor,
+    navLinkColor,
+    setNavLinkColor,
+    navBarAlpha,
+    setNavBarAlpha
+  } = navProps;
+
   return (
     <>
       {!isPublished && (
@@ -34,12 +39,7 @@ export default function PortfolioNavWrapper({
       <NavOptionsModal
         show={showDesignModal}
         onClose={() => setShowDesignModal(false)}
-        navBarColor={navBarColor}
-        setNavBarColor={setNavBarColor}
-        navLinkColor={navLinkColor}
-        setNavLinkColor={setNavLinkColor}
-        navBarAlpha={navBarAlpha}
-        setNavBarAlpha={setNavBarAlpha}
+        navProps={navProps}
       />
 
       {/* Burger Icon */}
@@ -47,9 +47,7 @@ export default function PortfolioNavWrapper({
         ref={burgerRef}
         onClick={() => setMenuOpen(!menuOpen)}
         isOpen={menuOpen}
-        navBarColor={navBarColor}
-        navBarAlpha={navBarAlpha}
-        navLinkColor={navLinkColor}
+        navProps={navProps}
       />
 
       {/* Side menu */}
@@ -58,12 +56,11 @@ export default function PortfolioNavWrapper({
         setMenuOpen={setMenuOpen}
         menuRef={menuRef}
         burgerRef={burgerRef}
-        navBarColor={navBarColor}
-        navLinkColor={navLinkColor}
+        navProps={navProps}
       />
 
       {/* Main Navigation */}
-      <MainNav navBarColor={navBarColor} navLinkColor={navLinkColor} navBarAlpha={navBarAlpha} />
+      <MainNav navProps={navProps} />
     </>
   );
 }
