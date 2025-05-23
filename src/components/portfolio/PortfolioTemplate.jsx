@@ -58,6 +58,7 @@ export function PortfolioContent({ isPublished }) {
         setNavBarColor={setNavBarColor}
         navLinkColor={navLinkColor}
         setNavLinkColor={setNavLinkColor}
+        isPublished={isPublished} // Pass isPublished prop
       />
 
       {/* PublishModal */}

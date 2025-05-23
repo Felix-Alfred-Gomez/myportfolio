@@ -14,16 +14,19 @@ export default function PortfolioNavWrapper({
   navBarColor,
   setNavBarColor,
   navLinkColor,
-  setNavLinkColor
+  setNavLinkColor,
+  isPublished // <-- Add this prop
 }) {
   return (
     <>
-      <button
-        className="button-template-option-wheel"
-        title="Options"
-        onClick={() => setShowDesignModal(true)}>
-        <Cog6ToothIcon className="option-wheel-icon" />
-      </button>
+      {!isPublished && (
+        <button
+          className="button-template-option-wheel"
+          title="Options"
+          onClick={() => setShowDesignModal(true)}>
+          <Cog6ToothIcon className="option-wheel-icon" />
+        </button>
+      )}
 
       {/* Design Options Modal */}
       <NavOptionsModal
