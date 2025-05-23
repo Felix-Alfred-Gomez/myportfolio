@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 
-export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, navBarColor, navLinkColor }) {
+export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, navProps }) {
+  const { navBarColor, navLinkColor } = navProps;
+
   useEffect(() => {
     if (!menuOpen) return;
 
