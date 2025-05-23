@@ -59,6 +59,7 @@ export function PortfolioContent({ isPublished }) {
         navProps={data.navProps}
         setData={setData}
         isPublished={isPublished}
+        data={data}
       />
 
       {/* PublishModal */}
