@@ -272,6 +272,23 @@
   transform: translateY(-5px) scale(1.05);
 }
 
+/* Modal color picker for NavOptionsModal */
+.modal-color-picker {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  filter: none;
+}
+
 /* Responsive behavior */
 @media (max-width: 600px)  or (max-height: 600px){
   .nav-template {
