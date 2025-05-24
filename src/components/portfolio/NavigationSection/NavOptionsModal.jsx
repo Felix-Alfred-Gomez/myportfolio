@@ -38,22 +38,7 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
                 onClick={() => setShowNavLinkColorPicker(true)}
               />
               {showNavLinkColorPicker && (
-                <div
-                  style={{
-                    position: "fixed",
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 4,
-                    background: "#fff",
-                    borderRadius: 10,
-                    padding: 20,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
-                    filter: "none"
-                  }}>
+                <div className="modal-color-picker">
                   <div
                     style={{
                       boxShadow: 'none',
@@ -90,22 +75,7 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
                 onClick={() => setShowNavBarColorPicker(true)}
               />
               {showNavBarColorPicker && (
-                <div
-                  style={{
-                    position: "fixed",
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 4,
-                    background: "#fff",
-                    borderRadius: 10,
-                    padding: 20,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
-                    filter: "none"
-                  }}>
+                <div className="modal-color-picker">
                   <div
                     style={{
                       boxShadow: "none",
