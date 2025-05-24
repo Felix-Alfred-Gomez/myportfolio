@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, navProps }) {
-  const { navBarColor, navLinkColor } = navProps;
+  const { navBarColor, navLinkColor, navFontFamily } = navProps;
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -30,11 +30,15 @@ export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, na
     };
   }, [menuOpen, setMenuOpen, menuRef, burgerRef]);
 
+  const menuStyle = {};
+  if (navBarColor) menuStyle.backgroundColor = navBarColor;
+  if (navFontFamily) menuStyle.fontFamily = navFontFamily;
+
   return (
     <div
       ref={menuRef}
       className={`side-menu ${menuOpen ? "open" : ""}`}
-      style={navBarColor ? { backgroundColor: navBarColor } : {}}
+      style={menuStyle}
     >
       <a
         href="#home"

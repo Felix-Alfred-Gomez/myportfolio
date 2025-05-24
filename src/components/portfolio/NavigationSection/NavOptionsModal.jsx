@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { SketchPicker } from "react-color";
+import Select from "react-select";
+import fontFamilies from "../../common/fontFamilies";
+import '../../../styles/NavSection.css';
 
 export default function DesignOptionsModal({ show, onClose, navPropsWithSetters }) {
   const {
@@ -8,7 +11,9 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
     navLinkColor,
     setNavLinkColor,
     navBarAlpha,
-    setNavBarAlpha
+    setNavBarAlpha,
+    navFontFamily,
+    setNavFontFamily
   } = navPropsWithSetters;
   const [showNavBarColorPicker, setShowNavBarColorPicker] = useState(false);
   const [showNavLinkColorPicker, setShowNavLinkColorPicker] = useState(false);
@@ -17,24 +22,33 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
 
   return (
     <>
-      <div className="modal-template" style={{ maxWidth: 300 }}>
-        <h2>Barre de navigation</h2>
+      <div className="modal-template">
+        <h2 >Barre de navigation</h2>
         <div style={{ margin: '10px 0' }}>
+          {/* Font Family Dropdown using react-select */}
+          <div className="nav-font-row">
+            <span className="nav-font-label">Police du texte :</span>
+            <div className="nav-font-select-wrapper">
+              <Select
+                options={fontFamilies.map(f => ({ label: f.label, value: f.value }))}
+                value={fontFamilies.find(f => f.value === navFontFamily) || fontFamilies[0]}
+                onChange={option => setNavFontFamily(option.value)}
+                styles={{
+                  control: (base) => ({ ...base, fontFamily: navFontFamily}),
+                  option: (base, state) => ({ ...base, fontFamily: state.data.value})
+                }}
+                menuPlacement="auto"
+                isSearchable={false}
+              />
+            </div>
+          </div>
           {/* 1) Couleur du texte */}
           <label style={{ display: 'block', marginBottom: 10 }}>
             Couleur du texte :
             <div style={{ display: "inline-block", marginLeft: 10 }}>
               <div
-                style={{
-                  width: 36,
-                  height: 18,
-                  borderRadius: 5,
-                  background: navLinkColor,
-                  border: "1px solid #ccc",
-                  display: "inline-block",
-                  cursor: "pointer",
-                  verticalAlign: "middle"
-                }}
+                className="nav-color-preview"
+                style={{ background: navLinkColor }}
                 onClick={() => setShowNavLinkColorPicker(true)}
               />
               {showNavLinkColorPicker && (
@@ -62,16 +76,8 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
             Couleur de fond :
             <div style={{ display: "inline-block", marginLeft: 10 }}>
               <div
-                style={{
-                  width: 36,
-                  height: 18,
-                  borderRadius: 5,
-                  background: navBarColor,
-                  border: "1px solid #ccc",
-                  display: "inline-block",
-                  cursor: "pointer",
-                  verticalAlign: "middle"
-                }}
+                className="nav-color-preview"
+                style={{ background: navBarColor }}
                 onClick={() => setShowNavBarColorPicker(true)}
               />
               {showNavBarColorPicker && (
@@ -94,7 +100,7 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
             </div>
           </label>
           {/* 3) Transparence */}
-          <label style={{ display: 'block', marginBottom: 10 }}>
+          <label >
             Transparence :
             <input
               type="range"

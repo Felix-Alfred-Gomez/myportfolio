@@ -31,12 +31,17 @@ export default function PortfolioNavWrapper({
     ...data,
     navProps: { ...data.navProps, navBarAlpha: alpha }
   });
+  const setNavFontFamily = (font) => setData({
+    ...data,
+    navProps: { ...data.navProps, navFontFamily: font }
+  });
 
   const navPropsWithSetters = {
     ...navProps,
     setNavBarColor,
     setNavLinkColor,
-    setNavBarAlpha
+    setNavBarAlpha,
+    setNavFontFamily
   };
 
   return (
