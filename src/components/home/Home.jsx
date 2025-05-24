@@ -1,15 +1,15 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginModal from "../authentication/LoginModal";
-import Register from "../authentication/RegisterModal"; // Add this import
+import LoginModal from "./LoginModal";
+import Register from "./RegisterModal"; // Add this import
 import LoginLogo from "../common/LoginLogo"; // Import the LoginButton component
 import WebsiteLogo from "../common/WebsiteLogo"; // Import the LogoButton component
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import homeBackground from "../../assets/hero_home.png";
 import { getAuth, signOut } from "firebase/auth";
-import ForgotPasswordModal from "../authentication/ForgotPasswordModal"; // Add this import
-import EmailVerification from "../authentication/EmailVerificationModal"; // Import the EmailVerification modal
+import ForgotPasswordModal from "./ForgotPasswordModal"; // Add this import
+import EmailVerification from "./EmailVerificationModal"; // Import the EmailVerification modal
 
 function Home() {
   // Import variables
