@@ -1,11 +1,15 @@
 import hexToRgba from "../../common/hexToRgba";
 
 export default function MainNav({ navProps }) {
-  const { navBarColor, navLinkColor, navBarAlpha } = navProps;
+  const { navBarColor, navLinkColor, navBarAlpha, navFontFamily } = navProps;
+  const navStyle = {};
+  if (navBarColor) navStyle.backgroundColor = hexToRgba(navBarColor, navBarAlpha);
+  if (navFontFamily) navStyle.fontFamily = navFontFamily;
   return (
     <nav
       className="nav-template"
-      style={navBarColor ? { backgroundColor: hexToRgba(navBarColor, navBarAlpha) } : {}}>
+      style={navStyle}
+    >
       <a
         className="portfolio-anchor"
         href="#home"

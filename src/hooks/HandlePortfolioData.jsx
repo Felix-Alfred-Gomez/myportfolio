@@ -10,9 +10,10 @@ const defaultPortfolioData = {
   name: "Votre Nom",
   BIO: "Votre statut",
   navProps: {
-    navBarColor: "#ffffff",
-    navLinkColor: "#000000",
+    navBarColor: "#000000",
+    navLinkColor: "#ffffff",
     navBarAlpha: 0.5,
+    navFontFamily: "Arial, sans-serif",
   },
 };
 
