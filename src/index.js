@@ -4,6 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './context/AuthContext';
+import { getGoogleFontsImportUrl } from './components/common/fontFamilies';
+
+// Add Google Fonts stylesheet link to the document head
+function addGoogleFontsLink() {
+  const googleFontsUrl = getGoogleFontsImportUrl();
+  const linkTag = document.createElement('link');
+  linkTag.rel = 'stylesheet';
+  linkTag.href = googleFontsUrl;
+  document.head.appendChild(linkTag);
+}
+addGoogleFontsLink();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
