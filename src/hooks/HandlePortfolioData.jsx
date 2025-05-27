@@ -14,6 +14,8 @@ const defaultPortfolioData = {
     navLinkColor: "#ffffff",
     navBarAlpha: 0.5,
     navFontFamily: "Arial, sans-serif",
+    navFontSize: "25px",
+    navFontWeight: "bold",
   },
 };
 
@@ -33,10 +35,7 @@ export function GetPortfolioData(username) {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const portfolioData = docSnap.data();
-          setData({
-            ...defaultPortfolioData, // Ensure all default fields are included
-            ...portfolioData,
-          });
+          setData(deepMerge(defaultPortfolioData, portfolioData));
         } else {
           console.warn("No portfolio found for username:", username);
         }
@@ -98,6 +97,27 @@ export async function FetchUsername() {
   }
 
   return null; // Return null if no user is logged in
+}
+
+// Deep merge utility for objects
+function deepMerge(target, source) {
+  const output = { ...target };
+  if (typeof source !== "object" || source === null) return output;
+  Object.keys(source).forEach((key) => {
+    if (
+      typeof source[key] === "object" &&
+      source[key] !== null &&
+      !Array.isArray(source[key]) &&
+      typeof output[key] === "object" &&
+      output[key] !== null &&
+      !Array.isArray(output[key])
+    ) {
+      output[key] = deepMerge(output[key], source[key]);
+    } else {
+      output[key] = source[key];
+    }
+  });
+  return output;
 }
 
 // functions to handle field changes in forms
