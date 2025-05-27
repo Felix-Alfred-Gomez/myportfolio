@@ -3,18 +3,11 @@ import { SketchPicker } from "react-color";
 import Select from "react-select";
 import fontFamilies from "../../common/fontFamilies";
 import '../../../styles/NavSection.css';
+import { handleNestedFieldChange } from '../../common/fieldHandlers';
 
-export default function DesignOptionsModal({ show, onClose, navPropsWithSetters }) {
-  const {
-    navBarColor,
-    setNavBarColor,
-    navLinkColor,
-    setNavLinkColor,
-    navBarAlpha,
-    setNavBarAlpha,
-    navFontFamily,
-    setNavFontFamily
-  } = navPropsWithSetters;
+export default function DesignOptionsModal({ show, onClose, navProps, setData, data }) {
+  const { navBarColor, navLinkColor, navBarAlpha, navFontFamily } = navProps;
+  // Utilisation directe de handleNestedFieldChange importée
   const [showNavBarColorPicker, setShowNavBarColorPicker] = useState(false);
   const [showNavLinkColorPicker, setShowNavLinkColorPicker] = useState(false);
 
@@ -32,7 +25,7 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
               <Select
                 options={fontFamilies.map(f => ({ label: f.label, value: f.value }))}
                 value={fontFamilies.find(f => f.value === navFontFamily) || fontFamilies[0]}
-                onChange={option => setNavFontFamily(option.value)}
+                onChange={option => handleNestedFieldChange(setData, data, 'navProps', 'navFontFamily')(option.value)}
                 styles={{
                   control: (base) => ({ ...base, fontFamily: navFontFamily}),
                   option: (base, state) => ({ ...base, fontFamily: state.data.value})
@@ -60,7 +53,7 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
                     }}>
                     <SketchPicker
                       color={navLinkColor}
-                      onChange={color => setNavLinkColor(color.hex)}
+                      onChange={color => handleNestedFieldChange(setData, data, 'navProps', 'navLinkColor')(color.hex)}
                       styles={{
                         default: { picker: { boxShadow: 'none' } }
                       }}
@@ -89,7 +82,7 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
                     }}>
                     <SketchPicker
                       color={navBarColor}
-                      onChange={color => setNavBarColor(color.hex)}
+                      onChange={color => handleNestedFieldChange(setData, data, 'navProps', 'navBarColor')(color.hex)}
                       styles={{ default: { picker: { boxShadow: 'none' } } }}
                       disableAlpha={true}
                     />
@@ -107,7 +100,7 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
               min={0}
               max={100}
               value={Math.round(navBarAlpha * 100)}
-              onChange={e => setNavBarAlpha(Number(e.target.value) / 100)}
+              onChange={e => handleNestedFieldChange(setData, data, 'navProps', 'navBarAlpha')(Number(e.target.value) / 100)}
               style={{ marginLeft: 10, verticalAlign: 'middle' }}
             />
             <span style={{ marginLeft: 8 }}>{Math.round(navBarAlpha * 100)}%</span>

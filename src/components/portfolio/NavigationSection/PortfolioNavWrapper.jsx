@@ -18,31 +18,7 @@ export default function PortfolioNavWrapper({
 }) 
 
   {
-  // Updater functions for navProps
-  const setNavBarColor = (barcolor) => setData({
-    ...data,
-    navProps: { ...data.navProps, navBarColor: barcolor }
-  });
-  const setNavLinkColor = (linkcolor) => setData({
-    ...data,
-    navProps: { ...data.navProps, navLinkColor: linkcolor }
-  });
-  const setNavBarAlpha = (alpha) => setData({
-    ...data,
-    navProps: { ...data.navProps, navBarAlpha: alpha }
-  });
-  const setNavFontFamily = (font) => setData({
-    ...data,
-    navProps: { ...data.navProps, navFontFamily: font }
-  });
-
-  const navPropsWithSetters = {
-    ...navProps,
-    setNavBarColor,
-    setNavLinkColor,
-    setNavBarAlpha,
-    setNavFontFamily
-  };
+  // On passe simplement navProps, setData, data, et handleNestedFieldChange directement aux sous-composants si besoin
 
   return (
     <>
@@ -59,7 +35,9 @@ export default function PortfolioNavWrapper({
       <NavOptionsModal
         show={showDesignModal}
         onClose={() => setShowDesignModal(false)}
-        navPropsWithSetters={navPropsWithSetters}
+        navProps={navProps}
+        setData={setData}
+        data={data}
       />
 
       {/* Burger Icon */}
