@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, navProps }) {
-  const { navBarColor, navLinkColor, navFontFamily } = navProps;
+  const { navBarColor, navLinkColor, navFontFamily, navFontSize, navFontWeight } = navProps;
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -31,8 +31,10 @@ export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, na
   }, [menuOpen, setMenuOpen, menuRef, burgerRef]);
 
   const menuStyle = {};
-  if (navBarColor) menuStyle.backgroundColor = navBarColor;
-  if (navFontFamily) menuStyle.fontFamily = navFontFamily;
+  menuStyle.backgroundColor = navBarColor;
+  menuStyle.fontFamily = navFontFamily;
+  menuStyle.fontSize = navFontSize;
+  menuStyle.fontWeight = navFontWeight;
 
   return (
     <div
@@ -43,7 +45,11 @@ export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, na
       <a
         href="#home"
         onClick={() => setMenuOpen(false)}
-        style={navLinkColor ? { color: navLinkColor } : {}}
+        style={{
+          color: navLinkColor,
+          fontSize: navFontSize,
+          fontWeight: navFontWeight
+        }}
       >
         Accueil
       </a>
@@ -54,7 +60,11 @@ export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, na
           document.getElementById("skills").scrollIntoView({ behavior: "smooth" });
           setMenuOpen(false);
         }}
-        style={navLinkColor ? { color: navLinkColor } : {}}
+        style={{
+          color: navLinkColor,
+          fontSize: navFontSize,
+          fontWeight: navFontWeight
+        }}
       >
         Compétences
       </a>
