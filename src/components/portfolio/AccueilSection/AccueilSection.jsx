@@ -3,7 +3,7 @@ import "../../../styles/PortfolioTemplate.css";
 import UpdateBackground from "../../common/UpdateBackground";
 import UpdateProfile from "./UpdateProfile";
 import UpdateText from "./UpdateText";
-import { handleFieldChange } from '../../common/fieldHandlers';
+import { handleFieldChange } from '../../../hooks/HandlePortfolioData';
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
   const { imageUrl: profilePic, handleImageUpload: handleProfileUpload } = usePortfolioImage(username, "Profile");
