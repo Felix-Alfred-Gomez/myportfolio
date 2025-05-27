@@ -277,7 +277,7 @@
   font-size: 1.2rem;
 
   width: 75vw;
-  max-width: 400px;
+  max-width: 450px;
   min-width: 275px;
   box-sizing: border-box;
   word-break: break-word; /* Ensure long words break to the next line */

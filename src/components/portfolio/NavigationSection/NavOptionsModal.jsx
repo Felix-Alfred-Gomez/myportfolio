@@ -27,7 +27,7 @@ export default function DesignOptionsModal({ show, onClose, navPropsWithSetters 
         <div style={{ margin: '10px 0' }}>
           {/* Font Family Dropdown using react-select */}
           <div className="nav-font-row">
-            <span className="nav-font-label">Police du texte :</span>
+            <span className="nav-font-label">Police :</span>
             <div className="nav-font-select-wrapper">
               <Select
                 options={fontFamilies.map(f => ({ label: f.label, value: f.value }))}
