@@ -25,3 +25,15 @@
   cursor: pointer;
   vertical-align: middle;
 }
+
+/* Add for font size slider in nav section */
+.nav-font-size-slider {
+  vertical-align: middle;
+  width: 120px;
+}
+
+/* Add for nav transparency slider */
+.nav-transparency-slider {
+  vertical-align: middle;
+  width: 120px;
+}

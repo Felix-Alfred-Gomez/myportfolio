@@ -1,10 +1,19 @@
 import hexToRgba from "../../common/hexToRgba";
 
 export default function MainNav({ navProps }) {
-  const { navBarColor, navLinkColor, navBarAlpha, navFontFamily } = navProps;
+  const { navBarColor, navLinkColor, navBarAlpha, navFontFamily, navFontSize, navFontWeight} = navProps;
+  
+  console.log('navBarColor:', navBarColor);
+  console.log('navLinkColor:', navLinkColor);
+  console.log('navBarAlpha:', navBarAlpha);
+  console.log('navFontFamily:', navFontFamily);
+  console.log('navFontSize:', navFontSize);
+  console.log('navFontWeight:', navFontWeight);
+
   const navStyle = {};
-  if (navBarColor) navStyle.backgroundColor = hexToRgba(navBarColor, navBarAlpha);
-  if (navFontFamily) navStyle.fontFamily = navFontFamily;
+  navStyle.backgroundColor = hexToRgba(navBarColor, navBarAlpha);
+  navStyle.fontFamily = navFontFamily;
+
   return (
     <nav
       className="nav-template"
@@ -13,14 +22,22 @@ export default function MainNav({ navProps }) {
       <a
         className="portfolio-anchor"
         href="#home"
-        style={navLinkColor ? { color: navLinkColor } : {}}
+        style={{
+          color: navLinkColor,
+          fontSize: navFontSize,
+          fontWeight: navFontWeight
+        }}
       >
         Accueil
       </a>
       <a
         className="portfolio-anchor"
         href="#skills"
-        style={navLinkColor ? { color: navLinkColor } : {}}
+        style={{
+          color: navLinkColor,
+          fontSize: navFontSize,
+          fontWeight: navFontWeight
+        }}
         onClick={(e) => {
           e.preventDefault();
           document.getElementById("skills").scrollIntoView({ behavior: "smooth" });

@@ -16,11 +16,14 @@ export default function DesignOptionsModal({ show, onClose, navProps, setData, d
   return (
     <>
       <div className="modal-template">
-        <h2 >Barre de navigation</h2>
+        
+        <h2 style={{ marginBottom: 20 }}>Barre de navigation</h2>
+        
         <div style={{ margin: '10px 0' }}>
+          
           {/* Font Family Dropdown using react-select */}
           <div className="nav-font-row">
-            <span className="nav-font-label">Police :</span>
+            {/* <span className="nav-font-label">Police :</span> */}
             <div className="nav-font-select-wrapper">
               <Select
                 options={fontFamilies.map(f => ({ label: f.label, value: f.value }))}
@@ -35,6 +38,40 @@ export default function DesignOptionsModal({ show, onClose, navProps, setData, d
               />
             </div>
           </div>
+
+          {/* Font Size Slider */}
+          <div className="nav-font-row">
+            {/* <span className="nav-font-label">Taille :</span> */}
+            <input
+              type="range"
+              min={20}
+              max={60}
+              value={parseInt(navProps.navFontSize) || 16}
+              onChange={e => handleNestedFieldChange(setData, data, 'navProps', 'navFontSize')(e.target.value + 'px')}
+              className="nav-font-size-slider"
+            />
+            <span style={{ marginLeft: 8 }}>{parseInt(navProps.navFontSize) || 16}px</span>
+          </div>
+
+          {/* Font Weight Selector */}
+          <div className="nav-font-row">
+            {/* <span className="nav-font-label">Graisse :</span> */}
+            <div className="nav-font-select-wrapper">
+              <Select
+                options={[{ label: 'Normal', value: 'normal' }, { label: 'Gras', value: 'bold' }]
+                }
+                value={{ label: navProps.navFontWeight === 'bold' ? 'Gras' : 'Normal', value: navProps.navFontWeight || 'bold' }}
+                onChange={option => handleNestedFieldChange(setData, data, 'navProps', 'navFontWeight')(option.value)}
+                styles={{
+                  control: (base) => ({ ...base, minWidth: 80 }),
+                  option: (base) => ({ ...base })
+                }}
+                menuPlacement="auto"
+                isSearchable={false}
+              />
+            </div>
+          </div>
+          
           {/* 1) Couleur du texte */}
           <label style={{ display: 'block', marginBottom: 10 }}>
             Couleur du texte :
@@ -93,18 +130,20 @@ export default function DesignOptionsModal({ show, onClose, navProps, setData, d
             </div>
           </label>
           {/* 3) Transparence */}
-          <label >
+          <label style={{ display: 'block', marginBottom: 5 }}>
             Transparence :
+          </label>
+          <div >
             <input
               type="range"
               min={0}
               max={100}
               value={Math.round(navBarAlpha * 100)}
               onChange={e => handleNestedFieldChange(setData, data, 'navProps', 'navBarAlpha')(Number(e.target.value) / 100)}
-              style={{ marginLeft: 10, verticalAlign: 'middle' }}
+              className="nav-transparency-slider"
             />
             <span style={{ marginLeft: 8 }}>{Math.round(navBarAlpha * 100)}%</span>
-          </label>
+          </div>
         </div>
         <button onClick={onClose}>Fermer</button>
       </div>
