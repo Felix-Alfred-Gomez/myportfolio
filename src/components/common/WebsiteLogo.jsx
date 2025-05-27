@@ -17,7 +17,7 @@ function WebsiteLogo() {
 
       <img src={logo} alt="Logo" className="logo" />
       
-      <h1 className="title">{"MyPortfolio"}</h1>
+      {/* <h1 className="title">{"MonFolioPerso"}</h1> */}
 
     </div>
   );

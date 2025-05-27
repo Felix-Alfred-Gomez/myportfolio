@@ -3,19 +3,13 @@ import "../../../styles/PortfolioTemplate.css";
 import UpdateBackground from "../../common/UpdateBackground";
 import UpdateProfile from "./UpdateProfile";
 import UpdateText from "./UpdateText";
+import { handleFieldChange } from '../../common/fieldHandlers';
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
   const { imageUrl: profilePic, handleImageUpload: handleProfileUpload } = usePortfolioImage(username, "Profile");
   const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "AccueilBackground");
 
-  const handleNameChange = (e) => {
-    setData({ ...data, name: e.target.value });
-  };
-
-  const handleBIOChange = (e) => {
-    setData({ ...data, BIO: e.target.value });
-  };
-
+// Suppression de fieldChangeHandler, utilisation directe de handleFieldChange
   return (
     <section
       id="home"
@@ -38,7 +32,7 @@ export default function AccueilSection({ username, isPublished, data, setData })
       <UpdateText
         isPublished={isPublished}
         value={data.name}
-        onChange={handleNameChange}
+        onChange={handleFieldChange(setData, data, 'name')}
         containerClass="accueil-text-container accueil-name-container"
         textClass="accueil-text"
         inputClass="accueil-text-input"/>
@@ -46,7 +40,7 @@ export default function AccueilSection({ username, isPublished, data, setData })
       <UpdateText
         isPublished={isPublished}
         value={data.BIO}
-        onChange={handleBIOChange}
+        onChange={handleFieldChange(setData, data, 'BIO')}
         containerClass="accueil-text-container accueil-BIO-container"
         textClass="accueil-text"
         inputClass="accueil-text-input"/>
