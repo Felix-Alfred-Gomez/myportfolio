@@ -3,7 +3,7 @@ import { SketchPicker } from "react-color";
 import Select from "react-select";
 import fontFamilies from "../../common/fontFamilies";
 import '../../../styles/NavSection.css';
-import { handleNestedFieldChange } from '../../common/fieldHandlers';
+import { handleNestedFieldChange } from '../../../hooks/HandlePortfolioData';
 
 export default function DesignOptionsModal({ show, onClose, navProps, setData, data }) {
   const { navBarColor, navLinkColor, navBarAlpha, navFontFamily } = navProps;
