@@ -285,7 +285,9 @@
 }
 
 .modal-template.option {
-  background-color: rgba(255,255,255,0.85); /* Plus transparent */
+  top: unset;
+  left: unset;
+  transform: none;
 }
 
 .modal-login-format {
