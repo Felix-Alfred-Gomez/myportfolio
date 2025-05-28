@@ -5,11 +5,11 @@ import UpdateBackground from "../../common/UpdateBackground";
 import "../../../styles/AccueilSection.css";
 
 export default function SkillsSection({ username, data, setData, isPublished }) {
-  const handleSkillChange = (index, newSkill) => {
-    const updatedSkills = [...data.skills];
-    updatedSkills[index] = newSkill;
-    setData({ ...data, skills: updatedSkills });
-  };
+  // const handleSkillChange = (index, newSkill) => {
+  //   const updatedSkills = [...data.skills];
+  //   updatedSkills[index] = newSkill;
+  //   setData({ ...data, skills: updatedSkills });
+  // };
 
   const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "SkillsBackground");
 
@@ -27,7 +27,7 @@ export default function SkillsSection({ username, data, setData, isPublished }) 
           disabled={isPublished} />
       )}
 
-      <h2>Compétences</h2>
+      {/* <h2>Compétences</h2>
       <ul>
         {data.skills.map((skill, index) => (
           <li key={index}>
@@ -42,7 +42,7 @@ export default function SkillsSection({ username, data, setData, isPublished }) 
             )}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </section>
   );
 }

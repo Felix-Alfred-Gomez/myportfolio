@@ -17,17 +17,19 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
   // Utilisation directe de handleNestedFieldChange importée
   const [showNavLinkColorPickerTitle, setShowNavLinkColorPickerTitle] = useState(false);
   const [showNavLinkColorPickerBIO, setShowNavLinkColorPickerBIO] = useState(false);
-  const [collapseNom, setCollapseNom] = useState(true);
-  const [collapseBio, setCollapseBio] = useState(true);
-  const [collapseBg, setCollapseBg] = useState(true);
+  const [collapseNom, setCollapseNom] = useState(false);
+  const [collapseBio, setCollapseBio] = useState(false);
+  const [collapseBg, setCollapseBg] = useState(false);
   const nodeRef = useRef(null);
 
   if (!show) return null;
 
   return (
     <>
-      <Draggable nodeRef={nodeRef}>
-        <div ref={nodeRef} className="modal-template option">
+      <Draggable nodeRef={nodeRef} cancel=".accueil-font-size-slider, input, .accueil-font-select-wrapper">
+        <div ref={nodeRef} 
+        className="modal-template option drag"
+        style={{cursor: 'grab'}}>
           <h2 className="modal-heading" style={{cursor: 'grab'}}>
             Section Accueil
           </h2>
