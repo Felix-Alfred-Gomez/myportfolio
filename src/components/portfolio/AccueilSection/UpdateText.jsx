@@ -10,7 +10,8 @@ export default function UpdateText({
   inputClass,
   fontFamilyStyle,
   fontFamilySize,
-  fontFamilyWeight
+  fontFamilyWeight,
+  fontColor
 }) {
   const textareaRef = useRef(null);
 
@@ -26,7 +27,10 @@ export default function UpdateText({
       {isPublished ? (
         <span 
           className={textClass}
-          style={{ fontFamily: fontFamilyStyle, fontSize: fontFamilySize, fontWeight: fontFamilyWeight }}>
+          style={{ fontFamily: fontFamilyStyle,
+          fontSize: fontFamilySize,
+          fontWeight: fontFamilyWeight,
+          color: fontColor }}>
             {value}
         </span>
       ) : (
@@ -35,7 +39,11 @@ export default function UpdateText({
           value={value}
           onChange={onChange}
           className={inputClass}
-          style={{ overflow: "hidden", fontFamily: fontFamilyStyle, fontSize: fontFamilySize, fontWeight: fontFamilyWeight }}
+          style={{ overflow: "hidden",
+            fontFamily: fontFamilyStyle,
+            fontSize: fontFamilySize,
+            fontWeight: fontFamilyWeight,
+            color: fontColor }}
           rows={1}
         />
       )}

@@ -56,7 +56,8 @@ export default function AccueilSection({ username, isPublished, data, setData, n
         inputClass="accueil-text-input"
         fontFamilyStyle={data.accueilProps.AccueilFontFamilyTitle}
         fontFamilySize={data.accueilProps.AccueilFontSizeTitle}
-        fontFamilyWeight={data.accueilProps.AccueilFontWeightTitle}/>
+        fontFamilyWeight={data.accueilProps.AccueilFontWeightTitle}
+        fontColor={data.accueilProps.AccueilColorTitle}/>
       
       <UpdateText
         data={data}
@@ -68,7 +69,8 @@ export default function AccueilSection({ username, isPublished, data, setData, n
         inputClass="accueil-text-input"
         fontFamilyStyle={data.accueilProps.AccueilFontFamilyBIO}
         fontFamilySize={data.accueilProps.AccueilFontSizeBIO}
-        fontFamilyWeight={data.accueilProps.AccueilFontWeightBIO}/>
+        fontFamilyWeight={data.accueilProps.AccueilFontWeightBIO}
+        fontColor={data.accueilProps.AccueilColorBIO}/>
 
     </section>
   );

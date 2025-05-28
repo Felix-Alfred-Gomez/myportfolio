@@ -135,13 +135,6 @@
   margin-right: 10px;
 }
 
-/* Style for AccueilOptionsModal heading */
-.modal-template h2,
-.modal-heading {
-  margin-bottom: 20px;
-  color: black;
-}
-
 .modal-label-black {
   display: block;
   margin-bottom: 10px;

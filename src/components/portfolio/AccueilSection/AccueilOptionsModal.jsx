@@ -23,6 +23,8 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
         <>
             <div className="modal-template option">
                 <h2 className="modal-heading">Section Accueil</h2>
+
+                <h3 className="sub-heading">Option du NOM</h3>
                 <div style={{ margin: '10px 0' }}>
                     {/* Font Family Dropdown using react-select */}
                     <div className="accueil-font-row">
@@ -77,11 +79,11 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
 
                     {/* 1) Couleur du texte */}
                     <label className="modal-label-black">
-                        Couleur du texte:
+                        Couleur:
                         <div style={{ display: "inline-block", marginLeft: 10 }}>
                             <div
                                 className="accueil-color-preview"
-                                style={{ background: navLinkColor }}
+                                style={{ background: data.accueilProps.AccueilColorTitle }}
                                 onClick={() => setShowNavLinkColorPicker(true)}
                             />
                             {showNavLinkColorPicker && (
@@ -93,7 +95,7 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
                                         }}>
                                         <SketchPicker
                                             color={navLinkColor}
-                                            onChange={color => handleNestedFieldChange(setData, data, 'navProps', 'navLinkColor')(color.hex)}
+                                            onChange={color => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilColorTitle')(color.hex)}
                                             styles={{
                                                 default: { picker: { boxShadow: 'none' } }
                                             }}
@@ -104,6 +106,9 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
                             )}
                         </div>
                     </label>
+
+                    {/* Ligne séparatrice */}
+                    <div style={{ borderTop: '1px solid #ccc', margin: '16px 0' }} />
 
                     <label className="modal-label-black"> Chargez une image de fond: </label>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '5px 0' }}>
