@@ -34,7 +34,6 @@ export default function AccueilSection({ username, isPublished, data, setData, n
       <AccueilOptionsModal
         show={showDesignModal}
         onClose={() => setShowDesignModal(false)}
-        navProps={navProps}
         setData={setData}
         data={data}
         isPublished= {isPublished}
