@@ -14,7 +14,6 @@ export function PortfolioContent({ isPublished }) {
   const [showModal, setShowModal] = useState(false);
   const [portfolioUrl, setPortfolioUrl] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showDesignModal, setShowDesignModal] = useState(false);
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
@@ -39,7 +38,7 @@ export function PortfolioContent({ isPublished }) {
       {!isPublished && (
         <>
           <button className="button-template publish" onClick={handlePublish}>
-            Publier
+            Sauver
           </button>
 
           <button className="button-template return" onClick={() => navigate("/dashboard")}>
@@ -50,8 +49,6 @@ export function PortfolioContent({ isPublished }) {
 
       {/* Navigation Wrapper */}
       <PortfolioNavWrapper
-        showDesignModal={showDesignModal}
-        setShowDesignModal={setShowDesignModal}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         menuRef={menuRef}
