@@ -79,7 +79,7 @@
   width: 120px;
 }
 
-.button-template-option-wheel {
+.nav-option-wheel {
   position: fixed;
   top: 25px;
   right: 25px;
@@ -97,11 +97,11 @@
   border: none;
 }
 
-.button-template-option-wheel:hover .option-wheel-icon {
+.nav-option-wheel:hover .nav-option-wheel-icon {
   transform: rotate(90deg);
 }
 
-.option-wheel-icon {
+.nav-option-wheel-icon {
   width: 40px;
   height: 40px;
   color: rgb(0, 0, 0);

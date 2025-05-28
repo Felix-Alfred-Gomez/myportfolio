@@ -93,6 +93,130 @@
   overflow: hidden;
 }
 
+/* .accueil-option-wheel {
+  position: fixed;
+  top: 50px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+} */
+
+.accueil-option-wheel {
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+  z-index: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+  }
+
+.accueil-option-wheel:hover .accueil-option-wheel-icon {
+  transform: rotate(90deg);
+}
+
+.accueil-option-wheel-icon {
+  width: 40px;
+  height: 40px;
+  color: #2575fc;
+  transition: transform 0.3s ease;
+}
+
+.accueil-font-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.accueil-font-select-wrapper {
+  min-width: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* Style for AccueilOptionsModal heading */
+.modal-template h2,
+.modal-heading {
+  margin-bottom: 20px;
+  color: black;
+}
+
+.modal-label-black {
+  display: block;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.modal-span-black {
+  margin-left: 8px;
+  color: black;
+}
+
+/* Add for font size slider in nav section */
+.accueil-font-size-slider {
+  vertical-align: middle;
+  width: 120px;
+}
+
+.accueil-color-preview {
+  width: 36px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.accueil-upload-background-button {
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+  z-index: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.accueil-upload-background-button svg {
+  width: 28px;
+  height: 28px;
+  color: #000000;
+  border-radius: 50%;
+  display: block;
+  background: none;
+  padding: 0;
+}
+
+.accueil-upload-background-button:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
 /* Responsive behavior */
 @media (max-width: 600px)  or (max-height: 600px){
 .accueil-profile-pic-wrapper {

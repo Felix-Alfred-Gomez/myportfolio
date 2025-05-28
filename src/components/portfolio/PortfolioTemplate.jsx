@@ -69,6 +69,7 @@ export function PortfolioContent({ isPublished }) {
       <AccueilSection
         username={username}
         isPublished={isPublished}
+        navProps={data.navProps}
         data={data}
         setData={setData}
       />
