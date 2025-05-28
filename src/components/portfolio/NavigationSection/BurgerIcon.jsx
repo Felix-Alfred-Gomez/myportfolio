@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import hexToRgba from "../../common/hexToRgba";
+import "../../../styles/NavSection.css";
 
 const BurgerIcon = forwardRef(function BurgerIcon({ onClick, isOpen, navProps }, ref) {
   const { navBarColor, navLinkColor, navBarAlpha } = navProps;

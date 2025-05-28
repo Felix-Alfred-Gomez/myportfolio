@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "../../../styles/NavSection.css";
 
 export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, navProps }) {
   const { navBarColor, navLinkColor, navFontFamily, navFontSize, navFontWeight } = navProps;

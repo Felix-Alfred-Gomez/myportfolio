@@ -1,4 +1,5 @@
 import hexToRgba from "../../common/hexToRgba";
+import "../../../styles/NavSection.css";
 
 export default function MainNav({ navProps }) {
   const { navBarColor, navLinkColor, navBarAlpha, navFontFamily, navFontSize, navFontWeight} = navProps;
