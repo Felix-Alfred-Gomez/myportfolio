@@ -6,9 +6,9 @@ export default function PublishModal({ show, url, onClose }) {
   return (
     <>
       <div className="modal-template">
-        <h2>Votre portfolio a été publié !</h2>
+        <h2>Votre portfolio a sauvegardé</h2>
         <p>
-          Visitez-le à :{" "}
+          Visitez-le ici:{" "}
           <a href={url} target="_blank" rel="noopener noreferrer">
             {url}
           </a>
