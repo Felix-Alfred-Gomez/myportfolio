@@ -377,7 +377,7 @@
   right: 10px;
   width: 34px;
   height: 34px;
-  background-color: #ccc;
+  background-color: #999999;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -388,7 +388,7 @@
 }
 
 .modal-template .modal-close-button:hover {
-  background-color: #aaa;
+  background-color: #636262;
 }
 
 /* Responsive styles for smartphones */

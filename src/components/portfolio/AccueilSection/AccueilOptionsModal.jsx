@@ -9,6 +9,7 @@ import '../../../styles/common.css';
 import { handleNestedFieldChange } from '../../../hooks/HandlePortfolioData';
 import UpdateBackground from "../../common/UpdateBackground";
 import Draggable from 'react-draggable';
+import { X } from "lucide-react";
 
 export default function AccueilOptionsModal({ show, onClose, setData, data,
   isPublished,
@@ -28,8 +29,17 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
     <>
       <Draggable nodeRef={nodeRef} cancel=".accueil-font-size-slider, input, .accueil-font-select-wrapper">
         <div ref={nodeRef} 
-        className="modal-template option drag"
-        style={{cursor: 'grab'}}>
+          className="modal-template option drag"
+          style={{cursor: 'grab'}}>
+            
+          <button
+            type="button"
+            aria-label="Fermer"
+            onClick={onClose}
+            className="modal-close-button">
+            <X size={20} color="white" />
+          </button>
+
           <h2 className="modal-heading" style={{cursor: 'grab'}}>
             Section Accueil
           </h2>
@@ -238,7 +248,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
             )}
           </div>
 
-          <button onClick={onClose}>Fermer</button>
+          {/* <button onClick={onClose}>Fermer</button> */}
         </div>
       </Draggable>
       <div
