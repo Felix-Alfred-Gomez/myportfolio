@@ -283,6 +283,10 @@
   word-break: break-word; /* Ensure long words break to the next line */
 }
 
+.modal-template.option {
+  background-color: rgba(255,255,255,0.85); /* Plus transparent */
+}
+
 .modal-login-format {
     display: flex;
     flex-direction: column;

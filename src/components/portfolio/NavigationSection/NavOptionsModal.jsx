@@ -15,7 +15,7 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
 
   return (
     <>
-      <div className="modal-template">
+      <div className="modal-template option">
         
         <h2 style={{ marginBottom: 20 }}>Barre de navigation</h2>
         

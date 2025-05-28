@@ -47,20 +47,28 @@ export default function AccueilSection({ username, isPublished, data, setData, n
         disabled={isPublished}/>
       
       <UpdateText
+        data={data}
         isPublished={isPublished}
         value={data.name}
         onChange={handleFieldChange(setData, data, 'name')}
         containerClass="accueil-text-container accueil-name-container"
         textClass="accueil-text"
-        inputClass="accueil-text-input"/>
+        inputClass="accueil-text-input"
+        fontFamilyStyle={data.accueilProps.AccueilFontFamilyTitle}
+        fontFamilySize={data.accueilProps.AccueilFontSizeTitle}
+        fontFamilyWeight={data.accueilProps.AccueilFontWeightTitle}/>
       
       <UpdateText
+        data={data}
         isPublished={isPublished}
         value={data.BIO}
         onChange={handleFieldChange(setData, data, 'BIO')}
         containerClass="accueil-text-container accueil-BIO-container"
         textClass="accueil-text"
-        inputClass="accueil-text-input"/>
+        inputClass="accueil-text-input"
+        fontFamilyStyle={data.accueilProps.AccueilFontFamilyBIO}
+        fontFamilySize={data.accueilProps.AccueilFontSizeBIO}
+        fontFamilyWeight={data.accueilProps.AccueilFontWeightBIO}/>
 
     </section>
   );

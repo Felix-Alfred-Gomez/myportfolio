@@ -17,6 +17,16 @@ const defaultPortfolioData = {
     navFontSize: "25px",
     navFontWeight: "bold",
   },
+  accueilProps: {
+    AccueilFontFamilyTitle: "Arial, sans-serif",
+    AccueilFontSizeTitle: "25px",
+    AccueilFontWeightTitle: "bold",
+    AccueilColorTitle: "#000000",
+    AccueilFontFamilyBIO: "Arial, sans-serif",
+    AccueilFontSizeBIO: "15px",
+    AccueilColorBIO: "#000000",
+    AccueilFontWeightBIO: "normal",
+  },
 };
 
 /**

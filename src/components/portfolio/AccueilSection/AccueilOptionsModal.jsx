@@ -13,7 +13,7 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
     isPublished,
     handleBackgroundUpload
 }) {
-    const { navLinkColor, navFontFamily } = navProps;
+    const { navLinkColor } = navProps;
     // Utilisation directe de handleNestedFieldChange importée
     const [showNavLinkColorPicker, setShowNavLinkColorPicker] = useState(false);
 
@@ -21,7 +21,7 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
 
     return (
         <>
-            <div className="modal-template">
+            <div className="modal-template option">
                 <h2 className="modal-heading">Section Accueil</h2>
                 <div style={{ margin: '10px 0' }}>
                     {/* Font Family Dropdown using react-select */}
@@ -30,10 +30,10 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
                         <div className="accueil-font-select-wrapper">
                             <Select
                                 options={fontFamilies.map(f => ({ label: f.label, value: f.value }))}
-                                value={fontFamilies.find(f => f.value === navFontFamily) || fontFamilies[0]}
-                                onChange={option => handleNestedFieldChange(setData, data, 'navProps', 'navFontFamily')(option.value)}
+                                value={fontFamilies.find(f => f.value === data.accueilProps.AccueilFontFamilyTitle) || fontFamilies[0]}
+                                onChange={option => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilFontFamilyTitle')(option.value)}
                                 styles={{
-                                    control: (base) => ({ ...base, fontFamily: navFontFamily, color: 'black' }),
+                                    control: (base) => ({ ...base, fontFamily: data.accueilProps.AccueilFontFamilyTitle, color: 'black' }),
                                     option: (base, state) => ({ ...base, fontFamily: state.data.value, color: 'black' })
                                 }}
                                 menuPlacement="auto"
@@ -49,11 +49,11 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
                             type="range"
                             min={20}
                             max={60}
-                            value={parseInt(navProps.navFontSize) || 16}
-                            onChange={e => handleNestedFieldChange(setData, data, 'navProps', 'navFontSize')(e.target.value + 'px')}
+                            value={parseInt(data.accueilProps.AccueilFontSizeTitle) || 16}
+                            onChange={e => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilFontSizeTitle')(e.target.value + 'px')}
                             className="accueil-font-size-slider"
                         />
-                        <span className="modal-span-black">{parseInt(navProps.navFontSize) || 16}px</span>
+                        <span className="modal-span-black">{parseInt(data.accueilProps.AccueilFontSizeTitle) || 16}px</span>
                     </div>
 
                     {/* Font Weight Selector */}
@@ -63,8 +63,8 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
                             <Select
                                 options={[{ label: 'Normal', value: 'normal' }, { label: 'Gras', value: 'bold' }]
                                 }
-                                value={{ label: navProps.navFontWeight === 'bold' ? 'Gras' : 'Normal', value: navProps.navFontWeight || 'bold' }}
-                                onChange={option => handleNestedFieldChange(setData, data, 'navProps', 'navFontWeight')(option.value)}
+                                value={{ label: data.accueilProps.AccueilFontWeightTitle === 'bold' ? 'Gras' : 'Normal', value: data.accueilProps.AccueilFontWeightTitle || 'bold' }}
+                                onChange={option => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilFontWeightTitle')(option.value)}
                                 styles={{
                                     control: (base) => ({ ...base, minWidth: 80, color: 'black' }),
                                     option: (base) => ({ ...base, color: 'black' })
