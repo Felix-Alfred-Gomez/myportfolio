@@ -322,6 +322,21 @@
   font-size: 1.5rem;
 }
 
+/* Style for AccueilOptionsModal heading */
+.modal-template h3 {
+  border-top: 1px solid #ccc;
+  padding-top: 12px;
+  font-size: 0.9rem;
+  color: black;
+}
+
+/* Style for AccueilOptionsModal heading */
+.modal-template h2,
+.modal-heading {
+  margin-bottom: 20px;
+  color: black;
+}
+
 .modal-template a {
   color: #2575fc;
   text-decoration: none;
@@ -434,6 +449,11 @@
   .modal-template h2 {
     font-size: 1rem;
   }
+
+  /* Style for AccueilOptionsModal heading */
+.modal-template h3 {
+  font-size: 0.8rem;
+}
 
   .modal-template a {
     font-size: 0.8rem;
