@@ -3,6 +3,7 @@ import BurgerIcon from "./BurgerIcon";
 import SideMenu from "./SideMenu";
 import MainNav from "./MainNav";
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
+import "../../../styles/NavSection.css";
 
 export default function PortfolioNavWrapper({
   showDesignModal,

@@ -2,6 +2,7 @@ import "../../../styles/SkillsSection.css";
 import "../../../styles/common.css";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import UpdateBackground from "../../common/UpdateBackground";
+import "../../../styles/AccueilSection.css";
 
 export default function SkillsSection({ username, data, setData, isPublished }) {
   const handleSkillChange = (index, newSkill) => {
