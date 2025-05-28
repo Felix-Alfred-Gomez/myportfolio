@@ -4,10 +4,9 @@ import SideMenu from "./SideMenu";
 import MainNav from "./MainNav";
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import "../../../styles/NavSection.css";
+import { useState } from "react";
 
 export default function PortfolioNavWrapper({
-  showDesignModal,
-  setShowDesignModal,
   menuOpen,
   setMenuOpen,
   menuRef,
@@ -18,7 +17,7 @@ export default function PortfolioNavWrapper({
   data
 }) 
 
-  {
+  {const [showDesignModal, setShowDesignModal] = useState(false);
   // On passe simplement navProps, setData, data, et handleNestedFieldChange directement aux sous-composants si besoin
 
   return (
