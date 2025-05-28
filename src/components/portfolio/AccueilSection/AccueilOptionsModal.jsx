@@ -9,11 +9,10 @@ import '../../../styles/common.css';
 import { handleNestedFieldChange } from '../../../hooks/HandlePortfolioData';
 import UpdateBackground from "../../common/UpdateBackground";
 
-export default function AccueilOptionsModal({ show, onClose, navProps, setData, data,
+export default function AccueilOptionsModal({ show, onClose, setData, data,
   isPublished,
   handleBackgroundUpload
 }) {
-  const { navLinkColor } = navProps;
   // Utilisation directe de handleNestedFieldChange importée
   const [showNavLinkColorPickerTitle, setShowNavLinkColorPickerTitle] = useState(false);
   const [showNavLinkColorPickerBIO, setShowNavLinkColorPickerBIO] = useState(false);
