@@ -4,6 +4,7 @@ import Select from "react-select";
 import fontFamilies from "../../common/fontFamilies";
 import '../../../styles/NavSection.css';
 import { handleNestedFieldChange } from '../../../hooks/HandlePortfolioData';
+import { X } from "lucide-react";
 
 export default function NavOptionsModal({ show, onClose, navProps, setData, data }) {
   const { navBarColor, navLinkColor, navBarAlpha, navFontFamily } = navProps;
@@ -16,6 +17,14 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
   return (
     <>
       <div className="modal-template option">
+
+        <button
+          type="button"
+          aria-label="Fermer"
+          onClick={onClose}
+          className="modal-close-button">
+          <X size={20} color="white" />
+        </button>
         
         <h2 style={{ marginBottom: 20 }}>Barre de navigation</h2>
         
@@ -145,12 +154,12 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
             <span style={{ marginLeft: 8 }}>{Math.round(navBarAlpha * 100)}%</span>
           </div>
         </div>
-        <button onClick={onClose}>Fermer</button>
+        {/* <button onClick={onClose}>Fermer</button> */}
       </div>
-      <div
+      {/* <div
         className="modal-overlay"
         style={{ backgroundColor: "transparent" }}
-      />
+      /> */}
     </>
   );
 }
