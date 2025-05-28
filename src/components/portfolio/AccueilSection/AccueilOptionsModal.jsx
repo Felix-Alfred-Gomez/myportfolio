@@ -15,7 +15,8 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
 }) {
   const { navLinkColor } = navProps;
   // Utilisation directe de handleNestedFieldChange importée
-  const [showNavLinkColorPicker, setShowNavLinkColorPicker] = useState(false);
+  const [showNavLinkColorPickerTitle, setShowNavLinkColorPickerTitle] = useState(false);
+  const [showNavLinkColorPickerBIO, setShowNavLinkColorPickerBIO] = useState(false);
 
   if (!show) return null;
 
@@ -84,9 +85,9 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
               <div
                 className="accueil-color-preview"
                 style={{ background: data.accueilProps.AccueilColorTitle }}
-                onClick={() => setShowNavLinkColorPicker(true)}
+                onClick={() => setShowNavLinkColorPickerTitle(true)}
               />
-              {showNavLinkColorPicker && (
+              {showNavLinkColorPickerTitle && (
                 <div className="modal-color-picker">
                   <div
                     style={{
@@ -94,14 +95,14 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
                       filter: 'none'
                     }}>
                     <SketchPicker
-                      color={navLinkColor}
+                      color={data.accueilProps.AccueilColorTitle}
                       onChange={color => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilColorTitle')(color.hex)}
                       styles={{
                         default: { picker: { boxShadow: 'none' } }
                       }}
                     />
                   </div>
-                  <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPicker(false)}>Fermer</button>
+                  <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPickerTitle(false)}>Fermer</button>
                 </div>
               )}
             </div>
@@ -135,8 +136,8 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
             {/* <span className="nav-font-label">Taille :</span> */}
             <input
               type="range"
-              min={20}
-              max={60}
+              min={10}
+              max={40}
               value={parseInt(data.accueilProps.AccueilFontSizeBIO) || 16}
               onChange={e => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilFontSizeBIO')(e.target.value + 'px')}
               className="accueil-font-size-slider"
@@ -170,9 +171,9 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
               <div
                 className="accueil-color-preview"
                 style={{ background: data.accueilProps.AccueilColorBIO }}
-                onClick={() => setShowNavLinkColorPicker(true)}
+                onClick={() => setShowNavLinkColorPickerBIO(true)}
               />
-              {showNavLinkColorPicker && (
+              {showNavLinkColorPickerBIO && (
                 <div className="modal-color-picker">
                   <div
                     style={{
@@ -180,14 +181,14 @@ export default function AccueilOptionsModal({ show, onClose, navProps, setData, 
                       filter: 'none'
                     }}>
                     <SketchPicker
-                      color={navLinkColor}
+                      color={data.accueilProps.AccueilColorBIO}
                       onChange={color => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilColorBIO')(color.hex)}
                       styles={{
                         default: { picker: { boxShadow: 'none' } }
                       }}
                     />
                   </div>
-                  <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPicker(false)}>Fermer</button>
+                  <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPickerBIO(false)}>Fermer</button>
                 </div>
               )}
             </div>
