@@ -5,7 +5,7 @@ import fontFamilies from "../../common/fontFamilies";
 import '../../../styles/NavSection.css';
 import { handleNestedFieldChange } from '../../../hooks/HandlePortfolioData';
 
-export default function DesignOptionsModal({ show, onClose, navProps, setData, data }) {
+export default function NavOptionsModal({ show, onClose, navProps, setData, data }) {
   const { navBarColor, navLinkColor, navBarAlpha, navFontFamily } = navProps;
   // Utilisation directe de handleNestedFieldChange importée
   const [showNavBarColorPicker, setShowNavBarColorPicker] = useState(false);

@@ -24,10 +24,10 @@ export default function PortfolioNavWrapper({
     <>
       {!isPublished && (
         <button
-          className="button-template-option-wheel"
+          className="nav-option-wheel"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
-          <Cog6ToothIcon className="option-wheel-icon" />
+          <Cog6ToothIcon className="nav-option-wheel-icon" />
         </button>
       )}
 

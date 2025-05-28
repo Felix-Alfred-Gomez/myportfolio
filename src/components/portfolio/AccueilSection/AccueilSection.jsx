@@ -1,15 +1,18 @@
+import { useState } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import "../../../styles/PortfolioTemplate.css";
 import "../../../styles/AccueilSection.css";
-import UpdateBackground from "../../common/UpdateBackground";
 import UpdateProfile from "./UpdateProfile";
 import UpdateText from "./UpdateText";
 import { handleFieldChange } from '../../../hooks/HandlePortfolioData';
+import { Cog6ToothIcon } from '@heroicons/react/24/solid';
+import AccueilOptionsModal from "./AccueilOptionsModal";
 
-export default function AccueilSection({ username, isPublished, data, setData }) {
+
+export default function AccueilSection({ username, isPublished, data, setData, navProps }) {
   const { imageUrl: profilePic, handleImageUpload: handleProfileUpload } = usePortfolioImage(username, "Profile");
   const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "AccueilBackground");
-
+  const [showDesignModal, setShowDesignModal] = useState(false);
 // Suppression de fieldChangeHandler, utilisation directe de handleFieldChange
   return (
     <section
@@ -18,12 +21,25 @@ export default function AccueilSection({ username, isPublished, data, setData })
       style={backgroundUrl ? { backgroundImage: `url(${backgroundUrl})`,
       backgroundSize: "cover", backgroundPosition: "center" } : {}}>
       
-      {/* Upload icon in top right */}
       {!isPublished && (
-        <UpdateBackground 
-          onUpload={handleBackgroundUpload} 
-          disabled={isPublished} />
+        <button
+          className="accueil-option-wheel"
+          title="Options"
+          onClick={() => setShowDesignModal(true)}>
+          <Cog6ToothIcon className="accueil-option-wheel-icon" />
+        </button>
       )}
+
+      {/* Design Options Modal */}
+      <AccueilOptionsModal
+        show={showDesignModal}
+        onClose={() => setShowDesignModal(false)}
+        navProps={navProps}
+        setData={setData}
+        data={data}
+        isPublished= {isPublished}
+        handleBackgroundUpload={handleBackgroundUpload}
+      />
 
       <UpdateProfile
         profilePic={profilePic}
