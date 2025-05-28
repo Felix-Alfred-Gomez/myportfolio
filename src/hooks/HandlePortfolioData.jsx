@@ -19,11 +19,11 @@ const defaultPortfolioData = {
   },
   accueilProps: {
     AccueilFontFamilyTitle: "Arial, sans-serif",
-    AccueilFontSizeTitle: "25px",
+    AccueilFontSizeTitle: "30px",
     AccueilFontWeightTitle: "bold",
     AccueilColorTitle: "#000000",
     AccueilFontFamilyBIO: "Arial, sans-serif",
-    AccueilFontSizeBIO: "15px",
+    AccueilFontSizeBIO: "20px",
     AccueilColorBIO: "#000000",
     AccueilFontWeightBIO: "normal",
   },
