@@ -27,7 +27,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
 
   return (
     <>
-      <Draggable nodeRef={nodeRef} cancel=".accueil-font-size-slider, input, .accueil-font-select-wrapper">
+      <Draggable nodeRef={nodeRef} cancel=".accueil-font-size-slider, input, .accueil-font-select-wrapper, .modal-close-button, .collapse-toggle">
         <div ref={nodeRef} 
           className="modal-template option drag"
           style={{cursor: 'grab'}}>
