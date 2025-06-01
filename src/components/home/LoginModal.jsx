@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword, reload } from "firebase/auth";
 import { app } from "../../firebaseConfig";
-import "../../styles/common.css"; // Import the dedicated CSS file
+import "../../styles/common.css";
+import "../../styles/modal.css";
 import { X } from "lucide-react";
 
 function LoginModal({ onLoginSuccess, onRegisterClick, onForgotPasswordClick, onClose }) {

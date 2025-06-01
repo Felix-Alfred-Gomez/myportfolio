@@ -2,9 +2,11 @@
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.08);
   }
+
   100% {
     transform: scale(1);
   }
@@ -25,34 +27,45 @@
 .container .nav-site {
   background-color: #f3f3f3;
   display: flex;
-  flex-direction: row; /* default is horizontal */
+  flex-direction: row;
+  /* default is horizontal */
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   padding: 0px 20px;
   border-bottom: 1px solid #e0e0e0;
-  height: 100px; /* default height */
+  height: 100px;
+  /* default height */
   transition: all 0.3s ease;
 }
 
 .container .nav-site .connect_button {
-  background-color: #225ba500; /* Button background */
-  cursor: pointer; /* Pointer cursor */
-  z-index: 1; /* Ensure it's above other elements */
-  max-width: fit-content; /* Fit content */
+  background-color: #225ba500;
+  /* Button background */
+  cursor: pointer;
+  /* Pointer cursor */
+  z-index: 1;
+  /* Ensure it's above other elements */
+  max-width: fit-content;
+  /* Fit content */
   margin-left: auto;
-  object-fit: contain; /* Ensure the image maintains its aspect ratio */
+  object-fit: contain;
+  /* Ensure the image maintains its aspect ratio */
   right: 20px;
   border: none;
 }
 
 .container .nav-site .title {
-    font-size: 2.5rem; /* Set the font size */
-    font-weight: bold; /* Make the text bold */
-    color: #000000; /* Set the text color to white */
-    padding: 0 20px; /* Add padding around the text */
-    font-family: 'Dancing Script', cursive;
-    user-select: none;
+  font-size: 2.5rem;
+  /* Set the font size */
+  font-weight: bold;
+  /* Make the text bold */
+  color: #000000;
+  /* Set the text color to white */
+  padding: 0 20px;
+  /* Add padding around the text */
+  font-family: 'Dancing Script', cursive;
+  user-select: none;
 }
 
 .container .nav-site .logo {
@@ -65,22 +78,31 @@
   display: flex;
   align-items: center;
   gap: 0px;
-  cursor: pointer; /* Ensure the pointer cursor is applied */
+  cursor: pointer;
+  /* Ensure the pointer cursor is applied */
 }
 
 .container .subtitle {
-  font-size: 1.5rem; /* Taille de police légèrement plus petite que le titre */
-  font-weight: normal; /* Poids de police normal */
-  color: #000000; /* Couleur légèrement plus claire que le titre */
-  text-align: center; /* Centrer le texte */
-  margin: 10px 0; /* Ajouter un espace au-dessus et en dessous */
-  padding: 5px 0; /* Ajouter un léger espacement interne */
+  font-size: 1.5rem;
+  /* Taille de police légèrement plus petite que le titre */
+  font-weight: normal;
+  /* Poids de police normal */
+  color: #000000;
+  /* Couleur légèrement plus claire que le titre */
+  text-align: center;
+  /* Centrer le texte */
+  margin: 10px 0;
+  /* Ajouter un espace au-dessus et en dessous */
+  padding: 5px 0;
+  /* Ajouter un léger espacement interne */
 }
 
 .container .buttons-group {
   display: flex;
-  justify-content: center; /* Center the buttons horizontally */
-  gap: 50px; /* Adds spacing between the buttons */
+  justify-content: center;
+  /* Center the buttons horizontally */
+  gap: 50px;
+  /* Adds spacing between the buttons */
 }
 
 .container .buttons-group .button {
@@ -97,11 +119,13 @@
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease; /* Increased duration to 0.5s */
+  transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+  /* Increased duration to 0.5s */
 }
 
 .container .buttons-group .button:hover {
-  transform: scale(1.1); /* Slightly enlarge the button on hover */
+  transform: scale(1.1);
+  /* Slightly enlarge the button on hover */
 }
 
 .login-container {
@@ -142,11 +166,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0);
+  /* Semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1; /* Ensure it appears above other elements */
+  z-index: 1;
+  /* Ensure it appears above other elements */
 }
 
 .logout_menu {
@@ -160,8 +186,10 @@
   cursor: pointer;
   transition: background-color 0.2s;
   border-radius: 5px;
-  font-size: 1rem; /* Set the font size */
-  color: #000000; /* Set the text color to white */
+  font-size: 1rem;
+  /* Set the font size */
+  color: #000000;
+  /* Set the text color to white */
   /* font-family: 'Dancing Script', cursive; */
 }
 
@@ -170,34 +198,45 @@
 }
 
 .connect_button_image {
-  width: 60px; /* Increased width of the image */
-  height: 60px; /* Increased height of the image */
-  object-fit: contain; /* Ensure the image maintains its aspect ratio */
-  border-radius: 100%; /* Make the image circular */
-  transition: transform 0.3s ease; /* Add a hover effect */
+  width: 60px;
+  /* Increased width of the image */
+  height: 60px;
+  /* Increased height of the image */
+  object-fit: contain;
+  /* Ensure the image maintains its aspect ratio */
+  border-radius: 100%;
+  /* Make the image circular */
+  transition: transform 0.3s ease;
+  /* Add a hover effect */
 }
 
 .connect_button_image:hover {
-  transform: scale(1.1); /* Slightly enlarge the image on hover */
+  transform: scale(1.1);
+  /* Slightly enlarge the image on hover */
 }
 
 .button-pulse {
-  background-color: #000000; /* Noir */
-  color: #ffffff; /* Blanc */
+  background-color: #000000;
+  /* Noir */
+  color: #ffffff;
+  /* Blanc */
   font-family: 'Dancing Script', cursive;
   font-size: 2rem;
   padding: 0.75rem 2rem;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  animation: pulse 2s infinite ease-in-out; /* Animation continue */
+  animation: pulse 2s infinite ease-in-out;
+  /* Animation continue */
   transition: background-color 0.3s ease;
 }
 
 .hero-section {
   position: relative;
-  width: 100%; /* Instead of 100vw */
-  height: 100vh; /* Full viewport height */
+  width: 100%;
+  /* Instead of 100vw */
+  height: 100vh;
+  /* Full viewport height */
   overflow: hidden;
   background-color: #ffffff;
 }
@@ -206,7 +245,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  image-rendering: auto; /* Améliorer le rendu des images */
+  image-rendering: auto;
+  /* Améliorer le rendu des images */
 }
 
 
@@ -217,8 +257,10 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center; /* Horizontal center */
-  align-items: center; /* Vertical center */
+  justify-content: center;
+  /* Horizontal center */
+  align-items: center;
+  /* Vertical center */
   flex-direction: column;
   color: rgb(255, 255, 255);
   text-align: center;
@@ -237,8 +279,10 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: flex-start; /* Horizontal center */
-  align-items: center; /* Vertical center */
+  justify-content: flex-start;
+  /* Horizontal center */
+  align-items: center;
+  /* Vertical center */
   flex-direction: column;
   color: rgb(0, 0, 0);
   text-align: center;
@@ -250,158 +294,18 @@
   font-family: 'Dancing Script', cursive;
 }
 
-/* Modal overlay */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 4;
-}
-
-/* Modal styles */
-.modal-template {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 25px;
-  padding-top: 5px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 5;
-  text-align: center;
-  font-size: 1.2rem;
-  /* font-family: "Roboto", sans-serif; */
-
-  width: 75vw;
-  max-width: 450px;
-  min-width: 275px;
-  box-sizing: border-box;
-  word-break: break-word; /* Ensure long words break to the next line */
-}
-
-.modal-template.option {
-  background-color: rgba(255,255,255,0.85); 
-}
-
-.modal-template.drag {
-  top: unset;
-  left: unset;
-  transform: none;
-}
-
-.modal-login-format {
-    display: flex;
-    flex-direction: column;
-}
-
-.modal-footer {
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: #555;
-}
-
-.modal-header {
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    color: #555;
-}
-
-.modal-input-box {
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.modal-error {
-    color: #e74c3c;
-    border: none;
-}
-
-.modal-template h2 {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-}
-
-/* Style for AccueilOptionsModal heading */
-.modal-template h3 {
-  border-top: 1px solid #ccc;
-  padding-top: 12px;
-  font-size: 0.9rem;
-  color: black;
-}
-
-/* Style for AccueilOptionsModal heading */
-.modal-template h2,
-.modal-heading {
-  margin-bottom: 20px;
-  color: black;
-}
-
-.modal-template a {
-  color: #2575fc;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-.modal-template a:hover {
-  text-decoration: underline;
-}
-
-.modal-template button {
-  font-size: 1rem;
-  margin-top: 10px;
-  padding: 10px 10px;
-  background-color: #2575fc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-right: 10px; /* Ajoute de l'espace à droite de chaque bouton */
-}
-
-.modal-template button:last-child {
-  margin-right: 0; /* Pas d'espace après le dernier bouton */
-}
-
-.modal-template .modal-close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 34px;
-  height: 34px;
-  background-color: #999999;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-}
-
-.modal-template .modal-close-button:hover {
-  background-color: #636262;
-}
-
 /* Responsive styles for smartphones */
 @media screen and ((max-width: 499px) or (max-height: 499px)) {
 
   .logout_menu_item {
-  font-size: 0.75rem; /* Set the font size */
-}
+    font-size: 0.75rem;
+    /* Set the font size */
+  }
 
   .button-pulse {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.5rem;
-}
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+  }
 
   .container .nav-site .logo {
     width: 50px;
@@ -412,82 +316,49 @@
   }
 
   .hero-section .hero-overlay-dashboard h2 {
-  font-size: 2rem;
-}
+    font-size: 2rem;
+  }
 
   .connect_button_image {
-    width: 40px; /* Increased width of the image */
-    height: 40px; /* Increased height of the image */
+    width: 40px;
+    /* Increased width of the image */
+    height: 40px;
+    /* Increased height of the image */
   }
-  
+
   .container .nav-site .title {
-    font-size: 1.5rem; /* Reduce font size for the title */
+    font-size: 1.5rem;
+    /* Reduce font size for the title */
   }
 
   .container .nav-site .connect_button {
-    padding: 8px 15px; /* Adjust button padding */
-    margin-top: 10px; /* Add spacing from other elements */
+    padding: 8px 15px;
+    /* Adjust button padding */
+    margin-top: 10px;
+    /* Add spacing from other elements */
     font-size: 0.8rem;
   }
 
   .container .subtitle {
-    font-size: 0.9rem; /* Reduce subtitle font size */
-    margin: 5px 0; /* Adjust margins */
+    font-size: 0.9rem;
+    /* Reduce subtitle font size */
+    margin: 5px 0;
+    /* Adjust margins */
   }
 
   .container .buttons-group {
-  gap: 25px; /* Adds spacing between the buttons */
-}
+    gap: 25px;
+    /* Adds spacing between the buttons */
+  }
 
   .popup_menu {
-  top: 75px;
-  right: 10px;
-}
+    top: 75px;
+    right: 10px;
+  }
 
   .container .buttons-group .button {
     font-size: 1rem;
   }
-
-    /* Modal styles */
-  .modal-template {
-    font-size: 0.8rem;
-  }
-
-  .modal-template h2 {
-    font-size: 1rem;
-  }
-
-  /* Style for AccueilOptionsModal heading */
-.modal-template h3 {
-  font-size: 0.8rem;
-}
-
-  .modal-template a {
-    font-size: 0.8rem;
-  }
-
-  .modal-template button {
-    font-size: 0.8rem;
-  }
-
-  .modal-footer {
-    font-size: 0.8rem;
-  }
-
-  .modal-header {
-    font-size: 0.8rem;
-  }
-
-  .modal-input-box {
-    font-size: 0.8rem;
-}
-
-.modal-template .modal-close-button {
-  top: 1px;
-  right: 1px;
-  width: 34px;
-  height: 34px;
-}
 
 }
 
@@ -495,21 +366,26 @@
 @media screen and (max-width: 350px) {
 
   .container .nav-site {
-    flex-direction: column; /* stack items vertically */
-    height: auto; /* allow height to grow with content */
-    align-items: center; /* optional: align to left */
-    gap: 0px; /* spacing between logo and buttons */
+    flex-direction: column;
+    /* stack items vertically */
+    height: auto;
+    /* allow height to grow with content */
+    align-items: center;
+    /* optional: align to left */
+    gap: 0px;
+    /* spacing between logo and buttons */
     padding: 0px 10px;
   }
 
   .container .nav-site .connect_button {
     margin-left: 0;
     align-self: center;
-}
+  }
 
-.container .buttons-group {
-  flex-direction: column;      /* Ajoute cette ligne */
-}
+  .container .buttons-group {
+    flex-direction: column;
+    /* Ajoute cette ligne */
+  }
 
 }
 
