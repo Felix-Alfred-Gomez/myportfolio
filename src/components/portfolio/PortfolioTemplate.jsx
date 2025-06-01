@@ -5,6 +5,8 @@ import SkillsSection from "./SkillsSection/SkillsSection";
 import AccueilSection from "./AccueilSection/AccueilSection";
 import PublishModal from "./PublishModal";
 import PortfolioNavWrapper from "./NavigationSection/PortfolioNavWrapper";
+import { HiOutlineSave } from "react-icons/hi";
+import { RiArrowGoBackFill } from "react-icons/ri";
 import "../../styles/PortfolioTemplate.css";
 
 export function PortfolioContent({ isPublished }) {
@@ -38,11 +40,11 @@ export function PortfolioContent({ isPublished }) {
       {!isPublished && (
         <>
           <button className="button-template publish" onClick={handlePublish}>
-            Sauver
+            <HiOutlineSave className="button-template-icon" />
           </button>
 
           <button className="button-template return" onClick={() => navigate("/dashboard")}>
-            Retour
+            <RiArrowGoBackFill className="button-template-icon" />
           </button>
         </>
       )}
