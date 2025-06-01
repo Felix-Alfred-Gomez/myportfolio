@@ -1,10 +1,8 @@
-import React from "react";
-
 export default function PublishModal({ show, url, onClose }) {
   if (!show) return null;
 
   return (
-    <>
+    <div className="modal-overlay grey">
       <div className="modal-template">
         <h2>Votre portfolio a sauvegardé</h2>
         <p>
@@ -16,6 +14,6 @@ export default function PublishModal({ show, url, onClose }) {
         <button onClick={onClose}>Fermer</button>
       </div>
       <div className="modal-overlay" onClick={onClose} />
-    </>
+    </div>
   );
 }

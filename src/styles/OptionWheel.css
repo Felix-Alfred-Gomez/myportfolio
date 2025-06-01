@@ -1,0 +1,38 @@
+.wheel-option {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+}
+
+.wheel-icon {
+  width: 40px;
+  height: 40px;
+  color: rgb(0, 0, 0);
+  transition: transform 0.3s ease;
+}
+
+.wheel-option:hover .wheel-icon {
+    transform: rotate(90deg);
+}
+
+.wheel-option.nav {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+}
+
+.wheel-option.template-page {
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+}

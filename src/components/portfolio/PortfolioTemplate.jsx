@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { GetPortfolioData, PushPortfolioData } from "../../hooks/HandlePortfolioData";
 import SkillsSection from "./SkillsSection/SkillsSection";
 import AccueilSection from "./AccueilSection/AccueilSection";
+import ProjetSection from "./ProjetSection/ProjetSection";
 import PublishModal from "./PublishModal";
 import PortfolioNavWrapper from "./NavigationSection/PortfolioNavWrapper";
 import { HiOutlineSave } from "react-icons/hi";
@@ -69,6 +70,13 @@ export function PortfolioContent({ isPublished }) {
       />
 
       <AccueilSection
+        username={username}
+        isPublished={isPublished}
+        data={data}
+        setData={setData}
+      />
+
+      <ProjetSection
         username={username}
         isPublished={isPublished}
         data={data}

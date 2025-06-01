@@ -30,15 +30,14 @@ function LoginLogo({ onLoginClick, onLogoutClick }) {
         />
       </button>
       {showModal && (
-        <>
+        <div className="modal-overlay grey">
           <div className="modal-template">
             <h2>Déconnexion</h2>
             <p>Voulez-vous vous déconnecter ?</p>
             <button onClick={handleLogout}>Se déconnecter</button>
             <button onClick={() => setShowModal(false)}>Annuler</button>
           </div>
-          <div className="modal-overlay" onClick={() => setShowModal(false)} />
-        </>
+        </div>
       )}
     </>
   ) : (
