@@ -227,6 +227,16 @@
   background: none !important;
 }
 
+.accueil-update-background {
+  /* Intentionally left blank for drag cancel targeting */
+  pointer-events: auto;
+}
+
+.accueil-SketchPicker {
+  pointer-events: auto;
+  box-shadow: none;
+}
+
 /* Responsive behavior */
 @media (max-width: 600px)  or (max-height: 600px){
 .accueil-profile-pic-wrapper {

@@ -27,7 +27,12 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
 
   return (
     <>
-      <Draggable nodeRef={nodeRef} cancel=".accueil-font-size-slider, input, .accueil-font-select-wrapper, .modal-close-button, .collapse-toggle">
+      <Draggable nodeRef={nodeRef} cancel=".accueil-font-size-slider, 
+      input, .accueil-font-select-wrapper, 
+      .modal-close-button, .collapse-toggle, 
+      .accueil-color-preview, 
+      .accueil-update-background,
+      .accueil-SketchPicker">
         <div ref={nodeRef} 
           className="modal-template option drag"
           style={{cursor: 'grab'}}>
@@ -123,9 +128,8 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                           <SketchPicker
                             color={data.accueilProps.AccueilColorTitle}
                             onChange={color => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilColorTitle')(color.hex)}
-                            styles={{
-                              default: { picker: { boxShadow: 'none' } }
-                            }}
+                            styles={{default: { picker: { boxShadow: 'none' } }}}
+                            className="accueil-SketchPicker"
                           />
                         </div>
                         <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPickerTitle(false)}>Fermer</button>
@@ -216,9 +220,8 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                           <SketchPicker
                             color={data.accueilProps.AccueilColorBIO}
                             onChange={color => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilColorBIO')(color.hex)}
-                            styles={{
-                              default: { picker: { boxShadow: 'none' } }
-                            }}
+                            styles={{default: { picker: { boxShadow: 'none' } }}}
+                            className="accueil-SketchPicker"
                           />
                         </div>
                         <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPickerBIO(false)}>Fermer</button>
@@ -242,6 +245,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', margin: '5px 0 16px 0' }}>
                 <label className="modal-label-black"> Chargez une image de fond: </label>
                 <UpdateBackground
+                  className="accueil-update-background"
                   onUpload={handleBackgroundUpload}
                   disabled={isPublished} />
               </div>
