@@ -43,7 +43,6 @@ export default function AccueilSection({ username, isPublished, data, setData })
       <div className="accueil-profile-pic-wrapper">
         <img
           src={profilePic}
-          alt="Profile"
           className="accueil-profile-img"
         />
       </div>
