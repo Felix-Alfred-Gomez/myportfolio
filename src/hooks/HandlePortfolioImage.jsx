@@ -14,7 +14,8 @@ export function usePortfolioImage(username, CharVarName) {
           const url = await getDownloadURL(imageRef);
           setImageUrl(url);
         } catch (error) {
-          console.error(`No ${CharVarName} found:`, error);
+          setError(`Error fetching image: ${error.message}`);
+          setImageUrl(require("../assets/Background_default.jpg"));
         }
       }
     };
@@ -39,6 +40,7 @@ export function usePortfolioImage(username, CharVarName) {
         console.log(`${CharVarName} uploaded successfully!`);
       } catch (error) {
         setError(`Error uploading ${CharVarName}: ${error.message}`);
+        setImageUrl(require("../assets/Background_default.jpg"));
         console.error(`Error uploading ${CharVarName}:`, error);
       }
     }
