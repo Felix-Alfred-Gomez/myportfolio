@@ -13,7 +13,8 @@ import { X } from "lucide-react";
 
 export default function AccueilOptionsModal({ show, onClose, setData, data,
   isPublished,
-  handleBackgroundUpload
+  handleBackgroundUpload,
+  handleProfileUpload
 }) {
   // Utilisation directe de handleNestedFieldChange importée
   const [showNavLinkColorPickerTitle, setShowNavLinkColorPickerTitle] = useState(false);
@@ -21,6 +22,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
   const [collapseNom, setCollapseNom] = useState(false);
   const [collapseBio, setCollapseBio] = useState(false);
   const [collapseBg, setCollapseBg] = useState(false);
+  const [collapseProfile, setCollapseProfile] = useState(false);
   const nodeRef = useRef(null);
 
   if (!show) return null;
@@ -246,6 +248,22 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                 <label className="modal-label-black"> Chargez une image de fond: </label>
                 <UpdateBackground
                   onUpload={handleBackgroundUpload}
+                  disabled={isPublished} />
+              </div>
+            )}
+          </div>
+
+          {/* Image de profil */}
+          <button className="collapse-toggle" onClick={() => setCollapseProfile(v => !v)}>
+            <span style={{display:'flex', alignItems:'center', gap:6}}>{collapseProfile ? '▼' : '►'} <span>Charger photo de profile</span></span>
+            <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span>
+          </button>
+          <div className={`collapsible-content${collapseProfile ? ' open' : ''}`}>
+            {collapseProfile && (
+              <div className="accueil-update-background">
+                <label className="modal-label-black"> Charger une photo de profile: </label>
+                <UpdateBackground
+                  onUpload={handleProfileUpload}
                   disabled={isPublished} />
               </div>
             )}

@@ -2,14 +2,13 @@ import { useState } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import "../../../styles/PortfolioTemplate.css";
 import "../../../styles/AccueilSection.css";
-import UpdateProfile from "./UpdateProfile";
 import UpdateText from "./UpdateText";
 import { handleFieldChange } from '../../../hooks/HandlePortfolioData';
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import AccueilOptionsModal from "./AccueilOptionsModal";
 
 
-export default function AccueilSection({ username, isPublished, data, setData, navProps }) {
+export default function AccueilSection({ username, isPublished, data, setData }) {
   const { imageUrl: profilePic, handleImageUpload: handleProfileUpload } = usePortfolioImage(username, "Profile");
   const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "AccueilBackground");
   const [showDesignModal, setShowDesignModal] = useState(false);
@@ -36,14 +35,18 @@ export default function AccueilSection({ username, isPublished, data, setData, n
         onClose={() => setShowDesignModal(false)}
         setData={setData}
         data={data}
-        isPublished= {isPublished}
+        isPublished={isPublished}
         handleBackgroundUpload={handleBackgroundUpload}
+        handleProfileUpload={handleProfileUpload}
       />
 
-      <UpdateProfile
-        profilePic={profilePic}
-        onUpload={handleProfileUpload}
-        disabled={isPublished}/>
+      <div className="accueil-profile-pic-wrapper">
+        <img
+          src={profilePic}
+          alt="Profile"
+          className="accueil-profile-img"
+        />
+      </div>
       
       <UpdateText
         data={data}
