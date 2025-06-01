@@ -152,6 +152,10 @@
   width: 120px;
 }
 
+.accueil-color-preview-wrapper {
+  margin-left: 10px;
+}
+
 .accueil-color-preview {
   width: 36px;
   height: 18px;
@@ -230,6 +234,11 @@
 .accueil-update-background {
   /* Intentionally left blank for drag cancel targeting */
   pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0 16px 0;
 }
 
 .accueil-SketchPicker {
