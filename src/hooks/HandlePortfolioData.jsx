@@ -21,10 +21,10 @@ const defaultPortfolioData = {
     AccueilFontFamilyTitle: "Arial, sans-serif",
     AccueilFontSizeTitle: "30px",
     AccueilFontWeightTitle: "bold",
-    AccueilColorTitle: "#000000",
+    AccueilColorTitle: "#ffffff",
     AccueilFontFamilyBIO: "Arial, sans-serif",
     AccueilFontSizeBIO: "20px",
-    AccueilColorBIO: "#000000",
+    AccueilColorBIO: "#ffffff",
     AccueilFontWeightBIO: "normal",
   },
 };
