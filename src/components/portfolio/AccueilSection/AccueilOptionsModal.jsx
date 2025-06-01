@@ -28,8 +28,10 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
   if (!show) return null;
 
   return (
-    <>
-      <Draggable nodeRef={nodeRef} cancel=".accueil-font-size-slider, 
+    <div className="modal-overlay">
+      <Draggable 
+      nodeRef={nodeRef} 
+      cancel=".accueil-font-size-slider, 
       input, .accueil-font-select-wrapper, 
       .modal-close-button, .collapse-toggle, 
       .accueil-color-preview-wrapper, 
@@ -276,6 +278,6 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
         className="modal-overlay"
         style={{ backgroundColor: "transparent" }}
       />
-    </>
+    </div>
   );
 }

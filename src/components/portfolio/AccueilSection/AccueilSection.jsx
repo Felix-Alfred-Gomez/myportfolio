@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
-import "../../../styles/PortfolioTemplate.css";
-import "../../../styles/AccueilSection.css";
 import UpdateText from "./UpdateText";
 import { handleFieldChange } from '../../../hooks/HandlePortfolioData';
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
@@ -22,10 +20,10 @@ export default function AccueilSection({ username, isPublished, data, setData })
       
       {!isPublished && (
         <button
-          className="accueil-option-wheel"
+          className="wheel-option template-page"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
-          <Cog6ToothIcon className="accueil-option-wheel-icon" />
+          <Cog6ToothIcon className="wheel-icon" />
         </button>
       )}
 

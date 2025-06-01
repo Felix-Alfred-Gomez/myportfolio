@@ -6,6 +6,10 @@ import Dashboard from "./components/dashboard/Dashboard";
 import PublicPortfolio from "./components/portfolio/PublicPortfolio";
 import PortfolioEdition from "./components/portfolio/PortfolioEdition";
 import { AuthContext } from "./context/AuthContext";
+import "./styles/OptionWheel.css";
+import "./styles/PortfolioTemplate.css";
+import "./styles/AccueilSection.css";
+import "./styles/ProjetSection.css";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);

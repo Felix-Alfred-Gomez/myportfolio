@@ -15,7 +15,7 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
   if (!show) return null;
 
   return (
-    <>
+    <div className="modal-overlay">
       <div className="modal-template option">
 
         <button
@@ -160,6 +160,6 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
         className="modal-overlay"
         style={{ backgroundColor: "transparent" }}
       /> */}
-    </>
+    </div>
   );
 }
