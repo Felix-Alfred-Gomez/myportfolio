@@ -30,7 +30,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
       <Draggable nodeRef={nodeRef} cancel=".accueil-font-size-slider, 
       input, .accueil-font-select-wrapper, 
       .modal-close-button, .collapse-toggle, 
-      .accueil-color-preview, 
+      .accueil-color-preview-wrapper, 
       .accueil-update-background,
       .accueil-SketchPicker">
         <div ref={nodeRef} 
@@ -112,7 +112,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                 {/* 1) Couleur du texte */}
                 <label className="modal-label-black">
                   Couleur:
-                  <div style={{ display: "inline-block", marginLeft: 10 }}>
+                  <div className="accueil-color-preview-wrapper">
                     <div
                       className="accueil-color-preview"
                       style={{ background: data.accueilProps.AccueilColorTitle }}
@@ -204,7 +204,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                 {/* 1) Couleur du texte */}
                 <label className="modal-label-black">
                   Couleur:
-                  <div style={{ display: "inline-block", marginLeft: 10 }}>
+                  <div className="accueil-color-preview-wrapper">
                     <div
                       className="accueil-color-preview"
                       style={{ background: data.accueilProps.AccueilColorBIO }}
@@ -242,10 +242,9 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
           </button>
           <div className={`collapsible-content${collapseBg ? ' open' : ''}`}>
             {collapseBg && (
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', margin: '5px 0 16px 0' }}>
+              <div className="accueil-update-background">
                 <label className="modal-label-black"> Chargez une image de fond: </label>
                 <UpdateBackground
-                  className="accueil-update-background"
                   onUpload={handleBackgroundUpload}
                   disabled={isPublished} />
               </div>
