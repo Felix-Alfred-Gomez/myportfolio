@@ -15,12 +15,20 @@ export default function UpdateText({
 }) {
   const textareaRef = useRef(null);
 
+  // Force update box size on value change, font size, font family, and window resize etc
   useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+    function handleResize() {
+      if (textareaRef.current) {
+        textareaRef.current.style.height = "auto";
+        textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+      }
     }
-  }, [value, fontFamilySize, fontFamilyStyle, fontFamilyWeight]); // Force update on value change, font size, and font family
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [value, fontFamilySize, fontFamilyStyle, fontFamilyWeight]);
 
   return (
     <div className={containerClass}>
