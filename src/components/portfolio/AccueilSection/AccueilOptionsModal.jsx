@@ -274,10 +274,6 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
           {/* <button onClick={onClose}>Fermer</button> */}
         </div>
       </Draggable>
-      <div
-        className="modal-overlay"
-        style={{ backgroundColor: "transparent" }}
-      />
     </div>
   );
 }
