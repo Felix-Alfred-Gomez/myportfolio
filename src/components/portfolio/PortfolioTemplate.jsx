@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { GetPortfolioData, PushPortfolioData } from "../../hooks/HandlePortfolioData";
-import SkillsSection from "./SkillsSection/SkillsSection";
+// import SkillsSection from "./SkillsSection/SkillsSection";
 import AccueilSection from "./AccueilSection/AccueilSection";
 import ProjetSection from "./ProjetSection/ProjetSection";
 import PublishModal from "./PublishModal";
@@ -79,16 +79,14 @@ export function PortfolioContent({ isPublished }) {
       <ProjetSection
         username={username}
         isPublished={isPublished}
-        data={data}
-        setData={setData}
       />
 
-      <SkillsSection
+      {/* <SkillsSection
         username={username}
         data={data}
         setData={setData}
         isPublished={isPublished}
-      />
+      /> */}
     </div>
   );
 }
