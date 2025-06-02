@@ -26,6 +26,21 @@ export default function MainNav({ navProps }) {
       </a>
       <a
         className="portfolio-anchor"
+        href="#project"
+        style={{
+          color: navLinkColor,
+          fontSize: navFontSize,
+          fontWeight: navFontWeight
+        }}
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById("project").scrollIntoView({ behavior: "smooth" });
+        }}
+      >
+        Projets
+      </a>
+      {/* <a
+        className="portfolio-anchor"
         href="#skills"
         style={{
           color: navLinkColor,
@@ -38,7 +53,7 @@ export default function MainNav({ navProps }) {
         }}
       >
         Compétences
-      </a>
+      </a> */}
     </nav>
   );
 }

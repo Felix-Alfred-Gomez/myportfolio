@@ -3,9 +3,8 @@ import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import ProjetOptionsModal from "./ProjetOptionsModal";
 
-export default function AccueilSection({ username, isPublished, data, setData }) {
-  const { handleImageUpload: handleProfileUpload } = usePortfolioImage(username, "Profile");
-  const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "AccueilBackground");
+export default function ProjetSection({ username, isPublished }) {
+  const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "ProjetBackground");
   const [showDesignModal, setShowDesignModal] = useState(false);
 
   return (
@@ -28,11 +27,8 @@ export default function AccueilSection({ username, isPublished, data, setData })
       <ProjetOptionsModal
         show={showDesignModal}
         onClose={() => setShowDesignModal(false)}
-        setData={setData}
-        data={data}
         isPublished={isPublished}
         handleBackgroundUpload={handleBackgroundUpload}
-        handleProfileUpload={handleProfileUpload}
       />
 
     </section>

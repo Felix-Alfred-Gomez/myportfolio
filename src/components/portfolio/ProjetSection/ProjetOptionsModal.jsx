@@ -10,11 +10,8 @@ import { X } from "lucide-react";
 export default function ProjetOptionsModal({
   show,
   onClose,
-  setData,
-  data,
   isPublished,
   handleBackgroundUpload,
-  handleProfileUpload
 }) {
   // Utilisation directe de handleNestedFieldChange importée
   const [collapseBg, setCollapseBg] = useState(false);
