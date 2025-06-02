@@ -55,10 +55,10 @@ export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, na
         Accueil
       </a>
       <a
-        href="#skills"
+        href="#project"
         onClick={e => {
           e.preventDefault();
-          document.getElementById("skills").scrollIntoView({ behavior: "smooth" });
+          document.getElementById("project").scrollIntoView({ behavior: "smooth" });
           setMenuOpen(false);
         }}
         style={{
@@ -67,7 +67,7 @@ export default function SideMenu({ menuOpen, setMenuOpen, menuRef, burgerRef, na
           fontWeight: navFontWeight
         }}
       >
-        Compétences
+        Projets
       </a>
     </div>
   );
