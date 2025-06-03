@@ -48,7 +48,9 @@ function Dashboard() {
 
   const handleViewPortfolio = () => {
     if (username) {
-      navigate(`/${username}`);
+      // navigate(`/${username}`);
+      // Open the portfolio in a new tab
+      window.open(`/${username}`, "_blank", "noopener,noreferrer");
     } else {
       alert("Veuillez vous connecter pour voir votre portfolio.");
     }
