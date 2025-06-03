@@ -2,38 +2,13 @@ import { useState, useEffect } from "react";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, get, query, orderByChild, equalTo } from "firebase/database";
+import { defaultPortfolioData } from "./defaultPortfolioData";
 
-// Default portfolio data structure
-const defaultPortfolioData = {
-  skills: ["Compétence 1", "Compétence 2", "Compétence 3"],
-  projects: ["Projet 1", "Projet 2", "Projet 3"], // Example: Add other fields like projects
-  name: "Votre Nom",
-  BIO: "Votre statut",
-  navProps: {
-    navBarColor: "#000000",
-    navLinkColor: "#ffffff",
-    navBarAlpha: 0.5,
-    navFontFamily: "Arial, sans-serif",
-    navFontSize: "25px",
-    navFontWeight: "bold",
-  },
-  accueilProps: {
-    AccueilFontFamilyTitle: "Arial, sans-serif",
-    AccueilFontSizeTitle: "30px",
-    AccueilFontWeightTitle: "bold",
-    AccueilColorTitle: "#ffffff",
-    AccueilFontFamilyBIO: "Arial, sans-serif",
-    AccueilFontSizeBIO: "20px",
-    AccueilColorBIO: "#ffffff",
-    AccueilFontWeightBIO: "normal",
-  },
-};
-
-/**
- * Fetches portfolio data from Firestore.
- * @param {string} username - The username of the portfolio owner.
- * @returns {[object, function]} - The portfolio data and a function to update it.
- */
+// /**
+//  * Fetches portfolio data from Firestore.
+//  * @param {string} username - The username of the portfolio owner.
+//  * @returns {[object, function]} - The portfolio data and a function to update it.
+//  */
 export function GetPortfolioData(username) {
   const [data, setData] = useState(defaultPortfolioData);
 
@@ -72,12 +47,14 @@ export async function PushPortfolioData(username, data) {
   const db = getFirestore();
 
   try {
+    // Deep merge with defaultPortfolioData before pushing
+    const mergedData = deepMerge(defaultPortfolioData, data);
     await setDoc(doc(db, "publicPortfolios", username), {
-      ...data, // Spread the data object to include all its fields
+      ...mergedData, // Spread the merged data object
       username, // Add the username explicitly
       publishedAt: new Date().toISOString(), // Add the timestamp
     });
-    console.log("Portfolio data pushed successfully:", { username, ...data });
+    console.log("Portfolio data pushed successfully:", { username, ...mergedData });
   } catch (error) {
     console.error("Error pushing portfolio data:", error);
     throw error;

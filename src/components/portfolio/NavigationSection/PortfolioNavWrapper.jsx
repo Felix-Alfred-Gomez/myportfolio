@@ -24,7 +24,7 @@ export default function PortfolioNavWrapper({
     <>
       {!isPublished && (
         <button
-          className="wheel-option nav"
+          className="wheel-option nav zlevel3"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
           <Cog6ToothIcon className="wheel-icon" />
