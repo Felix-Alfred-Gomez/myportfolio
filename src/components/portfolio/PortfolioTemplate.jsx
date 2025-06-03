@@ -79,6 +79,8 @@ export function PortfolioContent({ isPublished }) {
       <ProjetSection
         username={username}
         isPublished={isPublished}
+        data={data}
+        setData={setData}
       />
 
       {/* <SkillsSection
