@@ -9,3 +9,138 @@
   padding-top: 0px;
   text-align: center;
 }
+
+.projets-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  width: 75vw;
+}
+
+.projet-card {
+  background: rgba(255,255,255,0.95);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  padding: 1.5rem 1.2rem;
+  min-width: 220px;
+  max-width: 270px;
+  flex: 1 1 220px;
+  transition: transform 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projet-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+.projet-card h3 {
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+
+.projet-card p {
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+
+.projet-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.projet-tech {
+  background: #e0e0e0;
+  color: #222;
+  border-radius: 8px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.9em;
+  margin-bottom: 0.2rem;
+}
+
+.projet-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.projet-modal {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-width: 320px;
+  max-width: 480px;
+  width: 90vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  color: #c00;
+  cursor: pointer;
+}
+
+.projet-modal h2 {
+  margin-bottom: 1.1rem;
+  text-align: center;
+}
+
+.projet-modal p {
+  margin-bottom: 1.1rem;
+  text-align: center;
+}
+
+.projet-tech-list-modal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+}
+
+.projet-tech-modal {
+  background: #f2f2f2;
+  color: #333;
+  border-radius: 8px;
+  padding: 0.3rem 0.9rem;
+  font-size: 1em;
+}
+
+.projet-link-modal {
+  display: inline-block;
+  margin-top: 0.7rem;
+  background: #1976d2;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.18s;
+}
+
+.projet-link-modal:hover {
+  background: #125ea2;
+}
