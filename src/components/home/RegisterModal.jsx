@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
-import { getDatabase, ref, set, get, query, orderByChild, equalTo } from "firebase/database";
+import { getDatabase, ref, set} from "firebase/database";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css"; // Use the same CSS as Login
 import { X } from "lucide-react";
+import { checkUsernameAvailable } from "../../hooks/HandlePortfolioData";
 
 function RegisterModal({ onRegisterSuccess, onClose }) {
   const [username, setUsername] = useState("");
@@ -24,7 +25,7 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
     if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
     if (value.length > 0) {
       debounceTimeout.current = setTimeout(async () => {
-        const available = await checkUsernameAvailable(value);
+        const available = await checkUsernameAvailable(value, app);
         if (!available) {
           setError("Ce nom d'utilisateur est déjà pris.");
         } else {
@@ -34,19 +35,9 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
     }
   };
 
-  // Check if username is available in Realtime Database
-  const checkUsernameAvailable = async (username) => {
-    const database = getDatabase(app);
-    const usersRef = ref(database, "users");
-    const q = query(usersRef, orderByChild("username"), equalTo(username));
-    const snapshot = await get(q);
-    return !snapshot.exists(); // true if available
-  };
-
   const handleRegister = async (e) => {
     e.preventDefault();
     if (error) {
-      // Just return, error will be shown in the UI
       return;
     }
     const auth = getAuth(app);
@@ -61,11 +52,11 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
       });
 
       await sendEmailVerification(user);
-      // alert("Registration successful! A verification email has been sent to your email address.");
 
-      if (onRegisterSuccess) onRegisterSuccess();} 
-      
-      catch (err) {setError(err.message);}
+      if (onRegisterSuccess) onRegisterSuccess();
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (

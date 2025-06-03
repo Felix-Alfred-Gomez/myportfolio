@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, get } from "firebase/database";
+import { getDatabase, ref, get, query, orderByChild, equalTo } from "firebase/database";
 
 // Default portfolio data structure
 const defaultPortfolioData = {
@@ -108,6 +108,15 @@ export async function FetchUsername() {
 
   return null; // Return null if no user is logged in
 }
+
+// Check if username is available in Realtime Database
+export const checkUsernameAvailable = async (username, app) => {
+  const database = getDatabase(app);
+  const usersRef = ref(database, "users");
+  const q = query(usersRef, orderByChild("username"), equalTo(username));
+  const snapshot = await get(q);
+  return !snapshot.exists(); // true if available
+};
 
 // Deep merge utility for objects
 function deepMerge(target, source) {

@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import Dashboard from "./components/dashboard/Dashboard";
-import PublicPortfolio from "./components/portfolio/PublicPortfolio";
+import PublicPortfolioRouteGuard from "./components/portfolio/PublicPortfolioRouteGuard";
 import ProtectedPortfolioEditionRoute from "./components/portfolio/ProtectedPortfolioEditionRoute";
 import { AuthContext } from "./context/AuthContext";
 import "./styles/OptionWheel.css";
@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Home />}/>
         <Route path="/portfolio-edition/:username" element={<ProtectedPortfolioEditionRoute />} />
-        <Route path="/:username" element={<PublicPortfolio />} />
+        <Route path="/:username" element={<PublicPortfolioRouteGuard />} />
       </Routes>
     </Router>
   );

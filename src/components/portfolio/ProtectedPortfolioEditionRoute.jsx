@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { FetchUsername } from "../../hooks/HandlePortfolioData"
 import PortfolioEdition from "./PortfolioEdition"
-import Home from "../home/Home"
 
 export default function ProtectedPortfolioEditionRoute() {
   const { username } = useParams();
@@ -22,6 +21,6 @@ export default function ProtectedPortfolioEditionRoute() {
   if (currentUsername === username) {
     return <PortfolioEdition />;
   } else {
-    return <Home />;
+    return <Navigate to="/" replace />;
   }
 }
