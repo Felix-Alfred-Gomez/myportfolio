@@ -19,7 +19,7 @@ export default function ProjetSection({ username, isPublished }) {
           className="wheel-option template-page"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
-          <Cog6ToothIcon className="wheel-icon" />
+          <Cog6ToothIcon className="wheel-icon red" />
         </button>
       )}
 

@@ -20,10 +20,10 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
     <div className="modal-overlay">
       <Draggable
         nodeRef={nodeRef}
-        cancel=".nav-font-size-slider, 
-        input, .nav-font-select-wrapper,
+        cancel=".modal-font-size-slider, 
+        input, .modal-font-select-wrapper,
         .modal-close-button,
-        .nav-SketchPicker, .nav-color-preview-wrapper">
+        .modal-SketchPicker, .modal-color-preview-wrapper">
 
         <div 
         className="modal-template option"
@@ -43,9 +43,8 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
           <div style={{ margin: '10px 0' }}>
 
             {/* Font Family Dropdown using react-select */}
-            <div className="nav-font-row">
-              {/* <span className="nav-font-label">Police :</span> */}
-              <div className="nav-font-select-wrapper">
+            <div className="modal-font-row">
+              <div className="modal-font-select-wrapper">
                 <Select
                   options={fontFamilies.map(f => ({ label: f.label, value: f.value }))}
                   value={fontFamilies.find(f => f.value === navFontFamily) || fontFamilies[0]}
@@ -61,23 +60,21 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
             </div>
 
             {/* Font Size Slider */}
-            <div className="nav-font-row">
-              {/* <span className="nav-font-label">Taille :</span> */}
+            <div className="modal-font-row">
               <input
                 type="range"
                 min={20}
                 max={60}
                 value={parseInt(navProps.navFontSize) || 16}
                 onChange={e => handleNestedFieldChange(setData, data, 'navProps', 'navFontSize')(e.target.value + 'px')}
-                className="nav-font-size-slider"
+                className="modal-slider"
               />
               <span style={{ marginLeft: 8 }}>{parseInt(navProps.navFontSize) || 16}px</span>
             </div>
 
             {/* Font Weight Selector */}
-            <div className="nav-font-row">
-              {/* <span className="nav-font-label">Graisse :</span> */}
-              <div className="nav-font-select-wrapper">
+            <div className="modal-font-row">
+              <div className="modal-font-select-wrapper">
                 <Select
                   options={[{ label: 'Normal', value: 'normal' }, { label: 'Gras', value: 'bold' }]
                   }
@@ -96,9 +93,9 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
             {/* 1) Couleur du texte */}
             <label style={{ display: 'block', marginBottom: 10 }}>
               Couleur du texte :
-              <div className="nav-color-preview-wrapper">
+              <div className="modal-color-preview-wrapper">
                 <div
-                  className="nav-color-preview"
+                  className="modal-color-preview"
                   style={{ background: navLinkColor }}
                   onClick={() => setShowNavLinkColorPicker(true)}
                 />
@@ -113,7 +110,7 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
                         color={navLinkColor}
                         onChange={color => handleNestedFieldChange(setData, data, 'navProps', 'navLinkColor')(color.hex)}
                         styles={{default: { picker: { boxShadow: 'none' } }}}
-                        className="nav-SketchPicker"
+                        className="modal-SketchPicker"
                       />
                     </div>
                     <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPicker(false)}>Fermer</button>
@@ -124,9 +121,9 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
             {/* 2) Couleur de la barre de navigation */}
             <label style={{ display: 'block', marginBottom: 10 }}>
               Couleur de fond :
-              <div className="nav-color-preview-wrapper">
+              <div className="modal-color-preview-wrapper">
                 <div
-                  className="nav-color-preview"
+                  className="modal-color-preview"
                   style={{ background: navBarColor }}
                   onClick={() => setShowNavBarColorPicker(true)}
                 />
@@ -141,7 +138,7 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
                         color={navBarColor}
                         onChange={color => handleNestedFieldChange(setData, data, 'navProps', 'navBarColor')(color.hex)}
                         styles={{default: { picker: { boxShadow: 'none' } }}}
-                        className="nav-SketchPicker"
+                        className="modal-SketchPicker"
                         disableAlpha={true}
                       />
                     </div>
@@ -161,17 +158,12 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
                 max={100}
                 value={Math.round(navBarAlpha * 100)}
                 onChange={e => handleNestedFieldChange(setData, data, 'navProps', 'navBarAlpha')(Number(e.target.value) / 100)}
-                className="nav-transparency-slider"
+                className="modal-slider"
               />
               <span style={{ marginLeft: 8 }}>{Math.round(navBarAlpha * 100)}%</span>
             </div>
           </div>
-          {/* <button onClick={onClose}>Fermer</button> */}
         </div>
-        {/* <div
-        className="modal-overlay"
-        style={{ backgroundColor: "transparent" }}
-      /> */}
       </Draggable>
     </div>
   );

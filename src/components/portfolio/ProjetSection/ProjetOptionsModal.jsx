@@ -23,12 +23,12 @@ export default function ProjetOptionsModal({
     <div className="modal-overlay">
       <Draggable
         nodeRef={nodeRef}
-        cancel=".accueil-font-size-slider, 
-      input, .accueil-font-select-wrapper, 
+        cancel=".modal-slider, 
+      input, .modal-font-select-wrapper, 
       .modal-close-button, .collapse-toggle, 
-      .accueil-color-preview-wrapper, 
-      .accueil-update-background,
-      .accueil-SketchPicker">
+      .modal-color-preview-wrapper, 
+      .modal-update-background,
+      .modal-SketchPicker">
         <div ref={nodeRef}
           className="modal-template option"
           style={{ cursor: 'grab' }}>
@@ -53,7 +53,7 @@ export default function ProjetOptionsModal({
           </button>
           <div className={`collapsible-content${collapseBg ? ' open' : ''}`}>
             {collapseBg && (
-              <div className="accueil-update-background">
+              <div className="modal-update-background">
                 <label className="modal-label-black"> Chargez une image de fond: </label>
                 <UpdateBackground
                   onUpload={handleBackgroundUpload}
