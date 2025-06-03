@@ -257,7 +257,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
           <div className={`collapsible-content${collapseProfile ? ' open' : ''}`}>
             {collapseProfile && (
               <div className="modal-update-background">
-                <label className="modal-label-black"> Charger une photo de profile: </label>
+                <label className="modal-label-black"> Charger une photo de profil: </label>
                 <UpdateBackground
                   onUpload={handleProfileUpload}
                   disabled={isPublished} />
