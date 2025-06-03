@@ -31,12 +31,12 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
     <div className="modal-overlay">
       <Draggable 
       nodeRef={nodeRef} 
-      cancel=".accueil-font-size-slider, 
-      input, .accueil-font-select-wrapper, 
+      cancel=".modal-slider, 
+      input, .modal-font-select-wrapper, 
       .modal-close-button, .collapse-toggle, 
-      .accueil-color-preview-wrapper, 
-      .accueil-update-background,
-      .accueil-SketchPicker">
+      .modal-color-preview-wrapper, 
+      .modal-update-background,
+      .modal-SketchPicker">
         <div ref={nodeRef} 
           className="modal-template option drag"
           style={{cursor: 'grab'}}>
@@ -63,9 +63,8 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
             {collapseNom && (
               <div style={{ margin: '10px 0' }}>
                 {/* Font Family Dropdown using react-select */}
-                <div className="accueil-font-row">
-                  {/* <span className="nav-font-label">Police :</span> */}
-                  <div className="accueil-font-select-wrapper">
+                <div className="modal-font-row">
+                  <div className="modal-font-select-wrapper">
                     <Select
                       options={fontFamilies.map(f => ({ label: f.label, value: f.value }))}
                       value={fontFamilies.find(f => f.value === data.accueilProps.AccueilFontFamilyTitle) || fontFamilies[0]}
@@ -81,23 +80,21 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                 </div>
 
                 {/* Font Size Slider */}
-                <div className="accueil-font-row">
-                  {/* <span className="nav-font-label">Taille :</span> */}
+                <div className="modal-font-row">
                   <input
                     type="range"
                     min={20}
                     max={60}
                     value={parseInt(data.accueilProps.AccueilFontSizeTitle) || 16}
                     onChange={e => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilFontSizeTitle')(e.target.value + 'px')}
-                    className="accueil-font-size-slider"
+                    className="modal-slider"
                   />
                   <span className="modal-span-black">{parseInt(data.accueilProps.AccueilFontSizeTitle) || 16}px</span>
                 </div>
 
                 {/* Font Weight Selector */}
-                <div className="accueil-font-row">
-                  {/* <span className="nav-font-label">Graisse :</span> */}
-                  <div className="accueil-font-select-wrapper">
+                <div className="modal-font-row">
+                  <div className="modal-font-select-wrapper">
                     <Select
                       options={[{ label: 'Normal', value: 'normal' }, { label: 'Gras', value: 'bold' }]
                       }
@@ -116,9 +113,9 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                 {/* 1) Couleur du texte */}
                 <label className="modal-label-black">
                   Couleur:
-                  <div className="accueil-color-preview-wrapper">
+                  <div className="modal-color-preview-wrapper">
                     <div
-                      className="accueil-color-preview"
+                      className="modal-color-preview"
                       style={{ background: data.accueilProps.AccueilColorTitle }}
                       onClick={() => setShowNavLinkColorPickerTitle(true)}
                     />
@@ -133,7 +130,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                             color={data.accueilProps.AccueilColorTitle}
                             onChange={color => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilColorTitle')(color.hex)}
                             styles={{default: { picker: { boxShadow: 'none' } }}}
-                            className="accueil-SketchPicker"
+                            className="modal-SketchPicker"
                           />
                         </div>
                         <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPickerTitle(false)}>Fermer</button>
@@ -155,9 +152,8 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
             {collapseBio && (
               <div style={{ margin: '10px 0' }}>
                 {/* Font Family Dropdown using react-select */}
-                <div className="accueil-font-row">
-                  {/* <span className="nav-font-label">Police :</span> */}
-                  <div className="accueil-font-select-wrapper">
+                <div className="modal-font-row">
+                  <div className="modal-font-select-wrapper">
                     <Select
                       options={fontFamilies.map(f => ({ label: f.label, value: f.value }))}
                       value={fontFamilies.find(f => f.value === data.accueilProps.AccueilFontFamilyBIO) || fontFamilies[0]}
@@ -173,23 +169,21 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                 </div>
 
                 {/* Font Size Slider */}
-                <div className="accueil-font-row">
-                  {/* <span className="nav-font-label">Taille :</span> */}
+                <div className="modal-font-row">
                   <input
                     type="range"
                     min={10}
                     max={40}
                     value={parseInt(data.accueilProps.AccueilFontSizeBIO) || 16}
                     onChange={e => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilFontSizeBIO')(e.target.value + 'px')}
-                    className="accueil-font-size-slider"
+                    className="modal-slider"
                   />
                   <span className="modal-span-black">{parseInt(data.accueilProps.AccueilFontSizeBIO) || 16}px</span>
                 </div>
 
                 {/* Font Weight Selector */}
-                <div className="accueil-font-row">
-                  {/* <span className="nav-font-label">Graisse :</span> */}
-                  <div className="accueil-font-select-wrapper">
+                <div className="modal-font-row">
+                  <div className="modal-font-select-wrapper">
                     <Select
                       options={[{ label: 'Normal', value: 'normal' }, { label: 'Gras', value: 'bold' }]
                       }
@@ -208,9 +202,9 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                 {/* 1) Couleur du texte */}
                 <label className="modal-label-black">
                   Couleur:
-                  <div className="accueil-color-preview-wrapper">
+                  <div className="modal-color-preview-wrapper">
                     <div
-                      className="accueil-color-preview"
+                      className="modal-color-preview"
                       style={{ background: data.accueilProps.AccueilColorBIO }}
                       onClick={() => setShowNavLinkColorPickerBIO(true)}
                     />
@@ -225,7 +219,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                             color={data.accueilProps.AccueilColorBIO}
                             onChange={color => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilColorBIO')(color.hex)}
                             styles={{default: { picker: { boxShadow: 'none' } }}}
-                            className="accueil-SketchPicker"
+                            className="modal-SketchPicker"
                           />
                         </div>
                         <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPickerBIO(false)}>Fermer</button>
@@ -246,7 +240,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
           </button>
           <div className={`collapsible-content${collapseBg ? ' open' : ''}`}>
             {collapseBg && (
-              <div className="accueil-update-background">
+              <div className="modal-update-background">
                 <label className="modal-label-black"> Chargez une image de fond: </label>
                 <UpdateBackground
                   onUpload={handleBackgroundUpload}
@@ -262,7 +256,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
           </button>
           <div className={`collapsible-content${collapseProfile ? ' open' : ''}`}>
             {collapseProfile && (
-              <div className="accueil-update-background">
+              <div className="modal-update-background">
                 <label className="modal-label-black"> Charger une photo de profile: </label>
                 <UpdateBackground
                   onUpload={handleProfileUpload}

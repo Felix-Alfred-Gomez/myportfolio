@@ -21,6 +21,14 @@
   transition: transform 0.3s ease;
 }
 
+.wheel-icon.blue {
+  color: #2575fc;
+}
+
+.wheel-icon.red {
+  color: #b81e1e;
+}
+
 .wheel-option:hover .wheel-icon {
     transform: rotate(90deg);
 }

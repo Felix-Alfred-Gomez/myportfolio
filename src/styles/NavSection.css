@@ -22,63 +22,6 @@
   font-size: 25px;
 }
 
-/* Modal color picker for NavOptionsModal */
-.modal-color-picker {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 4;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-  filter: none;
-}
-
-.nav-font-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.nav-font-label {
-  min-width: 100px;
-  text-align: right;
-}
-
-.nav-font-select-wrapper {
-  min-width: 150px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.nav-color-preview {
-  width: 36px;
-  height: 18px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  display: inline-block;
-  cursor: pointer;
-  vertical-align: middle;
-}
-
-/* Add for font size slider in nav section */
-.nav-font-size-slider {
-  vertical-align: middle;
-  width: 120px;
-}
-
-/* Add for nav transparency slider */
-.nav-transparency-slider {
-  vertical-align: middle;
-  width: 120px;
-}
-
 /* Burger icon styles */
 .burger-icon {
   position: fixed;
@@ -141,15 +84,6 @@
   word-break: break-word; /* Break long words */
   overflow-wrap: anywhere; /* Ensure wrapping */
   font-size: 66% !important; /* Scale down font size to 1/3 of inline value */
-}
-
-.nav-SketchPicker {
-  pointer-events: auto;
-  box-shadow: none;
-}
-
-.nav-color-preview-wrapper {
-  margin-left: 10px;
 }
 
 /* Responsive behavior */

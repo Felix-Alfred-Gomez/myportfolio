@@ -10,6 +10,7 @@ import "./styles/OptionWheel.css";
 import "./styles/PortfolioTemplate.css";
 import "./styles/AccueilSection.css";
 import "./styles/ProjetSection.css";
+import "./styles/OptionModal.css";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);

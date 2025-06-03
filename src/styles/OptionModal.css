@@ -1,0 +1,141 @@
+/* Toggle button for collapsible sections */
+.collapse-toggle {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+  font-weight: normal;
+  background: none !important;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  color: black !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: background 0.2s;
+}
+
+.collapse-toggle:hover {
+  background: none !important;
+}
+
+/* Collapsible content styles */
+.collapsible-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+}
+
+.collapsible-content.open {
+  max-height: 500px; /* doit être > à la hauteur max attendue */
+  opacity: 1;
+  overflow: visible;
+}
+
+.modal-font-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.modal-font-select-wrapper {
+  min-width: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* Add for font size slider in nav section */
+.modal-slider {
+  vertical-align: middle;
+  width: 120px;
+}
+
+.modal-label-black {
+  display: block;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.modal-span-black {
+  margin-left: 8px;
+  color: black;
+}
+
+.modal-color-preview-wrapper {
+  margin-left: 10px;
+}
+
+.modal-color-preview {
+  width: 36px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.modal-upload-background-button {
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+  z-index: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.modal-upload-background-button svg {
+  width: 28px;
+  height: 28px;
+  color: #000000;
+  border-radius: 50%;
+  display: block;
+  background: none;
+  padding: 0;
+}
+
+.modal-upload-background-button:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Modal color picker for NavOptionsModal */
+.modal-color-picker {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  filter: none;
+}
+
+.modal-SketchPicker {
+  pointer-events: auto;
+  box-shadow: none;
+}
+
+.modal-update-background {
+  /* Intentionally left blank for drag cancel targeting */
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0 16px 0;
+}
