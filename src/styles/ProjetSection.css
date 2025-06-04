@@ -69,41 +69,6 @@
   margin-bottom: 0.2rem;
 }
 
-.projet-modal-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.projet-modal {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
-  padding: 2.5rem 2rem 2rem 2rem;
-  min-width: 320px;
-  max-width: 480px;
-  width: 90vw;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.close-modal {
-  position: absolute;
-  top: 1.1rem;
-  right: 1.1rem;
-  background: transparent;
-  border: none;
-  font-size: 1.3rem;
-  color: #c00;
-  cursor: pointer;
-}
-
 .projet-modal h2 {
   margin-bottom: 1.1rem;
   text-align: center;
