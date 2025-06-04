@@ -2,11 +2,14 @@ import { useState } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import ProjetOptionsModal from "./ProjetOptionsModal";
+import UpdateText from "../../common/UpdateText";
+import { handleArrayFieldChange } from '../../../hooks/HandlePortfolioData';
 
 export default function ProjetSection({ username, isPublished, data, setData }) {
   const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "ProjetBackground");
   const [showDesignModal, setShowDesignModal] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProjectIdx, setSelectedProjectIdx] = useState(null);
+  const selectedProject = selectedProjectIdx !== null ? data.projects[selectedProjectIdx] : null;
 
   return (
     <section
@@ -31,7 +34,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
             <div
               key={projet.id || idx}
               className="projet-card"
-              onClick={() => setSelectedProject(projet)}
+              onClick={() => setSelectedProjectIdx(idx)}
               style={{ cursor: 'pointer' }}
             >
               <h3
@@ -44,33 +47,6 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               >
                 {projet.Title || `Projet ${idx + 1}`}
               </h3>
-              <p
-                style={{
-                  fontFamily: data.projetProps?.FontFamilyText,
-                  fontSize: data.projetProps?.FontSizeText,
-                  fontWeight: data.projetProps?.FontWeightText,
-                  color: projet.ColorText
-                }}
-              >
-                {projet.Text?.slice(0, 60)}{projet.Text && projet.Text.length > 60 ? '...' : ''}
-              </p>
-              {/* {Array.isArray(projet.Tech) && (
-                <div className="projet-tech-list">
-                  {projet.Tech.map((tech, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="projet-tech"
-                      style={{
-                        fontFamily: data.projetProps?.FontFamilyTech,
-                        fontSize: data.projetProps?.FontSizeTech,
-                        fontWeight: data.projetProps?.FontWeightTech
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              )} */}
             </div>
           ))
         ) : (
@@ -80,10 +56,10 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
 
       {/* Modal for enlarged project */}
       {selectedProject && (
-        <div className="projet-modal-overlay" onClick={() => setSelectedProject(null)}>
+        <div className="projet-modal-overlay" onClick={() => setSelectedProjectIdx(null)}>
           <div className="projet-modal" onClick={e => e.stopPropagation()}>
-            <button className="close-modal" onClick={() => setSelectedProject(null)}>X</button>
-            <h2
+            <button className="close-modal" onClick={() => setSelectedProjectIdx(null)}>X</button>
+            {/* <h2
               style={{
                 fontFamily: data.projetProps?.FontFamilyTitle,
                 fontSize: data.projetProps?.FontSizeTitle,
@@ -92,8 +68,20 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               }}
             >
               {selectedProject.Title}
-            </h2>
-            <p
+            </h2> */}
+            <UpdateText
+              isPublished={isPublished}
+              value={selectedProject.Title}
+              onChange={e => handleArrayFieldChange(setData, data,
+                'projects', selectedProjectIdx, 'Title')(e.target.value)}
+              containerClass="project-text-container"
+              textClass="project-text-input"
+              fontFamilyStyle={data.projetProps?.FontFamilyTitle}
+              fontFamilySize={data.projetProps?.FontSizeTitle}
+              fontFamilyWeight={data.projetProps?.FontWeightTitle}
+              fontColor={selectedProject.ColorTitle}/>
+
+            {/* <p
               style={{
                 fontFamily: data.projetProps?.FontFamilyText,
                 fontSize: data.projetProps?.FontSizeText,
@@ -102,8 +90,22 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               }}
             >
               {selectedProject.Text}
-            </p>
-            {Array.isArray(selectedProject.Tech) && (
+            </p> */}
+
+            <UpdateText
+              isPublished={isPublished}
+              value={selectedProject.Text}
+              onChange={e => handleArrayFieldChange(setData, data,
+                'projects', selectedProjectIdx, 'Text')(e.target.value)}
+              containerClass="project-text-container"
+              textClass="project-text-input"
+              fontFamilyStyle={data.projetProps?.FontFamilyText}
+              fontFamilySize={data.projetProps?.FontSizeText}
+              fontFamilyWeight={data.projetProps?.FontWeightText}
+              fontColor={selectedProject.ColorText}
+            />
+
+            {/* {Array.isArray(selectedProject.Tech) && (
               <div className="projet-tech-list-modal">
                 {selectedProject.Tech.map((tech, tIdx) => (
                   <span
@@ -119,7 +121,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
                   </span>
                 ))}
               </div>
-            )}
+            )} */}
             {selectedProject.Link && selectedProject.Link !== '' && (
               <a href={selectedProject.Link} target="_blank" rel="noopener noreferrer" className="projet-link-modal">
                 Voir le projet

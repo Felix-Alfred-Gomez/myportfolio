@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
-import UpdateText from "./UpdateText";
+import UpdateText from "../../common/UpdateText";
 import { handleFieldChange } from '../../../hooks/HandlePortfolioData';
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import AccueilOptionsModal from "./AccueilOptionsModal";
@@ -47,26 +47,22 @@ export default function AccueilSection({ username, isPublished, data, setData })
       </div>
       
       <UpdateText
-        data={data}
         isPublished={isPublished}
         value={data.name}
         onChange={handleFieldChange(setData, data, 'name')}
-        containerClass="accueil-text-container accueil-name-container"
-        textClass="accueil-text"
-        inputClass="accueil-text-input"
+        containerClass="accueil-text-container"
+        textClass="accueil-text-input"
         fontFamilyStyle={data.accueilProps.AccueilFontFamilyTitle}
         fontFamilySize={data.accueilProps.AccueilFontSizeTitle}
         fontFamilyWeight={data.accueilProps.AccueilFontWeightTitle}
         fontColor={data.accueilProps.AccueilColorTitle}/>
       
       <UpdateText
-        data={data}
         isPublished={isPublished}
         value={data.BIO}
         onChange={handleFieldChange(setData, data, 'BIO')}
-        containerClass="accueil-text-container accueil-BIO-container"
-        textClass="accueil-text"
-        inputClass="accueil-text-input"
+        containerClass="accueil-text-container"
+        textClass="accueil-text-input"
         fontFamilyStyle={data.accueilProps.AccueilFontFamilyBIO}
         fontFamilySize={data.accueilProps.AccueilFontSizeBIO}
         fontFamilyWeight={data.accueilProps.AccueilFontWeightBIO}

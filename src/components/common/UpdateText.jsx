@@ -1,13 +1,11 @@
 import { useRef, useEffect } from "react";
 
 export default function UpdateText({
-  data,
   isPublished,
   value,
   onChange,
   containerClass,
   textClass,
-  inputClass,
   fontFamilyStyle,
   fontFamilySize,
   fontFamilyWeight,
@@ -46,7 +44,7 @@ export default function UpdateText({
           ref={textareaRef}
           value={value}
           onChange={onChange}
-          className={inputClass}
+          className={textClass}
           style={{ overflow: "hidden",
             fontFamily: fontFamilyStyle,
             fontSize: fontFamilySize,

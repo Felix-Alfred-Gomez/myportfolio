@@ -68,19 +68,6 @@
   font-weight: bold;
   font-size: 2.5rem;
 }
-.accueil-BIO-container {
-  font-weight: normal;
-  font-size: 2rem;
-}
-
-/* Published (span) mode for both */
-.accueil-text {
-  display: block;
-  width: 100%;
-  white-space: pre-wrap;   /* Preserve line breaks */
-  word-break: break-word;  /* Wrap long words */
-  font-weight: inherit;
-}
 
 /* Edit mode for both */
 .accueil-text-input {
@@ -111,6 +98,7 @@
   font-weight: bold;
   font-size: 2rem;
 }
+
 .accueil-BIO-container {
   font-weight: normal;
   font-size: 1.5rem;
@@ -141,6 +129,7 @@
   font-weight: bold;
   font-size: 1.7rem;
 }
+
 .accueil-BIO-container {
   font-weight: normal;
   font-size: 1.1rem;

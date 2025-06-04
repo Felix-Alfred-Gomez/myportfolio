@@ -125,3 +125,13 @@ export const handleFieldChange = (setData, data, field) => (e) => {
 export const handleNestedFieldChange = (setData, data, parentField, field) => (value) => {
   setData({...data, [parentField]: {...data[parentField], [field]: value}});
 };
+
+// function to handle changes in a field of an object inside an array
+export const handleArrayFieldChange = (setData, data, arrayField, idx, field) => (value) => {
+  setData({
+    ...data,
+    [arrayField]: data[arrayField].map((item, i) =>
+      i === idx ? { ...item, [field]: value } : item
+    ),
+  });
+};
