@@ -1,6 +1,6 @@
 .projet-section {
   position: relative;
-  height: 100vh;
+  min-height: 100vh; /* Changed from height: 100vh */
   background-color: #000000;
   display: flex;
   justify-content: center;
@@ -13,13 +13,13 @@
 .projets-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 8rem;
   justify-content: center;
   align-items: flex-start;
   margin-top: 2rem;
   width: 100%;
   max-width: 1200px;
-  width: 75vw;
+  width: 66vw;
 }
 
 .projet-card {
@@ -40,6 +40,7 @@
 .projet-card:hover {
   transform: scale(1.04);
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  background: rgba(31, 42, 199, 0.808);
 }
 
 .projet-card h3 {
@@ -143,4 +144,28 @@
 
 .projet-link-modal:hover {
   background: #125ea2;
+}
+
+/* Edit mode for both */
+.project-text-input {
+  font-weight: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  color: white;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Shared fixed-width container */
+.project-text-container {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
 }
