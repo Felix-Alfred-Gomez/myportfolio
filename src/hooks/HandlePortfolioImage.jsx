@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import BackgroundDefault from "../assets/Background_default.jpg";
 
-export function usePortfolioImage(username, CharVarName) {
-  const [imageUrl, setImageUrl] = useState(null);
+export function usePortfolioImage(username, CharVarName, refreshKey) {
+  const [imageUrl, setImageUrl] = useState(BackgroundDefault);
   const [error, setError] = useState(null); // Add error state
 
   useEffect(() => {
     if (!username || !CharVarName) {
-      setImageUrl(null); // Reset on change
+      setImageUrl(BackgroundDefault); // Reset to default on change
       return;
     }
 
@@ -19,13 +20,13 @@ export function usePortfolioImage(username, CharVarName) {
         setImageUrl(url);
       } catch (error) {
         setError(`Error fetching image: ${error.message}`);
-        setImageUrl(null); // Or default image
+        setImageUrl(BackgroundDefault); // Use default image on error
       }
     };
 
-    setImageUrl(null); // Clear old image before fetch
+    setImageUrl(BackgroundDefault); // Clear old image before fetch
     fetchImage();
-  }, [username, CharVarName]);
+  }, [username, CharVarName, refreshKey]);
 
   const handleImageUpload = async (event) => {
     setError(null); // Reset error
@@ -44,7 +45,7 @@ export function usePortfolioImage(username, CharVarName) {
         console.log(`${CharVarName} uploaded successfully!`);
       } catch (error) {
         setError(`Error uploading ${CharVarName}: ${error.message}`);
-        setImageUrl(require("../assets/Background_default.jpg"));
+        setImageUrl(BackgroundDefault); // Use default image on upload error
         console.error(`Error uploading ${CharVarName}:`, error);
       }
     }

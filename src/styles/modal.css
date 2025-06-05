@@ -143,6 +143,10 @@
   background-color: #636262;
 }
 
+.modal-template .project-text-container {
+  margin-top: 18px;
+}
+
 /* Responsive styles for smartphones */
 @media screen and ((max-width: 499px) or (max-height: 499px)) {
 
