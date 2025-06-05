@@ -63,10 +63,10 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
 
       {!isPublished && (
         <button
-          className="wheel-option template-page zlevel6"
+          className="pen-edition template-page zlevel6"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
-          <FaPencilAlt className="wheel-icon red" />
+          <FaPencilAlt className="pen-icon red" />
         </button>
       )}
 

@@ -31,7 +31,7 @@
   min-width: 275px;
   box-sizing: border-box;
   word-break: break-word;
-  max-height: 90vh;
+  max-height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
   /* Ensure long words break to the next line */
@@ -39,7 +39,7 @@
 
 /* Modal styles */
 .modal-template.large {
-  width: 90vw;
+  width: 80vw;
   max-width: 900px;
   min-width: 275px;
   overflow-x: hidden;

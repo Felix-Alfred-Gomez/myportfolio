@@ -17,10 +17,10 @@ export default function EmptySection({ username, isPublished }) {
       
       {!isPublished && (
         <button
-          className="wheel-option template-page"
+          className="pen-edition template-page"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
-          <FaPencilAlt className="wheel-icon" />
+          <FaPencilAlt className="pen-icon" />
         </button>
       )}
 
