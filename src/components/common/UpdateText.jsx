@@ -31,14 +31,15 @@ export default function UpdateText({
   return (
     <div className={containerClass}>
       {isPublished ? (
-        <span 
+        <div 
           className={textClass}
           style={{ fontFamily: fontFamilyStyle,
           fontSize: fontFamilySize,
           fontWeight: fontFamilyWeight,
-          color: fontColor }}>
+          color: fontColor,
+          whiteSpace: "pre-line" }}>
             {value}
-        </span>
+        </div>
       ) : (
         <textarea
           ref={textareaRef}
