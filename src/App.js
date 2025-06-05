@@ -6,7 +6,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import PublicPortfolioRouteGuard from "./components/portfolio/PublicPortfolioRouteGuard";
 import ProtectedPortfolioEditionRoute from "./components/portfolio/ProtectedPortfolioEditionRoute";
 import { AuthContext } from "./context/AuthContext";
-import "./styles/OptionWheel.css";
+import "./styles/EditionPen.css";
 import "./styles/PortfolioTemplate.css";
 import "./styles/AccueilSection.css";
 import "./styles/ProjetSection.css";

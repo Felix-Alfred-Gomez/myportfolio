@@ -2,9 +2,10 @@ import NavOptionsModal from "./NavOptionsModal";
 import BurgerIcon from "./BurgerIcon";
 import SideMenu from "./SideMenu";
 import MainNav from "./MainNav";
-import { Cog6ToothIcon } from '@heroicons/react/24/solid';
+// import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import "../../../styles/NavSection.css";
 import { useState } from "react";
+import { FaPencilAlt } from "react-icons/fa";
 
 export default function PortfolioNavWrapper({
   menuOpen,
@@ -27,7 +28,7 @@ export default function PortfolioNavWrapper({
           className="wheel-option nav zlevel7"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
-          <Cog6ToothIcon className="wheel-icon" />
+          <FaPencilAlt className="wheel-icon" />
         </button>
       )}
 

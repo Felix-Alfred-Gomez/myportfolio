@@ -27,8 +27,8 @@
 }
 
 .wheel-icon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   color: rgb(0, 0, 0);
   transition: transform 0.3s ease;
 }
@@ -41,8 +41,19 @@
   color: #b81e1e;
 }
 
+/* Oscillation animation for wheel icon */
+@keyframes wheel-oscillate {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-18deg); }
+  40% { transform: rotate(18deg); }
+  60% { transform: rotate(-10deg); }
+  80% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+
 .wheel-option:hover .wheel-icon {
-    transform: rotate(90deg);
+  /* Oscillate 1 time (0.6s per oscillation, total 0.6s) */
+  animation: wheel-oscillate 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0s 1;
 }
 
 .wheel-option.nav {

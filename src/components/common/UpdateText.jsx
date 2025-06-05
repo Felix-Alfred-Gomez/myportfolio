@@ -45,12 +45,14 @@ export default function UpdateText({
           ref={textareaRef}
           value={value}
           onChange={onChange}
-          className={textClass}
-          style={{ overflow: "hidden",
+          className={`${textClass} update-textarea-editing`}
+          style={{ 
+            overflow: "hidden",
             fontFamily: fontFamilyStyle,
             fontSize: fontFamilySize,
             fontWeight: fontFamilyWeight,
-            color: fontColor }}
+            color: fontColor
+          }}
           rows={1}
         />
       )}

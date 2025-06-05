@@ -2,7 +2,8 @@ import { useState } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import UpdateText from "../../common/UpdateText";
 import { handleFieldChange } from '../../../hooks/HandlePortfolioData';
-import { Cog6ToothIcon } from '@heroicons/react/24/solid';
+// import { Cog6ToothIcon } from '@heroicons/react/24/solid';
+import { FaPencilAlt } from "react-icons/fa";
 import AccueilOptionsModal from "./AccueilOptionsModal";
 import HeadDefault from "../../../assets/head_default.png";
 import BackgroundDefault from "../../../assets/Accueil_default.jpg";
@@ -25,7 +26,7 @@ export default function AccueilSection({ username, isPublished, data, setData })
           className="wheel-option template-page"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
-          <Cog6ToothIcon className="wheel-icon blue" />
+          <FaPencilAlt className="wheel-icon blue" />
         </button>
       )}
 
