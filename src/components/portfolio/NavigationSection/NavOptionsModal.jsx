@@ -53,7 +53,8 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
                     control: (base) => ({ ...base, fontFamily: navFontFamily }),
                     option: (base, state) => ({ ...base, fontFamily: state.data.value })
                   }}
-                  menuPlacement="auto"
+                  menuPlacement="bottom"
+                  maxMenuHeight={200}
                   isSearchable={false}
                 />
               </div>
@@ -84,7 +85,8 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
                     control: (base) => ({ ...base, minWidth: 80 }),
                     option: (base) => ({ ...base })
                   }}
-                  menuPlacement="auto"
+                  menuPlacement="bottom"
+                  maxMenuHeight={200}
                   isSearchable={false}
                 />
               </div>
