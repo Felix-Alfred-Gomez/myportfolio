@@ -6,20 +6,24 @@ export function usePortfolioImage(username, CharVarName) {
   const [error, setError] = useState(null); // Add error state
 
   useEffect(() => {
+    if (!username || !CharVarName) {
+      setImageUrl(null); // Reset on change
+      return;
+    }
+
     const fetchImage = async () => {
-      if (username && CharVarName) {
-        const storage = getStorage();
-        const imageRef = ref(storage, `${username}/${CharVarName}`);
-        try {
-          const url = await getDownloadURL(imageRef);
-          setImageUrl(url);
-        } catch (error) {
-          setError(`Error fetching image: ${error.message}`);
-          setImageUrl(require("../assets/Background_default.jpg"));
-        }
+      const storage = getStorage();
+      const imageRef = ref(storage, `${username}/${CharVarName}`);
+      try {
+        const url = await getDownloadURL(imageRef);
+        setImageUrl(url);
+      } catch (error) {
+        setError(`Error fetching image: ${error.message}`);
+        setImageUrl(null); // Or default image
       }
     };
 
+    setImageUrl(null); // Clear old image before fetch
     fetchImage();
   }, [username, CharVarName]);
 
