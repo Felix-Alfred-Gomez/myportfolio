@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
-import { Cog6ToothIcon } from '@heroicons/react/24/solid';
+// import { Cog6ToothIcon } from '@heroicons/react/24/solid';
+import { FaPencilAlt } from "react-icons/fa";
 import ProjetOptionsModal from "./ProjetOptionsModal";
 import UpdateText from "../../common/UpdateText";
 import { handleArrayFieldChange } from '../../../hooks/HandlePortfolioData';
@@ -35,7 +36,8 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
   // Add per-project image upload hook
   const {
     imageUrl: projectImageUrl,
-    handleImageUpload
+    handleImageUpload,
+    loading: projectImageLoading
   } = usePortfolioImage(
     username,
     selectedProjectIdx !== null ? `ProjectImage_${selectedProjectIdx}` : null,
@@ -64,7 +66,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
           className="wheel-option template-page zlevel6"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
-          <Cog6ToothIcon className="wheel-icon red" />
+          <FaPencilAlt className="wheel-icon red" />
         </button>
       )}
 
@@ -106,7 +108,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
       </div>
 
       {/* Modal for enlarged project */}
-      {selectedProject && (
+      {selectedProject && !projectImageLoading && projectImageUrl && (
         <div className="modal-overlay grey" onClick={() => setSelectedProjectIdx(null)}>
           <div
             className="modal-template large"

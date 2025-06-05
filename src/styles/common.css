@@ -294,6 +294,26 @@
   font-family: 'Dancing Script', cursive;
 }
 
+.update-textarea-editing {
+  border: 2px dashed black !important;
+  outline: none !important;
+  background: #adadad41 !important;
+  box-sizing: border-box;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.update-textarea-editing:focus {
+  border: 2px dashed #000 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.08);
+}
+
+.update-textarea-editing:hover {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 2px #225ba533;
+}
+
 /* Responsive styles for smartphones */
 @media screen and ((max-width: 499px) or (max-height: 499px)) {
 
