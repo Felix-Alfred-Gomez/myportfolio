@@ -103,7 +103,8 @@ export default function ProjetOptionsModal({
                         control: (base) => ({ ...base, fontFamily: data.projetProps.FontFamilyTitle, color: 'black' }),
                         option: (base, state) => ({ ...base, fontFamily: state.data.value, color: 'black' })
                       }}
-                      menuPlacement="auto"
+                      menuPlacement="bottom"
+                      maxMenuHeight={200}
                       isSearchable={false}
                     />
                   </div>
@@ -133,7 +134,8 @@ export default function ProjetOptionsModal({
                         control: (base) => ({ ...base, minWidth: 80, color: 'black' }),
                         option: (base) => ({ ...base, color: 'black' })
                       }}
-                      menuPlacement="auto"
+                      menuPlacement="bottom"
+                      maxMenuHeight={200}
                       isSearchable={false}
                     />
                   </div>
@@ -191,7 +193,8 @@ export default function ProjetOptionsModal({
                         control: (base) => ({ ...base, fontFamily: data.projetProps.FontFamilyText, color: 'black' }),
                         option: (base, state) => ({ ...base, fontFamily: state.data.value, color: 'black' })
                       }}
-                      menuPlacement="auto"
+                      menuPlacement="bottom"
+                      maxMenuHeight={200}
                       isSearchable={false}
                     />
                   </div>
@@ -221,7 +224,8 @@ export default function ProjetOptionsModal({
                         control: (base) => ({ ...base, minWidth: 80, color: 'black' }),
                         option: (base) => ({ ...base, color: 'black' })
                       }}
-                      menuPlacement="auto"
+                      menuPlacement="bottom"
+                      maxMenuHeight={200}
                       isSearchable={false}
                     />
                   </div>
