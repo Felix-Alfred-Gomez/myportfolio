@@ -27,6 +27,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
   const [showDesignModal, setShowDesignModal] = useState(false);
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(null);
   const [imageRefreshKeys, setImageRefreshKeys] = useState({});
+  const [hoveredCardIdx, setHoveredCardIdx] = useState(null);
   const selectedProject = selectedProjectIdx !== null ? data.projects[selectedProjectIdx] : null;
 
   // Add per-project image upload hook
@@ -72,7 +73,15 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               key={projet.id || idx}
               className="projet-card"
               onClick={() => setSelectedProjectIdx(idx)}
-              style={{ cursor: 'pointer' }}>
+              onMouseEnter={() => setHoveredCardIdx(idx)}
+              onMouseLeave={() => setHoveredCardIdx(null)}
+              style={{
+                cursor: 'pointer',
+                background: hoveredCardIdx === idx
+                  ? data.projetProps?.HoverColor || '#ffffff'
+                  : data.projetProps?.BackgroundColor || '#ffffff',
+                transition: 'background 0.2s'
+              }}>
               <h3
                 style={{
                   fontFamily: data.projetProps?.FontFamilyTitle,
@@ -96,7 +105,11 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
       {/* Modal for enlarged project */}
       {selectedProject && (
         <div className="modal-overlay grey" onClick={() => setSelectedProjectIdx(null)}>
-          <div className="modal-template large" onClick={e => e.stopPropagation()}>
+          <div
+            className="modal-template large"
+            onClick={e => e.stopPropagation()}
+            style={{ background: data.projetProps?.BackgroundColor || '#ffffff', transition: 'background 0.2s' }}
+          >
             {/* <button
               type="button"
               aria-label="Fermer"

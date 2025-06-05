@@ -22,9 +22,12 @@ export default function ProjetOptionsModal({
 
   const [showNavLinkColorPickerTitle, setShowNavLinkColorPickerTitle] = useState(false);
   const [showNavLinkColorPickerText, setShowNavLinkColorPickerText] = useState(false);
+  const [showCartoucheBgColorPicker, setShowCartoucheBgColorPicker] = useState(false);
+  const [showCartoucheHoverColorPicker, setShowCartoucheHoverColorPicker] = useState(false);
   const [collapseNom, setCollapseNom] = useState(false);
   const [collapseBg, setCollapseBg] = useState(false);
   const [collapseDesc, setCollapseDesc] = useState(false);
+  const [collapseCartouche, setCollapseCartouche] = useState(false);
   const nodeRef = useRef(null);
 
   if (!show) return null;
@@ -110,8 +113,8 @@ export default function ProjetOptionsModal({
                 <div className="modal-font-row">
                   <input
                     type="range"
-                    min={16}
-                    max={60}
+                    min={10}
+                    max={40}
                     value={parseInt(data.projetProps.FontSizeTitle) || 20}
                     onChange={e => handleNestedFieldChange(setData, data, 'projetProps', 'FontSizeTitle')(e.target.value + 'px')}
                     className="modal-slider"
@@ -157,6 +160,7 @@ export default function ProjetOptionsModal({
                             onChange={color => handleNestedFieldChange(setData, data, 'projetProps', 'ColorTitle')(color.hex)}
                             styles={{default: { picker: { boxShadow: 'none' } }}}
                             className="modal-SketchPicker"
+                            disableAlpha={true}
                           />
                         </div>
                         <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPickerTitle(false)}>Fermer</button>
@@ -197,8 +201,8 @@ export default function ProjetOptionsModal({
                 <div className="modal-font-row">
                   <input
                     type="range"
-                    min={12}
-                    max={32}
+                    min={10}
+                    max={30}
                     value={parseInt(data.projetProps.FontSizeText) || 15}
                     onChange={e => handleNestedFieldChange(setData, data, 'projetProps', 'FontSizeText')(e.target.value + 'px')}
                     className="modal-slider"
@@ -244,6 +248,7 @@ export default function ProjetOptionsModal({
                             onChange={color => handleNestedFieldChange(setData, data, 'projetProps', 'ColorText')(color.hex)}
                             styles={{default: { picker: { boxShadow: 'none' } }}}
                             className="modal-SketchPicker"
+                            disableAlpha={true}
                           />
                         </div>
                         <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPickerText(false)}>Fermer</button>
@@ -255,10 +260,72 @@ export default function ProjetOptionsModal({
             )}
           </div>
 
+          {/* Couleurs de cartouches */}
+          <button className="collapse-toggle" onClick={() => setCollapseCartouche(v => !v)}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{collapseCartouche ? '▼' : '►'} <span>Couleurs de cartouches</span></span>
+            <span style={{ flex: 1, height: 1, background: '#ccc', display: 'block', borderRadius: 2 }}></span>
+          </button>
+          <div className={`collapsible-content${collapseCartouche ? ' open' : ''}`}>
+            {collapseCartouche && (
+              <div style={{ margin: '10px 0' }}>
+                {/* Background Color */}
+                <label className="modal-label-black">
+                  Couleur de fond:
+                  <div className="modal-color-preview-wrapper">
+                    <div
+                      className="modal-color-preview"
+                      style={{ background: data.projetProps.BackgroundColor || '#ffffff' }}
+                      onClick={() => setShowCartoucheBgColorPicker(true)}
+                    />
+                    {showCartoucheBgColorPicker && (
+                      <div className="modal-color-picker">
+                        <div style={{ boxShadow: 'none', filter: 'none' }}>
+                          <SketchPicker
+                            color={data.projetProps.BackgroundColor || '#ffffff'}
+                            onChange={color => handleNestedFieldChange(setData, data, 'projetProps', 'BackgroundColor')(color.hex)}
+                            styles={{ default: { picker: { boxShadow: 'none' } } }}
+                            className="modal-SketchPicker"
+                            disableAlpha={true}
+                          />
+                        </div>
+                        <button style={{ marginTop: 16 }} onClick={() => setShowCartoucheBgColorPicker(false)}>Fermer</button>
+                      </div>
+                    )}
+                  </div>
+                </label>
+                {/* Hover Color */}
+                <label className="modal-label-black" style={{ marginTop: 16 }}>
+                  Couleur au survol:
+                  <div className="modal-color-preview-wrapper">
+                    <div
+                      className="modal-color-preview"
+                      style={{ background: data.projetProps.HoverColor || '#ffffff' }}
+                      onClick={() => setShowCartoucheHoverColorPicker(true)}
+                    />
+                    {showCartoucheHoverColorPicker && (
+                      <div className="modal-color-picker">
+                        <div style={{ boxShadow: 'none', filter: 'none' }}>
+                          <SketchPicker
+                            color={data.projetProps.HoverColor || '#ffffff'}
+                            onChange={color => handleNestedFieldChange(setData, data, 'projetProps', 'HoverColor')(color.hex)}
+                            styles={{ default: { picker: { boxShadow: 'none' } } }}
+                            className="modal-SketchPicker"
+                            disableAlpha={true}
+                          />
+                        </div>
+                        <button style={{ marginTop: 16 }} onClick={() => setShowCartoucheHoverColorPicker(false)}>Fermer</button>
+                      </div>
+                    )}
+                  </div>
+                </label>
+              </div>
+            )}
+          </div>
+
           {/* Image de fond */}
           <button className="collapse-toggle" onClick={() => setCollapseBg(v => !v)}>
             {/* <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span> */}
-            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{collapseBg ? '▼' : '►'} <span>Image de fond</span></span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{collapseBg ? '▼' : '►'} <span>Image de fond de la section</span></span>
             <span style={{ flex: 1, height: 1, background: '#ccc', display: 'block', borderRadius: 2 }}></span>
           </button>
           <div className={`collapsible-content${collapseBg ? ' open' : ''}`}>
@@ -271,6 +338,7 @@ export default function ProjetOptionsModal({
               </div>
             )}
           </div>
+
         </div>
       </Draggable>
       <div

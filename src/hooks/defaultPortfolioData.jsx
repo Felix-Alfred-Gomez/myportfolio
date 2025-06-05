@@ -48,5 +48,7 @@ export const defaultPortfolioData = {
     FontFamilyTech: "Arial, sans-serif",
     FontSizeTech: "15px",
     FontWeightTech: "bold",
+    BackgroundColor: "#ffffff",
+    HoverColor: "#ffffff",
   },
 };
