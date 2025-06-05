@@ -25,10 +25,10 @@ export default function PortfolioNavWrapper({
     <>
       {!isPublished && (
         <button
-          className="wheel-option nav zlevel7"
+          className="pen-edition nav zlevel7"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
-          <FaPencilAlt className="wheel-icon" />
+          <FaPencilAlt className="pen-icon" />
         </button>
       )}
 

@@ -23,10 +23,10 @@ export default function AccueilSection({ username, isPublished, data, setData })
       
       {!isPublished && (
         <button
-          className="wheel-option template-page"
+          className="pen-edition template-page"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
-          <FaPencilAlt className="wheel-icon blue" />
+          <FaPencilAlt className="pen-icon blue" />
         </button>
       )}
 
