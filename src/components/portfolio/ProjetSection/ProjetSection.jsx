@@ -17,7 +17,7 @@ function ProjectImage({ username, index, refreshKey }) {
     <img
       src={imageUrl}
       alt={`Projet ${index + 1}`}
-      style={{ maxWidth: '100%', maxHeight: 100, borderRadius: 8, marginBottom: 8 }}
+      className="projet-card-image"
     />
   );
 }
@@ -57,7 +57,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
 
       {!isPublished && (
         <button
-          className="wheel-option template-page"
+          className="wheel-option template-page zlevel6"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
           <Cog6ToothIcon className="wheel-icon red" />
@@ -67,7 +67,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
       {/* Container for project cards */}
       <div className="projets-container">
         {Array.isArray(data?.projects) && data.projects.length > 0 ? (
-          data.projects.map((projet, idx) => (
+          data.projects.slice(0, data.projetProps?.NbProjectsUser || 8).map((projet, idx) => (
             <div
               key={projet.id || idx}
               className="projet-card"
@@ -78,7 +78,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
                   fontFamily: data.projetProps?.FontFamilyTitle,
                   fontSize: data.projetProps?.FontSizeTitle,
                   fontWeight: data.projetProps?.FontWeightTitle,
-                  color: projet.ColorTitle
+                  color: data.projetProps?.ColorTitle
                 }}
               >
                 {projet.Title || `Projet ${idx + 1}`}
@@ -96,7 +96,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
       {/* Modal for enlarged project */}
       {selectedProject && (
         <div className="modal-overlay grey" onClick={() => setSelectedProjectIdx(null)}>
-          <div className="modal-template" onClick={e => e.stopPropagation()}>
+          <div className="modal-template large" onClick={e => e.stopPropagation()}>
             {/* <button
               type="button"
               aria-label="Fermer"
@@ -115,7 +115,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               fontFamilyStyle={data.projetProps?.FontFamilyTitle}
               fontFamilySize={data.projetProps?.FontSizeTitle}
               fontFamilyWeight={data.projetProps?.FontWeightTitle}
-              fontColor={selectedProject.ColorTitle}
+              fontColor={data.projetProps?.ColorTitle}
             />
 
             {/* Project image if available */}
@@ -124,7 +124,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
                 <img
                   src={projectImageUrl}
                   alt="Project visual"
-                  style={{ maxWidth: '100%', maxHeight: 200, borderRadius: 8 }}
+                  className="projet-modal-image"
                 />
               </div>
             )}
@@ -139,7 +139,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               fontFamilyStyle={data.projetProps?.FontFamilyText}
               fontFamilySize={data.projetProps?.FontSizeText}
               fontFamilyWeight={data.projetProps?.FontWeightText}
-              fontColor={selectedProject.ColorText}
+              fontColor={data.projetProps?.ColorText}
             />
             {selectedProject.Link && selectedProject.Link !== '' && (
               <a href={selectedProject.Link} target="_blank" rel="noopener noreferrer" className="projet-link-modal">
@@ -147,12 +147,14 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               </a>
             )}
             {/* Project image upload at the bottom of the modal */}
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: 5 }}>
-              <UpdateBackground
-                onUpload={handleProjectImageUpload}
-                disabled={isPublished}
-              />
-            </div>
+            {!isPublished && (
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: 5 }}>
+                <UpdateBackground
+                  onUpload={handleProjectImageUpload}
+                  disabled={isPublished}
+                />
+              </div>
+            )}
 
           </div>
         </div>
@@ -160,6 +162,8 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
 
       {/* Design Options Modal */}
       <ProjetOptionsModal
+        data={data}
+        setData={setData}
         show={showDesignModal}
         onClose={() => setShowDesignModal(false)}
         isPublished={isPublished}

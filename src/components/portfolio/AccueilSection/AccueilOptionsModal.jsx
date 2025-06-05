@@ -234,7 +234,6 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
 
           {/* Image de fond */}
           <button className="collapse-toggle" onClick={() => setCollapseBg(v => !v)}>
-            {/* <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span> */}
             <span style={{display:'flex', alignItems:'center', gap:6}}>{collapseBg ? '▼' : '►'} <span>Image de fond</span></span>
             <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span>
           </button>
@@ -264,8 +263,6 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
               </div>
             )}
           </div>
-
-          {/* <button onClick={onClose}>Fermer</button> */}
         </div>
       </Draggable>
     </div>

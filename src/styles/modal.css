@@ -31,7 +31,16 @@
   min-width: 275px;
   box-sizing: border-box;
   word-break: break-word;
+  max-height: 90vh;
+  overflow-y: auto;
   /* Ensure long words break to the next line */
+}
+
+/* Modal styles */
+.modal-template.large {
+  width: 90vw;
+  max-width: 900px;
+  min-width: 275px;
 }
 
 .modal-template.option {
@@ -141,10 +150,6 @@
 
 .modal-template .modal-close-button:hover {
   background-color: #636262;
-}
-
-.modal-template .project-text-container {
-  margin-top: 18px;
 }
 
 /* Responsive styles for smartphones */
