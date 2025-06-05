@@ -4,11 +4,13 @@ import UpdateText from "../../common/UpdateText";
 import { handleFieldChange } from '../../../hooks/HandlePortfolioData';
 import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import AccueilOptionsModal from "./AccueilOptionsModal";
+import HeadDefault from "../../../assets/head_default.png";
+import BackgroundDefault from "../../../assets/Accueil_default.jpg";
 
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
-  const { imageUrl: profilePic, handleImageUpload: handleProfileUpload } = usePortfolioImage(username, "Profile");
-  const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "AccueilBackground");
+  const { imageUrl: profilePic, handleImageUpload: handleProfileUpload } = usePortfolioImage(username, "Profile", undefined, HeadDefault);
+  const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "AccueilBackground", undefined, BackgroundDefault);
   const [showDesignModal, setShowDesignModal] = useState(false);
 // Suppression de fieldChangeHandler, utilisation directe de handleFieldChange
   return (

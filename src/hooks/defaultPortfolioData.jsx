@@ -17,7 +17,7 @@ export const defaultPortfolioData = {
   name: "Votre Nom",
   BIO: "Votre statut",
   navProps: {
-    navBarColor: "#000000",
+    navBarColor: "grey",
     navLinkColor: "#ffffff",
     navBarAlpha: 0.5,
     navFontFamily: "Arial, sans-serif",
@@ -49,6 +49,6 @@ export const defaultPortfolioData = {
     FontSizeTech: "15px",
     FontWeightTech: "bold",
     BackgroundColor: "#ffffff",
-    HoverColor: "#ffffff",
+    HoverColor: "#d3d3d3", // light grey
   },
 };
