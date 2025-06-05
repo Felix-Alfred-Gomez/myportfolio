@@ -6,16 +6,18 @@ import UpdateText from "../../common/UpdateText";
 import { handleArrayFieldChange } from '../../../hooks/HandlePortfolioData';
 // import { X } from "lucide-react";
 import UpdateBackground from "../../common/UpdateBackground";
+import BackgroundDefault from "../../../assets/Projets_default.jpg";
+import projectDefault from "../../../assets/OneProject_default.jpg";
 
 
 function ProjectImage({ username, index, refreshKey }) {
-  const { imageUrl } = usePortfolioImage(username, `ProjectImage_${index}`, refreshKey);
+  // Pass projectDefault as the fourth argument (defaultBackground)
+  const { imageUrl } = usePortfolioImage(username, `ProjectImage_${index}`, refreshKey, projectDefault);
 
-  if (!imageUrl) return null;
-
+  // Always show an image: use imageUrl if available, otherwise projectDefault
   return (
     <img
-      src={imageUrl}
+      src={imageUrl || projectDefault}
       alt={`Projet ${index + 1}`}
       className="projet-card-image"
     />
@@ -23,7 +25,7 @@ function ProjectImage({ username, index, refreshKey }) {
 }
 
 export default function ProjetSection({ username, isPublished, data, setData }) {
-  const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "ProjetBackground");
+  const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "ProjetBackground", undefined, BackgroundDefault);
   const [showDesignModal, setShowDesignModal] = useState(false);
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(null);
   const [imageRefreshKeys, setImageRefreshKeys] = useState({});
@@ -36,7 +38,8 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
     handleImageUpload
   } = usePortfolioImage(
     username,
-    selectedProjectIdx !== null ? `ProjectImage_${selectedProjectIdx}` : null
+    selectedProjectIdx !== null ? `ProjectImage_${selectedProjectIdx}` : null,
+    undefined, projectDefault
   );
 
   const handleProjectImageUpload = async (file) => {
