@@ -129,13 +129,14 @@
 /* Shared fixed-width container */
 .project-text-container {
   width: 100%;
-  max-width: 550px;
+  max-width: 95%;
   margin: 0 auto;
   text-align: center;
   color: white;
   margin-top: 18px;
   margin-bottom: 18px;
 }
+
 
 .projet-modal-image {
   width: auto;

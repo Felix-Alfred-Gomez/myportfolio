@@ -33,6 +33,7 @@
   word-break: break-word;
   max-height: 90vh;
   overflow-y: auto;
+  overflow-x: hidden;
   /* Ensure long words break to the next line */
 }
 
@@ -41,6 +42,7 @@
   width: 90vw;
   max-width: 900px;
   min-width: 275px;
+  overflow-x: hidden;
 }
 
 .modal-template.option {
