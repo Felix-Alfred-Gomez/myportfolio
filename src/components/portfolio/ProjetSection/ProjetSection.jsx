@@ -4,31 +4,57 @@ import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import ProjetOptionsModal from "./ProjetOptionsModal";
 import UpdateText from "../../common/UpdateText";
 import { handleArrayFieldChange } from '../../../hooks/HandlePortfolioData';
-import { X } from "lucide-react";
+// import { X } from "lucide-react";
 import UpdateBackground from "../../common/UpdateBackground";
+
+
+function ProjectImage({ username, index, refreshKey }) {
+  const { imageUrl } = usePortfolioImage(username, `ProjectImage_${index}`, refreshKey);
+
+  if (!imageUrl) return null;
+
+  return (
+    <img
+      src={imageUrl}
+      alt={`Projet ${index + 1}`}
+      style={{ maxWidth: '100%', maxHeight: 100, borderRadius: 8, marginBottom: 8 }}
+    />
+  );
+}
 
 export default function ProjetSection({ username, isPublished, data, setData }) {
   const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "ProjetBackground");
   const [showDesignModal, setShowDesignModal] = useState(false);
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(null);
+  const [imageRefreshKeys, setImageRefreshKeys] = useState({});
   const selectedProject = selectedProjectIdx !== null ? data.projects[selectedProjectIdx] : null;
 
   // Add per-project image upload hook
   const {
     imageUrl: projectImageUrl,
-    handleImageUpload: handleProjectImageUpload
+    handleImageUpload
   } = usePortfolioImage(
     username,
     selectedProjectIdx !== null ? `ProjectImage_${selectedProjectIdx}` : null
   );
 
+  const handleProjectImageUpload = async (file) => {
+    await handleImageUpload(file);
+    setImageRefreshKeys(prev => ({
+      ...prev,
+      [selectedProjectIdx]: Date.now()
+    }));
+  };
+
   return (
     <section
       id="project"
       className="projet-section"
-      style={backgroundUrl ? { backgroundImage: `url(${backgroundUrl})`,
-      backgroundSize: "cover", backgroundPosition: "center" } : {}}>
-      
+      style={backgroundUrl ? {
+        backgroundImage: `url(${backgroundUrl})`,
+        backgroundSize: "cover", backgroundPosition: "center"
+      } : {}}>
+
       {!isPublished && (
         <button
           className="wheel-option template-page"
@@ -46,8 +72,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               key={projet.id || idx}
               className="projet-card"
               onClick={() => setSelectedProjectIdx(idx)}
-              style={{ cursor: 'pointer' }}
-            >
+              style={{ cursor: 'pointer' }}>
               <h3
                 style={{
                   fontFamily: data.projetProps?.FontFamilyTitle,
@@ -58,6 +83,9 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               >
                 {projet.Title || `Projet ${idx + 1}`}
               </h3>
+
+              {/* Project image (if any) */}
+              <ProjectImage username={username} index={idx} refreshKey={imageRefreshKeys[idx]} />
             </div>
           ))
         ) : (
@@ -69,14 +97,14 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
       {selectedProject && (
         <div className="modal-overlay grey" onClick={() => setSelectedProjectIdx(null)}>
           <div className="modal-template" onClick={e => e.stopPropagation()}>
-            <button
+            {/* <button
               type="button"
               aria-label="Fermer"
               onClick={() => setSelectedProjectIdx(null)}
               className="modal-close-button">
               <X size={20} color="white" />
-            </button>
-            
+            </button> */}
+
             <UpdateText
               isPublished={isPublished}
               value={selectedProject.Title}
@@ -89,7 +117,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               fontFamilyWeight={data.projetProps?.FontWeightTitle}
               fontColor={selectedProject.ColorTitle}
             />
-            
+
             {/* Project image if available */}
             {projectImageUrl && (
               <div style={{ textAlign: 'center', marginBottom: 16 }}>
