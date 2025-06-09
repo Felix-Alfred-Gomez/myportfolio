@@ -63,7 +63,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
 
       {!isPublished && (
         <button
-          className="pen-edition template-page zlevel6"
+          className="pen-edition template-page zlevel9"
           title="Options"
           onClick={() => setShowDesignModal(true)}>
           <FaPencilAlt className="pen-icon red" />
@@ -109,7 +109,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
 
       {/* Modal for enlarged project */}
       {selectedProject && !projectImageLoading && projectImageUrl && (
-        <div className="modal-overlay grey" onClick={() => setSelectedProjectIdx(null)}>
+        <div className="modal-overlay z8 grey" onClick={() => setSelectedProjectIdx(null)}>
           <div
             className="modal-template large"
             onClick={e => e.stopPropagation()}

@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.modal-overlay.z8 {
+  z-index: 8;
+}
+
 .modal-overlay.grey {
   background-color: rgba(0, 0, 0, 0.5);
 }

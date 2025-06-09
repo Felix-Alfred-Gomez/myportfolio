@@ -27,7 +27,12 @@ export default function PortfolioNavWrapper({
         <button
           className="pen-edition nav zlevel7"
           title="Options"
-          onClick={() => setShowDesignModal(true)}>
+          onClick={() => {
+            // Only open side menu if screen is small (matches burger menu visibility)
+            const isSmallScreen = window.innerWidth <= 600 || window.innerHeight <= 600;
+            if (isSmallScreen) setMenuOpen(true);
+            setShowDesignModal(true);
+          }}>
           <FaPencilAlt className="pen-icon" />
         </button>
       )}

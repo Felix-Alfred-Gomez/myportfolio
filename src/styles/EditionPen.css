@@ -22,6 +22,10 @@
   z-index: 6;
 }
 
+.pen-edition.zlevel9 {
+  z-index: 9;
+}
+
 .pen-edition.zlevel7 {
   z-index: 7;
 }
