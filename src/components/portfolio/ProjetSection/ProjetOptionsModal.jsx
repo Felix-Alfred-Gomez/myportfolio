@@ -33,7 +33,7 @@ export default function ProjetOptionsModal({
   if (!show) return null;
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay z9">
       <Draggable
         nodeRef={nodeRef}
         cancel=".modal-slider, 
