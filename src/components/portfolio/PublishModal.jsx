@@ -2,7 +2,7 @@ export default function PublishModal({ show, url, onClose }) {
   if (!show) return null;
 
   return (
-    <div className="modal-overlay z8 grey">
+    <div className="modal-overlay z10 grey">
       <div className="modal-template">
         <h2>Votre portfolio a sauvegardé</h2>
         <p>
