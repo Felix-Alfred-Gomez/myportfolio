@@ -1,29 +1,13 @@
 import { useState } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
-// import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import { FaPencilAlt } from "react-icons/fa";
 import ProjetOptionsModal from "./ProjetOptionsModal";
-import UpdateText from "../../common/UpdateText";
 import { handleArrayFieldChange } from '../../../hooks/HandlePortfolioData';
-// import { X } from "lucide-react";
-import UpdateBackground from "../../common/UpdateBackground";
 import BackgroundDefault from "../../../assets/Projets_default.jpg";
 import projectDefault from "../../../assets/OneProject_default.jpg";
+import ProjectModal from "./ProjectModal";
+import ProjectImage from "./ProjectImage";
 
-
-function ProjectImage({ username, index, refreshKey }) {
-  // Pass projectDefault as the fourth argument (defaultBackground)
-  const { imageUrl } = usePortfolioImage(username, `ProjectImage_${index}`, refreshKey, projectDefault);
-
-  // Always show an image: use imageUrl if available, otherwise projectDefault
-  return (
-    <img
-      src={imageUrl || projectDefault}
-      alt={`Projet ${index + 1}`}
-      className="projet-card-image"
-    />
-  );
-}
 
 export default function ProjetSection({ username, isPublished, data, setData }) {
   const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "ProjetBackground", undefined, BackgroundDefault);
@@ -109,73 +93,18 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
 
       {/* Modal for enlarged project */}
       {selectedProject && !projectImageLoading && projectImageUrl && (
-        <div className="modal-overlay z8 grey" onClick={() => setSelectedProjectIdx(null)}>
-          <div
-            className="modal-template large"
-            onClick={e => e.stopPropagation()}
-            style={{ background: data.projetProps?.BackgroundColor || '#ffffff', transition: 'background 0.2s' }}
-          >
-            {/* <button
-              type="button"
-              aria-label="Fermer"
-              onClick={() => setSelectedProjectIdx(null)}
-              className="modal-close-button">
-              <X size={20} color="white" />
-            </button> */}
-
-            <UpdateText
-              isPublished={isPublished}
-              value={selectedProject.Title}
-              onChange={e => handleArrayFieldChange(setData, data,
-                'projects', selectedProjectIdx, 'Title')(e.target.value)}
-              containerClass="project-text-container"
-              textClass="project-text-input"
-              fontFamilyStyle={data.projetProps?.FontFamilyTitle}
-              fontFamilySize={data.projetProps?.FontSizeTitle}
-              fontFamilyWeight={data.projetProps?.FontWeightTitle}
-              fontColor={data.projetProps?.ColorTitle}
-            />
-
-            {/* Project image if available */}
-            {projectImageUrl && (
-              <div style={{ textAlign: 'center', marginBottom: 16 }}>
-                <img
-                  src={projectImageUrl}
-                  alt="Project visual"
-                  className="projet-modal-image"
-                />
-              </div>
-            )}
-
-            <UpdateText
-              isPublished={isPublished}
-              value={selectedProject.Text}
-              onChange={e => handleArrayFieldChange(setData, data,
-                'projects', selectedProjectIdx, 'Text')(e.target.value)}
-              containerClass="project-text-container"
-              textClass="project-text-input"
-              fontFamilyStyle={data.projetProps?.FontFamilyText}
-              fontFamilySize={data.projetProps?.FontSizeText}
-              fontFamilyWeight={data.projetProps?.FontWeightText}
-              fontColor={data.projetProps?.ColorText}
-            />
-            {selectedProject.Link && selectedProject.Link !== '' && (
-              <a href={selectedProject.Link} target="_blank" rel="noopener noreferrer" className="projet-link-modal">
-                Voir le projet
-              </a>
-            )}
-            {/* Project image upload at the bottom of the modal */}
-            {!isPublished && (
-              <div style={{ display: 'flex', justifyContent: 'center', marginTop: 5 }}>
-                <UpdateBackground
-                  onUpload={handleProjectImageUpload}
-                  disabled={isPublished}
-                />
-              </div>
-            )}
-
-          </div>
-        </div>
+        <ProjectModal
+          isPublished={isPublished}
+          selectedProject={selectedProject}
+          selectedProjectIdx={selectedProjectIdx}
+          data={data}
+          setData={setData}
+          handleArrayFieldChange={handleArrayFieldChange}
+          projectImageUrl={projectImageUrl}
+          projectImageLoading={projectImageLoading}
+          handleProjectImageUpload={handleProjectImageUpload}
+          onClose={() => setSelectedProjectIdx(null)}
+        />
       )}
 
       {/* Design Options Modal */}

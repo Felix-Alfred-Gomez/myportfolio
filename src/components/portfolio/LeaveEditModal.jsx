@@ -4,7 +4,7 @@ export default function LeaveEditModal({ show, onClose, onContinue, onPublish}) 
   if (!show) return null;
 
   return (
-    <div className="modal-overlay z8 grey">
+    <div className="modal-overlay z10 grey">
       <div className="modal-template">
         <h2>Vous allez quitter votre espace d'édition</h2>
         <p>

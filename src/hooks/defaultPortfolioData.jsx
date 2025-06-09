@@ -17,7 +17,7 @@ export const defaultPortfolioData = {
   name: "Votre Nom",
   BIO: "Votre statut",
   navProps: {
-    navBarColor: "grey",
+    navBarColor: "#000000",
     navLinkColor: "#ffffff",
     navBarAlpha: 0.5,
     navFontFamily: "Arial, sans-serif",

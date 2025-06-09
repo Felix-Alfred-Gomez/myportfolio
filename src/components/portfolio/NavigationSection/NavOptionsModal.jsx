@@ -113,6 +113,7 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
                         onChange={color => handleNestedFieldChange(setData, data, 'navProps', 'navLinkColor')(color.hex)}
                         styles={{default: { picker: { boxShadow: 'none' } }}}
                         className="modal-SketchPicker"
+                        disableAlpha={true}
                       />
                     </div>
                     <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPicker(false)}>Fermer</button>
