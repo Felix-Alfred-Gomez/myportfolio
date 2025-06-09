@@ -1,0 +1,111 @@
+/* Dashboard-specific styles extracted from common.css */
+
+.dashboard-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.dashboard-features-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+  color: #222;
+  background: rgba(255,255,255,0.7);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  font-family: 'Dancing Script', cursive;
+}
+
+.dashboard-features-list li:last-child {
+  margin-bottom: 25px;
+}
+
+.dashboard-features-list .feature-tick {
+  color: #4CAF50;
+  font-size: 2.5rem;
+  margin-right: 0.7rem;
+  flex-shrink: 0;
+}
+
+.dashboard-features-list .feature-btn-symbol {
+  margin-left: 0.5rem;
+  background: #eee;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
+
+.dashboard-features-list .feature-url {
+  margin-left: 0.5rem;
+  color: #1976d2;
+  font-weight: bold;
+  font-size: 1rem;
+  background: #f5f5f5;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #ccc;
+  word-break: break-all;
+  font-family: inherit;
+}
+
+.hero-section .hero-overlay-dashboard {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.hero-section .hero-overlay-dashboard h2 {
+  font-size: 2.5rem;
+  padding-left: 50px;
+  padding-right: 50px;
+  font-weight: bold;
+  font-family: 'Dancing Script', cursive;
+}
+
+@media screen and (max-width: 499px){
+  .dashboard-features-list {
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+  .dashboard-features-list li {
+    font-size: 1rem;
+    padding: 0.5rem 0.7rem;
+  }
+  .hero-section .hero-overlay-dashboard h2 {
+    font-size: 1.5rem;
+  }
+}
+
+
+@media screen and (max-height: 675px) {
+  .dashboard-features-list {
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+  .dashboard-features-list li {
+    font-size: 1rem;
+    padding: 0.5rem 0.7rem;
+  }
+  .hero-section .hero-overlay-dashboard h2 {
+    font-size: 1.5rem;
+  }
+}

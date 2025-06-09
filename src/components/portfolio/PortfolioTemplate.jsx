@@ -6,9 +6,11 @@ import AccueilSection from "./AccueilSection/AccueilSection";
 import ProjetSection from "./ProjetSection/ProjetSection";
 import PublishModal from "./PublishModal";
 import PortfolioNavWrapper from "./NavigationSection/PortfolioNavWrapper";
-import { HiOutlineSave } from "react-icons/hi";
+import LeaveEditModal from "./LeaveEditModal";
+// import { HiOutlineSave } from "react-icons/hi";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import "../../styles/PortfolioTemplate.css";
+import { FaSave } from "react-icons/fa";
 
 export function PortfolioContent({ isPublished }) {
   const { username } = useParams();
@@ -17,11 +19,14 @@ export function PortfolioContent({ isPublished }) {
   const [showModal, setShowModal] = useState(false);
   const [portfolioUrl, setPortfolioUrl] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showLeaveModal, setShowLeaveModal] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
   const handlePublish = async () => {
     try {
+      setIsPublishing(true);
       const baseUrl = window.location.origin;
       const url = `${baseUrl}/${username}`;
       // Update data before publishing
@@ -33,22 +38,52 @@ export function PortfolioContent({ isPublished }) {
       setShowModal(true);
     } catch (error) {
       console.error("Error publishing portfolio:", error);
+    } finally {
+      setIsPublishing(false);
     }
+  };
+
+  const handleReturnClick = (e) => {
+    e.preventDefault();
+    setShowLeaveModal(true);
+  };
+
+  const handleLeaveContinue = () => {
+    setShowLeaveModal(false);
+    navigate("/dashboard");
+  };
+
+  const handleLeaveClose = () => {
+    setShowLeaveModal(false);
+  };
+
+  // New handler to publish and close the modal
+  const handlePublishAndClose = async () => {
+    await handlePublish();
+    handleLeaveClose();
   };
 
   return (
     <div className="container-template">
       {!isPublished && (
         <>
-          <button className="button-template publish" onClick={handlePublish}>
-            <HiOutlineSave className="button-template-icon" />
+          <button className="button-template publish" onClick={handlePublish} disabled={isPublishing}>
+            <FaSave className="button-template-icon" />
           </button>
 
-          <button className="button-template return" onClick={() => navigate("/dashboard")}>
+          <button className="button-template return" onClick={handleReturnClick}>
             <RiArrowGoBackFill className="button-template-icon" />
           </button>
         </>
       )}
+
+      {/* LeaveEditModal */}
+      <LeaveEditModal
+        show={showLeaveModal}
+        onClose={handleLeaveClose}
+        onContinue={handleLeaveContinue}
+        onPublish={handlePublishAndClose}
+      />
 
       {/* Navigation Wrapper */}
       <PortfolioNavWrapper

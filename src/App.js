@@ -11,6 +11,8 @@ import "./styles/PortfolioTemplate.css";
 import "./styles/AccueilSection.css";
 import "./styles/ProjetSection.css";
 import "./styles/OptionModal.css";
+import "./styles/common.css"; 
+import "./styles/dashboard.css";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);

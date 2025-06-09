@@ -17,7 +17,7 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
   if (!show) return null;
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" onMouseDown={(e) => e.stopPropagation()}>
       <Draggable
         nodeRef={nodeRef}
         cancel=".modal-font-size-slider, 
@@ -28,8 +28,8 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
         <div 
         className="modal-template option"
         ref={nodeRef}
-        style={{cursor: 'grab'}}>
-
+        style={{cursor: 'grab'}}
+        onMouseDown={(e) => e.stopPropagation()}>
           <button
             type="button"
             aria-label="Fermer"
@@ -151,7 +151,7 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
             </label>
             {/* 3) Transparence */}
             <label style={{ display: 'block', marginBottom: 5 }}>
-              Transparence :
+              Transparence (top bar only) :
             </label>
             <div >
               <input
