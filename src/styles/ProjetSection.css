@@ -142,7 +142,7 @@
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 450px;
+  max-height: 40vh; /* Changed from 450px to 60vh for vertical responsiveness */
   border-radius: 8px;
   object-fit: contain;
   display: block;
