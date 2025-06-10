@@ -96,7 +96,7 @@ export const checkUsernameAvailable = async (username, app) => {
 };
 
 // Deep merge utility for objects
-function deepMerge(target, source) {
+export function deepMerge(target, source) {
   const output = { ...target };
   if (typeof source !== "object" || source === null) return output;
   Object.keys(source).forEach((key) => {
