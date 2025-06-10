@@ -1,4 +1,4 @@
-import { deepMerge } from "./HandlePortfolioData";
+import { deepMerge, pruneExtraKeys } from "./HandlePortfolioData";
 
 describe("deepMerge", () => {
   it("should merge flat objects", () => {
@@ -40,5 +40,36 @@ describe("deepMerge", () => {
     expect(result).toEqual({ a: { b: 1, c: 2 } });
     expect(target).toEqual({ a: { b: 1 } });
     expect(source).toEqual({ a: { c: 2 } });
+  });
+});
+
+describe("pruneExtraKeys", () => {
+  it("should remove keys not present in the reference object (flat)", () => {
+    const target = { a: 1, b: 2, extra: 99 };
+    const reference = { a: 0, b: 0 };
+    expect(pruneExtraKeys(target, reference)).toEqual({ a: 1, b: 2 });
+  });
+
+  it("should remove nested extra keys", () => {
+    const target = { a: { x: 1, y: 2, z: 3 }, b: 2 };
+    const reference = { a: { x: 0, y: 0 }, b: 0 };
+    expect(pruneExtraKeys(target, reference)).toEqual({ a: { x: 1, y: 2 }, b: 2 });
+  });
+
+  it("should prune arrays of objects", () => {
+    const target = [{ a: 1, extra: 2 }, { a: 2, b: 3 }];
+    const reference = [{ a: 0 }, { a: 0, b: 0 }];
+    expect(pruneExtraKeys(target, reference)).toEqual([{ a: 1 }, { a: 2, b: 3 }]);
+  });
+
+  it("should handle arrays with more items in target than reference", () => {
+    const target = [{ a: 1 }, { a: 2 }, { a: 3 }];
+    const reference = [{ a: 0 }];
+    expect(pruneExtraKeys(target, reference)).toEqual([{ a: 1 }]);
+  });
+
+  it("should return primitives as is", () => {
+    expect(pruneExtraKeys(42, 0)).toBe(42);
+    expect(pruneExtraKeys("foo", "bar")).toBe("foo");
   });
 });

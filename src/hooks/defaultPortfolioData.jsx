@@ -8,7 +8,7 @@ export const defaultProject = {
   Title: "Titre du projet",
   Text: "Description du projet",
   Link: "",
-  Skills: "Competence_1, Competence_2, Competence_3"
+  Skills: "Competence_1, Competence_2, Competence_3",
 };
 
 // Default portfolio data structure
