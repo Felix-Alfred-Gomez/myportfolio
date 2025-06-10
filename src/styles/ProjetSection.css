@@ -137,7 +137,6 @@
   margin-bottom: 18px;
 }
 
-
 .projet-modal-image {
   width: auto;
   max-width: 100%;
@@ -158,4 +157,107 @@
   object-fit: contain;
   border-radius: 8px;
   margin-bottom: 8px;
+}
+
+/* Project skills container: similar to project-text-container */
+.project-skills-container {
+  width: 100%;
+  max-width: 95%;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Project skill box: similar to .projet-tech, but red and smaller */
+.project-skill-box {
+  background: #e53935;
+  color: #fff;
+  border-radius: 6px;
+  padding: 2px 10px;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+/* Project skills textarea: similar to project-text-input, but with border and padding */
+.project-skills-textarea {
+  width: 100%;
+  min-height: 32px;
+  overflow: hidden;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: white;
+  border: 1px solid #e53935;
+  border-radius: 6px;
+  padding: 8px;
+  background: transparent;
+  resize: none;
+  box-sizing: border-box;
+}
+
+/* Edition mode for skills textarea: similar to .update-textarea-editing */
+.project-skills-textarea.update-skills-editing {
+  border: 2px dashed #e53935 !important;
+  outline: none !important;
+  background: #adadad41 !important;
+  box-sizing: border-box;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.project-skills-textarea.update-skills-editing:focus {
+  border: 2px dashed #e53935 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(229,57,53,0.08);
+}
+
+.project-skills-textarea.update-skills-editing:hover {
+  border-color: #fff !important;
+  box-shadow: 0 0 0 2px #e5393533;
+}
+
+/* Hover effect for skill boxes in edition mode */
+.project-skill-box.editing-skill-box:hover {
+  background: #ff7961;
+  color: #fff;
+  box-shadow: 0 0 0 2px #e53935;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.skills-edit-pen {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+button.skills-edit-pen {
+  background: none !important;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  box-shadow: none;
+}
+
+.skills-edit-pen-icon {
+  font-size: 18px;
+  color: #000;
 }

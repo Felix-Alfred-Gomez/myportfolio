@@ -1,5 +1,6 @@
 import UpdateText from "../../common/UpdateText";
 import UpdateBackground from "../../common/UpdateBackground";
+import UpdateSkillsStack from "../../common/UpdateSkillsStack";
 
 function ProjectModal({
   isPublished,
@@ -49,6 +50,19 @@ function ProjectModal({
             'projects', selectedProjectIdx, 'Text')(e.target.value)}
           containerClass="project-text-container"
           textClass="project-text-input"
+          fontFamilyStyle={data.projetProps?.FontFamilyText}
+          fontFamilySize={data.projetProps?.FontSizeText}
+          fontFamilyWeight={data.projetProps?.FontWeightText}
+          fontColor={data.projetProps?.ColorText}
+        />
+        <UpdateSkillsStack
+          isPublished={isPublished}
+          value={selectedProject.Skills}
+          onChange={e => handleArrayFieldChange(setData, data,
+            'projects', selectedProjectIdx, 'Skills')(e.target.value)}
+          containerClass="project-skills-container"
+          boxClass="project-skill-box"
+          textareaClass="project-skills-textarea"
           fontFamilyStyle={data.projetProps?.FontFamilyText}
           fontFamilySize={data.projetProps?.FontSizeText}
           fontFamilyWeight={data.projetProps?.FontWeightText}
