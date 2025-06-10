@@ -35,12 +35,20 @@ function ProjectModal({
           fontColor={data.projetProps?.ColorTitle}
         />
         {projectImageUrl && (
-          <div style={{ textAlign: 'center', marginBottom: 16 }}>
+          <div className="projet-modal-image-container">
             <img
               src={projectImageUrl}
               alt="Project visual"
               className="projet-modal-image"
             />
+            {!isPublished && (
+              <div className="projet-modal-image-upload-btn">
+                <UpdateBackground
+                  onUpload={handleProjectImageUpload}
+                  disabled={isPublished}
+                />
+              </div>
+            )}
           </div>
         )}
         <UpdateText
@@ -72,14 +80,6 @@ function ProjectModal({
           <a href={selectedProject.Link} target="_blank" rel="noopener noreferrer" className="projet-link-modal">
             Voir le projet
           </a>
-        )}
-        {!isPublished && (
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 5 }}>
-            <UpdateBackground
-              onUpload={handleProjectImageUpload}
-              disabled={isPublished}
-            />
-          </div>
         )}
       </div>
     </div>

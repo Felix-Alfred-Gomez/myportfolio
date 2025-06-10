@@ -1,0 +1,54 @@
+.update-skills-editing {
+  border: 2px dashed black !important;
+  outline: none !important;
+  background: #adadad41 !important;
+  box-sizing: border-box;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 90%;
+  min-height: 32px;
+  overflow: hidden;
+  /* border: 1px solid #e53935; */
+  padding: 8px;
+}
+
+.update-skills-editing:focus {
+  border: 2px dashed black !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(229,57,53,0.08);
+}
+
+.update-skills-editing:hover {
+  border-color: #fff !important;
+  box-shadow: 0 0 0 2px #225ba533;
+}
+
+.skills-edit-tick {
+  font-size: 18px;
+  color: #000;
+}
+
+.flex-wrap-center-gap8 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.editing-skill-box {
+  background: #e53935;
+  border-radius: 6px;
+  padding: 2px 10px;
+  margin-bottom: 4px;
+}
+
+/* Hover effect for skill boxes in edition mode */
+.editing-skill-box:hover {
+  background: #ff7961;
+  color: #fff;
+  box-shadow: 0 0 0 2px #e53935;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}

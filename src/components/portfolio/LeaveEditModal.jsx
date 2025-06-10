@@ -17,7 +17,7 @@ export default function LeaveEditModal({ show, onClose, onContinue, onPublish}) 
         </div>
         <div >
           <button onClick={onContinue}>
-            Continuer
+            Quitter
           </button>
           <button onClick={onClose}>
             Annuler

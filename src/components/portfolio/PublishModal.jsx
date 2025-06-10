@@ -4,7 +4,7 @@ export default function PublishModal({ show, url, onClose }) {
   return (
     <div className="modal-overlay z10 grey">
       <div className="modal-template">
-        <h2>Votre portfolio a sauvegardé</h2>
+        <h2>Votre portfolio a été sauvegardé</h2>
         <p>
           Partagez le avec cette adresse:{" "}
           <a href={url} target="_blank" rel="noopener noreferrer">
