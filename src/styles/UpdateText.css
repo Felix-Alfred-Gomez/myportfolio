@@ -8,9 +8,11 @@
 }
 
 .update-textarea-editing:focus {
-  border: 2px dashed #000 !important;
+  /* border: 2px dashed #000 !important;
   outline: none !important;
-  box-shadow: 0 0 0 2px rgba(0,0,0,0.08);
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.08); */
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 2px #225ba533;
 }
 
 .update-textarea-editing:hover {
