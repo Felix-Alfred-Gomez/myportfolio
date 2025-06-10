@@ -10,6 +10,7 @@ export const defaultProject = {
   Tech: ["Tech 1", "Tech 2", "Tech 3", "Tech 4",
     "Tech 5", "Tech 6", "Tech 7", "Tech 8"],
   Link: "",
+  Skills: "Skill 1, Skill 2, Skill 3"
 };
 
 // Default portfolio data structure
