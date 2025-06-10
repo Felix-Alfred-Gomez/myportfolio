@@ -48,7 +48,9 @@ export async function PushPortfolioData(username, data) {
 
   try {
     // Deep merge with defaultPortfolioData before pushing
-    const mergedData = deepMerge(defaultPortfolioData, data);
+    let mergedData = deepMerge(defaultPortfolioData, data);
+    // Prune extra keys not present in defaultPortfolioData
+    mergedData = pruneExtraKeys(mergedData, defaultPortfolioData);
     await setDoc(doc(db, "publicPortfolios", username), {
       ...mergedData, // Spread the merged data object
       username, // Add the username explicitly
@@ -95,25 +97,82 @@ export const checkUsernameAvailable = async (username, app) => {
   return !snapshot.exists(); // true if available
 };
 
-// Deep merge utility for objects
+// Deep merge utility for objects and arrays
 export function deepMerge(target, source) {
-  const output = { ...target };
-  if (typeof source !== "object" || source === null) return output;
-  Object.keys(source).forEach((key) => {
-    if (
-      typeof source[key] === "object" &&
-      source[key] !== null &&
-      !Array.isArray(source[key]) &&
-      typeof output[key] === "object" &&
-      output[key] !== null &&
-      !Array.isArray(output[key])
-    ) {
-      output[key] = deepMerge(output[key], source[key]);
-    } else {
-      output[key] = source[key];
-    }
-  });
-  return output;
+  // If source is not a plain object or array, return a shallow copy of target
+  if (
+    source === null ||
+    typeof source !== "object" ||
+    (Array.isArray(source) !== Array.isArray(target))
+  ) {
+    if (Array.isArray(target)) return [...target];
+    if (typeof target === "object" && target !== null) return { ...target };
+    return target;
+  }
+  if (Array.isArray(target) && Array.isArray(source)) {
+    // Merge arrays by index, recursively merge objects inside arrays
+    return target.map((item, idx) => {
+      if (idx in source) {
+        if (
+          typeof item === "object" && item !== null &&
+          typeof source[idx] === "object" && source[idx] !== null &&
+          !Array.isArray(item) && !Array.isArray(source[idx])
+        ) {
+          return deepMerge(item, source[idx]);
+        } else {
+          return source[idx];
+        }
+      } else {
+        return item;
+      }
+    }).concat(source.slice(target.length));
+  }
+  if (
+    typeof target === "object" && target !== null &&
+    typeof source === "object" && source !== null &&
+    !Array.isArray(target) && !Array.isArray(source)
+  ) {
+    const output = { ...target };
+    Object.keys(source).forEach((key) => {
+      if (
+        typeof source[key] === "object" && source[key] !== null &&
+        typeof output[key] === "object" && output[key] !== null &&
+        !Array.isArray(source[key]) && !Array.isArray(output[key])
+      ) {
+        output[key] = deepMerge(output[key], source[key]);
+      } else if (Array.isArray(source[key]) && Array.isArray(output[key])) {
+        output[key] = deepMerge(output[key], source[key]);
+      } else {
+        output[key] = source[key];
+      }
+    });
+    return output;
+  }
+  // fallback (should not be reached)
+  return target;
+}
+
+// Utility to prune keys not present in the reference object
+export function pruneExtraKeys(target, reference) {
+  if (Array.isArray(target) && Array.isArray(reference)) {
+    return target.map((item, idx) =>
+      idx < reference.length ? pruneExtraKeys(item, reference[idx]) : undefined
+    ).filter(item => item !== undefined);
+  }
+  if (
+    typeof target === "object" && target !== null &&
+    typeof reference === "object" && reference !== null &&
+    !Array.isArray(target) && !Array.isArray(reference)
+  ) {
+    const pruned = {};
+    Object.keys(reference).forEach(key => {
+      if (key in target) {
+        pruned[key] = pruneExtraKeys(target[key], reference[key]);
+      }
+    });
+    return pruned;
+  }
+  return target;
 }
 
 // functions to handle field changes in forms
