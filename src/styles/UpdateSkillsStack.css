@@ -9,18 +9,16 @@
   max-width: 90%;
   min-height: 32px;
   overflow: hidden;
-  /* border: 1px solid #e53935; */
   padding: 8px;
 }
 
 .update-skills-editing:focus {
-  border: 2px dashed black !important;
-  outline: none !important;
-  box-shadow: 0 0 0 2px rgba(229,57,53,0.08);
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 2px #225ba533;
 }
 
 .update-skills-editing:hover {
-  border-color: #fff !important;
+  border-color: #ffffff !important;
   box-shadow: 0 0 0 2px #225ba533;
 }
 

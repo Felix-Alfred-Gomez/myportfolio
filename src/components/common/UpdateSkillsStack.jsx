@@ -100,7 +100,7 @@ export default function UpdateSkillsStack({
       />
       <button
         type="button"
-        className="skills-edit-pen"
+        className="edit-pen"
         aria-label="Validate skills"
         onClick={() => setEditing(false)}
       >
