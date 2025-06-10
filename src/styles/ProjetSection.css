@@ -156,7 +156,7 @@
   height: 150px;
   object-fit: contain;
   border-radius: 8px;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
 }
 
 /* Project skills container: similar to project-text-container */
@@ -239,4 +239,17 @@ button.skills-edit-pen {
   bottom: 10px;
   transform: translateX(-50%);
   z-index: 2;
+}
+
+
+/* Responsive styles for smartphones */
+@media screen and (max-width: 600px) {
+  .projet-card-image {
+    height: 100px;
+  }
+  .projets-container {
+  /* max-width: 200px;
+  width: 80vw; */
+  width: 50%;
+}
 }
