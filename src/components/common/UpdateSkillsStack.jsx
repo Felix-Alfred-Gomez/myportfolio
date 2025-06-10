@@ -56,7 +56,7 @@ export default function UpdateSkillsStack({
 
   // Render skills as red boxes
   const renderSkillBoxes = () => (
-    <div className={`flex-wrap-center-gap8 ${containerClass}`}>
+    <div className={`flex-wrap-center ${containerClass}`}>
       {skills.map((skill, idx) => (
         <span
           key={idx}
@@ -109,7 +109,7 @@ export default function UpdateSkillsStack({
     </div>
   ) : (
     <div
-      className={`flex-wrap-center-gap8 ${containerClass}`}
+      className={`flex-wrap-center ${containerClass}`}
     >
       {skills.map((skill, idx) => (
         <span

@@ -62,6 +62,7 @@ function ProjectModal({
           fontFamilySize={data.projetProps?.FontSizeText}
           fontFamilyWeight={data.projetProps?.FontWeightText}
           fontColor={data.projetProps?.ColorText}
+          customTextStyle={{ textAlign: "justify" }}
         />
         <UpdateSkillsStack
           isPublished={isPublished}

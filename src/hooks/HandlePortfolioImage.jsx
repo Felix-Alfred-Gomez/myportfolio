@@ -45,7 +45,7 @@ export function usePortfolioImage(username, CharVarName, refreshKey, defaultBack
     setError(null);
     const file = event.target.files[0];
     if (file && username && CharVarName) {
-      if (file.size > 5 * 1024 * 1024) {
+      if (file.size > 10 * 1024 * 1024) {
         setError("Image size must be less than 5MB.");
         return;
       }
