@@ -15,9 +15,9 @@ export default function LeaveEditModal({ show, onClose, onContinue, onPublish}) 
             <FaSave className="button-template-icon" />
           </button>
         </div>
-        <div >
+        <div className="center-button">
           <button onClick={onContinue}>
-            Quitter
+            Continuer
           </button>
           <button onClick={onClose}>
             Annuler
