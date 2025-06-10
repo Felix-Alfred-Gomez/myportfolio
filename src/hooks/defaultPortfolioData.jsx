@@ -36,18 +36,24 @@ export const defaultPortfolioData = {
   projects: Array.from({ length: DEFAULT_PROJECTS_COUNT }, () => ({ ...defaultProject })),
   projetProps: {
     NbProjectsUser: 1,
+
     FontFamilyTitle: "Arial, sans-serif",
     FontSizeTitle: "20px",
     FontWeightTitle: "bold",
     ColorTitle: "#000000",
+
     FontFamilyText: "Arial, sans-serif",
     FontSizeText: "15px",
     FontWeightText: "bold",
     ColorText: "#000000",
-    FontFamilyTech: "Arial, sans-serif",
-    FontSizeTech: "15px",
-    FontWeightTech: "bold",
-    BackgroundColor: "#ffffff",
+
+    FontFamilySkills: "Arial, sans-serif",
+    FontSizeSkills: "15px",
+    FontWeightSkills: "bold",
+    ColorSkills: "#000000",
+    ColorSkillsBox: "#cf1212",
+
+    BackgroundColor: "#f3f3f3",
     HoverColor: "#d3d3d3", // light grey
   },
 };

@@ -28,6 +28,9 @@ export default function ProjetOptionsModal({
   const [collapseBg, setCollapseBg] = useState(false);
   const [collapseDesc, setCollapseDesc] = useState(false);
   const [collapseCartouche, setCollapseCartouche] = useState(false);
+  const [collapseSkills, setCollapseSkills] = useState(false);
+  const [showSkillsColorPicker, setShowSkillsColorPicker] = useState(false);
+  const [showSkillsBoxColorPicker, setShowSkillsBoxColorPicker] = useState(false);
   const nodeRef = useRef(null);
 
   if (!show) return null;
@@ -256,6 +259,120 @@ export default function ProjetOptionsModal({
                           />
                         </div>
                         <button style={{ marginTop: 16 }} onClick={() => setShowNavLinkColorPickerText(false)}>Fermer</button>
+                      </div>
+                    )}
+                  </div>
+                </label>
+              </div>
+            )}
+          </div>
+
+
+
+                    {/* Options for Skills Stack */}
+          <button className="collapse-toggle" onClick={() => setCollapseSkills(v => !v)}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{collapseSkills ? '▼' : '►'} <span>Options des compétences</span></span>
+            <span style={{ flex: 1, height: 1, background: '#ccc', display: 'block', borderRadius: 2 }}></span>
+          </button>
+          <div className={`collapsible-content${collapseSkills ? ' open' : ''}`}>
+            {collapseSkills && (
+              <div style={{ margin: '10px 0' }}>
+                {/* Font Family Dropdown using react-select */}
+                <div className="modal-font-row">
+                  <div className="modal-font-select-wrapper">
+                    <Select
+                      options={fontFamilies.map(f => ({ label: f.label, value: f.value }))}
+                      value={fontFamilies.find(f => f.value === data.projetProps.FontFamilySkills) || fontFamilies[0]}
+                      onChange={option => handleNestedFieldChange(setData, data, 'projetProps', 'FontFamilySkills')(option.value)}
+                      styles={{
+                        control: (base) => ({ ...base, fontFamily: data.projetProps.FontFamilySkills, color: 'black' }),
+                        option: (base, state) => ({ ...base, fontFamily: state.data.value, color: 'black' })
+                      }}
+                      menuPlacement="bottom"
+                      maxMenuHeight={200}
+                      isSearchable={false}
+                    />
+                  </div>
+                </div>
+
+                {/* Font Size Slider */}
+                <div className="modal-font-row">
+                  <input
+                    type="range"
+                    min={10}
+                    max={30}
+                    value={parseInt(data.projetProps.FontSizeSkills) || 15}
+                    onChange={e => handleNestedFieldChange(setData, data, 'projetProps', 'FontSizeSkills')(e.target.value + 'px')}
+                    className="modal-slider"
+                  />
+                  <span className="modal-span-black">{parseInt(data.projetProps.FontSizeSkills) || 15}px</span>
+                </div>
+
+                {/* Font Weight Selector */}
+                <div className="modal-font-row">
+                  <div className="modal-font-select-wrapper">
+                    <Select
+                      options={[{ label: 'Normal', value: 'normal' }, { label: 'Gras', value: 'bold' }]}
+                      value={{ label: data.projetProps.FontWeightSkills === 'bold' ? 'Gras' : 'Normal', value: data.projetProps.FontWeightSkills || 'bold' }}
+                      onChange={option => handleNestedFieldChange(setData, data, 'projetProps', 'FontWeightSkills')(option.value)}
+                      styles={{
+                        control: (base) => ({ ...base, minWidth: 80, color: 'black' }),
+                        option: (base) => ({ ...base, color: 'black' })
+                      }}
+                      menuPlacement="bottom"
+                      maxMenuHeight={200}
+                      isSearchable={false}
+                    />
+                  </div>
+                </div>
+
+                {/* Couleur du texte des compétences */}
+                <label className="modal-label-black">
+                  Couleur du texte:
+                  <div className="modal-color-preview-wrapper">
+                    <div
+                      className="modal-color-preview"
+                      style={{ background: data.projetProps.ColorSkills }}
+                      onClick={() => setShowSkillsColorPicker(true)}
+                    />
+                    {showSkillsColorPicker && (
+                      <div className="modal-color-picker">
+                        <div style={{ boxShadow: 'none', filter: 'none' }}>
+                          <SketchPicker
+                            color={data.projetProps.ColorSkills}
+                            onChange={color => handleNestedFieldChange(setData, data, 'projetProps', 'ColorSkills')(color.hex)}
+                            styles={{ default: { picker: { boxShadow: 'none' } } }}
+                            className="modal-SketchPicker"
+                            disableAlpha={true}
+                          />
+                        </div>
+                        <button style={{ marginTop: 16 }} onClick={() => setShowSkillsColorPicker(false)}>Fermer</button>
+                      </div>
+                    )}
+                  </div>
+                </label>
+
+                {/* Couleur du fond des cartouches de compétences */}
+                <label className="modal-label-black" style={{ marginTop: 16 }}>
+                  Couleur du fond des compétences:
+                  <div className="modal-color-preview-wrapper">
+                    <div
+                      className="modal-color-preview"
+                      style={{ background: data.projetProps.ColorSkillsBox }}
+                      onClick={() => setShowSkillsBoxColorPicker(true)}
+                    />
+                    {showSkillsBoxColorPicker && (
+                      <div className="modal-color-picker">
+                        <div style={{ boxShadow: 'none', filter: 'none' }}>
+                          <SketchPicker
+                            color={data.projetProps.ColorSkillsBox}
+                            onChange={color => handleNestedFieldChange(setData, data, 'projetProps', 'ColorSkillsBox')(color.hex)}
+                            styles={{ default: { picker: { boxShadow: 'none' } } }}
+                            className="modal-SketchPicker"
+                            disableAlpha={true}
+                          />
+                        </div>
+                        <button style={{ marginTop: 16 }} onClick={() => setShowSkillsBoxColorPicker(false)}>Fermer</button>
                       </div>
                     )}
                   </div>
