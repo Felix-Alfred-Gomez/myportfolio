@@ -7,10 +7,8 @@ export const DEFAULT_PROJECTS_COUNT = 8;
 export const defaultProject = {
   Title: "Titre du projet",
   Text: "Description du projet",
-  Tech: ["Tech 1", "Tech 2", "Tech 3", "Tech 4",
-    "Tech 5", "Tech 6", "Tech 7", "Tech 8"],
   Link: "",
-  Skills: "Skill 1, Skill 2, Skill 3"
+  Skills: "Competence_1, Competence_2, Competence_3"
 };
 
 // Default portfolio data structure

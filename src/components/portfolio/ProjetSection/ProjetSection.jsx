@@ -84,7 +84,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               <h3
                 style={{
                   fontFamily: data.projetProps?.FontFamilyTitle,
-                  fontSize: getResponsiveFontSize(data.projetProps?.FontSizeTitle),
+                  fontSize: getResponsiveFontSize(data.projetProps?.FontSizeTitle, windowWidth),
                   fontWeight: data.projetProps?.FontWeightTitle,
                   color: data.projetProps?.ColorTitle
                 }}

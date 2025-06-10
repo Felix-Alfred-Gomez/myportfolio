@@ -152,7 +152,7 @@ export default function NavOptionsModal({ show, onClose, navProps, setData, data
             </label>
             {/* 3) Transparence */}
             <label style={{ display: 'block', marginBottom: 5 }}>
-              Transparence (top bar only) :
+              Transparence (PC uniquement) :
             </label>
             <div >
               <input

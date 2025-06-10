@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { FaCheck } from "react-icons/fa";
+import { getResponsiveFontSize } from "./responsiveFontSize";
 
 export default function UpdateSkillsStack({
   isPublished,
@@ -15,6 +16,7 @@ export default function UpdateSkillsStack({
 }) {
   const [editing, setEditing] = useState(false);
   const textareaRef = useRef(null);
+  const [responsiveFontSize, setResponsiveFontSize] = useState(fontFamilySize);
 
   // Parse skills from comma-separated string
   const skills = value
@@ -41,22 +43,28 @@ export default function UpdateSkillsStack({
     return () => document.removeEventListener("mousedown", handleClick);
   }, [editing]);
 
+  // Update responsive font size on resize
+  useEffect(() => {
+    function handleResize() {
+      setResponsiveFontSize(getResponsiveFontSize(fontFamilySize));
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [fontFamilySize]);
+
   // Render skills as red boxes
   const renderSkillBoxes = () => (
-    <div className={containerClass} style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+    <div className={`flex-wrap-center-gap8 ${containerClass}`}>
       {skills.map((skill, idx) => (
         <span
           key={idx}
-          className={boxClass}
+          className={`${boxClass}`}
           style={{
-            background: "#e53935",
             color: fontColor,
-            borderRadius: 6,
-            padding: "2px 10px",
             fontFamily: fontFamilyStyle,
-            fontSize: fontFamilySize,
-            fontWeight: fontFamilyWeight,
-            marginBottom: 4
+            fontSize: responsiveFontSize,
+            fontWeight: fontFamilyWeight
           }}
         >
           {skill}
@@ -72,23 +80,17 @@ export default function UpdateSkillsStack({
 
   // Edit mode: show textarea if editing, else boxes (toggle edit by clicking a skill)
   return editing ? (
-    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 8, justifyContent: "center" }}>
       <textarea
         ref={textareaRef}
         value={value}
         onChange={onChange}
         className={`${textareaClass} update-skills-editing`}
         style={{
-          width: "100%",
-          minHeight: 32,
-          overflow: "hidden",
           fontFamily: fontFamilyStyle,
-          fontSize: fontFamilySize,
+          fontSize: responsiveFontSize,
           fontWeight: fontFamilyWeight,
-          color: fontColor,
-          border: "1px solid #e53935",
-          borderRadius: 6,
-          padding: 8
+          color: fontColor
         }}
         rows={1}
         onBlur={() => setEditing(false)}
@@ -100,24 +102,22 @@ export default function UpdateSkillsStack({
         aria-label="Validate skills"
         onClick={() => setEditing(false)}
       >
-        <FaCheck className="skills-edit-pen-icon" />
+        <FaCheck className="skills-edit-tick" />
       </button>
     </div>
   ) : (
-    <div className={containerClass} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8 }}>
+    <div
+      className={`flex-wrap-center-gap8 ${containerClass}`}
+    >
       {skills.map((skill, idx) => (
         <span
           key={idx}
           className={`${boxClass} editing-skill-box`}
           style={{
-            background: "#e53935",
             color: fontColor,
-            borderRadius: 6,
-            padding: "2px 10px",
             fontFamily: fontFamilyStyle,
-            fontSize: fontFamilySize,
+            fontSize: responsiveFontSize,
             fontWeight: fontFamilyWeight,
-            marginBottom: 4,
             cursor: "pointer"
           }}
           onClick={() => setEditing(true)}

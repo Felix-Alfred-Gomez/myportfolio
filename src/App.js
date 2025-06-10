@@ -13,6 +13,8 @@ import "./styles/ProjetSection.css";
 import "./styles/OptionModal.css";
 import "./styles/common.css"; 
 import "./styles/dashboard.css";
+import "./styles/UpdateSkillsStack.css";
+import "./styles/UpdateText.css";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);

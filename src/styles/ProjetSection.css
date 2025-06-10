@@ -204,36 +204,6 @@
   box-sizing: border-box;
 }
 
-/* Edition mode for skills textarea: similar to .update-textarea-editing */
-.project-skills-textarea.update-skills-editing {
-  border: 2px dashed #e53935 !important;
-  outline: none !important;
-  background: #adadad41 !important;
-  box-sizing: border-box;
-  border-radius: 6px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.project-skills-textarea.update-skills-editing:focus {
-  border: 2px dashed #e53935 !important;
-  outline: none !important;
-  box-shadow: 0 0 0 2px rgba(229,57,53,0.08);
-}
-
-.project-skills-textarea.update-skills-editing:hover {
-  border-color: #fff !important;
-  box-shadow: 0 0 0 2px #e5393533;
-}
-
-/* Hover effect for skill boxes in edition mode */
-.project-skill-box.editing-skill-box:hover {
-  background: #ff7961;
-  color: #fff;
-  box-shadow: 0 0 0 2px #e53935;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-}
-
 .skills-edit-pen {
   background: none;
   border: none;
@@ -257,7 +227,16 @@ button.skills-edit-pen {
   box-shadow: none;
 }
 
-.skills-edit-pen-icon {
-  font-size: 18px;
-  color: #000;
+.projet-modal-image-container {
+  position: relative;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.projet-modal-image-upload-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  z-index: 2;
 }
