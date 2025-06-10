@@ -16,7 +16,7 @@ function ProjectModal({
 }) {
   if (!selectedProject || projectImageLoading || !projectImageUrl) return null;
   return (
-    <div className="modal-overlay z8 grey" onClick={onClose}>
+    <div className="modal-overlay z8 grey" onClick={isPublished ? onClose : undefined}>
       <div
         className="modal-template large"
         onClick={e => e.stopPropagation()}
@@ -80,6 +80,14 @@ function ProjectModal({
           <a href={selectedProject.Link} target="_blank" rel="noopener noreferrer" className="projet-link-modal">
             Voir le projet
           </a>
+        )}
+        {!isPublished && (
+          <button
+            className="modal-close-grey"
+            onClick={onClose}
+          >
+            Fermer
+          </button>
         )}
       </div>
     </div>
