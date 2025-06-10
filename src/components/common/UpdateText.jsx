@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import { getResponsiveFontSize } from "./responsiveFontSize";
 
 export default function UpdateText({
   isPublished,
@@ -12,6 +13,16 @@ export default function UpdateText({
   fontColor
 }) {
   const textareaRef = useRef(null);
+  const [responsiveFontSize, setResponsiveFontSize] = useState(fontFamilySize);
+
+  useEffect(() => {
+    function handleResize() {
+      setResponsiveFontSize(getResponsiveFontSize(fontFamilySize));
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [fontFamilySize]);
 
   // Force update box size on value change, font size, font family, and window resize etc
   useEffect(() => {
@@ -26,7 +37,7 @@ export default function UpdateText({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [value, fontFamilySize, fontFamilyStyle, fontFamilyWeight]);
+  }, [value, responsiveFontSize, fontFamilyStyle, fontFamilyWeight]);
 
   return (
     <div className={containerClass}>
@@ -34,7 +45,7 @@ export default function UpdateText({
         <div 
           className={textClass}
           style={{ fontFamily: fontFamilyStyle,
-          fontSize: fontFamilySize,
+          fontSize: responsiveFontSize,
           fontWeight: fontFamilyWeight,
           color: fontColor,
           whiteSpace: "pre-line" }}>
@@ -49,7 +60,7 @@ export default function UpdateText({
           style={{ 
             overflow: "hidden",
             fontFamily: fontFamilyStyle,
-            fontSize: fontFamilySize,
+            fontSize: responsiveFontSize,
             fontWeight: fontFamilyWeight,
             color: fontColor
           }}

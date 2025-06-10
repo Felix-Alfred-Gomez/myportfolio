@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import { FaPencilAlt } from "react-icons/fa";
 import ProjetOptionsModal from "./ProjetOptionsModal";
@@ -7,6 +7,7 @@ import BackgroundDefault from "../../../assets/Projets_default.jpg";
 import projectDefault from "../../../assets/OneProject_default.jpg";
 import ProjectModal from "./ProjectModal";
 import ProjectImage from "./ProjectImage";
+import { getResponsiveFontSize } from "../../common/responsiveFontSize";
 
 
 export default function ProjetSection({ username, isPublished, data, setData }) {
@@ -15,6 +16,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(null);
   const [imageRefreshKeys, setImageRefreshKeys] = useState({});
   const [hoveredCardIdx, setHoveredCardIdx] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const selectedProject = selectedProjectIdx !== null ? data.projects[selectedProjectIdx] : null;
 
   // Add per-project image upload hook
@@ -35,6 +37,14 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
       [selectedProjectIdx]: Date.now()
     }));
   };
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <section
@@ -74,7 +84,7 @@ export default function ProjetSection({ username, isPublished, data, setData }) 
               <h3
                 style={{
                   fontFamily: data.projetProps?.FontFamilyTitle,
-                  fontSize: data.projetProps?.FontSizeTitle,
+                  fontSize: getResponsiveFontSize(data.projetProps?.FontSizeTitle),
                   fontWeight: data.projetProps?.FontWeightTitle,
                   color: data.projetProps?.ColorTitle
                 }}
