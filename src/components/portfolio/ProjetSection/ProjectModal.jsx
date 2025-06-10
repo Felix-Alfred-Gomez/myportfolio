@@ -71,10 +71,11 @@ function ProjectModal({
           containerClass="project-skills-container"
           boxClass="project-skill-box"
           textareaClass="project-skills-textarea"
-          fontFamilyStyle={data.projetProps?.FontFamilyText}
-          fontFamilySize={data.projetProps?.FontSizeText}
-          fontFamilyWeight={data.projetProps?.FontWeightText}
-          fontColor={data.projetProps?.ColorText}
+          fontFamilyStyle={data.projetProps?.FontFamilySkills}
+          fontFamilySize={data.projetProps?.FontSizeSkills}
+          fontFamilyWeight={data.projetProps?.FontWeightSkills}
+          fontColor={data.projetProps?.ColorSkills}
+          boxColor={data.projetProps?.ColorSkillsBox}
         />
         {selectedProject.Link && selectedProject.Link !== '' && (
           <a href={selectedProject.Link} target="_blank" rel="noopener noreferrer" className="projet-link-modal">

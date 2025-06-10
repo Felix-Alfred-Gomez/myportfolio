@@ -12,7 +12,8 @@ export default function UpdateSkillsStack({
   fontFamilyStyle,
   fontFamilySize = 16,
   fontFamilyWeight,
-  fontColor = "#fff"
+  fontColor = "#fff",
+  boxColor
 }) {
   const [editing, setEditing] = useState(false);
   const textareaRef = useRef(null);
@@ -64,7 +65,8 @@ export default function UpdateSkillsStack({
             color: fontColor,
             fontFamily: fontFamilyStyle,
             fontSize: responsiveFontSize,
-            fontWeight: fontFamilyWeight
+            fontWeight: fontFamilyWeight,
+            background: boxColor
           }}
         >
           {skill}
@@ -118,6 +120,7 @@ export default function UpdateSkillsStack({
             fontFamily: fontFamilyStyle,
             fontSize: responsiveFontSize,
             fontWeight: fontFamilyWeight,
+            background: boxColor,
             cursor: "pointer"
           }}
           onClick={() => setEditing(true)}
