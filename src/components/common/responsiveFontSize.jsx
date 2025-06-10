@@ -1,6 +1,9 @@
 // Utility to get responsive font size (66% for mobile screens)
 export function getResponsiveFontSize(fontFamilySize) {
-  if (typeof window !== "undefined" && window.innerWidth <= 600) {
+  if (
+    typeof window !== "undefined" &&
+    (window.innerWidth <= 600 || window.innerHeight <= 600)
+  ) {
     let size = fontFamilySize;
     if (typeof size === "string" && size.endsWith("px")) {
       return parseFloat(size) * 0.66 + "px";
