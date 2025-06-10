@@ -1,6 +1,8 @@
 import UpdateText from "../../common/UpdateText";
 import UpdateBackground from "../../common/UpdateBackground";
 import UpdateSkillsStack from "../../common/UpdateSkillsStack";
+import UpdateLinkBox from "../../common/UpdateLinkBox";
+import { X } from "lucide-react";
 
 function ProjectModal({
   isPublished,
@@ -27,7 +29,7 @@ function ProjectModal({
           value={selectedProject.Title}
           onChange={e => handleArrayFieldChange(setData, data,
             'projects', selectedProjectIdx, 'Title')(e.target.value)}
-          containerClass="project-text-container"
+          containerClass="project-text-container title"
           textClass="project-text-input"
           fontFamilyStyle={data.projetProps?.FontFamilyTitle}
           fontFamilySize={data.projetProps?.FontSizeTitle}
@@ -78,18 +80,30 @@ function ProjectModal({
           fontColor={data.projetProps?.ColorSkills}
           boxColor={data.projetProps?.ColorSkillsBox}
         />
-        {selectedProject.Link && selectedProject.Link !== '' && (
-          <a href={selectedProject.Link} target="_blank" rel="noopener noreferrer" className="projet-link-modal">
-            Voir le projet
-          </a>
-        )}
+        <div style={{ marginTop: 16, textAlign: 'center' }}>
+          <UpdateLinkBox
+            isPublished={isPublished}
+            value={selectedProject.Link}
+            onChange={e => handleArrayFieldChange(setData, data,
+              'projects', selectedProjectIdx, 'Link')(e.target.value)}
+          />
+        </div>
         {!isPublished && (
-          <button
-            className="modal-close-grey"
-            onClick={onClose}
-          >
-            Fermer
-          </button>
+          // <button
+          //   className="modal-close-grey"
+          //   onClick={onClose}
+          // >
+          //   Fermer
+          // </button>
+                <button
+        type="button"
+        aria-label="Fermer"
+        onClick={onClose}
+        className="modal-close-button">
+        <X size={20} color="white" />
+      </button>
+
+          
         )}
       </div>
     </div>
