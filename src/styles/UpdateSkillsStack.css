@@ -29,19 +29,20 @@
   color: #000;
 }
 
-.flex-wrap-center-gap8 {
+.flex-wrap-center {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 5px;
 }
 
 .editing-skill-box {
   background: #e53935;
-  border-radius: 6px;
+  border-radius: 3px;
   padding: 2px 10px;
-  margin-bottom: 4px;
+  margin-bottom: 1px;
+  margin-top: 1px;
 }
 
 /* Hover effect for skill boxes in edition mode */

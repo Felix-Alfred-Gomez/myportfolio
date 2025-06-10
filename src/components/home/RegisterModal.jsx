@@ -37,6 +37,7 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setError(""); // Clear error at the start of registration
     if (error) {
       return;
     }
@@ -85,14 +86,20 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
         type="email"
         placeholder="Email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => {
+          setEmail(e.target.value);
+          setError(""); // Clear error on email change
+        }}
         className="modal-input-box"
       />
       <input
         type="password"
         placeholder="Mot de passe"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => {
+          setPassword(e.target.value);
+          setError(""); // Clear error on password change
+        }}
         className="modal-input-box"
       />
       <button type="submit" >S'inscrire</button>

@@ -10,7 +10,8 @@ export default function UpdateText({
   fontFamilyStyle,
   fontFamilySize,
   fontFamilyWeight,
-  fontColor
+  fontColor,
+  customTextStyle = {} // Now expects an object for inline styles
 }) {
   const textareaRef = useRef(null);
   const [responsiveFontSize, setResponsiveFontSize] = useState(fontFamilySize);
@@ -48,7 +49,8 @@ export default function UpdateText({
           fontSize: responsiveFontSize,
           fontWeight: fontFamilyWeight,
           color: fontColor,
-          whiteSpace: "pre-line" }}>
+          whiteSpace: "pre-line",
+          ...customTextStyle }}>
             {value}
         </div>
       ) : (
@@ -62,7 +64,8 @@ export default function UpdateText({
             fontFamily: fontFamilyStyle,
             fontSize: responsiveFontSize,
             fontWeight: fontFamilyWeight,
-            color: fontColor
+            color: fontColor,
+            ...customTextStyle
           }}
           rows={1}
         />

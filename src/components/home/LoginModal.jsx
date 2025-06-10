@@ -12,6 +12,7 @@ function LoginModal({ onLoginSuccess, onRegisterClick, onForgotPasswordClick, on
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(""); // Clear error at the start of login
     const auth = getAuth(app);
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -65,14 +66,20 @@ function LoginModal({ onLoginSuccess, onRegisterClick, onForgotPasswordClick, on
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setError(""); // Clear error on email change
+          }}
           className="modal-input-box"
         />
         <input
           type="password"
           placeholder="Mot de passe"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setError(""); // Clear error on password change
+          }}
           className="modal-input-box"
         />
 
