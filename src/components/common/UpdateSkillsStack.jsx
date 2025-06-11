@@ -75,39 +75,67 @@ export default function UpdateSkillsStack({
     </div>
   );
 
-  // Published mode: always show boxes
+  // Published mode: always show boxes, but if no skills, render nothing
   if (isPublished) {
+    if (skills.length === 0) return null;
     return renderSkillBoxes();
   }
 
   // Edit mode: show textarea if editing, else boxes (toggle edit by clicking a skill)
-  return editing ? (
-    <div style={{ display: "flex", alignItems: "center", gap: 8, justifyContent: "center" }}>
-      <textarea
-        ref={textareaRef}
-        value={value}
-        onChange={onChange}
-        className={`${textareaClass} update-skills-editing`}
-        style={{
-          fontFamily: fontFamilyStyle,
-          fontSize: responsiveFontSize,
-          fontWeight: fontFamilyWeight,
-          color: fontColor
-        }}
-        rows={1}
-        onBlur={() => setEditing(false)}
-        autoFocus
-      />
-      <button
-        type="button"
-        className="edit-pen"
-        aria-label="Validate skills"
-        onClick={() => setEditing(false)}
-      >
-        <FaCheck className="skills-edit-tick" />
-      </button>
-    </div>
-  ) : (
+  if (editing) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", gap: 8, justifyContent: "center" }}>
+        <textarea
+          ref={textareaRef}
+          value={value}
+          onChange={onChange}
+          className={`${textareaClass} update-skills-editing`}
+          style={{
+            fontFamily: fontFamilyStyle,
+            fontSize: responsiveFontSize,
+            fontWeight: fontFamilyWeight,
+            color: fontColor
+          }}
+          rows={1}
+          onBlur={() => setEditing(false)}
+          autoFocus
+        />
+        <button
+          type="button"
+          className="edit-pen"
+          aria-label="Validate skills"
+          onClick={() => setEditing(false)}
+        >
+          <FaCheck className="skills-edit-tick" />
+        </button>
+      </div>
+    );
+  }
+
+  // If no skills, show a placeholder box to allow editing
+  if (skills.length === 0) {
+    return (
+      <div className={`flex-wrap-center ${containerClass}`}>
+        <span
+          className={`${boxClass} editing-skill-box`}
+          style={{
+            color: fontColor,
+            fontFamily: fontFamilyStyle,
+            fontSize: responsiveFontSize,
+            fontWeight: fontFamilyWeight,
+            background: boxColor,
+            opacity: 0.6,
+            cursor: "pointer"
+          }}
+          onClick={() => setEditing(true)}
+        >
+          Add a skill
+        </span>
+      </div>
+    );
+  }
+
+  return (
     <div
       className={`flex-wrap-center ${containerClass}`}
     >
