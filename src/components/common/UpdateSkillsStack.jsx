@@ -60,7 +60,7 @@ export default function UpdateSkillsStack({
       {skills.map((skill, idx) => (
         <span
           key={idx}
-          className={`${boxClass}`}
+          className={`${boxClass} editing-skill-box`}
           style={{
             color: fontColor,
             fontFamily: fontFamilyStyle,
