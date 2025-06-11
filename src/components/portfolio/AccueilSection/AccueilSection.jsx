@@ -7,6 +7,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import AccueilOptionsModal from "./AccueilOptionsModal";
 import HeadDefault from "../../../assets/head_default.png";
 import BackgroundDefault from "../../../assets/Accueil_default.jpg";
+// import UpdateSocialLinks from "../../common/UpdateSocialLinks"; // Importez le composant ici
 
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
@@ -70,6 +71,18 @@ export default function AccueilSection({ username, isPublished, data, setData })
         fontFamilySize={data.accueilProps.AccueilFontSizeBIO}
         fontFamilyWeight={data.accueilProps.AccueilFontWeightBIO}
         fontColor={data.accueilProps.AccueilColorBIO}/>
+
+      {/* Social Media Links */}
+      {/* <UpdateSocialLinks
+        isPublished={isPublished}
+        socialLinks={data.socialLinks || {}}
+        onChange={(key, url) => {
+          setData({
+            ...data,
+            socialLinks: { ...data.socialLinks, [key]: url }
+          });
+        }}
+      /> */}
 
     </section>
   );
