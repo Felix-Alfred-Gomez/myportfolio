@@ -67,7 +67,7 @@ export default function UpdateLinkBox({
       className={`link-box editing-link-box`}
       onClick={() => setEditing(true)}
     >
-      Voir
+      URL du projet
     </span>
   );
 }
