@@ -16,16 +16,16 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
   handleBackgroundUpload,
   handleProfileUpload
 }) {
-  // Utilisation directe de handleNestedFieldChange importée
+  const [activeSection, setActiveSection] = useState(null); // Single state for active section
   const [showNavLinkColorPickerTitle, setShowNavLinkColorPickerTitle] = useState(false);
   const [showNavLinkColorPickerBIO, setShowNavLinkColorPickerBIO] = useState(false);
-  const [collapseNom, setCollapseNom] = useState(false);
-  const [collapseBio, setCollapseBio] = useState(false);
-  const [collapseBg, setCollapseBg] = useState(false);
-  const [collapseProfile, setCollapseProfile] = useState(false);
   const nodeRef = useRef(null);
 
   if (!show) return null;
+
+  const toggleSection = (section) => {
+    setActiveSection((prevSection) => (prevSection === section ? null : section));
+  };
 
   return (
     <div className="modal-overlay">
@@ -54,13 +54,12 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
           </h2>
 
           {/* Option du NOM */}
-          <button className="collapse-toggle" onClick={() => setCollapseNom(v => !v)}>
-            {/* <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span> */}
-            <span style={{display:'flex', alignItems:'center', gap:6}}>{collapseNom ? '▼' : '►'} <span>Option du NOM</span></span>
+          <button className="collapse-toggle" onClick={() => toggleSection('Nom')}>
+            <span style={{display:'flex', alignItems:'center', gap:6}}>{activeSection === 'Nom' ? '▼' : '►'} <span>Option du NOM</span></span>
             <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span>
           </button>
-          <div className={`collapsible-content${collapseNom ? ' open' : ''}`}>
-            {collapseNom && (
+          <div className={`collapsible-content${activeSection === 'Nom' ? ' open' : ''}`}>
+            {activeSection === 'Nom' && (
               <div style={{ margin: '10px 0' }}>
                 {/* Font Family Dropdown using react-select */}
                 <div className="modal-font-row">
@@ -112,7 +111,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                   </div>
                 </div>
 
-                {/* 1) Couleur du texte */}
+                {/* Couleur du texte */}
                 <label className="modal-label-black">
                   Couleur:
                   <div className="modal-color-preview-wrapper">
@@ -145,13 +144,12 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
           </div>
 
           {/* Option de la BIO */}
-          <button className="collapse-toggle" onClick={() => setCollapseBio(v => !v)}>
-            {/* <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span> */}
-            <span style={{display:'flex', alignItems:'center', gap:6}}>{collapseBio ? '▼' : '►'} <span>Option de la BIO</span></span>
+          <button className="collapse-toggle" onClick={() => toggleSection('Bio')}>
+            <span style={{display:'flex', alignItems:'center', gap:6}}>{activeSection === 'Bio' ? '▼' : '►'} <span>Option de la BIO</span></span>
             <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span>
           </button>
-          <div className={`collapsible-content${collapseBio ? ' open' : ''}`}>
-            {collapseBio && (
+          <div className={`collapsible-content${activeSection === 'Bio' ? ' open' : ''}`}>
+            {activeSection === 'Bio' && (
               <div style={{ margin: '10px 0' }}>
                 {/* Font Family Dropdown using react-select */}
                 <div className="modal-font-row">
@@ -203,7 +201,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                   </div>
                 </div>
 
-                {/* 1) Couleur du texte */}
+                {/* Couleur du texte */}
                 <label className="modal-label-black">
                   Couleur:
                   <div className="modal-color-preview-wrapper">
@@ -237,12 +235,12 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
           </div>
 
           {/* Image de fond */}
-          <button className="collapse-toggle" onClick={() => setCollapseBg(v => !v)}>
-            <span style={{display:'flex', alignItems:'center', gap:6}}>{collapseBg ? '▼' : '►'} <span>Image de fond</span></span>
+          <button className="collapse-toggle" onClick={() => toggleSection('Background')}>
+            <span style={{display:'flex', alignItems:'center', gap:6}}>{activeSection === 'Background' ? '▼' : '►'} <span>Image de fond</span></span>
             <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span>
           </button>
-          <div className={`collapsible-content${collapseBg ? ' open' : ''}`}>
-            {collapseBg && (
+          <div className={`collapsible-content${activeSection === 'Background' ? ' open' : ''}`}>
+            {activeSection === 'Background' && (
               <div className="modal-update-background">
                 <label className="modal-label-black"> Chargez une image de fond: </label>
                 <UpdateBackground
@@ -253,12 +251,12 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
           </div>
 
           {/* Image de profil */}
-          <button className="collapse-toggle" onClick={() => setCollapseProfile(v => !v)}>
-            <span style={{display:'flex', alignItems:'center', gap:6}}>{collapseProfile ? '▼' : '►'} <span>Charger photo de profile</span></span>
+          <button className="collapse-toggle" onClick={() => toggleSection('Profile')}>
+            <span style={{display:'flex', alignItems:'center', gap:6}}>{activeSection === 'Profile' ? '▼' : '►'} <span>Charger photo de profile</span></span>
             <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span>
           </button>
-          <div className={`collapsible-content${collapseProfile ? ' open' : ''}`}>
-            {collapseProfile && (
+          <div className={`collapsible-content${activeSection === 'Profile' ? ' open' : ''}`}>
+            {activeSection === 'Profile' && (
               <div className="modal-update-background">
                 <label className="modal-label-black"> Charger une photo de profil: </label>
                 <UpdateBackground
