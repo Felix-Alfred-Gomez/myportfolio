@@ -129,7 +129,7 @@ export default function UpdateSkillsStack({
           }}
           onClick={() => setEditing(true)}
         >
-          Add a skill
+          Ajouter une compétence
         </span>
       </div>
     );
