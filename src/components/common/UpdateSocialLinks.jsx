@@ -55,7 +55,7 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange, 
                 title={key}
                 className={`social-link-icon-btn${getUrl(key) ? " active" : ""}`}
               >
-                <Icon size={24} style={getUrl(key) ? { color: activeColor || '#dfdfdf' } : {}} />
+                <Icon style={getUrl(key) ? { color: activeColor || '#dfdfdf' } : {}} />
               </a>
             </div>
           );
@@ -66,7 +66,7 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange, 
             <div key={key} style={{ display: "flex", alignItems: "center" }}>
               {editingKey === key ? (
                 <>
-                  <Icon size={24} style={{ marginRight: 6, color: activeColor || '#dfdfdf' }} />
+                  <Icon className="social-link-icon" style={{ marginRight: 6, color: activeColor || '#dfdfdf' }} />
                   <input
                     type="text"
                     value={inputValue}
