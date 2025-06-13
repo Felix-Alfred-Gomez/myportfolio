@@ -93,6 +93,13 @@
     font-size: 30px;
   }
 
+.social-link-icon-btn svg {
+  color: #aaa;
+}
+.social-link-icon-btn.active svg {
+  color: #b50000;
+}
+
 /* Responsive behavior */
 @media (max-width: 600px), (max-height: 600px) {
   .social-link-icon,
