@@ -22,7 +22,7 @@ const SOCIALS = [
   { key: "website", icon: FaGlobe },
 ];
 
-export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }) {
+export default function UpdateSocialLinks({ isPublished, socialLinks, onChange, activeColor }) {
   const [editingKey, setEditingKey] = useState(null);
   const [inputValue, setInputValue] = useState("");
 
@@ -55,7 +55,7 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
                 title={key}
                 className={`social-link-icon-btn${getUrl(key) ? " active" : ""}`}
               >
-                <Icon size={24} />
+                <Icon size={24} style={getUrl(key) ? { color: activeColor || '#dfdfdf' } : {}} />
               </a>
             </div>
           );
@@ -66,7 +66,7 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
             <div key={key} style={{ display: "flex", alignItems: "center" }}>
               {editingKey === key ? (
                 <>
-                  <Icon size={24} style={{ marginRight: 6 }} />
+                  <Icon size={24} style={{ marginRight: 6, color: activeColor || '#dfdfdf' }} />
                   <input
                     type="text"
                     value={inputValue}
@@ -93,9 +93,9 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
                   className={`social-link-icon-btn${getUrl(key) ? " active" : ""}`}
                   title={key}
                   onClick={() => handleEdit(key)}
-                  style={{ background: "none", border: "none", cursor: "pointer" }}
+                  style={getUrl(key) ? {} : { background: "none", border: "none", cursor: "pointer" }}
                 >
-                  <Icon />
+                  <Icon style={getUrl(key) ? { color: activeColor || '#dfdfdf' } : {}} />
                 </button>
               )}
             </div>

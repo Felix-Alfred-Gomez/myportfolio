@@ -19,6 +19,7 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
   const [activeSection, setActiveSection] = useState(null); // Single state for active section
   const [showNavLinkColorPickerTitle, setShowNavLinkColorPickerTitle] = useState(false);
   const [showNavLinkColorPickerBIO, setShowNavLinkColorPickerBIO] = useState(false);
+  const [showSocialColorPicker, setShowSocialColorPicker] = useState(false); // For AccueilSocialColor
   const nodeRef = useRef(null);
 
   if (!show) return null;
@@ -262,6 +263,41 @@ export default function AccueilOptionsModal({ show, onClose, setData, data,
                 <UpdateBackground
                   onUpload={handleProfileUpload}
                   disabled={isPublished} />
+              </div>
+            )}
+          </div>
+
+          {/* Couleur des icônes sociales */}
+          <button className="collapse-toggle" onClick={() => toggleSection('SocialColor')}>
+            <span style={{display:'flex', alignItems:'center', gap:6}}>{activeSection === 'SocialColor' ? '▼' : '►'} <span>Couleur des icônes sociales</span></span>
+            <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span>
+          </button>
+          <div className={`collapsible-content${activeSection === 'SocialColor' ? ' open' : ''}`}>
+            {activeSection === 'SocialColor' && (
+              <div style={{ margin: '10px 0' }}>
+                <label className="modal-label-black">
+                  Couleur des icônes sociales:
+                  <div className="modal-color-preview-wrapper">
+                    <div
+                      className="modal-color-preview"
+                      style={{ background: data.accueilProps.AccueilSocialColor }}
+                      onClick={() => setShowSocialColorPicker(true)}
+                    />
+                    {showSocialColorPicker && (
+                      <div className="modal-color-picker">
+                        <div style={{ boxShadow: 'none', filter: 'none' }}>
+                          <SketchPicker
+                            color={data.accueilProps.AccueilSocialColor}
+                            onChange={color => handleNestedFieldChange(setData, data, 'accueilProps', 'AccueilSocialColor')(color.hex)}
+                            styles={{default: { picker: { boxShadow: 'none' } }}}
+                            className="modal-SketchPicker"
+                          />
+                        </div>
+                        <button style={{ marginTop: 16 }} onClick={() => setShowSocialColorPicker(false)}>Fermer</button>
+                      </div>
+                    )}
+                  </div>
+                </label>
               </div>
             )}
           </div>
