@@ -38,7 +38,6 @@
 
 .social-link-icon:hover,
 .social-link-icon-btn:hover svg {
-  color: #b50000;
   transform: scale(1.18);
 }
 
@@ -96,24 +95,24 @@
 
   .social-link-icon,
   .social-link-icon-btn svg {
-    width: 30px;
-    height: 30px;
-    font-size: 30px;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
   }
 
 .social-link-icon-btn svg {
   color: #aaa;
 }
 .social-link-icon-btn.active svg {
-  color: #b50000;
+  color: #dfdfdf;
 }
 
 /* Responsive behavior */
 @media (max-width: 600px), (max-height: 600px) {
   .social-link-icon,
   .social-link-icon-btn svg {
-    width: 20px;
-    height: 20px;
-    font-size: 20px;
+    width: 26px;
+    height: 26px;
+    font-size: 26px;
   }
 }

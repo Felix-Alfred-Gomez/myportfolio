@@ -81,6 +81,7 @@ export default function AccueilSection({ username, isPublished, data, setData })
         onChange={(key, value) =>
           handleNestedFieldChange(setData, data, "accueilSocialLinks", key)(value)
         }
+        activeColor={data.accueilProps.AccueilSocialColor}
       />
     </section>
   );
