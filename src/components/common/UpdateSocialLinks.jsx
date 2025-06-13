@@ -53,7 +53,7 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
                 target="_blank"
                 rel="noopener noreferrer"
                 title={key}
-                className="social-link-icon"
+                className={`social-link-icon-btn${getUrl(key) ? " active" : ""}`}
               >
                 <Icon size={24} />
               </a>
@@ -90,12 +90,12 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
               ) : (
                 <button
                   type="button"
-                  className="social-link-icon-btn"
+                  className={`social-link-icon-btn${getUrl(key) ? " active" : ""}`}
                   title={key}
                   onClick={() => handleEdit(key)}
                   style={{ background: "none", border: "none", cursor: "pointer" }}
                 >
-                  <Icon size={24} color={getUrl(key) ? "#0077b5" : "#aaa"} />
+                  <Icon />
                 </button>
               )}
             </div>
