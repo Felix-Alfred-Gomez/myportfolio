@@ -43,38 +43,51 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
 
   return (
     <div className="update-social-links" style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 16 }}>
-      {SOCIALS.map(({ key, icon: Icon }) => {
-        if (isPublished && !getUrl(key)) return null;
-        return (
-          <div key={key} style={{ display: "flex", alignItems: "center" }}>
-            {isPublished ? (
-              <a href={getUrl(key)} target="_blank" rel="noopener noreferrer" title={key} className="social-link-icon">
+      {isPublished ? (
+        SOCIALS.map(({ key, icon: Icon }) => {
+          if (!getUrl(key)) return null;
+          return (
+            <div key={key} style={{ display: "flex", alignItems: "center" }}>
+              <a
+                href={getUrl(key)}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={key}
+                className="social-link-icon"
+              >
                 <Icon size={24} />
               </a>
-            ) : editingKey === key ? (
-              <>
-                <input
-                  type="text"
-                  value={inputValue}
-                  onChange={e => setInputValue(e.target.value)}
-                  className="update-link-editing"
-                  style={{ width: 120 }}
-                  autoFocus
-                  onBlur={() => handleSave(key)} // <-- Save on blur!
-                  placeholder={`URL ${key}`}
-                />
-                <button
-                  type="button"
-                  className="edit-pen"
-                  aria-label="Validate link"
-                  onClick={() => handleSave(key)}
-                  style={{ marginLeft: 4 }}
-                >
-                  <FaCheck className="skills-edit-tick" />
-                </button>
-              </>
-            ) : (
-              <>
+            </div>
+          );
+        })
+      ) : (
+        <div className="editing-link-box-dashed" style={{ display: "flex", gap: 16, alignItems: "center" }}>
+          {SOCIALS.map(({ key, icon: Icon }) => (
+            <div key={key} style={{ display: "flex", alignItems: "center" }}>
+              {editingKey === key ? (
+                <>
+                  <Icon size={24} style={{ marginRight: 6 }} />
+                  <input
+                    type="text"
+                    value={inputValue}
+                    onChange={e => setInputValue(e.target.value)}
+                    className="update-link-editing"
+                    style={{ width: 120 }}
+                    autoFocus
+                    onBlur={() => handleSave(key)}
+                    placeholder={`URL ${key}`}
+                  />
+                  <button
+                    type="button"
+                    className="edit-pen"
+                    aria-label="Validate link"
+                    onClick={() => handleSave(key)}
+                    style={{ marginLeft: 4 }}
+                  >
+                    <FaCheck className="edit-tick" />
+                  </button>
+                </>
+              ) : (
                 <button
                   type="button"
                   className="social-link-icon-btn"
@@ -84,11 +97,11 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
                 >
                   <Icon size={24} color={getUrl(key) ? "#0077b5" : "#aaa"} />
                 </button>
-              </>
-            )}
-          </div>
-        );
-      })}
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

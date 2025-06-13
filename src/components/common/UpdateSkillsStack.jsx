@@ -106,7 +106,7 @@ export default function UpdateSkillsStack({
           aria-label="Validate skills"
           onClick={() => setEditing(false)}
         >
-          <FaCheck className="skills-edit-tick" />
+          <FaCheck className="edit-tick" />
         </button>
       </div>
     );

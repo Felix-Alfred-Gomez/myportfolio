@@ -59,7 +59,7 @@ export default function UpdateLinkBox({
         aria-label="Validate link"
         onClick={() => setEditing(false)}
       >
-        <FaCheck className="skills-edit-tick" />
+        <FaCheck className="edit-tick" />
       </button>
     </div>
   ) : (
