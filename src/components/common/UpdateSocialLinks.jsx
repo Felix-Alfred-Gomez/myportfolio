@@ -42,7 +42,7 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange, 
   };
 
   return (
-    <div className="update-social-links" style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 16 }}>
+    <div className="update-social-links">
       {isPublished ? (
         SOCIALS.map(({ key, icon: Icon }) => {
           if (!getUrl(key)) return null;
@@ -61,7 +61,7 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange, 
           );
         })
       ) : (
-        <div className="editing-link-box-dashed" style={{ display: "flex", gap: 16, alignItems: "center" }}>
+        <div className="editing-link-box-dashed">
           {SOCIALS.map(({ key, icon: Icon }) => (
             <div key={key} style={{ display: "flex", alignItems: "center" }}>
               {editingKey === key ? (
