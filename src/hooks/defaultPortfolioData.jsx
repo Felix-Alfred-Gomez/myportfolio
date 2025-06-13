@@ -33,6 +33,16 @@ export const defaultPortfolioData = {
     AccueilColorBIO: "#ffffff",
     AccueilFontWeightBIO: "normal",
   },
+  accueilSocialLinks: {
+    linkedin: "",
+    github: "",
+    gitlab: "",
+    twitter: "",
+    instagram: "",
+    youtube: "",
+    medium: "",
+    website: "",
+  },
   projects: Array.from({ length: DEFAULT_PROJECTS_COUNT }, () => ({ ...defaultProject })),
   projetProps: {
     NbProjectsUser: 1,

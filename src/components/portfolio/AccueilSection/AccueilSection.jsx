@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import UpdateText from "../../common/UpdateText";
-import { handleFieldChange } from '../../../hooks/HandlePortfolioData';
+import { handleFieldChange, handleNestedFieldChange } from '../../../hooks/HandlePortfolioData';
 // import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import { FaPencilAlt } from "react-icons/fa";
 import AccueilOptionsModal from "./AccueilOptionsModal";
 import HeadDefault from "../../../assets/head_default.png";
 import BackgroundDefault from "../../../assets/Accueil_default.jpg";
 import UpdateProfile from "./UpdateProfile";
+import UpdateSocialLinks from "../../common/UpdateSocialLinks";
 
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
@@ -71,6 +72,15 @@ export default function AccueilSection({ username, isPublished, data, setData })
         fontFamilySize={data.accueilProps.AccueilFontSizeBIO}
         fontFamilyWeight={data.accueilProps.AccueilFontWeightBIO}
         fontColor={data.accueilProps.AccueilColorBIO}
+      />
+
+      {/* Social Media Links */}
+      <UpdateSocialLinks
+        isPublished={isPublished}
+        socialLinks={data.accueilSocialLinks || {}}
+        onChange={(key, value) =>
+          handleNestedFieldChange(setData, data, "accueilSocialLinks", key)(value)
+        }
       />
     </section>
   );
