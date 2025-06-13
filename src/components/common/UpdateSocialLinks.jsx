@@ -1,11 +1,25 @@
 import { useState } from "react";
-import { FaLinkedin, FaGithub, FaTwitter, FaGlobe, FaCheck } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaTwitter,
+  FaGlobe,
+  FaCheck,
+  FaGitlab,
+  FaInstagram,
+  FaYoutube,
+  FaMedium,
+} from "react-icons/fa";
 
 const SOCIALS = [
-  { key: "linkedin", icon: FaLinkedin, label: "LinkedIn" },
-  { key: "github", icon: FaGithub, label: "GitHub" },
-  { key: "twitter", icon: FaTwitter, label: "Twitter" },
-  { key: "website", icon: FaGlobe, label: "Website" },
+  { key: "linkedin", icon: FaLinkedin },
+  { key: "github", icon: FaGithub },
+  { key: "gitlab", icon: FaGitlab },
+  { key: "twitter", icon: FaTwitter },
+  { key: "instagram", icon: FaInstagram },
+  { key: "youtube", icon: FaYoutube },
+  { key: "medium", icon: FaMedium },
+  { key: "website", icon: FaGlobe },
 ];
 
 export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }) {
@@ -14,13 +28,7 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
 
   const getUrl = (key) => {
     const entry = socialLinks[key];
-    if (typeof entry === "string") return entry;
-    if (entry && typeof entry === "object") return entry.url || "";
-    return "";
-  };
-  const isVisible = (key) => {
-    // Only visible if url is not empty
-    return !!getUrl(key);
+    return typeof entry === "string" ? entry : "";
   };
 
   const handleEdit = (key) => {
@@ -29,18 +37,18 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
   };
 
   const handleSave = (key) => {
-    onChange(key, { url: inputValue, visible: true });
+    onChange(key, inputValue); // Save as a string only
     setEditingKey(null);
   };
 
   return (
     <div className="update-social-links" style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 16 }}>
-      {SOCIALS.map(({ key, icon: Icon, label }) => {
-        if (isPublished && (!getUrl(key) || !isVisible(key))) return null;
+      {SOCIALS.map(({ key, icon: Icon }) => {
+        if (isPublished && !getUrl(key)) return null;
         return (
           <div key={key} style={{ display: "flex", alignItems: "center" }}>
             {isPublished ? (
-              <a href={getUrl(key)} target="_blank" rel="noopener noreferrer" title={label} className="social-link-icon">
+              <a href={getUrl(key)} target="_blank" rel="noopener noreferrer" title={key} className="social-link-icon">
                 <Icon size={24} />
               </a>
             ) : editingKey === key ? (
@@ -52,8 +60,8 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
                   className="update-link-editing"
                   style={{ width: 120 }}
                   autoFocus
-                  onBlur={() => setEditingKey(null)}
-                  placeholder={`URL ${label}`}
+                  onBlur={() => handleSave(key)} // <-- Save on blur!
+                  placeholder={`URL ${key}`}
                 />
                 <button
                   type="button"
@@ -70,7 +78,7 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
                 <button
                   type="button"
                   className="social-link-icon-btn"
-                  title={label}
+                  title={key}
                   onClick={() => handleEdit(key)}
                   style={{ background: "none", border: "none", cursor: "pointer" }}
                 >
