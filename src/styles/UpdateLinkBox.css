@@ -16,7 +16,6 @@
 .link-box:hover {
   background: #636262 !important;
   color: #fff !important;
-  /* box-shadow: 0 0 0 2px #e53935; */
 }
 
 .editing-link-box {
@@ -33,100 +32,12 @@
 .editing-link-box:hover {
   background: #636262;
   color: #fff;
-  /* box-shadow: 0 0 0 2px #e53935; */
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
 }
 
-
-
-.update-link-editing {
-  border: 2px dashed black !important;
-  outline: none !important;
-  background: #adadad41 !important;
-  box-sizing: border-box;
-  border-radius: 6px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  width: 100%;
-  max-width: 90%;
-  min-height: 32px;
-  overflow: hidden;
-  /* border: 1px solid #e53935; */
-  padding: 8px;
-}
-
-.update-link-editing:focus {
-  border-color: #ffffff !important;
-  box-shadow: 0 0 0 2px #225ba533;
-}
-
-.update-link-editing:hover {
-  border-color: #ffffff !important;
-  box-shadow: 0 0 0 2px #225ba533;
-}
-
-/* Add missing classnames inspired by UpdateText.css */
-
-.update-social-links {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin-top: 16px;
-}
-
-.social-link-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #0077b5;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.social-link-icon:hover {
-  color: #225ba5;
-}
-
-.social-link-icon-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.2s;
-}
-
-.social-link-icon-btn:focus {
-  outline: 2px solid #225ba5;
-}
-
-.edit-pen {
-  background: #fff;
-  border: 1px solid #0077b5;
-  border-radius: 4px;
-  padding: 2px 6px;
-  margin-left: 4px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.edit-pen:hover {
-  background: #e6f0fa;
-  border-color: #225ba5;
-}
-
-.skills-edit-tick {
-  color: #0077b5;
-  font-size: 18px;
-  vertical-align: middle;
-}
-
 @media screen and (max-width: 600px){
-.link-box {
-  font-size: 10.5px !important;
-}
+  .link-box {
+    font-size: 10.5px !important;
+  }
 }
