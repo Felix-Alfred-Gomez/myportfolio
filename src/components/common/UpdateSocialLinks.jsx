@@ -81,7 +81,7 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
                     type="button"
                     className="edit-pen"
                     aria-label="Validate link"
-                    onClick={() => handleSave(key)}
+                    onMouseDown={() => handleSave(key)}
                     style={{ marginLeft: 4 }}
                   >
                     <FaCheck className="edit-tick" />

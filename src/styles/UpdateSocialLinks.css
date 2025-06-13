@@ -17,6 +17,12 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+.editing-link-box-dashed:hover,
+.editing-link-box-dashed:focus-within {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 2px #225ba533;
+}
+
 .social-link-icon,
 .social-link-icon-btn svg {
   width: 24px;
@@ -27,11 +33,13 @@
   justify-content: center;
   color: #0077b5;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s, transform 0.18s;
 }
 
-.social-link-icon:hover {
-  color: #225ba5;
+.social-link-icon:hover,
+.social-link-icon-btn:hover svg {
+  color: #b50000;
+  transform: scale(1.18);
 }
 
 .social-link-icon-btn {
@@ -46,7 +54,7 @@
 }
 
 .social-link-icon-btn:focus {
-  outline: 2px solid #225ba5;
+  outline: none;
 }
 
 .edit-pen {
