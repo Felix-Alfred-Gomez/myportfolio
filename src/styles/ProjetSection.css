@@ -258,9 +258,10 @@ button.edit-pen {
 @media screen and (max-width: 600px) {
   
   
-  /* .projet-card-image {
-    height: 100px;
+.projet-card-image {
+    height: 95px;
   }
+    /* 
   .projets-container {
   max-width: 200px;
   width: 80vw;
