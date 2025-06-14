@@ -21,7 +21,10 @@
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
   border: none;
-  }
+  -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 .button-template:hover {
   transform: translateY(-5px) scale(1.05);
@@ -148,4 +151,11 @@
   width: 18px;
   height: 18px;
 }
+}
+
+.button-template:focus,
+.button-template:active,
+.button-template:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
