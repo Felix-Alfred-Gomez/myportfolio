@@ -64,7 +64,7 @@ function ProjectModal({
           fontFamilySize={data.projetProps?.FontSizeText}
           fontFamilyWeight={data.projetProps?.FontWeightText}
           fontColor={data.projetProps?.ColorText}
-          customTextStyle={{ textAlign: "justify" }}
+          // customTextStyle={{ textAlign: "justify" }}
         />
         <UpdateSkillsStack
           isPublished={isPublished}
@@ -80,7 +80,7 @@ function ProjectModal({
           fontColor={data.projetProps?.ColorSkills}
           boxColor={data.projetProps?.ColorSkillsBox}
         />
-        <div style={{ marginTop: 16, textAlign: 'center' }}>
+        <div className="project-modal-center">
           <UpdateLinkBox
             isPublished={isPublished}
             value={selectedProject.Link}
@@ -100,7 +100,7 @@ function ProjectModal({
         aria-label="Fermer"
         onClick={onClose}
         className="modal-close-button">
-        <X size={20} color="white" />
+        <X size={15} color="white" />
       </button>
 
           

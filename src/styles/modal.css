@@ -52,7 +52,7 @@
 /* Modal styles */
 .modal-template.large {
   width: 80vw;
-  max-width: 600px;
+  max-width: 900px;
   min-width: 275px;
   overflow-x: hidden;
 }

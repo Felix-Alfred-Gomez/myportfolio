@@ -138,4 +138,14 @@
 /* Responsive behavior */
 @media (max-width: 600px)  or (max-height: 600px){
 
+  .upload-background-button {
+
+  width: 33px;
+  height: 33px;
+}
+
+.upload-background-button svg {
+  width: 18px;
+  height: 18px;
+}
 }

@@ -131,16 +131,16 @@
 /* Shared fixed-width container */
 .project-text-container {
   width: 100%;
-  max-width: 95%;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
   color: white;
-  margin-top: 18px;
-  margin-bottom: 18px;
+  margin-top: 20px;
+  margin-bottom: 16px;
 }
 
 .project-text-container.title {
-  max-width: 80%;
+  max-width: 85%;
   margin-top: 20px;
   margin-bottom: 8px;
 }
@@ -149,7 +149,7 @@
   width: auto;
   max-width: 100%;
   height: auto;
-  max-height: 40vh; /* Changed from 450px to 60vh for vertical responsiveness */
+  /* max-height: 80vh;  */
   /* border-radius: 8px; */
   object-fit: contain;
   display: block;
@@ -170,7 +170,7 @@
 /* Project skills container: similar to project-text-container */
 .project-skills-container {
   width: 100%;
-  max-width: 95%;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
   color: white;
@@ -249,6 +249,10 @@ button.edit-pen {
   z-index: 2;
 }
 
+.project-modal-center {
+  margin-top: 12px;
+  text-align: center;
+}
 
 /* Responsive styles for smartphones */
 @media screen and (max-width: 600px) {
