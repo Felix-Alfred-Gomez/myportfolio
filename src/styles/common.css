@@ -53,6 +53,9 @@
   /* Ensure the image maintains its aspect ratio */
   right: 20px;
   border: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .container .nav-site .title {
@@ -80,6 +83,16 @@
   gap: 0px;
   cursor: pointer;
   /* Ensure the pointer cursor is applied */
+  -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.logo-button:focus,
+.logo-button:active,
+.logo-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .container .subtitle {
@@ -336,4 +349,21 @@
     font-size: 1.5rem;
   }
 
+}
+
+.container .buttons-group .button,
+.button-pulse {
+  -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.container .buttons-group .button:focus,
+.container .buttons-group .button:active,
+.container .buttons-group .button:focus-visible,
+.button-pulse:focus,
+.button-pulse:active,
+.button-pulse:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
