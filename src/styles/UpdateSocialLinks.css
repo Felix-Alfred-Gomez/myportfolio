@@ -1,0 +1,122 @@
+/* Social Media Icons Styles */
+.update-social-links {
+  display: flex;
+  flex-wrap: wrap; /* Enable wrapping */
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.editing-link-box-dashed {
+  background: #adadad41 !important;
+  border: 2px dashed black !important;
+  border-radius: 6px;
+  padding: 4px 8px;
+  display: flex;
+  flex-wrap: wrap; /* Enable wrapping for editing mode */
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.editing-link-box-dashed:hover,
+.editing-link-box-dashed:focus-within {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 2px #225ba533;
+}
+
+.social-link-icon,
+.social-link-icon-btn svg {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0077b5;
+  text-decoration: none;
+  transition: color 0.2s, transform 0.18s;
+}
+
+.social-link-icon:hover,
+.social-link-icon-btn:hover svg {
+  transform: scale(1.18);
+}
+
+.social-link-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.social-link-icon-btn:focus {
+  outline: none;
+}
+
+.edit-pen {
+  background: #fff;
+  border: 1px solid #0077b5;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-left: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.edit-pen:hover {
+  background: #e6f0fa;
+  border-color: #225ba5;
+}
+
+.update-link-editing {
+  border: 2px dashed black !important;
+  outline: none !important;
+  background: #ffffff81 !important;
+  box-sizing: border-box;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 90%;
+  min-height: 32px;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.update-link-editing:focus,
+.update-link-editing:hover {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 2px #225ba533;
+}
+
+  .social-link-icon,
+  .social-link-icon-btn svg {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+  }
+
+.social-link-icon-btn svg {
+  color: #aaa;
+}
+.social-link-icon-btn.active svg {
+  color: #dfdfdf;
+}
+
+/* Responsive behavior */
+@media (max-width: 600px), (max-height: 600px) {
+  .social-link-icon,
+  .social-link-icon-btn svg {
+    width: 26px;
+    height: 26px;
+    font-size: 26px;
+  }
+}

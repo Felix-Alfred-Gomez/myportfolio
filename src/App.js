@@ -16,6 +16,7 @@ import "./styles/dashboard.css";
 import "./styles/UpdateSkillsStack.css";
 import "./styles/UpdateText.css";
 import "./styles/UpdateLinkBox.css";
+import "./styles/UpdateSocialLinks.css";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);

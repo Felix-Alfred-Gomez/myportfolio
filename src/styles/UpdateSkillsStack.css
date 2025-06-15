@@ -22,7 +22,7 @@
   box-shadow: 0 0 0 2px #225ba533;
 }
 
-.skills-edit-tick {
+.edit-tick {
   font-size: 18px;
   color: #000;
 }
@@ -50,4 +50,12 @@
   box-shadow: 0 0 0 2px #e53935;
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
+}
+
+.published-skill-box:hover {
+  background: none;
+  color: inherit;
+  box-shadow: none;
+  cursor: default;
+  transition: none;
 }

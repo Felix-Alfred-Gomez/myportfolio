@@ -1,26 +1,26 @@
 import { useState } from "react";
 import { usePortfolioImage } from "../../../hooks/HandlePortfolioImage";
 import UpdateText from "../../common/UpdateText";
-import { handleFieldChange } from '../../../hooks/HandlePortfolioData';
+import { handleFieldChange, handleNestedFieldChange } from '../../../hooks/HandlePortfolioData';
 // import { Cog6ToothIcon } from '@heroicons/react/24/solid';
 import { FaPencilAlt } from "react-icons/fa";
 import AccueilOptionsModal from "./AccueilOptionsModal";
 import HeadDefault from "../../../assets/head_default.png";
 import BackgroundDefault from "../../../assets/Accueil_default.jpg";
-// import UpdateSocialLinks from "../../common/UpdateSocialLinks"; // Importez le composant ici
+import UpdateProfile from "./UpdateProfile";
+import UpdateSocialLinks from "../../common/UpdateSocialLinks";
 
 
 export default function AccueilSection({ username, isPublished, data, setData }) {
   const { imageUrl: profilePic, handleImageUpload: handleProfileUpload } = usePortfolioImage(username, "Profile", undefined, HeadDefault);
   const { imageUrl: backgroundUrl, handleImageUpload: handleBackgroundUpload } = usePortfolioImage(username, "AccueilBackground", undefined, BackgroundDefault);
   const [showDesignModal, setShowDesignModal] = useState(false);
-// Suppression de fieldChangeHandler, utilisation directe de handleFieldChange
+
   return (
     <section
       id="home"
       className="accueil-section"
-      style={backgroundUrl ? { backgroundImage: `url(${backgroundUrl})`,
-      backgroundSize: "cover", backgroundPosition: "center" } : {}}>
+      style={backgroundUrl ? { backgroundImage: `url(${backgroundUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : {}}>
       
       {!isPublished && (
         <button
@@ -42,14 +42,14 @@ export default function AccueilSection({ username, isPublished, data, setData })
         handleProfileUpload={handleProfileUpload}
       />
 
-      <div className="accueil-profile-pic-wrapper">
-        <img
-          src={profilePic}
-          alt=""
-          className="accueil-profile-img"
-        />
-      </div>
-      
+      {/* Profile Image Section */}
+      <UpdateProfile
+        profilePic={profilePic}
+        handleProfileUpload={handleProfileUpload}
+        isPublished={isPublished}
+      />
+
+      {/* Other components */}
       <UpdateText
         isPublished={isPublished}
         value={data.name}
@@ -59,7 +59,8 @@ export default function AccueilSection({ username, isPublished, data, setData })
         fontFamilyStyle={data.accueilProps.AccueilFontFamilyTitle}
         fontFamilySize={data.accueilProps.AccueilFontSizeTitle}
         fontFamilyWeight={data.accueilProps.AccueilFontWeightTitle}
-        fontColor={data.accueilProps.AccueilColorTitle}/>
+        fontColor={data.accueilProps.AccueilColorTitle}
+      />
       
       <UpdateText
         isPublished={isPublished}
@@ -70,20 +71,18 @@ export default function AccueilSection({ username, isPublished, data, setData })
         fontFamilyStyle={data.accueilProps.AccueilFontFamilyBIO}
         fontFamilySize={data.accueilProps.AccueilFontSizeBIO}
         fontFamilyWeight={data.accueilProps.AccueilFontWeightBIO}
-        fontColor={data.accueilProps.AccueilColorBIO}/>
+        fontColor={data.accueilProps.AccueilColorBIO}
+      />
 
       {/* Social Media Links */}
-      {/* <UpdateSocialLinks
+      <UpdateSocialLinks
         isPublished={isPublished}
-        socialLinks={data.socialLinks || {}}
-        onChange={(key, url) => {
-          setData({
-            ...data,
-            socialLinks: { ...data.socialLinks, [key]: url }
-          });
-        }}
-      /> */}
-
+        socialLinks={data.accueilSocialLinks || {}}
+        onChange={(key, value) =>
+          handleNestedFieldChange(setData, data, "accueilSocialLinks", key)(value)
+        }
+        activeColor={data.accueilProps.AccueilSocialColor}
+      />
     </section>
   );
 }
