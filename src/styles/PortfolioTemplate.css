@@ -159,3 +159,52 @@
   outline: none !important;
   box-shadow: none !important;
 }
+
+.button-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border: none;
+  cursor: pointer;
+  position: static;
+  margin-bottom: 10px;
+  background-color: inherit;
+  color: inherit;
+  transition: none;
+}
+
+.button-welcome.publish-modal-welcome {
+  background-color: #1eb845;
+  color: white;
+  /* position: relative; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border: none;
+  cursor: pointer;
+  position: static;
+}
+
+.button-welcome.copy-url-welcome {
+  background-color: #1976d2;
+  color: white;
+  /* position: relative; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border: none;
+  cursor: pointer;
+  position: static;
+}
