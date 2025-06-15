@@ -7,6 +7,7 @@ import ProjetSection from "./ProjetSection/ProjetSection";
 import PublishModal from "./PublishModal";
 import PortfolioNavWrapper from "./NavigationSection/PortfolioNavWrapper";
 import LeaveEditModal from "./LeaveEditModal";
+import WelcomeEditModal from "./WelcomeEditModal";
 // import { HiOutlineSave } from "react-icons/hi";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import "../../styles/PortfolioTemplate.css";
@@ -23,6 +24,7 @@ export function PortfolioContent({ isPublished }) {
   const [showLeaveModal, setShowLeaveModal] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
   const [showCopyInfo, setShowCopyInfo] = useState(false);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(true);
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
@@ -115,6 +117,9 @@ export function PortfolioContent({ isPublished }) {
         url={portfolioUrl}
         onClose={() => setShowModal(false)}
       />
+
+      {/* WelcomeEditModal */}
+      <WelcomeEditModal show={showWelcomeModal} onClose={() => setShowWelcomeModal(false)} />
 
       <AccueilSection
         username={username}
