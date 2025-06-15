@@ -119,7 +119,9 @@ export function PortfolioContent({ isPublished }) {
       />
 
       {/* WelcomeEditModal */}
-      <WelcomeEditModal show={showWelcomeModal} onClose={() => setShowWelcomeModal(false)} />
+      {!isPublished && (
+        <WelcomeEditModal show={showWelcomeModal} onClose={() => setShowWelcomeModal(false)} />
+      )}
 
       <AccueilSection
         username={username}
