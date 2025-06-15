@@ -20,20 +20,20 @@ export default function ProjetOptionsModal({
   handleBackgroundUpload,
 }) {
 
+  const [activeSection, setActiveSection] = useState(null); // Single state for active section
   const [showNavLinkColorPickerTitle, setShowNavLinkColorPickerTitle] = useState(false);
   const [showNavLinkColorPickerText, setShowNavLinkColorPickerText] = useState(false);
   const [showCartoucheBgColorPicker, setShowCartoucheBgColorPicker] = useState(false);
   const [showCartoucheHoverColorPicker, setShowCartoucheHoverColorPicker] = useState(false);
-  const [collapseNom, setCollapseNom] = useState(false);
-  const [collapseBg, setCollapseBg] = useState(false);
-  const [collapseDesc, setCollapseDesc] = useState(false);
-  const [collapseCartouche, setCollapseCartouche] = useState(false);
-  const [collapseSkills, setCollapseSkills] = useState(false);
   const [showSkillsColorPicker, setShowSkillsColorPicker] = useState(false);
   const [showSkillsBoxColorPicker, setShowSkillsBoxColorPicker] = useState(false);
   const nodeRef = useRef(null);
 
   if (!show) return null;
+
+  const toggleSection = (section) => {
+    setActiveSection((prevSection) => (prevSection === section ? null : section));
+  };
 
   return (
     <div className="modal-overlay z9">
@@ -61,16 +61,14 @@ export default function ProjetOptionsModal({
             Section Projets
           </h2>
 
-          <button className="collapse-toggle" onClick={() => setCollapseNom(v => !v)}>
-            {/* <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span> */}
-            <span style={{display:'flex', alignItems:'center', gap:6}}>{collapseNom ? '▼' : '►'} <span>Nombre de projets</span></span>
+          {/* Nombre de projets */}
+          <button className="collapse-toggle" onClick={() => toggleSection('NombreProjets')}>
+            <span style={{display:'flex', alignItems:'center', gap:6}}>{activeSection === 'NombreProjets' ? '▼' : '►'} <span>Nombre de projets</span></span>
             <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span>
           </button>
-          <div className={`collapsible-content${collapseNom ? ' open' : ''}`}>
-            {collapseNom && (
+          <div className={`collapsible-content${activeSection === 'NombreProjets' ? ' open' : ''}`}>
+            {activeSection === 'NombreProjets' && (
               <div style={{ margin: '10px 0' }}>
-
-                {/* Font Size Slider */}
                 <div className="modal-font-row">
                   <input
                     type="range"
@@ -85,15 +83,14 @@ export default function ProjetOptionsModal({
               </div>
             )}
           </div>
-          
-          {/* Options for the project title font */}
-          <button className="collapse-toggle" onClick={() => setCollapseNom(v => !v)}>
-            {/* <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span> */}
-            <span style={{display:'flex', alignItems:'center', gap:6}}>{collapseNom ? '▼' : '►'} <span>Options des titres</span></span>
+
+          {/* Options des titres */}
+          <button className="collapse-toggle" onClick={() => toggleSection('OptionsTitres')}>
+            <span style={{display:'flex', alignItems:'center', gap:6}}>{activeSection === 'OptionsTitres' ? '▼' : '►'} <span>Options des titres</span></span>
             <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span>
           </button>
-          <div className={`collapsible-content${collapseNom ? ' open' : ''}`}> 
-            {collapseNom && (
+          <div className={`collapsible-content${activeSection === 'OptionsTitres' ? ' open' : ''}`}> 
+            {activeSection === 'OptionsTitres' && (
               <div style={{ margin: '10px 0' }}>
                 {/* Font Family Dropdown using react-select */}
                 <div className="modal-font-row">
@@ -144,7 +141,7 @@ export default function ProjetOptionsModal({
                   </div>
                 </div>
 
-                {/* 1) Couleur du texte */}
+                {/* Couleur du texte */}
                 <label className="modal-label-black">
                   Couleur:
                   <div className="modal-color-preview-wrapper">
@@ -178,12 +175,12 @@ export default function ProjetOptionsModal({
           </div>
 
           {/* Options for the project description font */}
-          <button className="collapse-toggle" onClick={() => setCollapseDesc(v => !v)}>
-            <span style={{display:'flex', alignItems:'center', gap:6}}>{collapseDesc ? '▼' : '►'} <span>Options des descriptions</span></span>
+          <button className="collapse-toggle" onClick={() => toggleSection('OptionsDesc')}>
+            <span style={{display:'flex', alignItems:'center', gap:6}}>{activeSection === 'OptionsDesc' ? '▼' : '►'} <span>Options des descriptions</span></span>
             <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span>
           </button>
-          <div className={`collapsible-content${collapseDesc ? ' open' : ''}`}> 
-            {collapseDesc && (
+          <div className={`collapsible-content${activeSection === 'OptionsDesc' ? ' open' : ''}`}> 
+            {activeSection === 'OptionsDesc' && (
               <div style={{ margin: '10px 0' }}>
                 {/* Font Family Dropdown using react-select */}
                 <div className="modal-font-row">
@@ -267,15 +264,13 @@ export default function ProjetOptionsModal({
             )}
           </div>
 
-
-
                     {/* Options for Skills Stack */}
-          <button className="collapse-toggle" onClick={() => setCollapseSkills(v => !v)}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{collapseSkills ? '▼' : '►'} <span>Options des compétences</span></span>
+          <button className="collapse-toggle" onClick={() => toggleSection('OptionsSkills')}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{activeSection === 'OptionsSkills' ? '▼' : '►'} <span>Options des compétences</span></span>
             <span style={{ flex: 1, height: 1, background: '#ccc', display: 'block', borderRadius: 2 }}></span>
           </button>
-          <div className={`collapsible-content${collapseSkills ? ' open' : ''}`}>
-            {collapseSkills && (
+          <div className={`collapsible-content${activeSection === 'OptionsSkills' ? ' open' : ''}`}>
+            {activeSection === 'OptionsSkills' && (
               <div style={{ margin: '10px 0' }}>
                 {/* Font Family Dropdown using react-select */}
                 <div className="modal-font-row">
@@ -382,12 +377,12 @@ export default function ProjetOptionsModal({
           </div>
 
           {/* Couleurs de cartouches */}
-          <button className="collapse-toggle" onClick={() => setCollapseCartouche(v => !v)}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{collapseCartouche ? '▼' : '►'} <span>Couleurs de cartouches</span></span>
+          <button className="collapse-toggle" onClick={() => toggleSection('CouleursCartouches')}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{activeSection === 'CouleursCartouches' ? '▼' : '►'} <span>Couleurs de cartouches</span></span>
             <span style={{ flex: 1, height: 1, background: '#ccc', display: 'block', borderRadius: 2 }}></span>
           </button>
-          <div className={`collapsible-content${collapseCartouche ? ' open' : ''}`}>
-            {collapseCartouche && (
+          <div className={`collapsible-content${activeSection === 'CouleursCartouches' ? ' open' : ''}`}>
+            {activeSection === 'CouleursCartouches' && (
               <div style={{ margin: '10px 0' }}>
                 {/* Background Color */}
                 <label className="modal-label-black">
@@ -444,13 +439,13 @@ export default function ProjetOptionsModal({
           </div>
 
           {/* Image de fond */}
-          <button className="collapse-toggle" onClick={() => setCollapseBg(v => !v)}>
+          <button className="collapse-toggle" onClick={() => toggleSection('ImageFond')}>
             {/* <span style={{flex:1, height:1, background:'#ccc', display:'block', borderRadius:2}}></span> */}
-            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{collapseBg ? '▼' : '►'} <span>Image de fond de la section</span></span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{activeSection === 'ImageFond' ? '▼' : '►'} <span>Image de fond de la section</span></span>
             <span style={{ flex: 1, height: 1, background: '#ccc', display: 'block', borderRadius: 2 }}></span>
           </button>
-          <div className={`collapsible-content${collapseBg ? ' open' : ''}`}>
-            {collapseBg && (
+          <div className={`collapsible-content${activeSection === 'ImageFond' ? ' open' : ''}`}>
+            {activeSection === 'ImageFond' && (
               <div className="modal-update-background">
                 <label className="modal-label-black"> Chargez une image de fond: </label>
                 <UpdateBackground

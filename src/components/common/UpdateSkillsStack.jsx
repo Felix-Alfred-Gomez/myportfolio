@@ -60,7 +60,7 @@ export default function UpdateSkillsStack({
       {skills.map((skill, idx) => (
         <span
           key={idx}
-          className={`${boxClass} editing-skill-box`}
+          className={`${boxClass} editing-skill-box ${isPublished ? "published-skill-box" : ""}`}
           style={{
             color: fontColor,
             fontFamily: fontFamilyStyle,
@@ -94,7 +94,7 @@ export default function UpdateSkillsStack({
             fontFamily: fontFamilyStyle,
             fontSize: responsiveFontSize,
             fontWeight: fontFamilyWeight,
-            color: fontColor
+            color: "#000" // Set font color to black in edition mode
           }}
           rows={1}
           onBlur={() => setEditing(false)}
@@ -106,7 +106,7 @@ export default function UpdateSkillsStack({
           aria-label="Validate skills"
           onClick={() => setEditing(false)}
         >
-          <FaCheck className="skills-edit-tick" />
+          <FaCheck className="edit-tick" />
         </button>
       </div>
     );
@@ -129,7 +129,7 @@ export default function UpdateSkillsStack({
           }}
           onClick={() => setEditing(true)}
         >
-          Add a skill
+          Ajouter une compétence
         </span>
       </div>
     );

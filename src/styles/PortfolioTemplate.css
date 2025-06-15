@@ -21,7 +21,10 @@
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
   border: none;
-  }
+  -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 .button-template:hover {
   transform: translateY(-5px) scale(1.05);
@@ -65,6 +68,13 @@
   bottom: 90px;
 }
 
+.button-template.copy-url {
+  background-color: #1976d2;
+  color: white;
+  left: 20px;
+  bottom: 160px;
+}
+
 .upload-background-button {
   position: relative;
   z-index: 0;
@@ -100,7 +110,52 @@
   width: 100%;
 }
 
+/* Info box styles */
+.copy-info-box {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #323232;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  z-index: 9;
+  opacity: 0.95;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  animation: fadeInOut 2s linear;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+  10% { opacity: 0.95; transform: translate(-50%, -50%) scale(1); }
+  90% { opacity: 0.95; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
+}
+
 /* Responsive behavior */
 @media (max-width: 600px)  or (max-height: 600px){
 
+  .upload-background-button {
+
+  width: 33px;
+  height: 33px;
+}
+
+.upload-background-button svg {
+  width: 18px;
+  height: 18px;
+}
+}
+
+.button-template:focus,
+.button-template:active,
+.button-template:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }

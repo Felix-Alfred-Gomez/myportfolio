@@ -1,26 +1,34 @@
 import { useState } from "react";
-import { FaLinkedin, FaGithub, FaTwitter, FaGlobe, FaCheck } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaTwitter,
+  FaGlobe,
+  FaCheck,
+  FaGitlab,
+  FaInstagram,
+  FaYoutube,
+  FaMedium,
+} from "react-icons/fa";
 
 const SOCIALS = [
-  { key: "linkedin", icon: FaLinkedin, label: "LinkedIn" },
-  { key: "github", icon: FaGithub, label: "GitHub" },
-  { key: "twitter", icon: FaTwitter, label: "Twitter" },
-  { key: "website", icon: FaGlobe, label: "Website" },
+  { key: "linkedin", icon: FaLinkedin },
+  { key: "github", icon: FaGithub },
+  { key: "gitlab", icon: FaGitlab },
+  { key: "twitter", icon: FaTwitter },
+  { key: "instagram", icon: FaInstagram },
+  { key: "youtube", icon: FaYoutube },
+  { key: "medium", icon: FaMedium },
+  { key: "website", icon: FaGlobe },
 ];
 
-export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }) {
+export default function UpdateSocialLinks({ isPublished, socialLinks, onChange, activeColor }) {
   const [editingKey, setEditingKey] = useState(null);
   const [inputValue, setInputValue] = useState("");
 
   const getUrl = (key) => {
     const entry = socialLinks[key];
-    if (typeof entry === "string") return entry;
-    if (entry && typeof entry === "object") return entry.url || "";
-    return "";
-  };
-  const isVisible = (key) => {
-    // Only visible if url is not empty
-    return !!getUrl(key);
+    return typeof entry === "string" ? entry : "";
   };
 
   const handleEdit = (key) => {
@@ -29,58 +37,71 @@ export default function UpdateSocialLinks({ isPublished, socialLinks, onChange }
   };
 
   const handleSave = (key) => {
-    onChange(key, { url: inputValue, visible: true });
+    onChange(key, inputValue); // Save as a string only
     setEditingKey(null);
   };
 
   return (
-    <div className="update-social-links" style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 16 }}>
-      {SOCIALS.map(({ key, icon: Icon, label }) => {
-        if (isPublished && (!getUrl(key) || !isVisible(key))) return null;
-        return (
-          <div key={key} style={{ display: "flex", alignItems: "center" }}>
-            {isPublished ? (
-              <a href={getUrl(key)} target="_blank" rel="noopener noreferrer" title={label} className="social-link-icon">
-                <Icon size={24} />
+    <div className="update-social-links">
+      {isPublished ? (
+        SOCIALS.map(({ key, icon: Icon }) => {
+          if (!getUrl(key)) return null;
+          return (
+            <div key={key} style={{ display: "flex", alignItems: "center" }}>
+              <a
+                href={getUrl(key)}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={key}
+                className={`social-link-icon-btn${getUrl(key) ? " active" : ""}`}
+              >
+                <Icon style={getUrl(key) ? { color: activeColor || '#dfdfdf' } : {}} />
               </a>
-            ) : editingKey === key ? (
-              <>
-                <input
-                  type="text"
-                  value={inputValue}
-                  onChange={e => setInputValue(e.target.value)}
-                  className="update-link-editing"
-                  style={{ width: 120 }}
-                  autoFocus
-                  onBlur={() => setEditingKey(null)}
-                  placeholder={`URL ${label}`}
-                />
+            </div>
+          );
+        })
+      ) : (
+        <div className="editing-link-box-dashed">
+          {SOCIALS.map(({ key, icon: Icon }) => (
+            <div key={key} style={{ display: "flex", alignItems: "center" }}>
+              {editingKey === key ? (
+                <>
+                  <Icon className="social-link-icon" style={{ marginRight: 6, color: activeColor || '#dfdfdf' }} />
+                  <input
+                    type="text"
+                    value={inputValue}
+                    onChange={e => setInputValue(e.target.value)}
+                    className="update-link-editing"
+                    style={{ width: 120 }}
+                    autoFocus
+                    onBlur={() => handleSave(key)}
+                    placeholder={`URL ${key}`}
+                  />
+                  <button
+                    type="button"
+                    className="edit-pen"
+                    aria-label="Validate link"
+                    onMouseDown={() => handleSave(key)}
+                    style={{ marginLeft: 4 }}
+                  >
+                    <FaCheck className="edit-tick" />
+                  </button>
+                </>
+              ) : (
                 <button
                   type="button"
-                  className="edit-pen"
-                  aria-label="Validate link"
-                  onClick={() => handleSave(key)}
-                  style={{ marginLeft: 4 }}
-                >
-                  <FaCheck className="skills-edit-tick" />
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  className="social-link-icon-btn"
-                  title={label}
+                  className={`social-link-icon-btn${getUrl(key) ? " active" : ""}`}
+                  title={key}
                   onClick={() => handleEdit(key)}
-                  style={{ background: "none", border: "none", cursor: "pointer" }}
+                  style={getUrl(key) ? {} : { background: "none", border: "none", cursor: "pointer" }}
                 >
-                  <Icon size={24} color={getUrl(key) ? "#0077b5" : "#aaa"} />
+                  <Icon style={getUrl(key) ? { color: activeColor || '#dfdfdf' } : {}} />
                 </button>
-              </>
-            )}
-          </div>
-        );
-      })}
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

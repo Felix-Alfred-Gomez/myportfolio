@@ -11,6 +11,7 @@ import LeaveEditModal from "./LeaveEditModal";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import "../../styles/PortfolioTemplate.css";
 import { FaSave } from "react-icons/fa";
+import CopyPortfolioLinkButton from "./CopyPortfolioLinkButton";
 
 export function PortfolioContent({ isPublished }) {
   const { username } = useParams();
@@ -21,6 +22,7 @@ export function PortfolioContent({ isPublished }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLeaveModal, setShowLeaveModal] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
+  const [showCopyInfo, setShowCopyInfo] = useState(false);
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
@@ -63,10 +65,20 @@ export function PortfolioContent({ isPublished }) {
     handleLeaveClose();
   };
 
+  const handleCopyUrl = () => {
+    const baseUrl = window.location.origin;
+    const url = `${baseUrl}/${username}`;
+    navigator.clipboard.writeText(url);
+    setShowCopyInfo(true);
+    setTimeout(() => setShowCopyInfo(false), 2000);
+  };
+
   return (
     <div className="container-template">
       {!isPublished && (
         <>
+          <CopyPortfolioLinkButton onClick={handleCopyUrl} />
+
           <button className="button-template publish" onClick={handlePublish} disabled={isPublishing}>
             <FaSave className="button-template-icon" />
           </button>
@@ -124,6 +136,10 @@ export function PortfolioContent({ isPublished }) {
         setData={setData}
         isPublished={isPublished}
       /> */}
+
+      {showCopyInfo && (
+        <div className="copy-info-box">Lien vers portfolio publique copié</div>
+      )}
     </div>
   );
 }
