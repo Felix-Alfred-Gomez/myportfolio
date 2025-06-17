@@ -25,15 +25,14 @@ export default function WelcomeEditModal({ show, onClose }) {
         {/* <div className="center-button">
           <button onClick={onClose} className="button-template">Fermer</button>
         </div> */}
-        <button
-          onClick={onClose}
-          style={{
-            backgroundColor: '#9e9e9e',
-            color: '#fff',
-          }}
-        >
-          J'ai compris
-        </button>
+        <div className="center-flex">
+          <button
+            onClick={onClose}
+            className="button-welcome close-modal-welcome"
+          >
+            J'ai compris
+          </button>
+        </div>
       </div>
       <div className="modal-overlay" />
     </div>

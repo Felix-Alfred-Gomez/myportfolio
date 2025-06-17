@@ -208,3 +208,30 @@
   cursor: pointer;
   position: static;
 }
+.button-welcome.close-modal-welcome {
+  background-color: #9e9e9e;
+  color: #fff;
+  width: auto;
+  height: auto;
+  margin-top: 20px;
+  animation: pulse 1.2s infinite;
+}
+
+.button-welcome.close-modal-welcome:hover {
+  background-color: #757575;
+  color: #fff;
+  transform: scale(1.03);
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
