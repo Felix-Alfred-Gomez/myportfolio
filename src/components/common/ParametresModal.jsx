@@ -34,7 +34,7 @@ export default function ParametresModal({ show, onClose, app }) {
       <div className="modal-template" onClick={e => e.stopPropagation()}>
         <h2>Paramètres</h2>
         {/* Section to modify username */}
-        <div style={{ marginTop: 24 }}>
+        {/* <div style={{ marginTop: 24 }}>
           <h3>Modifier votre nom d'utilisateur</h3>
           <label htmlFor="new-username" style={{ display: 'block', marginTop: 12 }}>Nouveau nom d'utilisateur:</label>
           <input
@@ -56,7 +56,7 @@ export default function ParametresModal({ show, onClose, app }) {
           </button>
           {error && <div style={{ color: 'red', marginTop: 10 }}>{error}</div>}
           {success && <div style={{ color: 'green', marginTop: 10 }}>Nom d'utilisateur modifié avec succès !</div>}
-        </div>
+        </div> */}
         <button
           type="button"
           aria-label="Fermer"
