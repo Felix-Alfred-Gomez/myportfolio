@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "../../styles/common.css";
 import logoConnection from "../../assets/connection_logo.png";
+import ParametresModal from "./ParametresModal";
 
 function LoginLogo({ onLoginClick, onLogoutClick }) {
   const navigate = useNavigate();
   const { isAuthenticated } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showParametresModal, setShowParametresModal] = useState(false);
   const menuRef = useRef(null);
 
   // Close menu on outside click
@@ -39,8 +41,7 @@ function LoginLogo({ onLoginClick, onLogoutClick }) {
 
   const handleSettings = () => {
     setShowMenu(false);
-    // Placeholder: navigate to settings or open settings modal
-    navigate("/settings");
+    setShowParametresModal(true);
   };
 
   return isAuthenticated ? (
@@ -70,6 +71,7 @@ function LoginLogo({ onLoginClick, onLogoutClick }) {
           </ul>
         </div>
       )}
+      <ParametresModal show={showParametresModal} onClose={() => setShowParametresModal(false)} />
       {showLogoutModal && (
         <div className="modal-overlay grey">
           <div className="modal-template">
