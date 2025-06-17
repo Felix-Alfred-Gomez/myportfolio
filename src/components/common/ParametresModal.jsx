@@ -1,33 +1,33 @@
 import { X } from "lucide-react";
-import { useState } from "react";
-import { updateUsername } from "../../hooks/HandlePortfolioData";
+// import { useState } from "react";
+// import { updateUsername } from "../../hooks/HandlePortfolioData";
 
 export default function ParametresModal({ show, onClose, app }) {
-  const [newUsername, setNewUsername] = useState(""); // State for new username
-  const [error, setError] = useState(""); // State for error message
-  const [success, setSuccess] = useState(false); // State for success
-  const [loading, setLoading] = useState(false); // State for loading
+  // const [newUsername, setNewUsername] = useState("");
+  // const [error, setError] = useState(""); 
+  // const [success, setSuccess] = useState(false); 
+  // const [loading, setLoading] = useState(false); 
 
   if (!show) return null;
 
-  const handleChangeUsername = async () => {
-    setError("");
-    setSuccess(false);
-    setLoading(true);
-    try {
-      const result = await updateUsername(newUsername, app);
-      if (result.success) {
-        setSuccess(true);
-        setNewUsername("");
-      } else {
-        setError(result.error || "Erreur inconnue");
-      }
-    } catch (e) {
-      setError(e.message || "Erreur inconnue");
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const handleChangeUsername = async () => {
+  //   setError("");
+  //   setSuccess(false);
+  //   setLoading(true);
+  //   try {
+  //     const result = await updateUsername(newUsername, app);
+  //     if (result.success) {
+  //       setSuccess(true);
+  //       setNewUsername("");
+  //     } else {
+  //       setError(result.error || "Erreur inconnue");
+  //     }
+  //   } catch (e) {
+  //     setError(e.message || "Erreur inconnue");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div className="modal-overlay z10 grey">
