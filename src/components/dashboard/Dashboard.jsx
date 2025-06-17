@@ -58,15 +58,16 @@ function Dashboard() {
 
   return (
     <div className="container">
-      <section className="hero-section">
 
-        <nav className="nav-site">
-          <LogoButton />
-          <LoginButton
-            onLoginClick={() => toggleLoginModal(true)}
-            onLogoutClick={() => handleAuthChange(false)}
-          />
-        </nav>
+      <nav className="nav-site">
+        <LogoButton />
+        <LoginButton
+          onLoginClick={() => toggleLoginModal(true)}
+          onLogoutClick={() => handleAuthChange(false)}
+        />
+      </nav>
+
+      <section className="hero-section">
 
         <img src={dashboardBackground} alt="Background" className="hero-background" />
 

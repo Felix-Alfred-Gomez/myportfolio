@@ -17,7 +17,8 @@
 }
 
 .container {
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -165,8 +166,8 @@
 
 .popup_menu {
   position: absolute;
-  top: 90px;
-  right: 10px;
+  top: 100px;
+  right: 0px;
   background-color: white;
   border: 1px solid #ccc;
   padding: 10px;
@@ -250,7 +251,10 @@
   position: relative;
   width: 100%;
   /* Instead of 100vw */
-  height: 100vh;
+  /* height: 100vh; */
+  height: calc(100vh - 100px);
+  /* height: 100vh; */
+  /* padding-top: 100px;  */
   /* Full viewport height */
   overflow: hidden;
   background-color: #ffffff;
@@ -279,6 +283,7 @@
   flex-direction: column;
   color: rgb(255, 255, 255);
   text-align: center;
+  overflow: auto;
 }
 
 .hero-section .hero-overlay h2 {
@@ -288,11 +293,10 @@
 }
 
 /* Responsive styles for smartphones */
-@media screen and (max-width: 499px) {
+@media screen and ((max-width: 600px) or (max-height: 600px)) {
 
   .logout_menu_item {
     font-size: 0.75rem;
-    /* Set the font size */
   }
 
   .button-pulse {
@@ -300,33 +304,29 @@
     font-size: 1.5rem;
   }
 
-  .container .nav-site .logo {
+  /* .container .nav-site .logo {
     width: 50px;
-  }
+  } */
 
   .hero-section .hero-overlay h2 {
     font-size: 2rem;
   }
 
-  .connect_button_image {
+  /* .connect_button_image {
     width: 40px;
-    /* Increased width of the image */
     height: 40px;
-    /* Increased height of the image */
-  }
+  } */
 
   .container .nav-site .title {
     font-size: 1.5rem;
     /* Reduce font size for the title */
   }
 
-  .container .nav-site .connect_button {
+  /* .container .nav-site .connect_button {
     padding: 8px 15px;
-    /* Adjust button padding */
     margin-top: 10px;
-    /* Add spacing from other elements */
     font-size: 0.8rem;
-  }
+  } */
 
   .container .subtitle {
     font-size: 0.9rem;
@@ -340,10 +340,10 @@
     /* Adds spacing between the buttons */
   }
 
-  .popup_menu {
+  /* .popup_menu {
     top: 75px;
     right: 10px;
-  }
+  } */
 
   .container .buttons-group .button {
     font-size: 1.5rem;

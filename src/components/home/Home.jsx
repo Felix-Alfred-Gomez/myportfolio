@@ -34,21 +34,20 @@ function Home() {
     if (isAuthenticated) {
       navigate(`/dashboard`);
     } else {
-        setShowLogin(true); // Show the login modal;
-        if (isAuthenticated) {navigate(`/dashboard`);}
+      setShowLogin(true); // Show the login modal;
+      if (isAuthenticated) { navigate(`/dashboard`); }
     }
   };
 
   return (
     <div className="container">
+      {/* Fullscreen hero section with overlay */}
       <nav className="nav-site">
         <WebsiteLogo />
-        <LoginLogo 
-          onLoginClick={() => setShowLogin(true)} 
+        <LoginLogo
+          onLoginClick={() => setShowLogin(true)}
           onLogoutClick={() => handleAuthChange(false)} />
       </nav>
-
-      {/* Fullscreen hero section with overlay */}
       <section className="hero-section">
         <img src={homeBackground} alt="Background" className="hero-background" />
         <div className="hero-overlay">
