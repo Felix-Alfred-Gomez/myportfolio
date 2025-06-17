@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "../../styles/common.css";
@@ -7,11 +7,28 @@ import logoConnection from "../../assets/connection_logo.png";
 function LoginLogo({ onLoginClick, onLogoutClick }) {
   const navigate = useNavigate();
   const { isAuthenticated } = useContext(AuthContext);
-  const [showModal, setShowModal] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const menuRef = useRef(null);
+
+  // Close menu on outside click
+  useEffect(() => {
+    if (!showMenu) return;
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMenu]);
 
   const handleLogout = () => {
     onLogoutClick();
-    setShowModal(false);
+    setShowLogoutModal(false);
+    setShowMenu(false);
     navigate("/");
   };
 
@@ -20,22 +37,46 @@ function LoginLogo({ onLoginClick, onLogoutClick }) {
     navigate("/dashboard");
   };
 
+  const handleSettings = () => {
+    setShowMenu(false);
+    // Placeholder: navigate to settings or open settings modal
+    navigate("/settings");
+  };
+
   return isAuthenticated ? (
     <>
-      <button className="connect_button" onClick={() => setShowModal(true)}>
+      <button className="connect_button" onClick={() => setShowMenu((v) => !v)}>
         <img
           src={logoConnection}
-          alt="Logout"
+          alt="User menu"
           className="connect_button_image"
         />
       </button>
-      {showModal && (
+      {showMenu && (
+        <div className="popup_menu" ref={menuRef}>
+          <ul className="logout_menu">
+            <li className="logout_menu_item" onClick={handleSettings}>
+              Paramètres
+            </li>
+            <li
+              className="logout_menu_item"
+              onClick={() => {
+                setShowMenu(false);
+                setShowLogoutModal(true);
+              }}
+            >
+              Se déconnecter
+            </li>
+          </ul>
+        </div>
+      )}
+      {showLogoutModal && (
         <div className="modal-overlay grey">
           <div className="modal-template">
             <h2>Déconnexion</h2>
             <p>Voulez-vous vous déconnecter ?</p>
             <button onClick={handleLogout}>Se déconnecter</button>
-            <button onClick={() => setShowModal(false)}>Annuler</button>
+            <button onClick={() => setShowLogoutModal(false)}>Annuler</button>
           </div>
         </div>
       )}
