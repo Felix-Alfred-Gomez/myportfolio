@@ -1,6 +1,8 @@
 import { X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { SetUserURL, GetUserURL } from "../../hooks/HandlePortfolioData";
+import { SetUserURL, GetUserURL, deleteUserAndData, FetchUsername } from "../../hooks/HandlePortfolioData";
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function ParametresModal({ show, onClose }) {
   const [newUsername, setNewUsername] = useState("");
@@ -8,6 +10,9 @@ export default function ParametresModal({ show, onClose }) {
   const [success, setSuccess] = useState(false); 
   const [loading, setLoading] = useState(false); 
   const [currentURL, setCurrentURL] = useState("");
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchURL() {
@@ -21,6 +26,13 @@ export default function ParametresModal({ show, onClose }) {
     }
     fetchURL();
   }, [show, success]);
+
+  useEffect(() => {
+    if (show) {
+      setError("");
+      setSuccess(false);
+    }
+  }, [show]);
 
   if (!show) return null;
 
@@ -43,6 +55,30 @@ export default function ParametresModal({ show, onClose }) {
       setError(e.message || "Erreur inconnue lors de la modification de l'URL utilisateur.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Handler for account deletion
+  const handleDeleteAccount = async () => {
+    setDeleteLoading(true);
+    setDeleteError("");
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (!user) throw new Error("Utilisateur non authentifié.");
+      const uid = user.uid;
+      const username = await FetchUsername();
+      if (!username) throw new Error("Nom d'utilisateur introuvable.");
+      await deleteUserAndData(username, uid);
+      // Optionally: sign out user
+      await auth.signOut();
+      // Redirect home
+      navigate("/");
+      if (onClose) onClose();
+    } catch (e) {
+      setDeleteError(e.message || "Erreur lors de la suppression du compte.");
+    } finally {
+      setDeleteLoading(false);
     }
   };
 
@@ -75,6 +111,19 @@ export default function ParametresModal({ show, onClose }) {
           </button>
           {error && <div style={{ color: 'red', marginTop: 10 }}>{error}</div>}
           {success && <div style={{ color: 'green', marginTop: 10 }}>Nom d'utilisateur modifié avec succès !</div>}
+        </div>
+        {/* Suppression du compte */}
+        <div style={{ marginTop: 36, borderTop: '1px solid #ccc', paddingTop: 24 }}>
+          {/* <h3 style={{ color: 'red' }}>Suppression du compte</h3> */}
+          <button
+            type="button"
+            style={{ marginTop: 12, padding: '10px 20px', borderRadius: 4, background: '#d32f2f', color: 'white', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}
+            onClick={handleDeleteAccount}
+            disabled={deleteLoading}
+          >
+            {deleteLoading ? "Suppression..." : "Supprimer mon compte"}
+          </button>
+          {deleteError && <div style={{ color: 'red', marginTop: 10 }}>{deleteError}</div>}
         </div>
         <button
           type="button"
