@@ -348,3 +348,39 @@ export async function GetUserNameWithUserURL(UserURL) {
     return null;
   }
 }
+
+/**
+ * Deletes a user and all their related data from Firestore and Realtime Database.
+ * @param {string} username - The username of the user to delete.
+ * @param {string} uid - The Firebase Auth UID of the user to delete.
+ * @returns {Promise<void>} - Resolves when deletion is complete.
+ */
+export async function deleteUserAndData(username, uid) {
+  const db = getFirestore();
+  const database = getDatabase();
+  try {
+    // Delete user document from Firestore (publicPortfolios)
+    await (await import("firebase/firestore")).deleteDoc(doc(db, "publicPortfolios", username));
+    // Delete user entry from Realtime Database (users)
+    await (await import("firebase/database")).remove(ref(database, `users/${uid}`));
+    // Delete all files in Firebase Storage under the user's folder
+    const storage = (await import("firebase/storage")).getStorage();
+    const listAll = (await import("firebase/storage")).listAll;
+    const deleteObject = (await import("firebase/storage")).deleteObject;
+    const userFolderRef = (await import("firebase/storage")).ref(storage, `${username}`);
+    const res = await listAll(userFolderRef);
+    // Delete all files in the user's folder
+    await Promise.all(res.items.map(itemRef => deleteObject(itemRef)));
+    // Optionally: Delete subfolders if needed (Firebase Storage does not have real folders, so deleting all files is enough)
+    // Delete user from Firebase Auth
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user && user.uid === uid) {
+      await user.delete();
+    }
+    // Optionally: Delete user from Firebase Auth (must be done from backend or admin SDK)
+  } catch (error) {
+    console.error("Error deleting user and data:", error);
+    throw error;
+  }
+}
