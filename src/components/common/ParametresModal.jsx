@@ -51,12 +51,11 @@ export default function ParametresModal({ show, onClose }) {
       <div className="modal-template" onClick={e => e.stopPropagation()}>
         <h2>Paramètres</h2>
         <div style={{ marginTop: 12, marginBottom: 12 }}>
-          <strong>Votre URL publique actuelle est :</strong> {currentURL || "..."}
+          <h3>Votre URL publique actuelle est :</h3> {currentURL || "..."}
         </div>
         {/* Section to modify username */}
         <div style={{ marginTop: 24 }}>
-          <h3>Modifier votre nom d'utilisateur</h3>
-          <label htmlFor="new-username" style={{ display: 'block', marginTop: 12 }}>Modifier votre nom d'utilisateur:</label>
+          <h3>Modifier votre nom d'utilisateur (et donc votre url publique) :</h3>
           <input
             id="new-username"
             type="text"

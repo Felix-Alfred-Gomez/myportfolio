@@ -1,4 +1,3 @@
-import React from "react";
 import { PortfolioContent } from "./PortfolioTemplate"; // Import only PortfolioContent
 
 function PublicPortfolio() {

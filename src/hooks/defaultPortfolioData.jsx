@@ -13,7 +13,7 @@ export const defaultProject = {
 
 // Default portfolio data structure
 export const defaultPortfolioData = {
-  UserURL: "None",
+  // UserURL: "None",
   name: "Votre Nom",
   BIO: "Votre statut",
   navProps: {

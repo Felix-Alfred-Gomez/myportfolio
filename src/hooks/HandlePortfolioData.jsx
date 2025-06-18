@@ -56,7 +56,7 @@ export async function PushPortfolioData(username, data) {
       username, // Add the username explicitly
       publishedAt: new Date().toISOString(), // Add the timestamp
     });
-    console.log("Portfolio data pushed successfully:", { username, ...mergedData });
+    // console.log("Portfolio data pushed successfully:", { username, ...mergedData });
   } catch (error) {
     console.error("Error pushing portfolio data:", error);
     throw error;
@@ -198,21 +198,29 @@ export const handleArrayFieldChange = (setData, data, arrayField, idx, field) =>
 export async function GetUserURL() {
   const auth = getAuth();
   const user = auth.currentUser;
+  // console.log('GetUserURL: currentUser', user);
   if (!user) return null;
   const database = getDatabase();
   const userRef = ref(database, `users/${user.uid}`);
+  // console.log('GetUserURL: userRef path', `users/${user.uid}`);
   try {
     const snapshot = await get(userRef);
+    // console.log('GetUserURL: snapshot.exists()', snapshot.exists());
     if (snapshot.exists()) {
       const data = snapshot.val();
+      // console.log('GetUserURL: data', data);
       if (!data.UserURL || data.UserURL === "None") {
+        // console.log('GetUserURL: returning username', data.username || null);
         return data.username || null;
       } else {
+        // console.log('GetUserURL: returning UserURL', data.UserURL);
         return data.UserURL;
       }
     }
+    // console.log('GetUserURL: snapshot does not exist');
     return null;
   } catch (e) {
+    // console.error('GetUserURL: error', e);
     return null;
   }
 }
@@ -224,7 +232,7 @@ export async function GetUserURL() {
  * @returns {Promise<true|string>} - Resolves true if set (available), or an error message string if not.
  */
 export async function SetUserURL(NewUserURL) {
-  console.log('[SetUserURL] Called with:', NewUserURL);
+  // console.log('[SetUserURL] Called with:', NewUserURL);
   // Enforce username standards (same as RegisterModal.jsx)
   const regex = /^[a-zA-Z0-9-_]+$/;
   if (!regex.test(NewUserURL)) {
@@ -233,50 +241,110 @@ export async function SetUserURL(NewUserURL) {
   const auth = getAuth();
   const user = auth.currentUser;
   if (!user) {
-    console.log('[SetUserURL] No authenticated user.');
+    // console.log('[SetUserURL] No authenticated user.');
     return "Utilisateur non authentifié.";
   }
   const database = getDatabase();
   const usersRef = ref(database, "users");
   try {
-    console.log('[SetUserURL] Fetching all users from database...');
+    // console.log('[SetUserURL] Fetching all users from database...');
     const snapshot = await get(usersRef);
-    if (snapshot.exists()) {
-      const users = snapshot.val();
-      console.log('[SetUserURL] Users fetched:', Object.keys(users).length);
-      for (const uid in users) {
-        const otherUser = users[uid];
-        const userURL = (otherUser.UserURL && otherUser.UserURL !== "None") ? otherUser.UserURL : otherUser.username;
-        if (userURL === NewUserURL) {
-          console.log(`[SetUserURL] URL '${NewUserURL}' is already taken by user: ${uid}`);
-          return "Ce nom d'utilisateur ou URL est déjà pris.";
-        }
+    // if (snapshot.exists()) {
+    const users = snapshot.val();
+    // console.log('[SetUserURL] Users fetched:', Object.keys(users).length);
+    for (const uid in users) {
+      const otherUser = users[uid];
+      const userURL = (otherUser.UserURL && otherUser.UserURL !== "None") ? otherUser.UserURL : otherUser.username;
+      if (userURL === NewUserURL) {
+        // console.log(`[SetUserURL] URL '${NewUserURL}' is already taken by user: ${uid}`);
+        return "Ce nom d'utilisateur ou URL est déjà pris.";
       }
-      // If available, set UserURL in database for current user
-      const userRef = ref(database, `users/${user.uid}`);
-      console.log(`[SetUserURL] URL available. Updating user: ${user.uid}`);
-      await update(userRef, { UserURL: NewUserURL });
-      // Also update public portfolio data
-      const username = users[user.uid]?.username || null;
-      if (username) {
-        const portfolioDataSnapshot = await getDoc(doc(getFirestore(), "publicPortfolios", username));
-        if (portfolioDataSnapshot.exists()) {
-          const portfolioData = portfolioDataSnapshot.data();
-          portfolioData.UserURL = NewUserURL;
-          await PushPortfolioData(username, portfolioData);
-          console.log(`[SetUserURL] Portfolio data updated for username: ${username}`);
-        }
-      }
-      console.log(`[SetUserURL] URL '${NewUserURL}' successfully set for user: ${user.uid}`);
-      return true;
     }
-    // No users found, so available
+    // If available, set UserURL in database for current user
     const userRef = ref(database, `users/${user.uid}`);
-    console.log('[SetUserURL] No users found. Setting URL for current user.');
+    // console.log(`[SetUserURL] URL available. Updating user: ${user.uid}`);
     await update(userRef, { UserURL: NewUserURL });
     return true;
+    // }
+    // No users found, so available
+    // const userRef = ref(database, `users/${user.uid}`);
+    // console.log('[SetUserURL] No users found. Setting URL for current user.');
+    // await update(userRef, { UserURL: NewUserURL });
+    // return true;
   } catch (error) {
     console.error('[SetUserURL] Error checking/setting UserURL:', error);
     return error.message || "Erreur lors de la modification de l'URL utilisateur.";
+  }
+}
+
+/**
+ * Checks if the given UserURL exists among all users in the database.
+ * @param {string} CheckUserURL - The UserURL to check for existence.
+ * @returns {Promise<boolean>} - Resolves true if the UserURL exists, false otherwise.
+ */
+export async function IsUserURL(CheckUserURL) {
+  const regex = /^[a-zA-Z0-9-_]+$/;
+  if (!regex.test(CheckUserURL)) {
+    // Invalid format, treat as not existing
+    return false;
+  }
+  const database = getDatabase();
+  const usersRef = ref(database, "users");
+  try {
+    const snapshot = await get(usersRef);
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      for (const uid in users) {
+        const otherUser = users[uid];
+        const userURL = (otherUser.UserURL && otherUser.UserURL !== "None") ? otherUser.UserURL : otherUser.username;
+        if (userURL === CheckUserURL) {
+          return true; // UserURL exists
+        }
+      }
+    }
+    return false; // Not found
+  } catch (error) {
+    console.error('[IsUserURL] Error checking UserURL:', error);
+    return false;
+  }
+}
+
+/**
+ * Finds and returns the username associated with a given UserURL.
+ * @param {string} UserURL - The UserURL to look up.
+ * @returns {Promise<string|null>} - The username if found, or null if not found.
+ */
+export async function GetUserNameWithUserURL(UserURL) {
+  // console.log('[GetUserNameWithUserURL] Called with:', UserURL);
+  const regex = /^[a-zA-Z0-9-_]+$/;
+  if (!regex.test(UserURL)) {
+    // console.log('[GetUserNameWithUserURL] Invalid UserURL format:', UserURL);
+    return null;
+  }
+  const database = getDatabase();
+  const usersRef = ref(database, "users");
+  try {
+    // console.log('[GetUserNameWithUserURL] Fetching all users from database...');
+    const snapshot = await get(usersRef);
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      // console.log('[GetUserNameWithUserURL] Users fetched:', Object.keys(users).length);
+      for (const uid in users) {
+        const otherUser = users[uid];
+        // console.log(`[GetUserNameWithUserURL] UserURL: ${UserURL}, username: ${otherUser.username}`);
+        const userURL = (otherUser.UserURL && otherUser.UserURL !== "None") ? otherUser.UserURL : otherUser.username;
+        if (userURL === UserURL) {
+          // console.log(`[GetUserNameWithUserURL] Match found for UserURL: ${UserURL}, username: ${otherUser.username}`);
+          return otherUser.username || null;
+        }
+      }
+      // console.log(`[GetUserNameWithUserURL] No match found for UserURL: ${UserURL}`);
+    } else {
+      // console.log('[GetUserNameWithUserURL] No users found in database.');
+    }
+    return null;
+  } catch (error) {
+    // console.error('[GetUserNameWithUserURL] Error:', error);
+    return null;
   }
 }

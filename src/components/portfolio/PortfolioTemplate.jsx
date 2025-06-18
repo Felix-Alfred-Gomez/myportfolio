@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { GetPortfolioData, PushPortfolioData } from "../../hooks/HandlePortfolioData";
+import { GetPortfolioData, PushPortfolioData, GetUserNameWithUserURL } from "../../hooks/HandlePortfolioData";
 // import SkillsSection from "./SkillsSection/SkillsSection";
 import AccueilSection from "./AccueilSection/AccueilSection";
 import ProjetSection from "./ProjetSection/ProjetSection";
@@ -15,7 +15,8 @@ import { FaSave } from "react-icons/fa";
 import CopyPortfolioLinkButton from "./CopyPortfolioLinkButton";
 
 export function PortfolioContent({ isPublished }) {
-  const { username } = useParams();
+  const { UserURL } = useParams();
+  const [username, setUsername] = useState(null);
   const [data, setData] = GetPortfolioData(username);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
@@ -28,11 +29,23 @@ export function PortfolioContent({ isPublished }) {
   const menuRef = useRef(null);
   const burgerRef = useRef(null);
 
+  useEffect(() => {
+    let isMounted = true;
+    async function fetchUsername() {
+      if (UserURL) {
+        const fetchedUsername = await GetUserNameWithUserURL(UserURL);
+        if (isMounted) setUsername(fetchedUsername);
+      }
+    }
+    fetchUsername();
+    return () => { isMounted = false; };
+  }, [UserURL]);
+
   const handlePublish = async () => {
     try {
       setIsPublishing(true);
       const baseUrl = window.location.origin;
-      const url = `${baseUrl}/${username}`;
+      const url = `${baseUrl}/${UserURL}`;
       // Update data before publishing
       const dataToPush = {
         ...data
@@ -69,7 +82,7 @@ export function PortfolioContent({ isPublished }) {
 
   const handleCopyUrl = () => {
     const baseUrl = window.location.origin;
-    const url = `${baseUrl}/${username}`;
+    const url = `${baseUrl}/${UserURL}`;
     navigator.clipboard.writeText(url);
     setShowCopyInfo(true);
     setTimeout(() => setShowCopyInfo(false), 2000);
