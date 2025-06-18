@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getFirestore, doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, get, query, orderByChild, equalTo, update } from "firebase/database";
 import { defaultPortfolioData } from "./defaultPortfolioData";
@@ -195,120 +195,88 @@ export const handleArrayFieldChange = (setData, data, arrayField, idx, field) =>
   });
 };
 
-/**
- * Updates the current user's username in Firebase (Realtime Database, Firestore, and Storage).
- * Moves all storage files from the old username folder to the new username folder.
- * @param {string} newUsername - The new username to set.
- * @returns {Promise<boolean>} - Resolves true if successful, false otherwise.
- */
-export async function updateUsername(newUsername, app) {
-  // Prevent CORS issues on localhost
-  if (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
-    const errorMsg = "CORS: This function cannot be tested on localhost. Please deploy to a remote environment.";
-    console.error(errorMsg);
-    return { success: false, error: errorMsg };
-  }
-
-  const db = getFirestore(app); // Instead of getFirestore()
-  const database = getDatabase(app); // Instead of getDatabase()
-  const auth = getAuth(app); // Instead of getAuth()
-  const storage = (await import("firebase/storage")).getStorage(); // Dynamically import and get Firebase Storage instance
-  const { ref: storageRef, listAll, uploadBytes, deleteObject, getBlob } = await import("firebase/storage"); // Import storage utility functions with alias
-  const { ref: dbRef } = await import("firebase/database"); // Import db ref with alias
-  const user = auth.currentUser; // Get the currently authenticated user
-  console.log("updateUsername called, user:", user); // Log the user object
-
-  if (!user) { // If no user is authenticated
-    console.error("No authenticated user found."); // Log error
-    return { success: false, error: "No authenticated user found." }; // Return failure
-  }
-
-  // Fetch current username from database
-  let currentUsername = null; // Initialize currentUsername variable
+export async function GetUserURL() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (!user) return null;
+  const database = getDatabase();
+  const userRef = ref(database, `users/${user.uid}`);
   try {
-    const userRef = dbRef(database, `users/${user.uid}`); // Reference to user's data in Realtime Database
-    const snapshot = await (await import("firebase/database")).get(userRef); // Get user data snapshot
-    if (snapshot.exists()) { // If user data exists
-      currentUsername = snapshot.val().username; // Set currentUsername from database
-      console.log("Fetched current username:", currentUsername); // Log the fetched username
-    } else {
-      console.log("No username found for user in database.");
-    }
-  } catch (e) {
-    console.warn("Could not fetch current username, proceeding anyway."); // Warn if fetch fails
-  }
-
-  // If the new username is the same as the current one, do nothing
-  if (currentUsername && currentUsername === newUsername) {
-    console.log("New username is the same as current username. No update needed.");
-    return { success: true }; // Return success, nothing to update
-  }
-
-  // Check if the new username is available
-  const available = await checkUsernameAvailable(newUsername, app); // Check username availability
-  console.log("Is new username available?", available);
-  if (!available) { // If not available
-    console.warn("Username is already taken.");
-    return { success: false, error: "Username is already taken." }; // Return failure
-  }
-
-  try {
-    // Update username in Realtime Database
-    const userRef = dbRef(database, `users/${user.uid}`); // Reference to user's data in Realtime Database
-    await update(userRef, { username: newUsername }); // Update username in Realtime Database
-    console.log("Updated username in Realtime Database.");
-    // Update username in Firestore (users collection)
-    try {
-      await setDoc(doc(db, "users", user.uid), { username: newUsername }, { merge: true });
-      console.log("Updated username in Firestore users collection.");
-    } catch (firestoreError) {
-      console.error("Firestore setDoc failed:", firestoreError);
-      return { success: false, error: firestoreError.message || String(firestoreError) }; // Return failure
-    }
-    // Optionally, update username in publicPortfolios if it exists
-    const portfolioRef = doc(db, "publicPortfolios", newUsername); // Reference to new publicPortfolio doc
-    if (currentUsername) { // If current username exists
-      const currentPortfolioRef = doc(db, "publicPortfolios", currentUsername); // Reference to current publicPortfolio doc
-      const currentPortfolioSnap = await getDoc(currentPortfolioRef); // Get current portfolio snapshot
-      if (currentPortfolioSnap.exists()) { // If current portfolio exists
-        const data = currentPortfolioSnap.data(); // Get current portfolio data
-        await setDoc(portfolioRef, { ...data, username: newUsername }); // Copy data to new portfolio doc with new username
-        console.log("Copied portfolio data to new username document.");
-        // Optionally, delete the current portfolio document
-        await deleteDoc(currentPortfolioRef);
-        console.log("Deleted old portfolio document.");
+    const snapshot = await get(userRef);
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      if (!data.UserURL || data.UserURL === "None") {
+        return data.username || null;
       } else {
-        console.log("No current portfolio document to migrate.");
+        return data.UserURL;
       }
     }
-    // --- Handle Storage files ---
-    if (currentUsername && currentUsername !== newUsername) { // If username changed
-      const currentFolderRef = storageRef(storage, `${currentUsername}`); // Reference to current username folder in storage
-      const files = await listAll(currentFolderRef); // List all files in current folder
-      console.log(`Found ${files.items.length} files in current username folder.`);
-      for (const itemRef of files.items) { // For each file in current folder
-        const fileName = itemRef.name; // Get file name
-        // Use getBlob to avoid CORS issues
-        const fileData = await getBlob(itemRef); // Download file data as blob
-        const newFileRef = storageRef(storage, `${newUsername}/${fileName}`); // Reference to new file location
-        await uploadBytes(newFileRef, fileData); // Upload file to new location
-        // Récupère l'URL de téléchargement sécurisée via le SDK
-        const { getDownloadURL } = await import("firebase/storage");
-        try {
-          const downloadURL = await getDownloadURL(newFileRef);
-          console.log(`URL de téléchargement pour ${fileName} :`, downloadURL);
-          // Tu peux ici stocker ou utiliser l'URL selon tes besoins
-        } catch (urlError) {
-          console.error(`Erreur lors de la récupération de l'URL pour ${fileName} :`, urlError);
+    return null;
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Checks if the NewUserURL is available among all users in the database.
+ * If available, sets the current user's UserURL to NewUserURL.
+ * @param {string} NewUserURL - The new URL to check for availability.
+ * @returns {Promise<true|string>} - Resolves true if set (available), or an error message string if not.
+ */
+export async function SetUserURL(NewUserURL) {
+  console.log('[SetUserURL] Called with:', NewUserURL);
+  // Enforce username standards (same as RegisterModal.jsx)
+  const regex = /^[a-zA-Z0-9-_]+$/;
+  if (!regex.test(NewUserURL)) {
+    return "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres, des tirets et des underscores.";
+  }
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (!user) {
+    console.log('[SetUserURL] No authenticated user.');
+    return "Utilisateur non authentifié.";
+  }
+  const database = getDatabase();
+  const usersRef = ref(database, "users");
+  try {
+    console.log('[SetUserURL] Fetching all users from database...');
+    const snapshot = await get(usersRef);
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      console.log('[SetUserURL] Users fetched:', Object.keys(users).length);
+      for (const uid in users) {
+        const otherUser = users[uid];
+        const userURL = (otherUser.UserURL && otherUser.UserURL !== "None") ? otherUser.UserURL : otherUser.username;
+        if (userURL === NewUserURL) {
+          console.log(`[SetUserURL] URL '${NewUserURL}' is already taken by user: ${uid}`);
+          return "Ce nom d'utilisateur ou URL est déjà pris.";
         }
-        console.log(`Moved file ${fileName} to new username folder.`);
-        await deleteObject(itemRef); // Remove current file
       }
+      // If available, set UserURL in database for current user
+      const userRef = ref(database, `users/${user.uid}`);
+      console.log(`[SetUserURL] URL available. Updating user: ${user.uid}`);
+      await update(userRef, { UserURL: NewUserURL });
+      // Also update public portfolio data
+      const username = users[user.uid]?.username || null;
+      if (username) {
+        const portfolioDataSnapshot = await getDoc(doc(getFirestore(), "publicPortfolios", username));
+        if (portfolioDataSnapshot.exists()) {
+          const portfolioData = portfolioDataSnapshot.data();
+          portfolioData.UserURL = NewUserURL;
+          await PushPortfolioData(username, portfolioData);
+          console.log(`[SetUserURL] Portfolio data updated for username: ${username}`);
+        }
+      }
+      console.log(`[SetUserURL] URL '${NewUserURL}' successfully set for user: ${user.uid}`);
+      return true;
     }
-    console.log("Username update process completed successfully.");
-    return { success: true }; // Return success
+    // No users found, so available
+    const userRef = ref(database, `users/${user.uid}`);
+    console.log('[SetUserURL] No users found. Setting URL for current user.');
+    await update(userRef, { UserURL: NewUserURL });
+    return true;
   } catch (error) {
-    console.error("Error updating username:", error); // Log error
-    return { success: false, error: error.message || String(error) }; // Return failure
+    console.error('[SetUserURL] Error checking/setting UserURL:', error);
+    return error.message || "Erreur lors de la modification de l'URL utilisateur.";
   }
 }

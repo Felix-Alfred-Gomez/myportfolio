@@ -1,42 +1,62 @@
 import { X } from "lucide-react";
-// import { useState } from "react";
-// import { updateUsername } from "../../hooks/HandlePortfolioData";
+import { useState, useEffect } from "react";
+import { SetUserURL, GetUserURL } from "../../hooks/HandlePortfolioData";
 
-export default function ParametresModal({ show, onClose, app }) {
-  // const [newUsername, setNewUsername] = useState("");
-  // const [error, setError] = useState(""); 
-  // const [success, setSuccess] = useState(false); 
-  // const [loading, setLoading] = useState(false); 
+export default function ParametresModal({ show, onClose }) {
+  const [newUsername, setNewUsername] = useState("");
+  const [error, setError] = useState(""); 
+  const [success, setSuccess] = useState(false); 
+  const [loading, setLoading] = useState(false); 
+  const [currentURL, setCurrentURL] = useState("");
+
+  useEffect(() => {
+    async function fetchURL() {
+      const baseUrl = window.location.origin;
+      try {
+      const url = await GetUserURL();
+      setCurrentURL(url ? `${baseUrl}/${url}` : "Aucune URL publique");
+      } catch (e) {
+      setCurrentURL("Erreur lors de la récupération de l'URL");
+      }
+    }
+    fetchURL();
+  }, [show, success]);
 
   if (!show) return null;
 
-  // const handleChangeUsername = async () => {
-  //   setError("");
-  //   setSuccess(false);
-  //   setLoading(true);
-  //   try {
-  //     const result = await updateUsername(newUsername, app);
-  //     if (result.success) {
-  //       setSuccess(true);
-  //       setNewUsername("");
-  //     } else {
-  //       setError(result.error || "Erreur inconnue");
-  //     }
-  //   } catch (e) {
-  //     setError(e.message || "Erreur inconnue");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  // Updated handler to use SetUserURL
+  const handleChangeUserURL = async () => {
+    setError("");
+    setSuccess(false);
+    setLoading(true);
+    try {
+      const result = await SetUserURL(newUsername); // Only pass newUsername
+      if (result === true) {
+        setSuccess(true);
+        setNewUsername("");
+      } else if (typeof result === "string") {
+        setError(result); // Use the error message returned by SetUserURL
+      } else {
+        setError("Erreur inconnue lors de la modification de l'URL utilisateur.");
+      }
+    } catch (e) {
+      setError(e.message || "Erreur inconnue lors de la modification de l'URL utilisateur.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="modal-overlay z10 grey">
       <div className="modal-template" onClick={e => e.stopPropagation()}>
         <h2>Paramètres</h2>
+        <div style={{ marginTop: 12, marginBottom: 12 }}>
+          <strong>Votre URL publique actuelle est :</strong> {currentURL || "..."}
+        </div>
         {/* Section to modify username */}
-        {/* <div style={{ marginTop: 24 }}>
+        <div style={{ marginTop: 24 }}>
           <h3>Modifier votre nom d'utilisateur</h3>
-          <label htmlFor="new-username" style={{ display: 'block', marginTop: 12 }}>Nouveau nom d'utilisateur:</label>
+          <label htmlFor="new-username" style={{ display: 'block', marginTop: 12 }}>Modifier votre nom d'utilisateur:</label>
           <input
             id="new-username"
             type="text"
@@ -49,14 +69,14 @@ export default function ParametresModal({ show, onClose, app }) {
           <button
             type="button"
             style={{ marginTop: 12, padding: '8px 16px', borderRadius: 4, background: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}
-            onClick={handleChangeUsername}
+            onClick={handleChangeUserURL}
             disabled={loading || !newUsername.trim()}
           >
             {loading ? "Modification..." : "Modifier"}
           </button>
           {error && <div style={{ color: 'red', marginTop: 10 }}>{error}</div>}
           {success && <div style={{ color: 'green', marginTop: 10 }}>Nom d'utilisateur modifié avec succès !</div>}
-        </div> */}
+        </div>
         <button
           type="button"
           aria-label="Fermer"
