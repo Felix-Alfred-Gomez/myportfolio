@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { SetUserURL, GetUserURL, deleteUserAndData, FetchUsername } from "../../hooks/HandlePortfolioData";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import ConfirmationModal from './ConfirmationModal';
 
 export default function ParametresModal({ show, onClose }) {
   const [newUsername, setNewUsername] = useState("");
@@ -12,6 +13,7 @@ export default function ParametresModal({ show, onClose }) {
   const [currentURL, setCurrentURL] = useState("");
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [deleteError, setDeleteError] = useState("");
+  const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,6 +62,7 @@ export default function ParametresModal({ show, onClose }) {
 
   // Handler for account deletion
   const handleDeleteAccount = async () => {
+    setShowConfirm(false);
     setDeleteLoading(true);
     setDeleteError("");
     try {
@@ -70,9 +73,7 @@ export default function ParametresModal({ show, onClose }) {
       const username = await FetchUsername();
       if (!username) throw new Error("Nom d'utilisateur introuvable.");
       await deleteUserAndData(username, uid);
-      // Optionally: sign out user
       await auth.signOut();
-      // Redirect home
       navigate("/");
       if (onClose) onClose();
     } catch (e) {
@@ -114,17 +115,22 @@ export default function ParametresModal({ show, onClose }) {
         </div>
         {/* Suppression du compte */}
         <div style={{ marginTop: 36, borderTop: '1px solid #ccc', paddingTop: 24 }}>
-          {/* <h3 style={{ color: 'red' }}>Suppression du compte</h3> */}
           <button
             type="button"
             style={{ marginTop: 12, padding: '10px 20px', borderRadius: 4, background: '#d32f2f', color: 'white', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}
-            onClick={handleDeleteAccount}
+            onClick={() => setShowConfirm(true)}
             disabled={deleteLoading}
           >
             {deleteLoading ? "Suppression..." : "Supprimer mon compte"}
           </button>
           {deleteError && <div style={{ color: 'red', marginTop: 10 }}>{deleteError}</div>}
         </div>
+        <ConfirmationModal
+          isOpen={showConfirm}
+          message="Êtes-vous sûr de vouloir supprimer votre compte ?"
+          onConfirm={handleDeleteAccount}
+          onCancel={() => setShowConfirm(false)}
+        />
         <button
           type="button"
           aria-label="Fermer"
