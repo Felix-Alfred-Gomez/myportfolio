@@ -26,8 +26,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Home />}/>
-        <Route path="/portfolio-edition/:username" element={<ProtectedPortfolioEditionRoute />} />
-        <Route path="/:username" element={<PublicPortfolioRouteGuard />} />
+        <Route path="/portfolio-edition/:UserURL" element={<ProtectedPortfolioEditionRoute />} />
+        <Route path="/:UserURL" element={<PublicPortfolioRouteGuard />} />
       </Routes>
     </Router>
   );

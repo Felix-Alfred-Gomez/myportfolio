@@ -1,43 +1,42 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PublicPortfolio from "./PublicPortfolio";
-import { GetPortfolioData, checkUsernameAvailable } from "../../hooks/HandlePortfolioData";
+import { IsUserURL } from "../../hooks/HandlePortfolioData";
 
 function PublicPortfolioRouteGuard() {
-  const { username } = useParams();
+  const { UserURL } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [usernameExists, setUsernameExists] = useState(false);
-  const [portfolioData] = GetPortfolioData(username);
+  const [userURLExists, setUserURLExists] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
     async function checkUser() {
-      if (!username) {
-        setUsernameExists(false);
+      if (!UserURL) {
+        setUserURLExists(false);
         setLoading(false);
         return;
       }
-      // checkUsernameAvailable returns true if username is available (not taken)
-      const available = await checkUsernameAvailable(username);
+      // Use IsUserURL to check if the UserURL exists
+      const exists = await IsUserURL(UserURL);
       if (isMounted) {
-        setUsernameExists(!available); // username exists if not available
+        setUserURLExists(exists);
         setLoading(false);
       }
     }
     checkUser();
     return () => { isMounted = false; };
-  }, [username]);
+  }, [UserURL]);
 
   useEffect(() => {
-    if (!loading && !usernameExists) {
+    if (!loading && !userURLExists) {
       navigate("/", { replace: true });
     }
-  }, [loading, usernameExists, navigate]);
+  }, [loading, userURLExists, navigate]);
 
   if (loading) return null;
-  if (!usernameExists) return null;
-  return <PublicPortfolio data={portfolioData} />;
+  if (!userURLExists) return null;
+  return <PublicPortfolio />;
 }
 
 export default PublicPortfolioRouteGuard;
