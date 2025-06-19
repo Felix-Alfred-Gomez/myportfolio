@@ -18,6 +18,7 @@ import "./styles/UpdateText.css";
 import "./styles/UpdateLinkBox.css";
 import "./styles/UpdateSocialLinks.css";
 import './styles/ConfirmationModal.css';
+import './styles/ParametresModal.css';
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);

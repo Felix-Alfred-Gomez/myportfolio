@@ -35,7 +35,7 @@ const ConfirmationModal = ({ isOpen, onConfirm, onCancel }) => {
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay-supprimer">
       <div className="modal-content">
         <p>Veuillez entrer votre mot de passe pour confirmer cette action :</p>
         <input
