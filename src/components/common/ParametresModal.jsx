@@ -65,6 +65,9 @@ export default function ParametresModal({ show, onClose }) {
     setShowConfirm(false);
     setDeleteLoading(true);
     setDeleteError("");
+    // Redirect immediately
+    navigate("/");
+    if (onClose) onClose();
     try {
       const auth = getAuth();
       const user = auth.currentUser;
@@ -74,8 +77,6 @@ export default function ParametresModal({ show, onClose }) {
       if (!username) throw new Error("Nom d'utilisateur introuvable.");
       await deleteUserAndData(username);
       await auth.signOut();
-      navigate("/");
-      if (onClose) onClose();
     } catch (e) {
       setDeleteError(e.message || "Erreur lors de la suppression du compte.");
     } finally {
