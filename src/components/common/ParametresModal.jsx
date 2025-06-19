@@ -69,10 +69,10 @@ export default function ParametresModal({ show, onClose }) {
       const auth = getAuth();
       const user = auth.currentUser;
       if (!user) throw new Error("Utilisateur non authentifié.");
-      const uid = user.uid;
+      // const uid = user.uid;
       const username = await FetchUsername();
       if (!username) throw new Error("Nom d'utilisateur introuvable.");
-      await deleteUserAndData(username, uid);
+      await deleteUserAndData(username);
       await auth.signOut();
       navigate("/");
       if (onClose) onClose();

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { GetUserIDWithUserName } from "./HandlePortfolioData";
 import BackgroundDefault from "../assets/Background_default.jpg";
 
 export function usePortfolioImage(username, CharVarName, refreshKey, defaultBackground = BackgroundDefault) {
@@ -18,8 +19,16 @@ export function usePortfolioImage(username, CharVarName, refreshKey, defaultBack
 
     const fetchImage = async () => {
       setLoading(true);
+      // Get UID from username
+      const uid = await GetUserIDWithUserName(username);
+      if (!uid) {
+        setImageUrl(defaultBackground);
+        setError(`No UID found for username: ${username}`);
+        setLoading(false);
+        return;
+      }
       const storage = getStorage();
-      const imageRef = ref(storage, `${username}/${CharVarName}`);
+      const imageRef = ref(storage, `${uid}/${CharVarName}`);
       try {
         const url = await getDownloadURL(imageRef);
         if (!cancelled) setImageUrl(url);
@@ -49,9 +58,15 @@ export function usePortfolioImage(username, CharVarName, refreshKey, defaultBack
         setError("Image size must be less than 10MB.");
         return;
       }
-
+      // Get UID from username
+      const uid = await GetUserIDWithUserName(username);
+      if (!uid) {
+        setError(`No UID found for username: ${username}`);
+        setImageUrl(defaultBackground);
+        return;
+      }
       const storage = getStorage();
-      const imageRef = ref(storage, `${username}/${CharVarName}`);
+      const imageRef = ref(storage, `${uid}/${CharVarName}`);
       try {
         await uploadBytes(imageRef, file);
         const url = await getDownloadURL(imageRef);

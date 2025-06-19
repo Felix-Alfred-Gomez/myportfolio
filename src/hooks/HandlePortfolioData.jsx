@@ -14,15 +14,22 @@ export function GetPortfolioData(username) {
 
   useEffect(() => {
     const fetchPortfolio = async () => {
+      if (!username) return;
+      // Get UID from username
+      const uid = await GetUserIDWithUserName(username);
+      if (!uid) {
+        console.warn("No UID found for username:", username);
+        return;
+      }
       const db = getFirestore();
-      const docRef = doc(db, "publicPortfolios", username);
+      const docRef = doc(db, "publicPortfolios", uid);
       try {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const portfolioData = docSnap.data();
           setData(deepMerge(defaultPortfolioData, portfolioData));
         } else {
-          console.warn("No portfolio found for username:", username);
+          console.warn("No portfolio found for UID:", uid);
         }
       } catch (error) {
         console.error("Error fetching portfolio:", error);
@@ -51,7 +58,12 @@ export async function PushPortfolioData(username, data) {
     let mergedData = deepMerge(defaultPortfolioData, data);
     // Prune extra keys not present in defaultPortfolioData
     mergedData = pruneExtraKeys(mergedData, defaultPortfolioData);
-    await setDoc(doc(db, "publicPortfolios", username), {
+    // Get UID from username
+    const uid = await GetUserIDWithUserName(username);
+    if (!uid) {
+      throw new Error("No UID found for username: " + username);
+    }
+    await setDoc(doc(db, "publicPortfolios", uid), {
       ...mergedData, // Spread the merged data object
       username, // Add the username explicitly
       publishedAt: new Date().toISOString(), // Add the timestamp
@@ -350,24 +362,87 @@ export async function GetUserNameWithUserURL(UserURL) {
 }
 
 /**
+ * Finds and returns the UID associated with a given UserURL.
+ * @param {string} UserURL - The UserURL to look up.
+ * @returns {Promise<string|null>} - The UID if found, or null if not found.
+ */
+export async function GetUserIDWithUserURL(UserURL) {
+  const regex = /^[a-zA-Z0-9-_]+$/;
+  if (!regex.test(UserURL)) {
+    return null;
+  }
+  const database = getDatabase();
+  const usersRef = ref(database, "users");
+  try {
+    const snapshot = await get(usersRef);
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      for (const uid in users) {
+        const otherUser = users[uid];
+        const userURL = (otherUser.UserURL && otherUser.UserURL !== "None") ? otherUser.UserURL : otherUser.username;
+        if (userURL === UserURL) {
+          return uid;
+        }
+      }
+    }
+    return null;
+  } catch (error) {
+    return null;
+  }
+}
+
+/**
+ * Finds and returns the UID associated with a given username.
+ * @param {string} username - The username to look up.
+ * @returns {Promise<string|null>} - The UID if found, or null if not found.
+ */
+export async function GetUserIDWithUserName(username) {
+  const regex = /^[a-zA-Z0-9-_]+$/;
+  if (!regex.test(username)) {
+    return null;
+  }
+  const database = getDatabase();
+  const usersRef = ref(database, "users");
+  try {
+    const snapshot = await get(usersRef);
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      for (const uid in users) {
+        const otherUser = users[uid];
+        if (otherUser.username === username) {
+          return uid;
+        }
+      }
+    }
+    return null;
+  } catch (error) {
+    return null;
+  }
+}
+
+/**
  * Deletes a user and all their related data from Firestore and Realtime Database.
  * @param {string} username - The username of the user to delete.
- * @param {string} uid - The Firebase Auth UID of the user to delete.
  * @returns {Promise<void>} - Resolves when deletion is complete.
  */
-export async function deleteUserAndData(username, uid) {
+export async function deleteUserAndData(username) {
+  // Get UID from username
+  const uid = await GetUserIDWithUserName(username);
+  if (!uid) {
+    throw new Error("No UID found for username: " + username);
+  }
   const db = getFirestore();
   const database = getDatabase();
   try {
-    // Delete user document from Firestore (publicPortfolios)
-    await (await import("firebase/firestore")).deleteDoc(doc(db, "publicPortfolios", username));
+    // Delete user document from Firestore (publicPortfolios) by UID
+    await (await import("firebase/firestore")).deleteDoc(doc(db, "publicPortfolios", uid));
     // Delete user entry from Realtime Database (users)
     await (await import("firebase/database")).remove(ref(database, `users/${uid}`));
-    // Delete all files in Firebase Storage under the user's folder
+    // Delete all files in Firebase Storage under the user's UID folder
     const storage = (await import("firebase/storage")).getStorage();
     const listAll = (await import("firebase/storage")).listAll;
     const deleteObject = (await import("firebase/storage")).deleteObject;
-    const userFolderRef = (await import("firebase/storage")).ref(storage, `${username}`);
+    const userFolderRef = (await import("firebase/storage")).ref(storage, `${uid}`);
     const res = await listAll(userFolderRef);
     // Delete all files in the user's folder
     await Promise.all(res.items.map(itemRef => deleteObject(itemRef)));
