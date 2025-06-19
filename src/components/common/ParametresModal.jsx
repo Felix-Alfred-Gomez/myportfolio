@@ -114,10 +114,10 @@ export default function ParametresModal({ show, onClose }) {
           {success && <div style={{ color: 'green', marginTop: 10 }}>Nom d'utilisateur modifié avec succès !</div>}
         </div>
         {/* Suppression du compte */}
-        <div style={{ marginTop: 36, borderTop: '1px solid #ccc', paddingTop: 24 }}>
+        <div style={{ marginTop: 20, borderTop: '1px solid #ccc' }}>
           <button
             type="button"
-            style={{ marginTop: 12, padding: '10px 20px', borderRadius: 4, background: '#d32f2f', color: 'white', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}
+            style={{ marginTop: 20, padding: '10px 20px', borderRadius: 4, background: '#d32f2f', color: 'white', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}
             onClick={() => setShowConfirm(true)}
             disabled={deleteLoading}
           >

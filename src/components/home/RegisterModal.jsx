@@ -41,6 +41,7 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
     if (error) {
       return;
     }
+    if (onRegisterSuccess) onRegisterSuccess(); // Show modal immediately
     const auth = getAuth(app);
     const database = getDatabase(app);
     try {
@@ -54,7 +55,7 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
 
       await sendEmailVerification(user);
 
-      if (onRegisterSuccess) onRegisterSuccess();
+      // No need to call onRegisterSuccess here anymore
     } catch (err) {
       setError(err.message);
     }
@@ -107,8 +108,8 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
       {error && <p className="modal-error">{error}</p>}
     
     <div className="modal-footer">
-      Note : Le nom d'utilisateur définira l'URL publique de votre portfolio. 
-      Il pourra être changé plus tard dans les paramètres de votre compte.
+      Note : Le nom d'utilisateur définira l'URL publique par défaut de votre portfolio. 
+      Cette URL pourra être changé plus tard dans les paramètres de votre compte.
     </div>
     
   </div>

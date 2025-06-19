@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, get, query, orderByChild, equalTo, update } from "firebase/database";
 import { defaultPortfolioData } from "./defaultPortfolioData";
 
@@ -378,9 +378,22 @@ export async function deleteUserAndData(username, uid) {
     if (user && user.uid === uid) {
       await user.delete();
     }
-    // Optionally: Delete user from Firebase Auth (must be done from backend or admin SDK)
   } catch (error) {
     console.error("Error deleting user and data:", error);
     throw error;
   }
+}
+
+// Returns the current authenticated user's email address, or null if not authenticated
+export function getCurrentUserEmail() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  return user ? user.email : null;
+}
+
+// Authenticates a user with email and password using Firebase Auth
+export async function authenticateWithEmailPassword(email, password, app) {
+  const auth = getAuth(app);
+  const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  return userCredential.user;
 }
