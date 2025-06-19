@@ -87,43 +87,46 @@ export default function ParametresModal({ show, onClose }) {
     <div className="modal-overlay z10 grey">
       <div className="modal-template" onClick={e => e.stopPropagation()}>
         <h2>Paramètres</h2>
-        <div style={{ marginTop: 12, marginBottom: 12 }}>
-          <h3>Votre URL publique actuelle est :</h3> {currentURL || "..."}
+        <div className="parametres-url-section">
+          <h3>Votre URL publique actuelle est :</h3>
+          <span>{currentURL || "..."}</span>
         </div>
         {/* Section to modify username */}
-        <div style={{ marginTop: 24 }}>
-          <h3>Modifier votre nom d'utilisateur (et donc votre url publique) :</h3>
-          <input
-            id="new-username"
-            type="text"
-            value={newUsername}
-            onChange={e => setNewUsername(e.target.value)}
-            style={{ width: '250px', marginRight: 8, marginTop: 8, padding: 8, borderRadius: 4, border: '1px solid #ccc' }}
-            placeholder="Entrez un nouveau nom d'utilisateur"
-            disabled={loading}
-          />
-          <button
-            type="button"
-            style={{ marginTop: 12, padding: '8px 16px', borderRadius: 4, background: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}
-            onClick={handleChangeUserURL}
-            disabled={loading || !newUsername.trim()}
-          >
-            {loading ? "Modification..." : "Modifier"}
-          </button>
-          {error && <div style={{ color: 'red', marginTop: 10 }}>{error}</div>}
-          {success && <div style={{ color: 'green', marginTop: 10 }}>Nom d'utilisateur modifié avec succès !</div>}
+        <div className="parametres-username-section">
+          <h3>Modifier votre nom d'utilisateur (url publique) :</h3>
+          <div className="parametres-username-row">
+            <input
+              id="new-username"
+              type="text"
+              value={newUsername}
+              onChange={e => setNewUsername(e.target.value)}
+              className="parametres-username-input"
+              placeholder="Nouveau nom"
+              disabled={loading}
+            />
+            <button
+              type="button"
+              className="parametres-username-button"
+              onClick={handleChangeUserURL}
+              disabled={loading || !newUsername.trim()}
+            >
+              {loading ? "Modification..." : "Modifier"}
+            </button>
+          </div>
+          {error && <div className="parametres-error">{error}</div>}
+          {success && <div className="parametres-success">Nom d'utilisateur modifié avec succès !</div>}
         </div>
         {/* Suppression du compte */}
-        <div style={{ marginTop: 20, borderTop: '1px solid #ccc' }}>
+        <div className="parametres-delete-section">
           <button
             type="button"
-            style={{ marginTop: 20, padding: '10px 20px', borderRadius: 4, background: '#d32f2f', color: 'white', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}
+            className="parametres-delete-button"
             onClick={() => setShowConfirm(true)}
             disabled={deleteLoading}
           >
             {deleteLoading ? "Suppression..." : "Supprimer mon compte"}
           </button>
-          {deleteError && <div style={{ color: 'red', marginTop: 10 }}>{deleteError}</div>}
+          {deleteError && <div className="parametres-error">{deleteError}</div>}
         </div>
         <ConfirmationModal
           isOpen={showConfirm}

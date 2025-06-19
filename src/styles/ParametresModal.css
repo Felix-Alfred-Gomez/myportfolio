@@ -1,0 +1,99 @@
+/* ParametresModal.css */
+
+:root {
+  --pm-spacing: 10px;
+  --pm-spacing-lg: 10px;
+}
+
+.parametres-url-section,
+.parametres-username-section,
+.parametres-delete-section {
+  margin-top: var(--pm-spacing-lg);
+  margin-bottom: var(--pm-spacing-lg);
+}
+
+.parametres-url-section {
+  margin-top: var(--pm-spacing);
+  margin-bottom: var(--pm-spacing);
+}
+
+.parametres-username-section {
+  margin-top: var(--pm-spacing-lg);
+  margin-bottom: var(--pm-spacing);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.parametres-username-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: var(--pm-spacing);
+  gap: 8px;
+}
+
+.parametres-username-input {
+  width: 100%;
+  margin-right: 0;
+  margin-top: 0;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: block;
+  height: 40px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.parametres-username-button {
+  width: fit-content;
+  align-self: center;
+  margin-top: 0;
+  padding: 0 16px;
+  border-radius: 4px;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 0;
+  height: 40px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parametres-error,
+.parametres-success {
+  margin-top: var(--pm-spacing);
+  margin-bottom: var(--pm-spacing);
+}
+
+.parametres-error {
+  color: red;
+}
+
+.parametres-success {
+  color: green;
+}
+
+.parametres-delete-section {
+  border-top: 1px solid #ccc;
+  padding-top: var(--pm-spacing-lg);
+}
+
+.parametres-delete-button {
+  margin-top: var(--pm-spacing);
+  padding: 10px 20px;
+  border-radius: 4px;
+  background: #d32f2f !important;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
