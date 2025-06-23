@@ -13,7 +13,6 @@
     "source": "dataconnect"
   },
   "firestore": {
-    "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
   "functions": [
@@ -54,14 +53,5 @@
       }
     ]
   },
-  "storage": {
-    "rules": "storage.rules"
-  },
-  "remoteconfig": {
-    "template": "remoteconfig.template.json"
-  },
-  "extensions": {},
-  "database": {
-    "rules": "database.rules.json"
-  }
+  "extensions": {}
 }
