@@ -64,7 +64,7 @@ function ProjectModal({
           fontFamilySize={data.projetProps?.FontSizeText}
           fontFamilyWeight={data.projetProps?.FontWeightText}
           fontColor={data.projetProps?.ColorText}
-          // customTextStyle={{ textAlign: "justify" }}
+        // customTextStyle={{ textAlign: "justify" }}
         />
         <UpdateSkillsStack
           isPublished={isPublished}
@@ -95,15 +95,15 @@ function ProjectModal({
           // >
           //   Fermer
           // </button>
-                <button
-        type="button"
-        aria-label="Fermer"
-        onClick={onClose}
-        className="modal-close-button">
-        <X size={15} color="white" />
-      </button>
+          <button
+            type="button"
+            aria-label="Fermer"
+            onClick={onClose}
+            className="modal-close-button">
+            <X size={15} color="white" />
+          </button>
 
-          
+
         )}
       </div>
     </div>

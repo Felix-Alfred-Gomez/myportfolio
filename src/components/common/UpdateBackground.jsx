@@ -7,8 +7,8 @@ export default function UpdateBackground({ onUpload, disabled }) {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      if (file.size > 10 * 1024 * 1024) { // 5MB size check
-        window.alert("Image size must be less than 5MB.");
+      if (file.size > 10 * 1024 * 1024) {
+        window.alert("Image size must be less than 10MB.");
         return;
       }
       onUpload(event);
