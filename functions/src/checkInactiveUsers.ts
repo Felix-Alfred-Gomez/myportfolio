@@ -65,8 +65,8 @@ interface InactiveUser {
 
 export const checkInactiveUsers = onSchedule(
   {
-    // schedule: "every 24 hours",
-    schedule: "every 5 minutes",
+    schedule: "every 24 hours",
+    // schedule: "every 5 minutes",
     timeZone: "Europe/Paris",
     region: "us-central1",
     secrets: [gmailUser, gmailAppPassword],
@@ -75,11 +75,11 @@ export const checkInactiveUsers = onSchedule(
     console.log("Starting inactive users check...");
 
     // Calculate date range: between 1 month and 1 month + 1 day ago
-    // const startDate = Date.now() - 30 * 24 * 60 * 60 * 1000;
-    // const endDate = Date.now() - 31 * 24 * 60 * 60 * 1000;
+    const startDate = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    const endDate = Date.now() - 31 * 24 * 60 * 60 * 1000;
 
-    const startDate = Date.now();
-    const endDate = Date.now() - 5 * 60 * 1000;
+    // const startDate = Date.now();
+    // const endDate = Date.now() - 5 * 60 * 1000;
 
     const inactiveUsers: InactiveUser[] = [];
     let nextPageToken: string | undefined;
@@ -135,21 +135,20 @@ export const checkInactiveUsers = onSchedule(
 
 export const deleteInactiveUsersData = onSchedule(
   {
-    // schedule: "every 24 hours",
-    schedule: "every 5 minutes",
+    schedule: "every 24 hours",
+    // schedule: "every 5 minutes",
     timeZone: "Europe/Paris",
     region: "us-central1",
     secrets: [gmailUser, gmailAppPassword],
   },
   async () => {
     console.log("Starting deletion of inactive users data...");
+    // 10 days later than the inactivity check (during 1 day window)
+    const startDate = Date.now() - 41 * 24 * 60 * 60 * 1000;
+    const endDate = Date.now() - 42 * 24 * 60 * 60 * 1000;
 
-    // Calculate date range: between 1 month + 2 days and 1 month + 3 days ago
-    // const startDate = Date.now() - 41 * 24 * 60 * 60 * 1000;
-    // const endDate = Date.now() - 42 * 24 * 60 * 60 * 1000;
-
-    const startDate = Date.now() - 5 * 60 * 1000;
-    const endDate = Date.now() - 10 * 60 * 1000;
+    // const startDate = Date.now() - 5 * 60 * 1000;
+    // const endDate = Date.now() - 10 * 60 * 1000;
 
     const inactiveUsersToDelete: InactiveUser[] = [];
     let nextPageToken: string | undefined;
