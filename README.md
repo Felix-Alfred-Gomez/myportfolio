@@ -10,3 +10,7 @@ npm start
 
 firebase deploy --only functions
 firebase functions:list
+
+# Set firebase gmail variables (for emails)
+firebase functions:secrets:set GMAIL_USER
+firebase functions:secrets:set GMAIL_APP_PASSWORD
