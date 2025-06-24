@@ -56,8 +56,8 @@ interface InactiveUser {
 
 export const checkInactiveUsers = onSchedule(
   {
-    // schedule: "every 24 hours",
-    schedule: "every 5 minutes",
+    schedule: "every 24 hours",
+    // schedule: "every 5 minutes",
     timeZone: "Europe/Paris",
     region: "us-central1",
     secrets: [gmailUser, gmailAppPassword],
@@ -66,11 +66,11 @@ export const checkInactiveUsers = onSchedule(
     console.log("Starting inactive users check...");
 
     // Calculate date range: between 1 month and 1 month + 1 day ago
-    // const startDate = Date.now() - 30 * 24 * 60 * 60 * 1000;
-    // const endDate = Date.now() - 31 * 24 * 60 * 60 * 1000;
+    const startDate = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    const endDate = Date.now() - 31 * 24 * 60 * 60 * 1000;
 
-    const startDate = Date.now();
-    const endDate = Date.now() - 5 * 60 * 1000;
+    // const startDate = Date.now();
+    // const endDate = Date.now() - 5 * 60 * 1000;
 
     const inactiveUsers: InactiveUser[] = [];
     let nextPageToken: string | undefined;
@@ -120,8 +120,8 @@ export const checkInactiveUsers = onSchedule(
 
 export const deleteInactiveUsersData = onSchedule(
   {
-    // schedule: "every 24 hours",
-    schedule: "every 5 minutes",
+    schedule: "every 24 hours",
+    // schedule: "every 5 minutes",
     timeZone: "Europe/Paris",
     region: "us-central1",
     secrets: [gmailUser, gmailAppPassword],
@@ -130,10 +130,10 @@ export const deleteInactiveUsersData = onSchedule(
     console.log("Starting deletion of inactive users data...");
 
     // Calculate date range: between 1 month + 2 days and 1 month + 3 days ago
-    // const startDate = Date.now() - 32 * 24 * 60 * 60 * 1000;
-    // const endDate = Date.now() - 33 * 24 * 60 * 60 * 1000;
-    const startDate = Date.now() - 5 * 60 * 1000;
-    const endDate = Date.now() - 10 * 60 * 1000;
+    const startDate = Date.now() - 41 * 24 * 60 * 60 * 1000;
+    const endDate = Date.now() - 42 * 24 * 60 * 60 * 1000;
+    // const startDate = Date.now() - 5 * 60 * 1000;
+    // const endDate = Date.now() - 10 * 60 * 1000;
 
     const inactiveUsersToDelete: InactiveUser[] = [];
     let nextPageToken: string | undefined;
@@ -347,7 +347,7 @@ async function sendInactivityEmails(users: InactiveUser[]): Promise<void> {
 
           <div style="background-color: #fff3cd; border: 1px solid #ffeaa7;
                       padding: 15px; border-radius: 5px; margin: 20px 0;">
-            <strong>Action requise :</strong> Connectez-vous sous 48h sur
+            <strong>Action requise :</strong> Connectez-vous sous 10 jours sur
             <a href="https://monfolioperso.fr" style="color: #0066cc;">
               https://monfolioperso.fr</a> afin d'éviter la suppression de
               vos données.
@@ -385,8 +385,8 @@ async function sendInactivityEmails(users: InactiveUser[]): Promise<void> {
         Nous avons remarqué que vous ne vous êtes pas connecté(e) à votre
         compte MonFolioPerso depuis plus d'un mois.
 
-        ATTENTION : Connectez-vous sous 48h sur https://monfolioperso.fr
-        afin d'éviter la suppression de vos données.
+        ATTENTION : Connectez-vous sous 10 jours sur
+        https://monfolioperso.fr afin d'éviter la suppression de vos données.
 
         Pour maintenir la sécurité et optimiser nos services, les comptes
         inactifs sont automatiquement supprimés après une période prolongée
@@ -445,7 +445,7 @@ async function sendDataDeletionConfirmationEmails(
     const mailOptions = {
       from: `MonFolioPerso <${gmailUser.value()}>`,
       to: user.email,
-      subject: "✅ Confirmation - Vos données ont été supprimées",
+      subject: "✅ Vos données ont été supprimées",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px;
                     margin: 0 auto;">
@@ -453,7 +453,7 @@ async function sendDataDeletionConfirmationEmails(
 
           <p>Bonjour,</p>
 
-          <p>Nous vous confirmons que vos données MonFolioPerso ont été
+          <p>Nous vous informons que vos données MonFolioPerso ont été
              définitivement supprimées de nos serveurs en raison de
              l'inactivité prolongée de votre compte.</p>
 
