@@ -59,13 +59,13 @@ export const defaultPortfolioData = {
     FontWeightText: "bold",
     ColorText: "#000000",
 
-    FontFamilySkills: "Arial, sans-serif",
-    FontSizeSkills: "15px",
+    FontFamilySkills: "'IBM Plex Sans', sans-serif",
+    FontSizeSkills: "12px",
     FontWeightSkills: "bold",
-    ColorSkills: "#000000",
-    ColorSkillsBox: "#cf1212",
+    ColorSkills: "#FFFFFF",
+    ColorSkillsBox: "#FF4949",
 
     BackgroundColor: "#f3f3f3",
-    HoverColor: "#d3d3d3", // light grey
+    HoverColor: "#f3f3f3",
   },
 };
