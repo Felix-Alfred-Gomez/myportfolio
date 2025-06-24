@@ -12,6 +12,15 @@ if (!admin.apps.length) {
 const gmailUser = defineSecret("GMAIL_USER");
 const gmailAppPassword = defineSecret("GMAIL_APP_PASSWORD");
 
+// List of privileged email addresses that are exempt
+// from inactivity checks
+const EXEMPT_EMAILS = [
+  "felix.alfred.gomez@gmail.com",
+  // Add more privileged emails here as needed
+  // "admin@example.com",
+  // "support@example.com",
+];
+
 // Interface for user data
 interface InactiveUser {
   email: string;
@@ -56,8 +65,8 @@ interface InactiveUser {
 
 export const checkInactiveUsers = onSchedule(
   {
-    schedule: "every 24 hours",
-    // schedule: "every 5 minutes",
+    // schedule: "every 24 hours",
+    schedule: "every 5 minutes",
     timeZone: "Europe/Paris",
     region: "us-central1",
     secrets: [gmailUser, gmailAppPassword],
@@ -66,11 +75,11 @@ export const checkInactiveUsers = onSchedule(
     console.log("Starting inactive users check...");
 
     // Calculate date range: between 1 month and 1 month + 1 day ago
-    const startDate = Date.now() - 30 * 24 * 60 * 60 * 1000;
-    const endDate = Date.now() - 31 * 24 * 60 * 60 * 1000;
+    // const startDate = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    // const endDate = Date.now() - 31 * 24 * 60 * 60 * 1000;
 
-    // const startDate = Date.now();
-    // const endDate = Date.now() - 5 * 60 * 1000;
+    const startDate = Date.now();
+    const endDate = Date.now() - 5 * 60 * 1000;
 
     const inactiveUsers: InactiveUser[] = [];
     let nextPageToken: string | undefined;
@@ -87,6 +96,12 @@ export const checkInactiveUsers = onSchedule(
           const lastSignIn = userRecord.metadata.lastSignInTime ?
             new Date(userRecord.metadata.lastSignInTime).getTime() :
             0;
+
+          // Skip users with exempt email addresses
+          if (userRecord.email && EXEMPT_EMAILS.includes(userRecord.email)) {
+            console.log(`Skipping exempt user: ${userRecord.email}`);
+            return;
+          }
 
           // Check if user last signed in between 1 month and 1 month + 1 day
           if (lastSignIn &&
@@ -120,8 +135,8 @@ export const checkInactiveUsers = onSchedule(
 
 export const deleteInactiveUsersData = onSchedule(
   {
-    schedule: "every 24 hours",
-    // schedule: "every 5 minutes",
+    // schedule: "every 24 hours",
+    schedule: "every 5 minutes",
     timeZone: "Europe/Paris",
     region: "us-central1",
     secrets: [gmailUser, gmailAppPassword],
@@ -130,10 +145,11 @@ export const deleteInactiveUsersData = onSchedule(
     console.log("Starting deletion of inactive users data...");
 
     // Calculate date range: between 1 month + 2 days and 1 month + 3 days ago
-    const startDate = Date.now() - 41 * 24 * 60 * 60 * 1000;
-    const endDate = Date.now() - 42 * 24 * 60 * 60 * 1000;
-    // const startDate = Date.now() - 5 * 60 * 1000;
-    // const endDate = Date.now() - 10 * 60 * 1000;
+    // const startDate = Date.now() - 41 * 24 * 60 * 60 * 1000;
+    // const endDate = Date.now() - 42 * 24 * 60 * 60 * 1000;
+
+    const startDate = Date.now() - 5 * 60 * 1000;
+    const endDate = Date.now() - 10 * 60 * 1000;
 
     const inactiveUsersToDelete: InactiveUser[] = [];
     let nextPageToken: string | undefined;
@@ -150,6 +166,14 @@ export const deleteInactiveUsersData = onSchedule(
           const lastSignIn = userRecord.metadata.lastSignInTime ?
             new Date(userRecord.metadata.lastSignInTime).getTime() :
             0;
+
+          // Skip users with exempt email addresses
+          if (userRecord.email && EXEMPT_EMAILS.includes(userRecord.email)) {
+            console.log(
+              `Skipping deletion for exempt user: ${userRecord.email}`
+            );
+            return;
+          }
 
           // Check if user last signed in between
           // 1 month + 2 days and 1 month + 3 days
@@ -357,7 +381,7 @@ async function sendInactivityEmails(users: InactiveUser[]): Promise<void> {
              comptes inactifs sont automatiquement supprimés après une
              période prolongée d'inactivité.</p>
 
-          <p style="margin-top: 30px;">
+          <p style="margin-top: 30px; text-align: center;">
             <a href="https://monfolioperso.fr"
                style="background-color: #0066cc; color: white;
                       padding: 12px 24px; text-decoration: none;
@@ -478,7 +502,7 @@ async function sendDataDeletionConfirmationEmails(
                https://monfolioperso.fr</a>
           </p>
 
-          <p style="margin-top: 30px;">
+          <p style="margin-top: 30px; text-align: center;">
             <a href="https://monfolioperso.fr"
                style="background-color: #28a745; color: white;
                       padding: 12px 24px; text-decoration: none;

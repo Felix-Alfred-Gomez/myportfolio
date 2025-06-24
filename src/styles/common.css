@@ -394,3 +394,108 @@
   align-items: center;
   width: 100%;
 }
+
+/* GitHub logo styles */
+.github-logo-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;  background: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  border: 2px solid #000;
+}
+
+.github-logo-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.github-logo-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+  pointer-events: none; /* Disable individual hover on the button */
+}
+
+/* Remove individual button hover effects */
+.github-logo-container:hover .github-logo-button {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.github-logo-container:active .github-logo-button {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.github-icon {
+  color: #333;
+  transition: color 0.3s ease;
+  font-size: 50px;
+}
+
+.github-logo-container:hover .github-icon {
+  color: #000;
+}
+
+.curved-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  animation: rotate 10s linear infinite;
+}
+
+.github-curved-label {
+  fill: #666;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.github-logo-container:hover .github-curved-label {
+  fill: #333;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive styles for GitHub logo */
+@media screen and ((max-width: 600px) or (max-height: 600px)) {
+  .github-logo-container {
+    width: 80px;
+    height: 80px;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .github-icon {
+    font-size: 38px;
+  }
+  
+  .github-curved-label {
+    font-size: 10px;
+  }
+}

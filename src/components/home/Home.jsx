@@ -4,6 +4,7 @@ import LoginModal from "./LoginModal";
 import Register from "./RegisterModal"; // Add this import
 import LoginLogo from "../common/LoginLogo"; // Import the LoginButton component
 import WebsiteLogo from "../common/WebsiteLogo"; // Import the LogoButton component
+import GitHubLogo from "../common/GitHubLogo"; // Import the GitHub logo component
 import "../../styles/common.css"; // Import the common CSS file
 import { AuthContext } from "../../context/AuthContext"; // Importer le contexte
 import homeBackground from "../../assets/hero_home.png";
@@ -41,8 +42,7 @@ function Home() {
   };
 
   return (
-    <div className="container">
-      {/* Fullscreen hero section with overlay */}
+    <div className="container">      {/* Fullscreen hero section with overlay */}      
       <nav className="nav-site">
         <WebsiteLogo />
         <LoginLogo
@@ -50,8 +50,7 @@ function Home() {
           onLogoutClick={() => handleAuthChange(false)} />
       </nav>
       <section className="hero-section">
-        <img src={homeBackground} alt="Background" className="hero-background" />
-        <div className="hero-overlay">
+        <img src={homeBackground} alt="Background" className="hero-background" />          <div className="hero-overlay">
           <h2>Créer votre Portfolio</h2>
           <button
             className="button-pulse"
@@ -113,9 +112,11 @@ function Home() {
               onClose={() => setShowEmailVerification(false)} 
               userEmail={registeredEmail}
             />
-          </div>
-        </div>
+          </div>        </div>
       )}
+      
+      {/* Fixed GitHub logo at bottom right */}
+      <GitHubLogo repositoryUrl="https://github.com/Felix-Alfred-Gomez/myportfolio" />
     </div>
   );
 }
