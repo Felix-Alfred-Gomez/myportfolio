@@ -505,3 +505,23 @@ export async function authenticateWithEmailPassword(email, password, app) {
   const userCredential = await signInWithEmailAndPassword(auth, email, password);
   return userCredential.user;
 }
+
+/**
+ * Counts the total number of users in the database.
+ * @returns {Promise<number>} - The total number of users.
+ */
+export async function getUserCount() {
+  const database = getDatabase();
+  const usersRef = ref(database, "users");
+  try {
+    const snapshot = await get(usersRef);
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      return Object.keys(users).length;
+    }
+    return 0;
+  } catch (error) {
+    console.error("Error getting user count:", error);
+    return 0;
+  }
+}

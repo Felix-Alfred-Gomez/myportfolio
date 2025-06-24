@@ -4,7 +4,7 @@ import { getDatabase, ref, set} from "firebase/database";
 import { app } from "../../firebaseConfig";
 import "../../styles/common.css"; // Use the same CSS as Login
 import { X } from "lucide-react";
-import { checkUsernameAvailable } from "../../hooks/HandlePortfolioData";
+import { checkUsernameAvailable, getUserCount } from "../../hooks/HandlePortfolioData";
 
 function RegisterModal({ onRegisterSuccess, onClose }) {
   const [username, setUsername] = useState("");
@@ -34,8 +34,7 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
         }
       }, 500);
     }
-  };
-  const handleRegister = async (e) => {
+  };  const handleRegister = async (e) => {
     e.preventDefault();
     setError(""); // Clear error at the start of registration
     
@@ -45,10 +44,20 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
     
     setIsLoading(true); // Start loading
     
-    const auth = getAuth(app);
-    const database = getDatabase(app);
-    
     try {
+      // Check if user limit has been reached
+      const userCount = await getUserCount();
+      if (userCount >= 50) {
+        setError(
+          "Limite d'utilisateurs atteinte. Les nouvelles inscriptions sont temporairement suspendues. " +
+          "Vous pouvez le développeur de ce site web: felix.alfred.gomez@gmail.com"
+        );
+        return;
+      }
+      
+      const auth = getAuth(app);
+      const database = getDatabase(app);
+      
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
@@ -57,7 +66,9 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
         email: email,
       });
 
-      await sendEmailVerification(user);      // Only call success callback if everything succeeded
+      await sendEmailVerification(user);
+      
+      // Only call success callback if everything succeeded
       if (onRegisterSuccess) onRegisterSuccess(email);
       
     } catch (err) {
