@@ -11,6 +11,7 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const debounceTimeout = useRef(null);
 
   const handleUsernameChange = (e) => {
@@ -34,16 +35,19 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
       }, 500);
     }
   };
-
   const handleRegister = async (e) => {
     e.preventDefault();
     setError(""); // Clear error at the start of registration
+    
     if (error) {
       return;
     }
-    if (onRegisterSuccess) onRegisterSuccess(); // Show modal immediately
+    
+    setIsLoading(true); // Start loading
+    
     const auth = getAuth(app);
     const database = getDatabase(app);
+    
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
@@ -53,11 +57,26 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
         email: email,
       });
 
-      await sendEmailVerification(user);
-
-      // No need to call onRegisterSuccess here anymore
+      await sendEmailVerification(user);      // Only call success callback if everything succeeded
+      if (onRegisterSuccess) onRegisterSuccess(email);
+      
     } catch (err) {
-      setError(err.message);
+      // Handle different types of Firebase errors with user-friendly messages
+      let errorMessage = "Une erreur est survenue lors de l'inscription.";
+      
+      if (err.code === "auth/email-already-in-use") {
+        errorMessage = "Cette adresse email est déjà utilisée.";
+      } else if (err.code === "auth/weak-password") {
+        errorMessage = "Le mot de passe doit contenir au moins 6 caractères.";
+      } else if (err.code === "auth/invalid-email") {
+        errorMessage = "L'adresse email n'est pas valide.";
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+      
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
@@ -103,7 +122,16 @@ function RegisterModal({ onRegisterSuccess, onClose }) {
         }}
         className="modal-input-box"
       />
-      <button type="submit" >S'inscrire</button>
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? (
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+            <div className="spinner"></div>
+            Inscription en cours...
+          </div>
+        ) : (
+          "S'inscrire"
+        )}
+      </button>
     </form>
       {error && <p className="modal-error">{error}</p>}
     

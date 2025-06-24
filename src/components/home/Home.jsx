@@ -18,6 +18,7 @@ function Home() {
   const [showRegister, setShowRegister] = useState(false); // Add this state
   const [showForgotModal, setShowForgotModal] = useState(false);
   const [showEmailVerification, setShowEmailVerification] = useState(false); // Add state for email verification modal
+  const [registeredEmail, setRegisteredEmail] = useState(""); // Store the email for verification modal
   const navigate = useNavigate();
 
   // Fonction to modify the authentication state
@@ -81,14 +82,13 @@ function Home() {
             />
           </div>
         </div>
-      )}
-
-      {showRegister && (
+      )}      {showRegister && (
         <div className="login-container">
           <div className="login-box" onClick={(e) => e.stopPropagation()}>
             <Register
-              onRegisterSuccess={() => {
+              onRegisterSuccess={(email) => {
                 setShowRegister(false);
+                setRegisteredEmail(email);
                 setShowEmailVerification(true);
               }}
               onClose={() => setShowRegister(false)}
@@ -103,15 +103,16 @@ function Home() {
             <ForgotPasswordModal onClose={() => setShowForgotModal(false)} />
           </div>
         </div>
-      )}
-
-      {showEmailVerification && (
+      )}      {showEmailVerification && (
         <div
           className="login-container"
           onClick={(e) =>
             e.target.classList.contains("login-container") && setShowEmailVerification(false)}>
           <div className="login-box" onClick={(e) => e.stopPropagation()}>
-            <EmailVerification onClose={() => setShowEmailVerification(false)} />
+            <EmailVerification 
+              onClose={() => setShowEmailVerification(false)} 
+              userEmail={registeredEmail}
+            />
           </div>
         </div>
       )}
