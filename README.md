@@ -8,11 +8,11 @@ https://monfolioperso.fr
 npm start
 ```
 
-# To deploy functions/ to google cloud functions (check users inactivity) run:
+# Git commit/push to deploy project to firebase
 
 ```bash
-firebase deploy --only functions
-firebase functions:list
+git commit . -m "I commit"
+git push
 ```
 
 # Set firebase gmail variables (for users inactivity emails):
@@ -20,4 +20,11 @@ firebase functions:list
 ```bash
 firebase functions:secrets:set GMAIL_USER
 firebase functions:secrets:set GMAIL_APP_PASSWORD
+```
+
+# To deploy functions/ to google cloud functions (check users inactivity) run:
+
+```bash
+firebase deploy --only functions
+firebase functions:list
 ```
