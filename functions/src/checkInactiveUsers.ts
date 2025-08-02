@@ -65,7 +65,7 @@ interface InactiveUser {
 
 export const checkInactiveUsers = onSchedule(
   {
-    schedule: "every 24 hours",
+    schedule: "every 48 hours",
     // schedule: "every 5 minutes",
     timeZone: "Europe/Paris",
     region: "us-central1",
@@ -74,9 +74,9 @@ export const checkInactiveUsers = onSchedule(
   async () => {
     console.log("Starting inactive users check...");
 
-    // Calculate date range: between 1 month and 1 month + 1 day ago
+    // Calculate date range: between 1 month and 1 month + 2 days
     const startDate = Date.now() - 30 * 24 * 60 * 60 * 1000;
-    const endDate = Date.now() - 31 * 24 * 60 * 60 * 1000;
+    const endDate = Date.now() - 32 * 24 * 60 * 60 * 1000;
 
     // const startDate = Date.now();
     // const endDate = Date.now() - 5 * 60 * 1000;
@@ -103,7 +103,7 @@ export const checkInactiveUsers = onSchedule(
             return;
           }
 
-          // Check if user last signed in between 1 month and 1 month + 1 day
+          // Check if user last signed in between 1 month and 1 month + 2 days
           if (lastSignIn &&
               lastSignIn < startDate &&
               lastSignIn >= endDate) {
@@ -135,7 +135,7 @@ export const checkInactiveUsers = onSchedule(
 
 export const deleteInactiveUsersData = onSchedule(
   {
-    schedule: "every 24 hours",
+    schedule: "every 48 hours",
     // schedule: "every 5 minutes",
     timeZone: "Europe/Paris",
     region: "us-central1",
@@ -143,9 +143,9 @@ export const deleteInactiveUsersData = onSchedule(
   },
   async () => {
     console.log("Starting deletion of inactive users data...");
-    // 10 days later than the inactivity check (during 1 day window)
+    // 10 days later than the inactivity check (during 2 days window)
     const startDate = Date.now() - 41 * 24 * 60 * 60 * 1000;
-    const endDate = Date.now() - 42 * 24 * 60 * 60 * 1000;
+    const endDate = Date.now() - 43 * 24 * 60 * 60 * 1000;
 
     // const startDate = Date.now() - 5 * 60 * 1000;
     // const endDate = Date.now() - 10 * 60 * 1000;
@@ -174,8 +174,7 @@ export const deleteInactiveUsersData = onSchedule(
             return;
           }
 
-          // Check if user last signed in between
-          // 1 month + 2 days and 1 month + 3 days
+          // Check if user last signed during the inactivity period
           if (lastSignIn &&
               lastSignIn < startDate &&
               lastSignIn >= endDate) {
