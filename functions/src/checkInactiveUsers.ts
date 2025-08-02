@@ -65,7 +65,7 @@ interface InactiveUser {
 
 export const checkInactiveUsers = onSchedule(
   {
-    schedule: "0 0 1 * *",
+    schedule: "0 0 */2 * *",
     // schedule: "every 5 minutes",
     timeZone: "Europe/Paris",
     region: "us-central1",
@@ -135,7 +135,7 @@ export const checkInactiveUsers = onSchedule(
 
 export const deleteInactiveUsersData = onSchedule(
   {
-    schedule: "0 0 1 * *",
+    schedule: "0 0 */2 * *",
     // schedule: "every 5 minutes",
     timeZone: "Europe/Paris",
     region: "us-central1",
